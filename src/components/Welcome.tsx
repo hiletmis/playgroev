@@ -1,6 +1,7 @@
 import { VStack, Tab, Tabs, TabList, TabPanel, TabPanels } from '@chakra-ui/react';
 import Instructions from './Instructions';
 import Bridge from './Bridge';
+import PlaceBid from './PlaceBid';
 
 const Welcome = () => {
     return (
@@ -21,6 +22,7 @@ const Welcome = () => {
                     <Tab>Instructions</Tab>
                     <Tab>Deposit Collateral</Tab>
                     <Tab>Place a Bid</Tab>
+                    <Tab>Update DApi</Tab>
                     <Tab>Awarding</Tab>
                 </TabList>
                 <TabPanels>
@@ -29,6 +31,9 @@ const Welcome = () => {
                     </TabPanel>
                     <TabPanel>
                         <Bridge />
+                    </TabPanel>
+                    <TabPanel>
+                        <PlaceBid />
                     </TabPanel>
                     <TabPanel>
 
