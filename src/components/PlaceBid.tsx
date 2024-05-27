@@ -40,7 +40,7 @@ const Hero = () => {
     }, [fetchETHBalance_]);
 
     const signPayload = async () => {
-
+        setDataFeed(dataFeed);
     }
 
     return (
