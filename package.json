@@ -1,6 +1,6 @@
 {
   "name": "playgroev",
-  "homepage": "https://hiletmis.github.io/playgroev/",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
