@@ -24,3 +24,7 @@ export const copy = (text: string) => {
         alert("Clipboard API not available");
     }
 }
+
+export const trimHash = (hash: string) => {
+    return hash.substring(0, 6) + "..." + hash.substring(hash.length - 4);
+}
