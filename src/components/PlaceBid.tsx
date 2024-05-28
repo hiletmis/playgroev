@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import SignIn from '../custom/SignIn';
+import SwitchNetwork from '../custom/SwitchNetwork';
 import { useAccount, useBalance } from "wagmi";
 import { COLORS } from '../helpers/utils';
 import DataFeedRow from "../custom/DataFeedRow";
@@ -45,29 +46,30 @@ const Hero = () => {
 
     return (
         chain == null ? <SignIn></SignIn> :
-            <VStack spacing={4} minWidth={"350px"} maxWidth={"700px"} alignItems={"left"} >
-                <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={false}></CustomHeading>
-                <Box width={"100%"} bgColor={COLORS.main} borderRadius={"10"} boxShadow={"md"} >
+            chain.id !== 4913 ? <SwitchNetwork /> :
+                <VStack spacing={4} minWidth={"350px"} maxWidth={"700px"} alignItems={"left"} >
+                    <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={false}></CustomHeading>
+                    <Box width={"100%"} bgColor={COLORS.main} borderRadius={"10"} boxShadow={"md"} >
 
-                    <VStack spacing={3} direction="row" align="left" m="1rem">
-                        <DataFeedRow dataFeed={dataFeed}></DataFeedRow>
-                        <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain}></BidAmount>
-                        <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={condition} setCondition={setCondition}></BidConditions>
-                        <ExecuteButton
-                            isDisabled={!ethAmount || !fulfillValue || !condition || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || parseFloat(ethBalance) < parseFloat(ethAmount)}
-                            text={'Bid'}
-                            onClick={signPayload}>
-                        </ExecuteButton>
+                        <VStack spacing={3} direction="row" align="left" m="1rem">
+                            <DataFeedRow dataFeed={dataFeed}></DataFeedRow>
+                            <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain}></BidAmount>
+                            <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={condition} setCondition={setCondition}></BidConditions>
+                            <ExecuteButton
+                                isDisabled={!ethAmount || !fulfillValue || !condition || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || parseFloat(ethBalance) < parseFloat(ethAmount)}
+                                text={'Bid'}
+                                onClick={signPayload}>
+                            </ExecuteButton>
+                        </VStack>
+                    </Box>
+                    <VStack p={4} shadow="md" borderWidth="px" flex="1" borderRadius={"10"} bgColor={COLORS.main} alignItems={"left"}>
+                        <Flex>
+                            <Text fontWeight={"bold"} fontSize={"md"}>Bid</Text>
+                            <Spacer />
+                        </Flex>
+
                     </VStack>
-                </Box>
-                <VStack p={4} shadow="md" borderWidth="px" flex="1" borderRadius={"10"} bgColor={COLORS.main} alignItems={"left"}>
-                    <Flex>
-                        <Text fontWeight={"bold"} fontSize={"md"}>Bid</Text>
-                        <Spacer />
-                    </Flex>
-
                 </VStack>
-            </VStack>
     );
 };
 
