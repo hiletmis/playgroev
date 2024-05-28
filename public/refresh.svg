@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="103.948"
+   height="116.129"
+   viewBox="0 0 103.948 116.129"
+   version="1.1"
+   id="svg10"
+   sodipodi:docname="enno_icon_set_refresh_dark.svg"
+   inkscape:version="1.1-alpha (17bc9184, 2021-03-28)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     id="namedview12"
+     pagecolor="#111111"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     objecttolerance="10.0"
+     gridtolerance="10.0"
+     guidetolerance="10.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="6.4841686"
+     inkscape:cx="23.44171"
+     inkscape:cy="59.91516"
+     inkscape:window-width="1312"
+     inkscape:window-height="1003"
+     inkscape:window-x="44"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg10" />
+  <path
+     id="enno_icon_set_refresh"
+     d="M103.931,52.877l0-.121a3.922,3.922,0,0,0-.008-.42l-.2-2.417-1.559,1.86-1.842,2.2a9.806,9.806,0,0,0-2.175,5.155c-.231,1.632-.358,3.262-.461,4.78l-.065.975c-.093,1.424-.19,2.895-.348,4.332A45.124,45.124,0,0,1,86.945,93.385c-.867,1.034-1.793,2.044-2.752,3A45.574,45.574,0,1,1,51.985,18.582a45.87,45.87,0,0,1,18.959,4.136L58.889,34.436a3.2,3.2,0,0,0,2.23,5.5H91.6a3.185,3.185,0,0,0,3.187-2.911L97.839,3.488A3.2,3.2,0,0,0,92.389.936l-9.853,9.852,4.526,4.526,3.6-3.6L88.681,33.531H69l9.588-9.321a3.2,3.2,0,0,0-.631-5.066,51.974,51.974,0,1,0,10.756,81.771c.735-.734,1.457-1.5,2.149-2.278s1.363-1.58,2.005-2.4,1.261-1.651,1.848-2.494,1.15-1.71,1.688-2.589,1.048-1.778,1.524-2.676.935-1.824,1.36-2.756.822-1.874,1.19-2.829.707-1.915,1.021-2.9.6-1.982.845-2.958.477-2,.671-3.015.359-2.045.492-3.063.237-2.077.31-3.1c.078-1.121.121-2.26.128-3.386Z"
+     transform="translate(0 0)"
+     style="fill:#111111" />
+</svg>
