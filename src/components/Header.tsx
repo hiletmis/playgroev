@@ -9,7 +9,7 @@ import { OevContext } from '../OEVContext';
 const Header = () => {
     const { open } = useWeb3Modal()
     const { chain, address, status } = useAccount()
-    const { chains, switchChain } = useSwitchChain()
+    const { switchChain } = useSwitchChain()
 
     const { setBalance } = useContext(OevContext);
 
@@ -35,8 +35,8 @@ const Header = () => {
                             <Text fontSize={'md'} fontWeight={'bold'} p={2} bgColor={"red.100"} borderRadius={"md"}>
                                 Wrong Network
                             </Text>
-                            <Button onClick={() => switchChain({ chainId: chains[chains.length - 1].id })}>
-                                {`Switched to ${chains[chains.length - 1].name}`}
+                            <Button onClick={() => switchChain({ chainId: 4913 })}>
+                                {`Switched to OEV Network`}
                             </Button>
                         </Flex>
                         :
