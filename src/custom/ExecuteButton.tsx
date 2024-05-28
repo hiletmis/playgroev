@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, VStack } from '@chakra-ui/react';
 
 const Hero = (props: any) => {

@@ -4,7 +4,7 @@ import { ColorRing } from 'react-loader-spinner';
 const Hero = (props: any) => {
     const { header, description, isLoading } = props;
     return (
-        <VStack alignItems={"left"} >
+        <VStack alignItems={"left"} spacing={3} >
             <Flex>
                 <Heading size={"lg"}>{header}</Heading>
                 <Spacer />
