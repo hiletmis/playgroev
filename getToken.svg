@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="119.613"
+   height="114.148"
+   viewBox="0 0 119.613 114.148"
+   version="1.1"
+   id="svg12"
+   sodipodi:docname="enno_icon_set_import_wallet_account_dark.svg"
+   inkscape:version="1.1-alpha (17bc9184, 2021-03-28)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     id="namedview14"
+     pagecolor="#111111"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     objecttolerance="10.0"
+     gridtolerance="10.0"
+     guidetolerance="10.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="6.5966989"
+     inkscape:cx="31.682513"
+     inkscape:cy="58.893093"
+     inkscape:window-width="1312"
+     inkscape:window-height="1003"
+     inkscape:window-x="44"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg12" />
+  <g
+     id="enno_icon_set_import_wallet_account"
+     transform="translate(0 0)"
+     style="fill:#111111">
+    <path
+       id="Path_9013"
+       data-name="Path 9013"
+       d="M119.612,60.94V41.752a15.738,15.738,0,0,0-15.739-15.739H47.216q0,3.157,0,6.316l53.934-.071a15.945,15.945,0,0,1,6.415.876,8.818,8.818,0,0,1,4.1,3.8c1.537,2.654,1.635,42.115,1.746,42.019-.143.792.034,11.637.034,11.637.048.862.085,1.723.086,2.583.007,4.751-1.266,10-5.213,12.642-2.985,2-6.818,2.068-10.412,2.066l-76.623-.043c-3.907,0-8.182-.134-11.142-2.684C6.56,102.07,6.287,96.714,6.286,91.987L6.28,43.3c0-3.57.083-7.412,2.2-10.289,2.092-2.846,5.682-4.08,9.047-5.156L80.546,7.691c4.061-1.3,9.251-2.3,11.962.99,1.794,2.178,1.785,5.256,2.41,7.877a6.958,6.958,0,0,0,1.65,3.419c1.261,1.253,3.194,2.048,4.706,2.958l.117.07a39.594,39.594,0,0,0-1.7-11.107,32.945,32.945,0,0,0-2.177-5.776,10.259,10.259,0,0,0-3.207-3.964A10.818,10.818,0,0,0,91.079.682a16.193,16.193,0,0,0-10.217.3L10.949,23.359A15.74,15.74,0,0,0,0,38.35V98.409a15.739,15.739,0,0,0,15.739,15.739h88.134a15.739,15.739,0,0,0,15.739-15.739V79.729a33.027,33.027,0,0,0-.671-6.945,12.737,12.737,0,0,1,.012-5.156,31.532,31.532,0,0,0,.659-6.688"
+       fill-rule="evenodd"
+       style="fill:#111111" />
+    <path
+       id="Path_9014"
+       data-name="Path 9014"
+       d="M86.218,74.3A2,2,0,0,0,84.346,73h-13.8c.261-18.188,4.114-28.845,11.187-30.866a2,2,0,0,0-.55-3.922c-9.994,0-30.631,6.692-30.631,27.379h4c0-13.275,10.134-19.8,18.857-22.225C68.84,49.294,66.532,59.877,66.532,75a2,2,0,0,0,2,2H79.023L59.045,94.48,39.068,77h4.766c2.7,0,5.387.281,7.925-.829A18.087,18.087,0,0,0,56.39,73H33.744a2,2,0,0,0-1.317,3.5l25.3,22.138a2,2,0,0,0,2.635,0L85.663,76.5a2,2,0,0,0,.555-2.209"
+       style="fill:#111111" />
+  </g>
+</svg>
