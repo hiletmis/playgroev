@@ -3,7 +3,7 @@ import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 
 export const projectId = String('72b9b848e4e945c6be129961f0ead954')
 
-export const chainIds = CHAINS.map(({ id }) => id);
+export const chainIds = CHAINS.filter(({ testnet }) => !testnet).map(({ id }) => String(id));
 const filteredChains = viemConfig.chains().filter(({ id }) => chainIds.includes(String(id)));
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
