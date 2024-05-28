@@ -1,13 +1,17 @@
+import { useContext, useEffect } from 'react';
 import { Flex, Text, Spacer, Image, Button } from '@chakra-ui/react';
 import { ChainLogo } from '@api3/logos';
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 import { useAccount, useSwitchChain, useBalance } from 'wagmi'
-import { parse } from '../helpers/utils'
+import { parseETH } from '../helpers/utils'
+import { OevContext } from '../OEVContext';
 
 const Header = () => {
     const { open } = useWeb3Modal()
     const { chain, address, status } = useAccount()
     const { chains, switchChain } = useSwitchChain()
+
+    const { setBalance } = useContext(OevContext);
 
     const { data: walletBalance } = useBalance(
         {
@@ -15,6 +19,12 @@ const Header = () => {
             address: address
         }
     )
+
+    useEffect(() => {
+        if (walletBalance !== undefined) {
+            setBalance(walletBalance.value)
+        }
+    }, [setBalance, walletBalance])
 
     const SwitchNetwork = () => {
         return (
@@ -56,7 +66,7 @@ const Header = () => {
                     {
                         chain === undefined ? null :
                             <Text fontSize={'md'} fontWeight={'bold'} p={2} bgColor={"gray.100"} borderRadius={"md"} onClick={() => open()} cursor={"pointer"}>
-                                {walletBalance === undefined ? "0" : parse(walletBalance.value) + " " + walletBalance.symbol}
+                                {walletBalance === undefined ? "0" : parseETH(walletBalance.value) + " " + walletBalance.symbol}
                             </Text>
                     }
                 </Flex>
