@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import SignIn from '../custom/SignIn';
 import SwitchNetwork from '../custom/SwitchNetwork';
 import { useAccount, useBalance } from "wagmi";
-import { COLORS, getEthUsdDapi, getChain } from '../helpers/utils';
+import { COLORS, getEthUsdDapi, getChain, getDapiProxyWithOevAddress } from '../helpers/utils';
 import CustomHeading from "../custom/Heading";
 import BidAmount from "../custom/BidAmount";
 import BidConditions from "../custom/BidCondition";
 import ExecuteButton from "../custom/ExecuteButton";
 import DApiList from "../custom/DApiList";
+import InfoRow from "../custom/InfoRow";
 
 import {
     VStack, Box, Text, Flex, Spacer
@@ -18,6 +19,8 @@ const Hero = () => {
 
     const [selectedChain, setSelectedChain] = useState(getChain("1"));
     const [dApi, setDapi] = useState(getEthUsdDapi());
+    const [dapiProxyWithOevAddress, setDapiProxyWithOevAddress] = useState("" as `0x${string}`);
+
     const [ethAmount, setEthAmount] = useState("");
     const [ethBalance, setEthBalance] = useState("0");
     const [fulfillValue, setFulfillValue] = useState("");
@@ -38,8 +41,11 @@ const Hero = () => {
     }
 
     useEffect(() => {
-
-    }, [dApi]);
+        if (dApi == null) return;
+        if (selectedChain == null) return;
+        const oevProxy = getDapiProxyWithOevAddress(BigInt(selectedChain.id).toString(), dApi.name);
+        setDapiProxyWithOevAddress(oevProxy);
+    }, [dApi, selectedChain]);
 
     return (
         chain == null ? <SignIn></SignIn> :
@@ -50,6 +56,7 @@ const Hero = () => {
 
                         <VStack spacing={3} direction="row" align="left" m="1rem">
                             <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
+                            <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} margin={0}></InfoRow>
                             <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain}></BidAmount>
                             <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={condition} setCondition={setCondition}></BidConditions>
                             <ExecuteButton
