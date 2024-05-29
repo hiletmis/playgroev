@@ -1,6 +1,7 @@
 import { formatUnits } from 'ethers';
 import { dapis, getChains as getChainsFromDapiManagement } from '@api3/dapi-management'
 import { CHAINS } from '@api3/chains';
+import { computeDapiProxyWithOevAddress } from '@api3/contracts';
 
 export const parseETH = (value: any) => {
     if (value === undefined) return '0';
@@ -9,7 +10,7 @@ export const parseETH = (value: any) => {
 
 export const COLORS = {
     app: '#f2f2f2',
-    appDarker: '#ffffff',
+    appDarker: '#e1e1e1',
     bg: '#ffffff',
     table: "blue.900",
     info: "gray.500",
@@ -47,4 +48,10 @@ export function getChains() {
 
 export function getChain(id: string) {
     return CHAINS.find((chain) => chain.id === id);
+}
+
+export function getDapiProxyWithOevAddress(chainId: string, dApiName: string): `0x${string}` {
+    const oevBeneficiary = "0x07b589f06bd0a5324c4e2376d66d2f4f25921de1"
+    const metadata = "0x"
+    return computeDapiProxyWithOevAddress(chainId, dApiName, oevBeneficiary, metadata) as `0x${string}`;
 }
