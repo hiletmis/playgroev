@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import SignIn from '../custom/SignIn';
 import SwitchNetwork from '../custom/SwitchNetwork';
 import { useAccount, useBalance } from "wagmi";
-import { COLORS } from '../helpers/utils';
-import DataFeedRow from "../custom/DataFeedRow";
+import { COLORS, getEthUsdDapi, getChain } from '../helpers/utils';
 import CustomHeading from "../custom/Heading";
 import BidAmount from "../custom/BidAmount";
 import BidConditions from "../custom/BidCondition";
 import ExecuteButton from "../custom/ExecuteButton";
-import { DataFeed } from "../types";
+import DApiList from "../custom/DApiList";
 
 import {
     VStack, Box, Text, Flex, Spacer
@@ -17,14 +16,8 @@ import {
 const Hero = () => {
     const { address, chain } = useAccount()
 
-    const [dataFeed, setDataFeed] = useState({
-        p1: "ETH",
-        p2: "USD",
-        chainId: "1",
-        proxyAddress: "0x5c9dd501921A7dD4FB31d88aC832Cdc36b8D3140",
-        beaconId: "0x74736c3bb73e14107f6b39de71be6a9044180759b3d669204c2341d499f8cbe0",
-        beneficiaryAddress: "0x90f79bf6eb2c4f870365e785982e1f101e93b906"
-    } as DataFeed);
+    const [selectedChain, setSelectedChain] = useState(getChain("1"));
+    const [dApi, setDapi] = useState(getEthUsdDapi());
     const [ethAmount, setEthAmount] = useState("");
     const [ethBalance, setEthBalance] = useState("0");
     const [fulfillValue, setFulfillValue] = useState("");
@@ -41,18 +34,22 @@ const Hero = () => {
     }, [fetchETHBalance_]);
 
     const signPayload = async () => {
-        setDataFeed(dataFeed);
+
     }
+
+    useEffect(() => {
+
+    }, [dApi]);
 
     return (
         chain == null ? <SignIn></SignIn> :
             chain.id !== 4913 ? <SwitchNetwork /> :
-                <VStack spacing={4} minWidth={"350px"} maxWidth={"700px"} alignItems={"left"} >
+                <VStack spacing={4} minWidth={"400px"} maxWidth={"700px"} alignItems={"left"} >
                     <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={false}></CustomHeading>
-                    <Box width={"100%"} bgColor={COLORS.main} borderRadius={"10"} boxShadow={"md"} >
+                    <Box width={"100%"} bgColor={COLORS.main} borderRadius={"10"}  >
 
                         <VStack spacing={3} direction="row" align="left" m="1rem">
-                            <DataFeedRow dataFeed={dataFeed}></DataFeedRow>
+                            <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
                             <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain}></BidAmount>
                             <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={condition} setCondition={setCondition}></BidConditions>
                             <ExecuteButton
