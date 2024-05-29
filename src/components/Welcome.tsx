@@ -15,7 +15,6 @@ const Welcome = () => {
             maxWidth={'1100px'}
             alignItems={'left'}
             justifyItems={'center'}
-            overflow={'scroll'}
         >
             <Tabs>
                 <TabList>
