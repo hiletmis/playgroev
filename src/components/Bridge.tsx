@@ -1,6 +1,6 @@
 
 import { useContext, useState } from 'react';
-import { VStack, Flex, Text, Spacer } from '@chakra-ui/react';
+import { Button, VStack, Flex, Text, Spacer } from '@chakra-ui/react';
 import CustomHeading from '../custom/Heading';
 import ExecuteButton from '../custom/ExecuteButton';
 import AddCollateral from '../custom/AddCollateral';
@@ -65,7 +65,32 @@ const Bridge = () => {
             chain.id !== 4913 ? <SwitchNetwork /> :
                 <VStack alignItems={"left"} spacing={5}>
                     <CustomHeading header={"Deposit Collateral"} description={"Depoist your Ethereum to start placing bids."} isLoading={isPending}></CustomHeading>
-                    <AddCollateral tokenAmount={ethAmount} setTokenAmount={setEthAmount} tokenBalance={parseETH(balance)} ></AddCollateral>
+                    {
+                        balance === BigInt(0) ?
+                            <VStack p={4} width={"100%"} borderRadius={"10"} bgColor={COLORS.caution} alignItems={"left"} spacing={5}>
+                                <Text fontSize={"md"} fontWeight={"bold"}>Add Funds</Text>
+                                <Text fontSize={"sm"}>You have no funds to deposit. Please add funds to your wallet.</Text>
+                                <Text fontSize={"sm"}>You can add funds to your wallet by using the official OEV Network bridge.</Text>
+                                <Button
+                                    size={"md"} colorScheme={"blue"} variant={"solid"}
+                                    onClick={() => window.open('https://oev-network.bridge.caldera.xyz/', '_blank')}>OEV Network Bridge
+                                </Button>
+                            </VStack>
+                            :
+                            <VStack alignItems={"left"} spacing={5}>
+                                <Flex p={2} width={"100%"} bgColor={COLORS.app} borderRadius={"10"}>
+                                    <Text fontSize={"md"} fontWeight={"bold"}>Deposit Balance</Text>
+                                    <Spacer />
+                                    <Text fontWeight={"bold"} fontSize={"md"}>{parseETH(bidderBalance)} ETH</Text>
+                                </Flex>
+                                <AddCollateral tokenAmount={ethAmount} setTokenAmount={setEthAmount} tokenBalance={parseETH(balance)} ></AddCollateral>
+                                <ExecuteButton
+                                    text={'Deposit Collateral'}
+                                    isDisabled={ethAmount === "0" || ethAmount === "" || parseFloat(parseETH(balance)) < parseFloat(ethAmount)}
+                                    onClick={() => depositForBidder()}>
+                                </ExecuteButton>
+                            </VStack>
+                    }
                     {
                         hash &&
                         <Flex p={2} gap={2} width={"100%"} bgColor={COLORS.app} borderRadius={"10"}>
@@ -79,18 +104,6 @@ const Bridge = () => {
                             </Text>
                         </Flex>
                     }
-                    <Flex p={2} width={"100%"} bgColor={COLORS.app} borderRadius={"10"}>
-                        <Text fontSize={"md"} fontWeight={"bold"}>OEV Balance</Text>
-                        <Spacer />
-                        <Text fontWeight={"bold"} fontSize={"md"}>{parseETH(bidderBalance)} ETH</Text>
-                    </Flex>
-
-                    <ExecuteButton
-                        text={'Deposit Collateral'}
-                        isDisabled={ethAmount === "0" || ethAmount === "" || parseFloat(parseETH(balance)) < parseFloat(ethAmount)}
-                        onClick={() => depositForBidder()}>
-                    </ExecuteButton>
-
                 </VStack>
     );
 };
