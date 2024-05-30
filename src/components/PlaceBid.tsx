@@ -10,12 +10,14 @@ import ExecuteButton from "../custom/ExecuteButton";
 import ErrorRow from "../custom/ErrorRow";
 import DApiList from "../custom/DApiList";
 import InfoRow from "../custom/InfoRow";
+import BidView from "../custom/BidView";
 import { EncodeBidDetailsArgs } from "../types";
 import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { parseEther } from 'ethers';
+import { BidInfo } from "../types";
 
 import {
-    VStack, Box, Text, Flex, Spacer
+    VStack, Flex
 } from "@chakra-ui/react";
 
 const Hero = () => {
@@ -34,7 +36,7 @@ const Hero = () => {
     const [collateralFee, setCollateralFee] = useState(BigInt(0))
 
     const [bidId, setBidId] = useState("" as `0x${string}`)
-    const [bids, setBids] = useState([] as `0x${string}`[])
+    const [bids, setBids] = useState([] as BidInfo[])
     const [isInputDisabled, setIsInputDisabled] = useState(false)
 
     const [isError, setIsError] = useState(false)
@@ -48,6 +50,19 @@ const Hero = () => {
     }
 
     const signPayload = async () => {
+        const newBid = {
+            bidId: bidId,
+            bidTopic: bidTopic,
+            bidDetails: bidDetails,
+            tx: hash,
+            chainId: BigInt(selectedChain!.id),
+            dApi: dApi,
+            ethAmount: BigInt(parseEther(ethAmount)),
+            explorer: selectedChain!.explorer.browserUrl
+        } as BidInfo
+
+        setBids([...bids, newBid])
+
         if (placeBidData == null) return;
         setIsInputDisabled(true)
 
@@ -60,7 +75,8 @@ const Hero = () => {
             },
             onSuccess: () => {
                 setIsInputDisabled(false)
-                setBids([...bids, bidId])
+
+
             }
         });
     }
@@ -159,21 +175,8 @@ const Hero = () => {
                                 </ExecuteButton>
                             </VStack>
                         </VStack>
-                        <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
-                            <Flex>
-                                <Text fontWeight={"bold"} fontSize={"md"}>Bids</Text>
-                                <Spacer />
-                            </Flex>
-                            {
-                                bids.map((bid, index) => {
-                                    return (
-                                        <Box key={index} width={"100%"} p={1}>
-                                            <InfoRow header={"Bid ID"} text={bid}></InfoRow>
-                                            <InfoRow header={"Transaction Hash"} text={Utils.trimHash(hash)} link={Utils.transactionLink(chain.blockExplorers!.default.url, hash)}></InfoRow>
-                                        </Box>
-                                    )
-                                })
-                            }
+                        <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"} overflow={"scroll"}>
+                            <BidView bids={bids}></BidView>
                         </VStack>
                     </Flex>
                 </VStack>

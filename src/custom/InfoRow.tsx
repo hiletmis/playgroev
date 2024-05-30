@@ -5,11 +5,11 @@ import { ViewIcon } from '@chakra-ui/icons';
 const InfoRow = (props: any) => {
     const { header, text, link, bgColor = COLORS.app } = props;
     return (
-        <VStack spacing={1} p={4} width={"100%"} bgColor={bgColor} marginBottom={"5px"} alignItems={"left"}>
+        <VStack spacing={1} p={4} width={"100%"} bgColor={bgColor} alignItems={"left"}>
             <Text fontWeight={"bold"} fontSize={"sm"}>{header}</Text>
 
             <Flex className='box'>
-                <Text fontSize={"sm"}>{text}</Text>
+                <Text width={"100%"} fontSize={"sm"}>{text}</Text>
                 <Spacer />
                 {
                     link &&

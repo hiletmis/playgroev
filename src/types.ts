@@ -1,15 +1,3 @@
-import * as z from "zod";
-
-export const DataFeedSchema = z.object({
-    "p1": z.string(),
-    "p2": z.string(),
-    "chainId": z.string(),
-    "proxyAddress": z.string(),
-    "beaconId": z.string(),
-    "beneficiaryAddress": z.string(),
-});
-export type DataFeed = z.infer<typeof DataFeedSchema>;
-
 export type BidCondition = {
     readonly onchainIndex: bigint;
     readonly description: BidConditionDescription;
@@ -24,4 +12,15 @@ export type EncodeBidDetailsArgs = {
     proxyAddress: `0x${string}`;
     conditionValue: bigint;
     updaterAddress: `0x${string}`;
+};
+
+export type BidInfo = {
+    bidId: `0x${string}`;
+    bidTopic: `0x${string}`;
+    bidDetails: string;
+    tx: `0x${string}`;
+    chainId: bigint;
+    dApi: any;
+    ethAmount: bigint;
+    explorer: string;
 };

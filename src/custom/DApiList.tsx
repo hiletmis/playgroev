@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Flex, VStack } from "@chakra-ui/react";
-import { COLORS, getDapis, getChains } from '../helpers/utils';
+import { getDapis, getChains } from '../helpers/utils';
 import DApiRow from "./DApiRow";
 import ChainRow from "./ChainRow";
 import { SearchBar } from "./SearchBar";
 
-const DataFeedList = (props: any) => {
+const DApiList = (props: any) => {
     const { dApi, setDapi, selectedChain, setSelectedChain } = props;
     const [keyword, setKeyword] = useState("");
 
@@ -70,4 +70,4 @@ const DataFeedList = (props: any) => {
     )
 };
 
-export default DataFeedList;
+export default DApiList;
