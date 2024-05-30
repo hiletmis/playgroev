@@ -1,7 +1,14 @@
-import { formatUnits } from 'ethers';
+import { formatUnits, hexlify, randomBytes, keccak256, solidityPacked } from 'ethers';
 import { dapis, getChains as getChainsFromDapiManagement } from '@api3/dapi-management'
 import { CHAINS } from '@api3/chains';
 import { computeDapiProxyWithOevAddress } from '@api3/contracts';
+
+import {
+    encodeAbiParameters,
+    parseAbiParameters,
+} from 'viem';
+
+import { BidCondition, EncodeBidDetailsArgs } from '../types';
 
 export const parseETH = (value: any) => {
     if (value === undefined) return '0';
@@ -17,8 +24,13 @@ export const COLORS = {
     main: "#ffffff",
     button: "blue.700",
     buttonDisabled: "gray.800",
-    caution: "yellow.700",
+    caution: "yellow.300",
 };
+
+export const BID_CONDITIONS: BidCondition[] = [
+    { onchainIndex: BigInt(0), description: 'LTE' },
+    { onchainIndex: BigInt(1), description: 'GTE' },
+];
 
 export const copy = (text: string) => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -28,7 +40,8 @@ export const copy = (text: string) => {
     }
 }
 
-export const trimHash = (hash: string) => {
+export const trimHash = (hash: string | undefined) => {
+    if (!hash) return "";
     return hash.substring(0, 6) + "..." + hash.substring(hash.length - 4);
 }
 
@@ -51,7 +64,53 @@ export function getChain(id: string) {
 }
 
 export function getDapiProxyWithOevAddress(chainId: string, dApiName: string): `0x${string}` {
-    const oevBeneficiary = "0x07b589f06bd0a5324c4e2376d66d2f4f25921de1"
+    const oevBeneficiary = "0x11C1EcB2508a68D9d4de764a6e0ac76bF7E89691"
     const metadata = "0x"
     return computeDapiProxyWithOevAddress(chainId, dApiName, oevBeneficiary, metadata) as `0x${string}`;
+}
+
+export function encodeBidDetails(args: EncodeBidDetailsArgs) {
+    const condition = BID_CONDITIONS.find((c) => c.description === args.bidType)!;
+    const rNonce = hexlify(randomBytes(32)) as `0x${string}`;
+
+    const parsedAbiParameters = parseAbiParameters('address, uint256, int224, address, bytes32');
+    //@ts-ignore
+    return encodeAbiParameters(parsedAbiParameters, [
+        args.proxyAddress,
+        condition.onchainIndex,
+        args.conditionValue,
+        args.updaterAddress,
+        rNonce,
+    ]);
+}
+
+export function calculateCollateralAndProtocolFeeAmounts(chainId: string, bidAmount: bigint) {
+    return {
+        collateralAmount: BigInt(0),
+        protocolFeeAmount: BigInt(0),
+    };
+}
+
+export const dapiProxyAddressExternalLink = (blockExplorer: string | undefined, proxyAddress: `0x${string}`) => {
+    if (!blockExplorer) return null;
+    return `${blockExplorer}/address/${proxyAddress}`;
+}
+
+export const transactionLink = (blockExplorer: string | undefined, tx: `0x${string}` | undefined) => {
+    if (!blockExplorer) return null;
+    if (!tx) return null;
+    return `${blockExplorer}/tx/${tx}`;
+}
+
+export function getBidId(address: `0x${string}`, bidTopic: `0x${string}`, bidDetails: string): `0x${string}` {
+    return keccak256(
+        solidityPacked(
+            ['address', 'bytes32', 'bytes32'],
+            [address, bidTopic, keccak256(bidDetails)]
+        )
+    ) as `0x${string}`;
+}
+
+export function bidDetailsHash(bidDetails: string): `0x${string}` {
+    return keccak256(bidDetails) as `0x${string}`;
 }
