@@ -1,5 +1,5 @@
 import { Button, Box, Flex, VStack, NumberInput, NumberInputField, Spacer, Image, Text } from '@chakra-ui/react';
-import { COLORS } from "../helpers/utils";
+import { COLORS, sanitizeAmount } from "../helpers/utils";
 import { SymbolLogo } from "@api3/logos";
 
 const Hero = (props: any) => {
@@ -9,7 +9,7 @@ const Hero = (props: any) => {
         <Box width={"100%"} bgColor={bgColor} borderRadius={"10"}>
             <VStack spacing={3} direction="row" align="left" m="1.2rem">
                 <Flex>
-                    <NumberInput value={tokenAmount} step={1} min={0} size={"lg"} onChange={(valueString) => { setTokenAmount(valueString) }}><NumberInputField borderWidth={"0px"} placeholder="0.0" fontSize={"4xl"} inputMode="numeric" /></NumberInput>
+                    <NumberInput value={tokenAmount} step={1} min={0} size={"lg"} onChange={(valueString) => { sanitizeAmount(valueString, setTokenAmount) }}><NumberInputField borderWidth={"0px"} placeholder="0.0" fontSize={"4xl"} inputMode="numeric" /></NumberInput>
                     <Spacer />
                     <Image src={SymbolLogo("ETH", true)} width={"40px"} height={"40px"} />
                 </Flex>

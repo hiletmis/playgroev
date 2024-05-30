@@ -1,5 +1,5 @@
 import { Text, Box, Image, Flex, Spacer, VStack } from '@chakra-ui/react';
-import { COLORS } from '../helpers/utils';
+import { COLORS, sanitizeAmount } from '../helpers/utils';
 import { ChainLogo } from '@api3/logos';
 
 import {
@@ -10,15 +10,6 @@ import {
 const Hero = (props: any) => {
     const { chain, ethAmount, setEthAmount, bgColor = COLORS.app, ethBalance, isInputDisabled = false } = props;
 
-    const sanitizeEthAmount = (value: string) => {
-        value = value.replace(/[^0-9.]/g, '')
-        value = value.replace(/\.(?=.*\.)/g, '')
-        if (value === "") {
-            setEthAmount("0")
-        }
-        setEthAmount(value)
-    }
-
     return (
         chain == null ? null :
             <VStack alignItems={"left"} >
@@ -26,7 +17,7 @@ const Hero = (props: any) => {
                 <Box width={"100%"} bgColor={bgColor} borderRadius={"10"}>
                     <VStack spacing={3} direction="row" align="left" m="1rem">
                         <Flex>
-                            <NumberInput isDisabled={isInputDisabled} value={ethAmount} step={1} min={0} size={"lg"} onChange={(valueString) => sanitizeEthAmount(valueString)}>
+                            <NumberInput isDisabled={isInputDisabled} value={ethAmount} step={1} min={0} size={"lg"} onChange={(valueString) => sanitizeAmount(valueString, setEthAmount)}>
                                 <NumberInputField borderWidth={"0px"} placeholder="0.0" fontSize={"4xl"} />
                             </NumberInput>
                             <Spacer />

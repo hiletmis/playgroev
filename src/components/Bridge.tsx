@@ -63,7 +63,7 @@ const Bridge = () => {
     return (
         chain == null ? <SignIn></SignIn> :
             chain.id !== 4913 ? <SwitchNetwork /> :
-                <VStack alignItems={"left"} spacing={5}>
+                <VStack alignItems={"left"} minWidth={"400px"} maxWidth={"700px"} spacing={5}>
                     <CustomHeading header={"Deposit Collateral"} description={"Depoist your Ethereum to start placing bids."} isLoading={isPending}></CustomHeading>
                     {
                         balance === BigInt(0) ?

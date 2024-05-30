@@ -114,3 +114,15 @@ export function getBidId(address: `0x${string}`, bidTopic: `0x${string}`, bidDet
 export function bidDetailsHash(bidDetails: string): `0x${string}` {
     return keccak256(bidDetails) as `0x${string}`;
 }
+
+export function sanitizeAmount(value: string, setAmount: any) {
+    if (value === ".") {
+        value = "0."
+    }
+    value = value.replace(/[^0-9.]/g, '')
+    value = value.replace(/\.(?=.*\.)/g, '')
+    if (value === "") {
+        setAmount("0")
+    }
+    setAmount(value)
+}

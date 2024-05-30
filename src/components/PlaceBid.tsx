@@ -145,7 +145,6 @@ const Hero = () => {
                 <VStack spacing={4} minWidth={"400px"} maxWidth={"700px"} alignItems={"left"} >
                     <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={isInputDisabled}></CustomHeading>
                     <Box width={"100%"} bgColor={Utils.COLORS.main} borderRadius={"10"}  >
-
                         <VStack spacing={3} direction="row" align="left" m="1rem">
                             <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
                             <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} link={Utils.dapiProxyAddressExternalLink(selectedChain?.explorer.browserUrl, dapiProxyWithOevAddress)}></InfoRow>
