@@ -8,7 +8,17 @@ import {
 } from '@chakra-ui/react'
 
 const Hero = (props: any) => {
-    const { fulfillValue, setFulfillValue, condition, setCondition, bgColor = COLORS.app } = props;
+    const { fulfillValue, setFulfillValue, condition, setCondition, bgColor = COLORS.app, isInputDisabled = false } = props;
+
+    const sanitizeEthAmount = (value: string) => {
+        value = value.replace(/[^0-9.]/g, '')
+        value = value.replace(/\.(?=.*\.)/g, '')
+        if (value === "") {
+            setFulfillValue("0")
+        }
+        setFulfillValue(value)
+    }
+
     return (
         <VStack alignItems={"left"} >
             <Text fontWeight={"bold"} fontSize={"md"}>Bid Conditions</Text>
@@ -16,15 +26,15 @@ const Hero = (props: any) => {
             <Box width={"100%"} height="80px" bgColor={bgColor} borderRadius={"10"}>
                 <VStack spacing={3} direction="row" align="left" m="1rem">
                     <Flex>
-                        <NumberInput value={fulfillValue} step={1} min={0} size={"lg"} onChange={(valueString) => setFulfillValue(valueString)}>
+                        <NumberInput isDisabled={isInputDisabled} value={fulfillValue} step={1} min={0} size={"lg"} onChange={(valueString) => sanitizeEthAmount(valueString)}>
                             <NumberInputField borderWidth={"0px"} placeholder="0.0" fontSize={"4xl"} inputMode="numeric" /><NumberInputStepper></NumberInputStepper>
                         </NumberInput>
                         <Spacer />
                         <Flex alignItems={"center"}>
                             <RadioGroup onChange={setCondition} value={condition}>
                                 <Stack direction='row'>
-                                    <Radio value='LTE'>LTE</Radio>
-                                    <Radio value='GTE'>GTE</Radio>
+                                    <Radio isDisabled={isInputDisabled} value='LTE'>LTE</Radio>
+                                    <Radio isDisabled={isInputDisabled} value='GTE'>GTE</Radio>
                                 </Stack>
                             </RadioGroup>
                         </Flex>
