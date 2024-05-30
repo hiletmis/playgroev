@@ -24,11 +24,9 @@ const Hero = (props: any) => {
                     </Text>
                     <Spacer />
                     <Button
-                        size={"md"} colorScheme={"green"} variant={"outline"}
-                        onClick={() => window.open('https://oev-network.bridge.caldera.xyz/', '_blank')}>Bridge Ethereum
+                        size={"xs"} colorScheme={"green"} variant={"outline"}
+                        onClick={() => window.open('https://oev-network.bridge.caldera.xyz/', '_blank')}>Add Funds
                     </Button>
-                    <Image src={'/wallet.svg'} width={"24px"} height={"24px"} />
-
                     <Text
                         cursor={'pointer'}
                         onClick={() => {
