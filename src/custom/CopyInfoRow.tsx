@@ -6,7 +6,7 @@ const Hero = (props: any) => {
     return (
         <VStack direction="row" align="left" m={margin}>
             <Text fontWeight={"bold"} fontSize={"md"}>{header}</Text>
-            <Box p="2" width={"100%"} bgColor={bgColor} borderRadius={"10"} alignItems={"center"}>
+            <Box p="2" width={"100%"} bgColor={bgColor} alignItems={"center"}>
                 <Flex className='box'>
                     <Text noOfLines={1} fontSize={"md"}>{text}</Text>
                     <Spacer />

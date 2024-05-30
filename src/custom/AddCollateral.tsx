@@ -6,7 +6,7 @@ const Hero = (props: any) => {
     const { setTokenAmount, tokenAmount, tokenBalance, bgColor = COLORS.app } = props;
 
     return (
-        <Box width={"100%"} bgColor={bgColor} borderRadius={"10"}>
+        <Box width={"100%"} bgColor={bgColor} >
             <VStack spacing={3} direction="row" align="left" m="1.2rem">
                 <Flex>
                     <NumberInput value={tokenAmount} step={1} min={0} size={"lg"} onChange={(valueString) => { sanitizeAmount(valueString, setTokenAmount) }}><NumberInputField borderWidth={"0px"} placeholder="0.0" fontSize={"4xl"} inputMode="numeric" /></NumberInput>

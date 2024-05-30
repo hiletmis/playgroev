@@ -9,7 +9,7 @@ const Hero = (props: any) => {
 
     return (
         <VStack width={"100%"} alignItems={"left"} cursor={"pointer"} onClick={isHeader ? props.onClick : () => { props.setSelectedChain(props.selectedChain) }}>
-            <Box p="3" width={"100%"} height={"70px"} borderRadius={"10"} bgColor={COLORS.app} alignItems={"left"}>
+            <Box p="3" width={"100%"} height={"70px"} bgColor={isOpen ? COLORS.selectDarker : isHeader ? COLORS.app : COLORS.main} alignItems={"left"}>
                 <Flex className='box' alignItems={"center"}>
                     <Stack direction="column" spacing={"2"} width={"100%"}>
                         <Stack direction="row" spacing={"2"} >

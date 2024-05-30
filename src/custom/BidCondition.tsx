@@ -14,7 +14,7 @@ const Hero = (props: any) => {
         <VStack alignItems={"left"} >
             <Text fontWeight={"bold"} fontSize={"md"}>Bid Conditions</Text>
 
-            <Box width={"100%"} height="80px" bgColor={bgColor} borderRadius={"10"}>
+            <Box width={"100%"} height="80px" bgColor={bgColor} >
                 <VStack spacing={3} direction="row" align="left" m="1rem">
                     <Flex>
                         <NumberInput isDisabled={isInputDisabled} value={fulfillValue} step={1} min={0} size={"lg"} onChange={(valueString) => sanitizeAmount(valueString, setFulfillValue)}>

@@ -14,7 +14,7 @@ const Hero = (props: any) => {
         chain == null ? null :
             <VStack alignItems={"left"} >
                 <Text fontWeight={"bold"} fontSize={"md"}>Bid Amount</Text>
-                <Box width={"100%"} bgColor={bgColor} borderRadius={"10"}>
+                <Box width={"100%"} bgColor={bgColor} >
                     <VStack spacing={3} direction="row" align="left" m="1rem">
                         <Flex>
                             <NumberInput isDisabled={isInputDisabled} value={ethAmount} step={1} min={0} size={"lg"} onChange={(valueString) => sanitizeAmount(valueString, setEthAmount)}>

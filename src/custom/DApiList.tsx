@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Flex, VStack } from "@chakra-ui/react";
-import { getDapis, getChains } from '../helpers/utils';
+import { COLORS, getDapis, getChains } from '../helpers/utils';
 import DApiRow from "./DApiRow";
 import ChainRow from "./ChainRow";
 import { SearchBar } from "./SearchBar";
@@ -30,7 +30,7 @@ const DataFeedList = (props: any) => {
     }, [isChainListVisible]);
 
     return (
-        <VStack width={"100%"} spacing={3} alignItems={"left"}>
+        <VStack width={"100%"} alignItems={"left"} spacing={0}>
             <Flex width={"100%"} justifyContent={"space-between"} gap={2}>
                 <ChainRow selectedChain={selectedChain} setSelectedChain={setSelectedChain} isHeader={true} isOpen={isChainListVisible} onClick={() => { setIsChainListVisible(!isChainListVisible) }}></ChainRow>
                 <DApiRow dApi={dApi} setDapi={setDapi} isHeader={true} isOpen={isDApiListVisible} onClick={() => { setIsDApiListVisible(!isDApiListVisible) }}></DApiRow>
@@ -38,7 +38,7 @@ const DataFeedList = (props: any) => {
 
             {
                 isDApiListVisible &&
-                <VStack width={"100%"} p={5} maxHeight={"350px"} overflow={"scroll"} spacing={3} boxShadow={"md"} borderRadius={"10px"} >
+                <VStack width={"100%"} p={5} maxHeight={"350px"} bgColor={"blue.400"} overflow={"scroll"} spacing={3} >
                     <SearchBar stateChanger={setKeyword}></SearchBar>
 
                     {
@@ -53,7 +53,7 @@ const DataFeedList = (props: any) => {
 
             {
                 isChainListVisible &&
-                <VStack width={"100%"} p={5} maxHeight={"350px"} overflow={"scroll"} spacing={3} boxShadow={"md"} borderRadius={"10px"} >
+                <VStack width={"100%"} p={5} maxHeight={"350px"} bgColor={"blue.400"} overflow={"scroll"} spacing={3}>
                     <SearchBar stateChanger={setKeyword}></SearchBar>
 
                     {

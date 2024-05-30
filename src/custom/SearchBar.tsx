@@ -16,7 +16,7 @@ export const SearchBar = (props: any) => {
                     pointerEvents="none"
                     children={<Search2Icon color="gray.600" />}
                 />
-                <Input type="text" placeholder="Search..." border="1px solid #949494"
+                <Input type="text" placeholder="Search..." bgColor={"white"}
                     onChange={(e) => stateChanger(e.target.value)}
                 />
             </InputGroup>

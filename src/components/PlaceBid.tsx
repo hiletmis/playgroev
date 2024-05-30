@@ -142,39 +142,40 @@ const Hero = () => {
     return (
         chain == null ? <SignIn></SignIn> :
             chain.id !== 4913 ? <SwitchNetwork /> :
-                <VStack spacing={4} minWidth={"400px"} maxWidth={"700px"} alignItems={"left"} >
+                <VStack spacing={4} alignItems={"left"} >
                     <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={isInputDisabled}></CustomHeading>
-                    <Box width={"100%"} bgColor={Utils.COLORS.main} borderRadius={"10"}  >
-                        <VStack spacing={3} direction="row" align="left" m="1rem">
-                            <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
-                            <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} link={Utils.dapiProxyAddressExternalLink(selectedChain?.explorer.browserUrl, dapiProxyWithOevAddress)}></InfoRow>
-                            <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain} isInputDisabled={isInputDisabled}></BidAmount>
-                            <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
-                            <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
-                            <ExecuteButton
-                                isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || parseFloat(ethBalance) < parseFloat(ethAmount)}
-                                text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
-                                onClick={signPayload}>
-                            </ExecuteButton>
+                    <Flex flexWrap={"wrap"} justifyContent={"space-between"} alignItems={"left"} width={"100%"} >
+                        <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
+                            <VStack spacing={5} direction="row" align="left">
+                                <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
+                                <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} link={Utils.dapiProxyAddressExternalLink(selectedChain?.explorer.browserUrl, dapiProxyWithOevAddress)}></InfoRow>
+                                <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain} isInputDisabled={isInputDisabled}></BidAmount>
+                                <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
+                                <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
+                                <ExecuteButton
+                                    isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || parseFloat(ethBalance) < parseFloat(ethAmount)}
+                                    text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
+                                    onClick={signPayload}>
+                                </ExecuteButton>
+                            </VStack>
                         </VStack>
-                    </Box>
-                    <VStack p={4} shadow="md" borderWidth="px" flex="1" borderRadius={"10"} bgColor={Utils.COLORS.main} alignItems={"left"}>
-                        <Flex>
-                            <Text fontWeight={"bold"} fontSize={"md"}>Bids</Text>
-                            <Spacer />
-                        </Flex>
-                        {
-                            bids.map((bid, index) => {
-                                return (
-                                    <Box key={index} width={"100%"} borderRadius={"10"} p={1}>
-                                        <InfoRow header={"Bid ID"} text={bid}></InfoRow>
-                                        <InfoRow header={"Transaction Hash"} text={Utils.trimHash(hash)} link={Utils.transactionLink(chain.blockExplorers!.default.url, hash)}></InfoRow>
-                                    </Box>
-                                )
-                            })
-                        }
-
-                    </VStack>
+                        <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
+                            <Flex>
+                                <Text fontWeight={"bold"} fontSize={"md"}>Bids</Text>
+                                <Spacer />
+                            </Flex>
+                            {
+                                bids.map((bid, index) => {
+                                    return (
+                                        <Box key={index} width={"100%"} p={1}>
+                                            <InfoRow header={"Bid ID"} text={bid}></InfoRow>
+                                            <InfoRow header={"Transaction Hash"} text={Utils.trimHash(hash)} link={Utils.transactionLink(chain.blockExplorers!.default.url, hash)}></InfoRow>
+                                        </Box>
+                                    )
+                                })
+                            }
+                        </VStack>
+                    </Flex>
                 </VStack>
     );
 };

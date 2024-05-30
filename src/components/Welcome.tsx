@@ -8,7 +8,6 @@ const Welcome = () => {
         <VStack
             p={10}
             bgColor={'white'}
-            borderRadius={'sm'}
             boxShadow="md"
             spacing={5}
             width={'95vw'}

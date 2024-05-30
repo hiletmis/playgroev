@@ -3,7 +3,7 @@ import { VStack, Flex, Text } from '@chakra-ui/react';
 
 const Instructions = () => {
     return (
-        <Flex width={"100%"} height={"100%"} borderRadius={"10"} alignItems={"left"}>
+        <Flex width={"100%"} height={"100%"} alignItems={"left"}>
             <VStack alignItems={"left"} spacing={"3"}>
                 <Text fontSize={"md"}>Start by clicking the "Deposit Collateral" button. You will be asked to bridge your Ethereum to OEV Network. After the bridging is completed, you will be able to place bids on data feeds. Usually it takes 5-7 minutes before deposit is confirmed.</Text>
                 <Text fontSize={"md"}>Making deposit will allow you to place bids on all available chains and available data feeds.</Text>

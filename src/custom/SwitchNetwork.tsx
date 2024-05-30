@@ -25,7 +25,7 @@ const Hero = () => {
 
                 <Text fontSize={"sm"}>OevAuctionHouse contract is deployed on OEV Network. Please switch to OEV Network to proceed adding collateral funds or placing bids.</Text>
 
-                <Box width={"100%"} height="85px" bgColor={COLORS.app} borderRadius={"10"}>
+                <Box width={"100%"} height="85px" bgColor={COLORS.app} >
                     <VStack spacing={3} direction="row" align="left" m="1rem">
                         <Flex>
                             <Spacer />

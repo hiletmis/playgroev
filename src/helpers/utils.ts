@@ -25,6 +25,8 @@ export const COLORS = {
     button: "blue.700",
     buttonDisabled: "gray.800",
     caution: "yellow.300",
+    select: "blue.100",
+    selectDarker: "blue.200",
 };
 
 export const BID_CONDITIONS: BidCondition[] = [

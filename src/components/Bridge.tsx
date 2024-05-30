@@ -67,7 +67,7 @@ const Bridge = () => {
                     <CustomHeading header={"Deposit Collateral"} description={"Depoist your Ethereum to start placing bids."} isLoading={isPending}></CustomHeading>
                     {
                         balance === BigInt(0) ?
-                            <VStack p={4} width={"100%"} borderRadius={"10"} bgColor={COLORS.caution} alignItems={"left"} spacing={5}>
+                            <VStack p={4} width={"100%"} bgColor={COLORS.caution} alignItems={"left"} spacing={5}>
                                 <Text fontSize={"md"} fontWeight={"bold"}>Add Funds</Text>
                                 <Text fontSize={"sm"}>You have no funds to deposit. Please add funds to your wallet.</Text>
                                 <Text fontSize={"sm"}>You can add funds to your wallet by using the official OEV Network bridge.</Text>
@@ -78,7 +78,7 @@ const Bridge = () => {
                             </VStack>
                             :
                             <VStack alignItems={"left"} spacing={5}>
-                                <Flex p={2} width={"100%"} bgColor={COLORS.app} borderRadius={"10"}>
+                                <Flex p={2} width={"100%"} bgColor={COLORS.app} >
                                     <Text fontSize={"md"} fontWeight={"bold"}>Deposit Balance</Text>
                                     <Spacer />
                                     <Text fontWeight={"bold"} fontSize={"md"}>{parseETH(bidderBalance)} ETH</Text>
@@ -93,7 +93,7 @@ const Bridge = () => {
                     }
                     {
                         hash &&
-                        <Flex p={2} gap={2} width={"100%"} bgColor={COLORS.app} borderRadius={"10"}>
+                        <Flex p={2} gap={2} width={"100%"} bgColor={COLORS.app} >
                             <Text fontSize={"md"} fontWeight={"bold"}>Transaction</Text>
                             <Spacer />
                             <Text fontWeight={"bold"} fontSize={"md"}>{trimHash(hash)}</Text>

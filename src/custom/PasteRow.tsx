@@ -15,7 +15,7 @@ const Hero = (props: any) => {
     return (
         <VStack direction="row" align="left" m={margin}>
             <Text fontWeight={"bold"} fontSize={"md"}>{title}</Text>
-            <Box p={2} width={"100%"} borderRadius={"10"} bgColor={bgColor} alignItems={"left"}>
+            <Box p={2} width={"100%"} bgColor={bgColor} alignItems={"left"}>
                 <Flex alignItems={"center"}>
                     <Text noOfLines={1} width={"100%"} color={color} fontSize={"md"}>{text}</Text>
                     <Spacer />
