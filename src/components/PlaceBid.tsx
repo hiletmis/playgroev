@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import SignIn from '../custom/SignIn';
 import SwitchNetwork from '../custom/SwitchNetwork';
-import { useAccount, useBalance } from "wagmi";
-import { COLORS, getEthUsdDapi, getChain, getDapiProxyWithOevAddress } from '../helpers/utils';
+import { useAccount, useReadContract, useWriteContract, useSimulateContract } from "wagmi";
+import * as Utils from '../helpers/utils';
 import CustomHeading from "../custom/Heading";
 import BidAmount from "../custom/BidAmount";
 import BidConditions from "../custom/BidCondition";
 import ExecuteButton from "../custom/ExecuteButton";
+import ErrorRow from "../custom/ErrorRow";
 import DApiList from "../custom/DApiList";
 import InfoRow from "../custom/InfoRow";
+import { EncodeBidDetailsArgs } from "../types";
+import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
+import { parseEther } from 'ethers';
 
 import {
     VStack, Box, Text, Flex, Spacer
@@ -17,60 +21,159 @@ import {
 const Hero = () => {
     const { address, chain } = useAccount()
 
-    const [selectedChain, setSelectedChain] = useState(getChain("1"));
-    const [dApi, setDapi] = useState(getEthUsdDapi());
+    const [selectedChain, setSelectedChain] = useState(Utils.getChain("1"));
+    const [dApi, setDapi] = useState(Utils.getEthUsdDapi());
     const [dapiProxyWithOevAddress, setDapiProxyWithOevAddress] = useState("" as `0x${string}`);
 
     const [ethAmount, setEthAmount] = useState("");
     const [ethBalance, setEthBalance] = useState("0");
     const [fulfillValue, setFulfillValue] = useState("");
-    const [condition, setCondition] = useState(null);
+    const [bidType, setBidType] = useState("");
+    const [bidDetails, setBidDetails] = useState("" as `0x${string}`);
+    const [protocolFee, setProtocolFee] = useState(BigInt(0))
+    const [collateralFee, setCollateralFee] = useState(BigInt(0))
 
-    const fetchETHBalance_ = useBalance({
-        address: address,
+    const [bidId, setBidId] = useState("" as `0x${string}`)
+    const [bids, setBids] = useState([] as `0x${string}`[])
+    const [isInputDisabled, setIsInputDisabled] = useState(false)
+
+    const [isError, setIsError] = useState(false)
+
+    const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
+    const bidTopic = "0x0000000000000000000000000000000000000000000000000000000000000001" as `0x${string}`
+
+    const sanitizedError = (error: any | null) => {
+        if (error === null) return null;
+        return (error.message.split("\n")[0])
+    }
+
+    const signPayload = async () => {
+        if (placeBidData == null) return;
+        setIsInputDisabled(true)
+
+        //@ts-ignore
+        writeContract(placeBidData?.request, {
+            onError: (error: any) => {
+                console.log(error)
+                setIsInputDisabled(false)
+                reset();
+            },
+            onSuccess: () => {
+                setIsInputDisabled(false)
+                setBids([...bids, bidId])
+            }
+        });
+    }
+
+    //@ts-ignore
+    const { data: bidderBalance } = useReadContract({
+        address: OevAuctionHouseAddres,
+        abi: OevAuctionHouse__factory.abi,
+        chainId: chain ? chain.id : 4913,
+        functionName: 'bidderToBalance',
+        args: [address as `0x${string}`],
+        query: {
+            refetchInterval: 10000,
+        }
+    });
+
+    const { writeContract, data: hash, reset } = useWriteContract()
+
+    //@ts-ignore
+    const { data: placeBidData, error: placeBidError } = useSimulateContract({
+        address: OevAuctionHouseAddres,
+        abi: OevAuctionHouse__factory.abi,
+        chainId: chain ? chain.id : 4913,
+        functionName: 'placeBid',
+        args: [
+            bidTopic,
+            BigInt(selectedChain ? selectedChain.id : 1),
+            BigInt(ethAmount === "" ? 0 : parseEther(ethAmount)),
+            bidDetails,
+            collateralFee,
+            protocolFee
+        ],
+        query: {
+            enabled: ethAmount !== "0" && ethAmount !== "" && fulfillValue !== "" && bidType !== "",
+        }
     })
 
     useEffect(() => {
-        if (fetchETHBalance_.data != null) {
-            setEthBalance(fetchETHBalance_.data.formatted)
-        }
-    }, [fetchETHBalance_]);
-
-    const signPayload = async () => {
-
-    }
+        setIsError(placeBidError != null)
+    }, [placeBidError])
 
     useEffect(() => {
         if (dApi == null) return;
         if (selectedChain == null) return;
-        const oevProxy = getDapiProxyWithOevAddress(BigInt(selectedChain.id).toString(), dApi.name);
+        if (address == null) return;
+
+        const oevProxy = Utils.getDapiProxyWithOevAddress(BigInt(selectedChain.id).toString(), dApi.name);
         setDapiProxyWithOevAddress(oevProxy);
-    }, [dApi, selectedChain]);
+
+        if (bidType !== "LTE" && bidType !== "GTE") return;
+
+        const bidDetailsArgs: EncodeBidDetailsArgs = {
+            bidType: bidType,
+            proxyAddress: oevProxy,
+            conditionValue: fulfillValue === "" ? BigInt(0) : parseEther(fulfillValue),
+            updaterAddress: address!,
+        }
+
+        const bidDetails = Utils.encodeBidDetails(bidDetailsArgs)
+        setBidDetails(bidDetails)
+        setBidId(Utils.getBidId(address, bidTopic, bidDetails))
+
+    }, [address, bidType, dApi, fulfillValue, selectedChain]);
+
+    useEffect(() => {
+        if (bidderBalance != null) {
+            setEthBalance(Utils.parseETH(bidderBalance))
+        }
+    }, [bidderBalance]);
+
+    useEffect(() => {
+        if (ethAmount === "") return;
+        const protocolFee = BigInt(parseEther(ethAmount));
+        const collateralFee = BigInt(parseEther(ethAmount));
+        setProtocolFee(protocolFee)
+        setCollateralFee(collateralFee)
+    }, [ethAmount])
 
     return (
         chain == null ? <SignIn></SignIn> :
             chain.id !== 4913 ? <SwitchNetwork /> :
                 <VStack spacing={4} minWidth={"400px"} maxWidth={"700px"} alignItems={"left"} >
-                    <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={false}></CustomHeading>
-                    <Box width={"100%"} bgColor={COLORS.main} borderRadius={"10"}  >
+                    <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={isInputDisabled}></CustomHeading>
+                    <Box width={"100%"} bgColor={Utils.COLORS.main} borderRadius={"10"}  >
 
                         <VStack spacing={3} direction="row" align="left" m="1rem">
                             <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
-                            <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} margin={0}></InfoRow>
-                            <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain}></BidAmount>
-                            <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={condition} setCondition={setCondition}></BidConditions>
+                            <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} link={Utils.dapiProxyAddressExternalLink(selectedChain?.explorer.browserUrl, dapiProxyWithOevAddress)}></InfoRow>
+                            <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain} isInputDisabled={isInputDisabled}></BidAmount>
+                            <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
+                            <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
                             <ExecuteButton
-                                isDisabled={!ethAmount || !fulfillValue || !condition || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || parseFloat(ethBalance) < parseFloat(ethAmount)}
-                                text={'Bid'}
+                                isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || parseFloat(ethBalance) < parseFloat(ethAmount)}
+                                text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
                                 onClick={signPayload}>
                             </ExecuteButton>
                         </VStack>
                     </Box>
-                    <VStack p={4} shadow="md" borderWidth="px" flex="1" borderRadius={"10"} bgColor={COLORS.main} alignItems={"left"}>
+                    <VStack p={4} shadow="md" borderWidth="px" flex="1" borderRadius={"10"} bgColor={Utils.COLORS.main} alignItems={"left"}>
                         <Flex>
-                            <Text fontWeight={"bold"} fontSize={"md"}>Bid</Text>
+                            <Text fontWeight={"bold"} fontSize={"md"}>Bids</Text>
                             <Spacer />
                         </Flex>
+                        {
+                            bids.map((bid, index) => {
+                                return (
+                                    <Box key={index} width={"100%"} borderRadius={"10"} p={1}>
+                                        <InfoRow header={"Bid ID"} text={bid}></InfoRow>
+                                        <InfoRow header={"Transaction Hash"} text={Utils.trimHash(hash)} link={Utils.transactionLink(chain.blockExplorers!.default.url, hash)}></InfoRow>
+                                    </Box>
+                                )
+                            })
+                        }
 
                     </VStack>
                 </VStack>
