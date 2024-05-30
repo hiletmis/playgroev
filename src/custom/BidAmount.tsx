@@ -8,16 +8,25 @@ import {
 } from '@chakra-ui/react'
 
 const Hero = (props: any) => {
-    const { title, chain, ethAmount, setEthAmount, bgColor = COLORS.app, ethBalance } = props;
+    const { chain, ethAmount, setEthAmount, bgColor = COLORS.app, ethBalance, isInputDisabled = false } = props;
+
+    const sanitizeEthAmount = (value: string) => {
+        value = value.replace(/[^0-9.]/g, '')
+        value = value.replace(/\.(?=.*\.)/g, '')
+        if (value === "") {
+            setEthAmount("0")
+        }
+        setEthAmount(value)
+    }
 
     return (
         chain == null ? null :
             <VStack alignItems={"left"} >
-                <Text fontWeight={"bold"} fontSize={"md"}>{title}</Text>
+                <Text fontWeight={"bold"} fontSize={"md"}>Bid Amount</Text>
                 <Box width={"100%"} bgColor={bgColor} borderRadius={"10"}>
                     <VStack spacing={3} direction="row" align="left" m="1rem">
                         <Flex>
-                            <NumberInput value={ethAmount} step={1} min={0} size={"lg"} onChange={(valueString) => setEthAmount(valueString)}>
+                            <NumberInput isDisabled={isInputDisabled} value={ethAmount} step={1} min={0} size={"lg"} onChange={(valueString) => sanitizeEthAmount(valueString)}>
                                 <NumberInputField borderWidth={"0px"} placeholder="0.0" fontSize={"4xl"} />
                             </NumberInput>
                             <Spacer />
@@ -28,7 +37,7 @@ const Hero = (props: any) => {
                                 color={parseFloat(ethBalance) < parseFloat(ethAmount) ? "red.500" : "black"}
                                 fontWeight={"bold"}
                                 fontSize={"sm"}>
-                                {parseFloat(ethBalance) < parseFloat(ethAmount) ? "Insufficient Balance" : chain.nativeCurrency.name + " Balance"}
+                                {parseFloat(ethBalance) < parseFloat(ethAmount) ? "Insufficient Balance" : "Collateral Balance"}
                             </Text>
 
                             <Spacer />
