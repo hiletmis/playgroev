@@ -20,7 +20,7 @@ const Hero = () => {
                 <Flex>
                     <Heading size={"lg"}>Switch Network</Heading>
                     <Spacer />
-                    <Image src={`/caution.svg`} width={"30px"} height={"30px"} />
+                    <Image src={`./caution.svg`} width={"30px"} height={"30px"} />
                 </Flex>
 
                 <Text fontSize={"sm"}>OevAuctionHouse contract is deployed on OEV Network. Please switch to OEV Network to proceed adding collateral funds or placing bids.</Text>
@@ -30,9 +30,9 @@ const Hero = () => {
                         <Flex>
                             <Spacer />
 
-                            <Image src={ChainLogo(chain.id.toString())} fallbackSrc="/caution.svg" width={"50px"} height={"50px"} />
+                            <Image src={ChainLogo(chain.id.toString())} fallbackSrc="./caution.svg" width={"50px"} height={"50px"} />
                             <Spacer />
-                            <Image src={`/switch.svg`} width={"50px"} height={"50px"} />
+                            <Image src={`./switch.svg`} width={"50px"} height={"50px"} />
                             <Spacer />
                             <Image src={ChainLogo("4913")} width={"50px"} height={"50px"} />
                             <Spacer />

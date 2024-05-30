@@ -6,7 +6,7 @@ const Hero = () => {
             <Flex>
                 <Heading size={"lg"}>Wrong Network</Heading>
                 <Spacer />
-                <Image src={`/caution.svg`} width={"30px"} height={"30px"} />
+                <Image src={`./caution.svg`} width={"30px"} height={"30px"} />
             </Flex>
             <Text fontSize={"sm"}>Please change network to OEV Chain.</Text>
         </VStack>

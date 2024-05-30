@@ -41,7 +41,7 @@ const Hero = (props: any) => {
                             </Text>
 
                             <Spacer />
-                            <Image src={'/wallet.svg'} width={"40px"} height={"20px"} />
+                            <Image src={'./wallet.svg'} width={"40px"} height={"20px"} />
                             <Text fontSize={"sm"}>{ethBalance}</Text>
                         </Flex>
                     </VStack>

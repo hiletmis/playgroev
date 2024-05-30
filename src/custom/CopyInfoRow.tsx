@@ -11,7 +11,7 @@ const Hero = (props: any) => {
                     <Text noOfLines={1} fontSize={"md"}>{text}</Text>
                     <Spacer />
                     {
-                        !copyEnabled ? null : <Image marginLeft={"3"} cursor={"pointer"} onClick={() => copy(text)} src={`/copy.svg`} width={"24px"} height={"24px"} />
+                        !copyEnabled ? null : <Image marginLeft={"3"} cursor={"pointer"} onClick={() => copy(text)} src={`./copy.svg`} width={"24px"} height={"24px"} />
                     }
 
                 </Flex>

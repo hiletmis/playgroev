@@ -19,7 +19,7 @@ const Hero = (props: any) => {
                 <Flex alignItems={"center"}>
                     <Text noOfLines={1} width={"100%"} color={color} fontSize={"md"}>{text}</Text>
                     <Spacer />
-                    <Image cursor={"pointer"} marginLeft={"2"} onClick={paste} src={`/paste.svg`} width={"24px"} height={"24px"} />
+                    <Image cursor={"pointer"} marginLeft={"2"} onClick={paste} src={`./paste.svg`} width={"24px"} height={"24px"} />
                 </Flex>
             </Box>
         </VStack>
