@@ -1,14 +1,52 @@
-import { Box, VStack, Flex, Spacer, Text } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { VStack, Flex, Spacer, Text, Image } from '@chakra-ui/react';
 import * as Utils from '../helpers/utils';
-import InfoRow from './InfoRow';
-import { BidInfo } from '../types';
+
+import { BidInfo, BidStatus } from '../types';
 import DApiRow from './DApiRow';
+import { ChainLogo } from '@api3/logos';
+import CopyInfoRow from './CopyInfoRow';
+import { useReadContract, useAccount } from 'wagmi';
+import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 
 const BidView = ({ bids }: any) => {
 
-    const setDapi = (dApi: any) => {
-        console.log(dApi);
-    }
+    const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
+    const { chain } = useAccount()
+
+    const [selectedBid, setSelectedBid] = useState({} as BidInfo)
+    const [selectedBidStatus, setSelectedBidStatus] = useState({} as BidStatus)
+
+
+    //@ts-ignore
+    const { data: bidInfo } = useReadContract({
+        address: OevAuctionHouseAddres,
+        abi: OevAuctionHouse__factory.abi,
+        chainId: chain ? chain.id : 4913,
+        functionName: 'bids',
+        args: [selectedBid.bidId as `0x${string}`],
+        query: {
+            refetchInterval: 10000,
+            enabled: selectedBid.bidId !== "" as `0x${string}`
+        }
+    });
+
+    useEffect(() => {
+        if (!bidInfo) return
+        if (!selectedBid) return
+
+        const bidStatus = {
+            status: bidInfo[0],
+            expirationTimestamp: bidInfo[1],
+            collateralAmount: bidInfo[2],
+            protocolFeeAmount: (bidInfo[3]),
+            bidId: selectedBid.bidId
+        } as BidStatus
+
+        setSelectedBidStatus(bidStatus)
+
+
+    }, [bidInfo, selectedBid])
 
     return (
         <VStack width={"100%"} alignItems={"left"} >
@@ -19,11 +57,23 @@ const BidView = ({ bids }: any) => {
             {
                 bids.map((bid: BidInfo, index: number) => {
                     return (
-                        <Box key={index} width={"100%"} p={1} bgColor={"blue.100"}>
-                            <DApiRow dApi={bid.dApi} setDapi={setDapi}></DApiRow>
-                            <InfoRow header={"Bid ID"} text={bid.bidId}></InfoRow>
-                            <InfoRow header={"Transaction Hash"} text={Utils.trimHash(bid.tx)} link={Utils.transactionLink(bid.explorer, bid.tx)}></InfoRow>
-                        </Box>
+                        <VStack key={index} width={"100%"} p={1} bgColor={"blue.100"} spacing={1}>
+                            <Flex gap={1} alignItems={"center"} width={"100%"}>
+                                <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
+                                <DApiRow dApi={bid.dApi} isHeader={true} onClick={() => { selectedBid.bidId === bid.bidId ? setSelectedBid({} as BidInfo) : setSelectedBid(bid) }} isOpen={selectedBid.bidId === bid.bidId} bgColor={"white"}></DApiRow>
+
+                            </Flex>
+                            {
+                                selectedBid.bidId === bid.bidId &&
+                                <VStack width={"100%"} p={5} bgColor={"blue.100"} spacing={3}>
+                                    <CopyInfoRow header={"Bid ID"} text={bid.bidId}></CopyInfoRow>
+                                    <CopyInfoRow header={"Expiration Timestamp"} text={Utils.milisecondsToDate(selectedBidStatus.expirationTimestamp)} copyEnabled={false}></CopyInfoRow>
+                                    <CopyInfoRow header={"Collateral Amount"} text={Utils.parseETH(selectedBidStatus.collateralAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
+                                    <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(selectedBidStatus.protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
+                                </VStack>
+                            }
+
+                        </VStack>
                     )
                 })
             }
