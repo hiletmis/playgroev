@@ -17,7 +17,7 @@ import { parseEther } from 'ethers';
 import { BidInfo } from "../types";
 
 import {
-    VStack, Flex
+    VStack, Flex, Text
 } from "@chakra-ui/react";
 
 const Hero = () => {
@@ -50,18 +50,7 @@ const Hero = () => {
     }
 
     const signPayload = async () => {
-        const newBid = {
-            bidId: bidId,
-            bidTopic: bidTopic,
-            bidDetails: bidDetails,
-            tx: hash,
-            chainId: BigInt(selectedChain!.id),
-            dApi: dApi,
-            ethAmount: BigInt(parseEther(ethAmount)),
-            explorer: selectedChain!.explorer.browserUrl
-        } as BidInfo
 
-        setBids([...bids, newBid])
 
         if (placeBidData == null) return;
         setIsInputDisabled(true)
@@ -76,6 +65,18 @@ const Hero = () => {
             onSuccess: () => {
                 setIsInputDisabled(false)
 
+                const newBid = {
+                    bidId: bidId,
+                    bidTopic: bidTopic,
+                    bidDetails: bidDetails,
+                    tx: hash,
+                    chainId: BigInt(selectedChain!.id),
+                    dApi: dApi,
+                    ethAmount: BigInt(parseEther(ethAmount)),
+                    explorer: selectedChain!.explorer.browserUrl
+                } as BidInfo
+
+                setBids([...bids, newBid])
 
             }
         });
@@ -162,6 +163,9 @@ const Hero = () => {
                     <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={isInputDisabled}></CustomHeading>
                     <Flex flexWrap={"wrap"} justifyContent={"space-between"} alignItems={"left"} width={"100%"} >
                         <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
+                            <Flex>
+                                <Text fontWeight={"bold"} fontSize={"md"}>Select Chain and DApi</Text>
+                            </Flex>
                             <VStack spacing={5} direction="row" align="left">
                                 <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
                                 <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} link={Utils.dapiProxyAddressExternalLink(selectedChain?.explorer.browserUrl, dapiProxyWithOevAddress)}></InfoRow>
