@@ -24,3 +24,11 @@ export type BidInfo = {
     ethAmount: bigint;
     explorer: string;
 };
+
+export type BidStatus = {
+    status: number;
+    expirationTimestamp: number;
+    collateralAmount: bigint;
+    protocolFeeAmount: bigint;
+    bidId: `0x${string}`;
+};
