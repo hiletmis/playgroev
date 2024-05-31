@@ -18,10 +18,10 @@ const Welcome = () => {
             <Tabs>
                 <TabList>
                     <Tab>Instructions</Tab>
-                    <Tab>Deposit Collateral</Tab>
-                    <Tab>Place a Bid</Tab>
-                    <Tab>Update DApi</Tab>
-                    <Tab>Awarding</Tab>
+                    <Tab>Deposit</Tab>
+                    <Tab>Bid</Tab>
+                    <Tab>Update</Tab>
+                    <Tab>Report</Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel>

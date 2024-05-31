@@ -32,3 +32,12 @@ export type BidStatus = {
     protocolFeeAmount: bigint;
     bidId: `0x${string}`;
 };
+
+export enum BidStatusEnum {
+    None,
+    Placed,
+    Awarded,
+    FulfillmentReported,
+    FulfillmentConfirmed,
+    FulfillmentContradicted
+}
