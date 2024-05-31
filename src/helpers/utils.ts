@@ -128,3 +128,13 @@ export function sanitizeAmount(value: string, setAmount: any) {
     }
     setAmount(value)
 }
+
+export function truncate(value: string, length: number) {
+    if (!value) return "";
+    if (value.length <= length) return value;
+    return value.substring(0, length) + "..." + value.substring(value.length - length);
+}
+
+export function milisecondsToDate(ms: number) {
+    return new Date(ms * 1000).toLocaleString();
+}
