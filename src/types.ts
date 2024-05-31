@@ -26,7 +26,7 @@ export type BidInfo = {
 };
 
 export type BidStatus = {
-    status: number;
+    status: BidStatusEnum;
     expirationTimestamp: number;
     collateralAmount: bigint;
     protocolFeeAmount: bigint;
@@ -34,10 +34,18 @@ export type BidStatus = {
 };
 
 export enum BidStatusEnum {
-    None,
-    Placed,
-    Awarded,
-    FulfillmentReported,
-    FulfillmentConfirmed,
-    FulfillmentContradicted
+    "None",
+    "Placed",
+    "Awarded",
+    "FulfillmentReported",
+    "FulfillmentConfirmed",
+    "FulfillmentContradicte",
+}
+
+export enum StatusColor {
+    "blue.100",
+    "yellow.300",
+    "green.100",
+    "green.200",
+    "red.300",
 }
