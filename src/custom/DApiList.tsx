@@ -38,7 +38,7 @@ const DApiList = (props: any) => {
 
             {
                 isDApiListVisible &&
-                <VStack width={"100%"} p={5} maxHeight={"350px"} bgColor={"blue.400"} overflow={"scroll"} spacing={3} >
+                <VStack width={"100%"} p={5} maxHeight={"350px"} bgColor={"blue.200"} overflow={"scroll"} spacing={3} >
                     <SearchBar stateChanger={setKeyword}></SearchBar>
 
                     {
@@ -53,7 +53,7 @@ const DApiList = (props: any) => {
 
             {
                 isChainListVisible &&
-                <VStack width={"100%"} p={5} maxHeight={"350px"} bgColor={"blue.400"} overflow={"scroll"} spacing={3}>
+                <VStack width={"100%"} p={5} maxHeight={"350px"} bgColor={"blue.200"} overflow={"scroll"} spacing={3}>
                     <SearchBar stateChanger={setKeyword}></SearchBar>
 
                     {
