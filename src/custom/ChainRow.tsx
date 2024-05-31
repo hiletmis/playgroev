@@ -13,11 +13,8 @@ const Hero = (props: any) => {
                 <Flex className='box' alignItems={"center"}>
                     <Stack direction="column" spacing={"2"} width={"100%"}>
                         <Stack direction="row" spacing={"2"} >
-                            <Stack direction="row" spacing={"1"}>
-                                <Image src={ChainLogo(props.selectedChain.id, true)} width={"24px"} height={"24px"} />
-                            </Stack>
+                            <Image src={ChainLogo(props.selectedChain.id, true)} width={"24px"} height={"24px"} />
                             <Text fontSize="md" fontWeight="bold">{props.selectedChain.name}</Text>
-                            <Spacer />
                         </Stack>
                         <Text width={"100%"} noOfLines={1} fontSize="xs">{props.selectedChain.id}</Text>
                     </Stack>

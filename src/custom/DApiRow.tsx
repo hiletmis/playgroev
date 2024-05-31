@@ -11,7 +11,7 @@ const Hero = (props: any) => {
 
     return (
         <VStack width={"100%"} alignItems={"left"} cursor={"pointer"} onClick={isHeader ? props.onClick : () => { props.setDapi(props.dApi) }}>
-            <Box p="3" width={"100%"} height={"70px"} bgColor={isOpen ? COLORS.selectDarker : isHeader ? COLORS.app : COLORS.main} alignItems={"left"}>
+            <Box p="3" width={"100%"} height={"70px"} bgColor={props.bgColor ? props.bgColor : isOpen ? COLORS.selectDarker : isHeader ? COLORS.app : COLORS.main} alignItems={"left"}>
                 <Flex className='box' alignItems={"center"}>
                     <Stack direction="column" spacing={"2"} width={"100%"}>
                         <Stack direction="row" spacing={"2"} >
