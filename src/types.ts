@@ -19,7 +19,7 @@ export type BidInfo = {
     bidTopic: `0x${string}`;
     bidDetails: string;
     tx: `0x${string}`;
-    chainId: bigint;
+    chainId: number;
     dApi: any;
     ethAmount: bigint;
     explorer: string;
