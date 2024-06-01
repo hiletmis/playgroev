@@ -16,7 +16,7 @@ const Hero = ({ destinationChain = 4913, header = true, customMessage = "", swit
 
     return (
         chain == null ? <SignIn></SignIn> :
-            <VStack spacing={4} minWidth={"350px"} maxWidth={"700px"} alignItems={"left"} >
+            <VStack spacing={4} width={"100%"} alignItems={"left"} >
                 {
                     header ?
                         <VStack spacing={4} alignItems={"left"}>
