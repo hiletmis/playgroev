@@ -1,5 +1,5 @@
 import { VStack, Tab, Tabs, TabList, TabPanel, TabPanels } from '@chakra-ui/react';
-import Instructions from './Instructions';
+
 import Bridge from './Bridge';
 import PlaceBid from './PlaceBid';
 
@@ -17,27 +17,16 @@ const Welcome = () => {
         >
             <Tabs>
                 <TabList>
-                    <Tab>Instructions</Tab>
                     <Tab>Deposit</Tab>
                     <Tab>Bid</Tab>
-                    <Tab>Update</Tab>
-                    <Tab>Report</Tab>
                 </TabList>
                 <TabPanels>
-                    <TabPanel>
-                        <Instructions />
-                    </TabPanel>
+
                     <TabPanel>
                         <Bridge />
                     </TabPanel>
                     <TabPanel>
                         <PlaceBid />
-                    </TabPanel>
-                    <TabPanel>
-
-                    </TabPanel>
-                    <TabPanel>
-
                     </TabPanel>
                 </TabPanels>
             </Tabs>
