@@ -70,7 +70,7 @@ const Hero = () => {
                     bidTopic: bidTopic,
                     bidDetails: bidDetails,
                     tx: hash,
-                    chainId: BigInt(selectedChain!.id),
+                    chainId: parseInt(selectedChain!.id),
                     dApi: dApi,
                     ethAmount: BigInt(parseEther(ethAmount)),
                     explorer: selectedChain!.explorer.browserUrl
@@ -124,7 +124,7 @@ const Hero = () => {
         if (selectedChain == null) return;
         if (address == null) return;
 
-        const oevProxy = Utils.getDapiProxyWithOevAddress(BigInt(selectedChain.id).toString(), dApi.name);
+        const oevProxy = Utils.getDapiProxyWithOevAddress(selectedChain.id.toString(), dApi.name);
         setDapiProxyWithOevAddress(oevProxy);
 
         if (bidType !== "LTE" && bidType !== "GTE") return;
@@ -158,32 +158,36 @@ const Hero = () => {
 
     return (
         chain == null ? <SignIn></SignIn> :
-            chain.id !== 4913 ? <SwitchNetwork /> :
-                <VStack spacing={4} alignItems={"left"} >
-                    <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={isInputDisabled}></CustomHeading>
-                    <Flex flexWrap={"wrap"} justifyContent={"space-between"} alignItems={"left"} width={"100%"} >
-                        <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
-                            <Flex>
-                                <Text fontWeight={"bold"} fontSize={"md"}>Select Chain and DApi</Text>
-                            </Flex>
-                            <VStack spacing={5} direction="row" align="left">
-                                <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
-                                <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} link={Utils.dapiProxyAddressExternalLink(selectedChain?.explorer.browserUrl, dapiProxyWithOevAddress)}></InfoRow>
-                                <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain} isInputDisabled={isInputDisabled}></BidAmount>
-                                <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
-                                <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
-                                <ExecuteButton
-                                    isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || parseFloat(ethBalance) < parseFloat(ethAmount)}
-                                    text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
-                                    onClick={signPayload}>
-                                </ExecuteButton>
-                            </VStack>
+            <VStack spacing={4} alignItems={"left"} >
+                <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={isInputDisabled}></CustomHeading>
+                <Flex flexWrap={"wrap"} justifyContent={"space-between"} alignItems={"left"} width={"100%"} >
+                    <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
+                        <Flex>
+                            <Text fontWeight={"bold"} fontSize={"md"}>Select Chain and DApi</Text>
+                        </Flex>
+                        <VStack spacing={2} direction="row" align="left">
+                            <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
+                            <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} link={Utils.dapiProxyAddressExternalLink(selectedChain?.explorer.browserUrl, dapiProxyWithOevAddress)}></InfoRow>
+                            {
+                                chain.id !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Place a Bid"} /> :
+                                    <VStack alignItems={"left"} spacing={5}>
+                                        <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain} isInputDisabled={isInputDisabled}></BidAmount>
+                                        <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
+                                        <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
+                                        <ExecuteButton
+                                            isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || parseFloat(ethBalance) < parseFloat(ethAmount)}
+                                            text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
+                                            onClick={signPayload}>
+                                        </ExecuteButton>
+                                    </VStack>
+                            }
                         </VStack>
-                        <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"} overflow={"scroll"}>
-                            <BidView bids={bids}></BidView>
-                        </VStack>
-                    </Flex>
-                </VStack>
+                    </VStack>
+                    <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"} overflow={"scroll"}>
+                        <BidView bids={bids}></BidView>
+                    </VStack>
+                </Flex>
+            </VStack>
     );
 };
 

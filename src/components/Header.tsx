@@ -40,7 +40,7 @@ const Header = () => {
                             </Button>
                         </Flex>
                         :
-                        <Image src={ChainLogo(chain.id.toString())} width={'40px'} height={'40px'} bgColor={"gray.100"} borderRadius={"md"} onClick={() => open()} cursor={"pointer"} />
+                        <Image src={ChainLogo(chain.id.toString(), true)} width={'40px'} height={'40px'} bgColor={"gray.100"} borderRadius={"md"} onClick={() => open()} cursor={"pointer"} />
                 }
             </Flex>
         )

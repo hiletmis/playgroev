@@ -2,7 +2,7 @@ import { Text, Box, Flex, Spacer, VStack, Image } from '@chakra-ui/react';
 import { COLORS } from '../helpers/utils';
 
 const Hero = (props: any) => {
-    const { title, text, setText, margin = 0, color = "white", bgColor = COLORS.main } = props;
+    const { title, text, setText, color = "black", bgColor = COLORS.main } = props;
 
     const paste = () => {
         if (navigator.clipboard && navigator.clipboard.readText) {
@@ -13,7 +13,7 @@ const Hero = (props: any) => {
     }
 
     return (
-        <VStack direction="row" align="left" m={margin}>
+        <VStack direction="row" align="left">
             <Text fontWeight={"bold"} fontSize={"md"}>{title}</Text>
             <Box p={2} width={"100%"} bgColor={bgColor} alignItems={"left"}>
                 <Flex alignItems={"center"}>
