@@ -18,6 +18,7 @@ const BidView = ({ bids }: any) => {
 
     const [selectedBid, setSelectedBid] = useState({} as BidInfo)
     const [selectedBidStatus, setSelectedBidStatus] = useState({} as BidStatus)
+    const [lockState, setLockState] = useState(false)
 
     const [updateTx, setUpdateTx] = useState("" as `0x${string}`)
 
@@ -59,6 +60,30 @@ const BidView = ({ bids }: any) => {
 
     }, [bidInfo, selectedBid])
 
+    useEffect(() => {
+        setLockState(chain?.id !== 4913)
+    }, [chain])
+
+    const switchActiveBid = (bid: BidInfo) => {
+        if (lockState) return
+        if (selectedBid.bidId === bid.bidId) {
+            setSelectedBid({} as BidInfo)
+        } else {
+            setSelectedBid(bid)
+        }
+    }
+
+    const checkCorrectNetwork = (bid: BidInfo) => {
+        if (selectedBid.bidId === bid.bidId) {
+            return
+        }
+
+        if (chain?.id !== 4913) {
+            alert("Please switch to OEV Network to check bid status.")
+            return
+        }
+    }
+
     return (
         <VStack width={"100%"} alignItems={"left"} >
             <Flex>
@@ -71,7 +96,7 @@ const BidView = ({ bids }: any) => {
                         <VStack key={index} width={"100%"} p={1} bgColor={selectedBid.bidId === bid.bidId ? StatusColor[selectedBidStatus.status] : "blue.100"} spacing={1}>
                             <Flex gap={1} alignItems={"center"} width={"100%"}>
                                 <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
-                                <DApiRow dApi={bid.dApi} isHeader={true} onClick={() => { selectedBid.bidId === bid.bidId ? setSelectedBid({} as BidInfo) : setSelectedBid(bid) }} isOpen={selectedBid.bidId === bid.bidId} bgColor={"white"}></DApiRow>
+                                <DApiRow dApi={bid.dApi} isHeader={!lockState} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { switchActiveBid(bid) }} isOpen={selectedBid.bidId === bid.bidId} bgColor={"white"}></DApiRow>
 
                             </Flex>
                             {
