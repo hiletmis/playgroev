@@ -5,7 +5,9 @@ import { computeDapiProxyWithOevAddress } from '@api3/contracts';
 
 import {
     encodeAbiParameters,
+    decodeAbiParameters,
     parseAbiParameters,
+    Hex
 } from 'viem';
 
 import { BidCondition, EncodeBidDetailsArgs } from '../types';
@@ -84,6 +86,27 @@ export function encodeBidDetails(args: EncodeBidDetailsArgs) {
         args.updaterAddress,
         rNonce,
     ]);
+}
+
+export function decodeBidDetails(bidDetails: Hex): EncodeBidDetailsArgs | null {
+    const parsedAbiParameters = parseAbiParameters('address, uint256, int224, address');
+
+    // The user can submit invalid bidDetails that can't decode
+    //@ts-ignore
+    const decodeRes = decodeAbiParameters(parsedAbiParameters, bidDetails)
+
+    if (decodeRes === null) {
+        return null;
+    }
+
+    const bidDetailsArgs: EncodeBidDetailsArgs = {
+        bidType: BID_CONDITIONS.find((c) => c.onchainIndex === decodeRes[1])!.description,
+        proxyAddress: decodeRes[0],
+        conditionValue: decodeRes[2],
+        updaterAddress: decodeRes[3],
+    };
+
+    return bidDetailsArgs;
 }
 
 export function calculateCollateralAndProtocolFeeAmounts(chainId: string, bidAmount: bigint) {

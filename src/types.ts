@@ -60,3 +60,52 @@ export enum StatusColor {
 }
 
 export type MulticallDataType = `0x${string}`[];
+
+
+export const AddressSchema = z.enum([
+    "0x34f13a5c0ad750d212267bcbc230c87aefd35cc5",
+]);
+export type Address = z.infer<typeof AddressSchema>;
+
+
+export const LogIndexSchema = z.enum([
+    "0x0",
+]);
+export type LogIndex = z.infer<typeof LogIndexSchema>;
+
+
+export const TransactionIndexSchema = z.enum([
+    "0x1",
+]);
+export type TransactionIndex = z.infer<typeof TransactionIndexSchema>;
+
+export const ResultSchema = z.object({
+    "address": AddressSchema,
+    "topics": z.array(z.string()),
+    "data": z.string(),
+    "blockNumber": z.string(),
+    "transactionHash": z.string(),
+    "transactionIndex": TransactionIndexSchema,
+    "blockHash": z.string(),
+    "logIndex": LogIndexSchema,
+    "removed": z.boolean(),
+});
+export type Result = z.infer<typeof ResultSchema>;
+
+export const ChainLogsSchema = z.object({
+    "result": z.array(ResultSchema),
+});
+export type ChainLogs = z.infer<typeof ChainLogsSchema>;
+
+export interface DecodedPlaceBidData {
+    bidder: `0x${string}`;
+    bidTopic: `0x${string}`;
+    bidId: `0x${string}`;
+    chainId: number;
+    bidAmount: `0x${string}`;
+    bidDetails: `0x${string}`;
+    expirationTimestamp: string;
+    collateralAmount: string;
+    protocolFeeAmount: string;
+}
+
