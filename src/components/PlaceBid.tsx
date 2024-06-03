@@ -15,6 +15,7 @@ import { EncodeBidDetailsArgs } from "../types";
 import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { parseEther } from 'ethers';
 import { BidInfo } from "../types";
+import { bidTopic } from "../helpers/constants";
 
 import {
     VStack, Flex, Text
@@ -42,7 +43,6 @@ const Hero = () => {
     const [isError, setIsError] = useState(false)
 
     const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
-    const bidTopic = "0x0000000000000000000000000000000000000000000000000000000000000001" as `0x${string}`
 
     const sanitizedError = (error: any | null) => {
         if (error === null) return null;
@@ -69,6 +69,7 @@ const Hero = () => {
                     bidId: bidId,
                     bidTopic: bidTopic,
                     bidDetails: bidDetails,
+                    bidDetailsHash: Utils.hashBidDetails(bidDetails),
                     tx: hash,
                     chainId: parseInt(selectedChain!.id),
                     dApi: dApi,
