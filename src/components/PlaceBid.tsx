@@ -16,6 +16,7 @@ import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { parseEther } from 'ethers';
 import { BidInfo } from "../types";
 import { bidTopic } from "../helpers/constants";
+import { getAuctioneerLogs } from "../helpers/get-logs";
 
 import {
     VStack, Flex, Text
@@ -50,7 +51,6 @@ const Hero = () => {
     }
 
     const signPayload = async () => {
-
 
         if (placeBidData == null) return;
         setIsInputDisabled(true)
@@ -156,6 +156,18 @@ const Hero = () => {
         setProtocolFee(protocolFee)
         setCollateralFee(collateralFee)
     }, [ethAmount])
+
+    useEffect(() => {
+        if (address == null) return;
+        if (OevAuctionHouseAddres == null) return;
+        // if bids empty
+        if (bids.length === 0) {
+            getAuctioneerLogs(OevAuctionHouseAddres, "https://oev-network.calderachain.xyz/http", address).then((data) => {
+                setBids(data)
+            })
+        }
+
+    }, [OevAuctionHouseAddres, address, bids])
 
     return (
         chain == null ? <SignIn></SignIn> :

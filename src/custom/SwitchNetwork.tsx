@@ -11,7 +11,7 @@ const Hero = ({ destinationChain = 4913, header = true, customMessage = "", swit
 
     const switchChain1 = () => {
         if (isPending) return
-        switchChain?.({ chainId: destinationChain })
+        switchChain?.({ chainId: parseInt(destinationChain) })
     }
 
     return (

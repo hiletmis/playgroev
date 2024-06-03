@@ -118,8 +118,6 @@ const BidView = ({ bids }: any) => {
 
         //@ts-ignore
         const api3ServerV1Address = deploymentAddresses.Api3ServerV1[chainId] as `0x${string}`
-
-        console.log((api3ServerV1Address))
         setApi3ServerV1Address(api3ServerV1Address)
 
     }, [chainId])
