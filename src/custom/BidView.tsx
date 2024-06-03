@@ -25,21 +25,25 @@ const BidView = ({ bids }: any) => {
     const [selectedBid, setSelectedBid] = useState({} as BidInfo)
     const [selectedBidStatus, setSelectedBidStatus] = useState({} as BidStatus)
     const [lockState, setLockState] = useState(false)
+    const [isBusy, setIsBusy] = useState(false)
 
-    const { writeContract, data: hash, reset } = useWriteContract()
+    const { writeContract, data: hash, isPending, reset } = useWriteContract()
 
     const signUpdateTx = async () => {
         console.log("Update Bid")
         if (updateDApiCallData == null) return;
+        setIsBusy(true)
 
         //@ts-ignore
         writeContract(updateDApiCallData?.request, {
             onError: (error: any) => {
                 console.log(error)
+                setIsBusy(false)
                 reset();
             },
             onSuccess: () => {
                 console.log("Success")
+                setIsBusy(false)
             }
         });
     }
@@ -61,13 +65,13 @@ const BidView = ({ bids }: any) => {
 
     useEffect(() => {
         if (hash === undefined) return;
-
         selectedBid.updateTx = hash as `0x${string}`
         setSelectedBid(selectedBid)
     }, [hash, selectedBid]);
 
     const reportFulfillment = async () => {
         console.log("Report Fullfillment")
+        setIsBusy(true)
 
         if (reportFullfillmentData == null) return;
 
@@ -75,16 +79,18 @@ const BidView = ({ bids }: any) => {
         writeContract(reportFullfillmentData?.request, {
             onError: (error: any) => {
                 console.log(error)
+                setIsBusy(false)
                 reset();
             },
             onSuccess: () => {
+                setIsBusy(false)
                 console.log("Success")
             }
         });
     }
 
     //@ts-ignore
-    const { data: bidInfo } = useReadContract({
+    const { data: bidInfo, isLoading } = useReadContract({
         address: OevAuctionHouseAddres,
         abi: OevAuctionHouse__factory.abi,
         chainId: chainId,
@@ -200,7 +206,7 @@ const BidView = ({ bids }: any) => {
                         <VStack key={index} width={"100%"} p={1} bgColor={selectedBid.bidId === bid.bidId ? StatusColor[selectedBidStatus.status] : "blue.100"} spacing={1}>
                             <Flex gap={1} alignItems={"center"} width={"100%"}>
                                 <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
-                                <DApiRow dApi={bid.dApi} isHeader={!lockState} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { switchActiveBid(bid) }} isOpen={selectedBid.bidId === bid.bidId} bgColor={"white"}></DApiRow>
+                                <DApiRow dApi={bid.dApi} isLoading={selectedBid.bidId === bid.bidId ? (isPending || isLoading || isBusy) : false} isHeader={!lockState} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { switchActiveBid(bid) }} isOpen={selectedBid.bidId === bid.bidId} bgColor={"white"}></DApiRow>
 
                             </Flex>
                             {
@@ -221,7 +227,6 @@ const BidView = ({ bids }: any) => {
                                                 <ExecuteButton text={"Report Fullfillment"} onClick={() => reportFulfillment()}></ExecuteButton>
                                             : null
                                     }
-
                                 </VStack>
                             }
 
