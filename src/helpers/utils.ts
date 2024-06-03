@@ -1,4 +1,4 @@
-import { formatUnits, hexlify, randomBytes, keccak256, solidityPacked } from 'ethers';
+import { formatUnits, hexlify, randomBytes, keccak256, solidityPacked, getBytes } from 'ethers';
 import { dapis, getChains as getChainsFromDapiManagement } from '@api3/dapi-management'
 import { CHAINS } from '@api3/chains';
 import { computeDapiProxyWithOevAddress } from '@api3/contracts';
@@ -137,4 +137,12 @@ export function truncate(value: string, length: number) {
 
 export function milisecondsToDate(ms: number) {
     return new Date(ms * 1000).toLocaleString();
+}
+
+export function hashBidDetails(bidDetails: string) {
+    return keccak256(bidDetails) as `0x${string}`;
+}
+
+export function fulfillmentDetails(hash: string) {
+    return getBytes(hash);
 }
