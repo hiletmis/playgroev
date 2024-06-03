@@ -43,8 +43,9 @@ function decodeLogs(logs: ChainLogs) {
             bidDetails: eventLog.bidDetails,
             bidDetailsHash: Utils.bidDetailsHash(eventLog.bidDetails),
             tx: log.transactionHash as `0x${string}`,
+            updateTx: "0x0",
             chainId: eventLog.chainId,
-            dApi: dapis[0],
+            dApi: dapis.find((d) => d.name === "ETH/USD"),
             ethAmount: eventLog.bidAmount,
             explorer: getBlockExplorer(eventLog.chainId)
         });

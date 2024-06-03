@@ -71,6 +71,7 @@ const Hero = () => {
                     bidDetails: bidDetails,
                     bidDetailsHash: Utils.hashBidDetails(bidDetails),
                     tx: hash,
+                    updateTx: "0x0",
                     chainId: parseInt(selectedChain!.id),
                     dApi: dApi,
                     ethAmount: BigInt(parseEther(ethAmount)),

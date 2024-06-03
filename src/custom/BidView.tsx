@@ -7,7 +7,7 @@ import DApiRow from './DApiRow';
 import { ChainLogo } from '@api3/logos';
 import CopyInfoRow from './CopyInfoRow';
 import ExecuteButton from './ExecuteButton';
-import { useReadContract, useAccount, useSimulateContract, useWriteContract } from 'wagmi';
+import { useReadContract, useAccount, useSimulateContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { OevAuctionHouse__factory, Api3ServerV1__factory, deploymentAddresses } from '@api3/contracts';
 import SwitchNetwork from './SwitchNetwork';
 import { getCallData } from '../helpers/signed-api';
@@ -26,14 +26,10 @@ const BidView = ({ bids }: any) => {
     const [selectedBidStatus, setSelectedBidStatus] = useState({} as BidStatus)
     const [lockState, setLockState] = useState(false)
 
-    const [updateTx, setUpdateTx] = useState("" as `0x${string}`)
-
     const { writeContract, data: hash, reset } = useWriteContract()
-
 
     const signUpdateTx = async () => {
         console.log("Update Bid")
-
         if (updateDApiCallData == null) return;
 
         //@ts-ignore
@@ -43,12 +39,48 @@ const BidView = ({ bids }: any) => {
                 reset();
             },
             onSuccess: () => {
-                setUpdateTx(hash as `0x${string}`)
-                console.log(hash)
+                console.log("Success")
             }
         });
+    }
 
+    const { isFetched: isFetchedReceipt, data: receipt } = useWaitForTransactionReceipt({
+        confirmations: 1,
+        hash
+    });
 
+    useEffect(() => {
+        if (isFetchedReceipt === undefined) return;
+        if (hash === undefined) return;
+
+        if (receipt === undefined) return;
+
+        console.log(isFetchedReceipt, receipt, hash)
+
+    }, [isFetchedReceipt, receipt, hash, reset]);
+
+    useEffect(() => {
+        if (hash === undefined) return;
+
+        selectedBid.updateTx = hash as `0x${string}`
+        setSelectedBid(selectedBid)
+    }, [hash, selectedBid]);
+
+    const reportFulfillment = async () => {
+        console.log("Report Fullfillment")
+
+        if (reportFullfillmentData == null) return;
+
+        //@ts-ignore
+        writeContract(reportFullfillmentData?.request, {
+            onError: (error: any) => {
+                console.log(error)
+                reset();
+            },
+            onSuccess: () => {
+                console.log("Success")
+            }
+        });
     }
 
     //@ts-ignore
@@ -59,7 +91,7 @@ const BidView = ({ bids }: any) => {
         functionName: 'bids',
         args: [selectedBid.bidId as `0x${string}`],
         query: {
-            refetchInterval: 10000,
+            refetchInterval: 5000,
             enabled: selectedBid.bidId !== "" as `0x${string}`
         }
     });
@@ -73,7 +105,7 @@ const BidView = ({ bids }: any) => {
         functionName: 'multicall',
         args: [updateDApiData],
         query: {
-            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913
+            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && selectedBidStatus.status === BidStatusEnum.Awarded
         }
     })
 
@@ -84,9 +116,9 @@ const BidView = ({ bids }: any) => {
         abi: OevAuctionHouse__factory.abi,
         chainId: chainId,
         functionName: 'reportFulfillment',
-        args: [bidTopic, selectedBid.bidDetailsHash, updateTx],
+        args: [bidTopic, selectedBid.bidDetailsHash, selectedBid.updateTx],
         query: {
-            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && updateTx !== "" as `0x${string}`
+            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId === 4913 && selectedBid.updateTx !== "0x0" as `0x${string}` && selectedBidStatus.status === BidStatusEnum.Awarded
         }
     })
 
@@ -101,13 +133,10 @@ const BidView = ({ bids }: any) => {
             protocolFeeAmount: (bidInfo[3]),
             bidId: selectedBid.bidId
         } as BidStatus
-
         setSelectedBidStatus(bidStatus)
         getCallData(selectedBid.dApi.name).then((data) => {
             setUpdateDApiData(data as MulticallDataType);
         });
-
-        setUpdateTx("" as `0x${string}`)
 
     }, [bidInfo, selectedBid])
 
@@ -138,13 +167,10 @@ const BidView = ({ bids }: any) => {
         console.log(errorReportFullfillment)
     }, [errorUpdate, errorReportFullfillment])
 
-    useEffect(() => {
-        console.log(updateTx)
-    }, [updateTx])
-
     const switchActiveBid = (bid: BidInfo) => {
         if (lockState) return
         if (selectedBid.bidId === bid.bidId) {
+            reset()
             setSelectedBid({} as BidInfo)
         } else {
             setSelectedBid(bid)
@@ -169,7 +195,7 @@ const BidView = ({ bids }: any) => {
                 <Spacer />
             </Flex>
             {
-                bids.map((bid: BidInfo, index: number) => {
+                bids.toReversed().map((bid: BidInfo, index: number) => {
                     return (
                         <VStack key={index} width={"100%"} p={1} bgColor={selectedBid.bidId === bid.bidId ? StatusColor[selectedBidStatus.status] : "blue.100"} spacing={1}>
                             <Flex gap={1} alignItems={"center"} width={"100%"}>
@@ -184,24 +210,18 @@ const BidView = ({ bids }: any) => {
                                     <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(selectedBidStatus.protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
                                     <CopyInfoRow header={"Status"} text={BidStatusEnum[selectedBidStatus.status]} copyEnabled={false}></CopyInfoRow>
                                     {
-                                        selectedBidStatus.status === BidStatusEnum.Awarded ?
+                                        selectedBidStatus.status === BidStatusEnum.Awarded && selectedBid.updateTx === "0x0" as `0x${string}` ?
                                             bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={"Switch Network to Update DApi"} /> :
                                                 <ExecuteButton text={"Update " + selectedBid.dApi.name} onClick={() => signUpdateTx()}></ExecuteButton>
                                             : null
                                     }
                                     {
-                                        selectedBidStatus.status === BidStatusEnum.FulfillmentReported &&
-                                        <CopyInfoRow header={"Fulfillment Report"} text={"Fulfillment Report"} copyEnabled={false}></CopyInfoRow>
+                                        selectedBidStatus.status === BidStatusEnum.Awarded && selectedBid.updateTx !== "0x0" as `0x${string}` ?
+                                            chainId !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Report Fullfillment"} /> :
+                                                <ExecuteButton text={"Report Fullfillment"} onClick={() => reportFulfillment()}></ExecuteButton>
+                                            : null
                                     }
-                                    {
-                                        selectedBidStatus.status === BidStatusEnum.FulfillmentConfirmed &&
-                                        <CopyInfoRow header={"Fulfillment Report"} text={"Fulfillment Report"} copyEnabled={false}></CopyInfoRow>
-                                    }
-                                    {
-                                        selectedBidStatus.status === BidStatusEnum.FulfillmentContradicte &&
-                                        <CopyInfoRow header={"Fulfillment Report"} text={"Fulfillment Report"} copyEnabled={false}></CopyInfoRow>
 
-                                    }
                                 </VStack>
                             }
 

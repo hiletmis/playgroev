@@ -28,6 +28,7 @@ export type BidInfo = {
     bidDetails: string;
     bidDetailsHash: `0x${string}`;
     tx: `0x${string}`;
+    updateTx: `0x${string}`;
     chainId: number;
     dApi: any;
     ethAmount: bigint;
