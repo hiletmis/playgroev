@@ -2,19 +2,25 @@ import { useEffect, useState } from 'react';
 import { VStack, Flex, Spacer, Text, Image } from '@chakra-ui/react';
 import * as Utils from '../helpers/utils';
 
-import { BidInfo, BidStatus, BidStatusEnum, StatusColor } from '../types';
+import { BidInfo, BidStatus, BidStatusEnum, StatusColor, MulticallDataType } from '../types';
 import DApiRow from './DApiRow';
 import { ChainLogo } from '@api3/logos';
 import CopyInfoRow from './CopyInfoRow';
 import ExecuteButton from './ExecuteButton';
-import { useReadContract, useAccount } from 'wagmi';
-import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
+import { useReadContract, useAccount, useSimulateContract, useWriteContract } from 'wagmi';
+import { OevAuctionHouse__factory, Api3ServerV1__factory, deploymentAddresses } from '@api3/contracts';
 import SwitchNetwork from './SwitchNetwork';
+import { getCallData } from '../helpers/signed-api';
+import { bidTopic } from "../helpers/constants";
 
 const BidView = ({ bids }: any) => {
 
     const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
-    const { chain } = useAccount()
+    const [api3ServerV1Address, setApi3ServerV1Address] = useState("" as `0x${string}`)
+
+    const { chain, chainId } = useAccount()
+
+    const [updateDApiData, setUpdateDApiData] = useState(['0x00'] as MulticallDataType);
 
     const [selectedBid, setSelectedBid] = useState({} as BidInfo)
     const [selectedBidStatus, setSelectedBidStatus] = useState({} as BidStatus)
@@ -22,10 +28,26 @@ const BidView = ({ bids }: any) => {
 
     const [updateTx, setUpdateTx] = useState("" as `0x${string}`)
 
+    const { writeContract, data: hash, reset } = useWriteContract()
+
 
     const signUpdateTx = async () => {
         console.log("Update Bid")
-        console.log(updateTx)
+
+        if (updateDApiCallData == null) return;
+
+        //@ts-ignore
+        writeContract(updateDApiCallData?.request, {
+            onError: (error: any) => {
+                console.log(error)
+                reset();
+            },
+            onSuccess: () => {
+                setUpdateTx(hash as `0x${string}`)
+                console.log(hash)
+            }
+        });
+
 
     }
 
@@ -33,7 +55,7 @@ const BidView = ({ bids }: any) => {
     const { data: bidInfo } = useReadContract({
         address: OevAuctionHouseAddres,
         abi: OevAuctionHouse__factory.abi,
-        chainId: chain ? chain.id : 4913,
+        chainId: chainId,
         functionName: 'bids',
         args: [selectedBid.bidId as `0x${string}`],
         query: {
@@ -41,6 +63,32 @@ const BidView = ({ bids }: any) => {
             enabled: selectedBid.bidId !== "" as `0x${string}`
         }
     });
+
+    // UpdateDApi
+    //@ts-ignore
+    const { data: updateDApiCallData, error: errorUpdate } = useSimulateContract({
+        address: api3ServerV1Address,
+        abi: Api3ServerV1__factory.abi,
+        chainId: chainId,
+        functionName: 'multicall',
+        args: [updateDApiData],
+        query: {
+            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913
+        }
+    })
+
+    // ReportFullfillment
+    //@ts-ignore
+    const { data: reportFullfillmentData, error: errorReportFullfillment } = useSimulateContract({
+        address: OevAuctionHouseAddres,
+        abi: OevAuctionHouse__factory.abi,
+        chainId: chainId,
+        functionName: 'reportFulfillment',
+        args: [bidTopic, selectedBid.bidDetailsHash, updateTx],
+        query: {
+            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && updateTx !== "" as `0x${string}`
+        }
+    })
 
     useEffect(() => {
         if (!bidInfo) return
@@ -55,14 +103,46 @@ const BidView = ({ bids }: any) => {
         } as BidStatus
 
         setSelectedBidStatus(bidStatus)
-        setUpdateTx("" as `0x${string}`)
+        getCallData(selectedBid.dApi.name).then((data) => {
+            setUpdateDApiData(data as MulticallDataType);
+        });
 
+        setUpdateTx("" as `0x${string}`)
 
     }, [bidInfo, selectedBid])
 
     useEffect(() => {
-        setLockState(chain?.id !== 4913)
-    }, [chain])
+        if (!chainId) return
+        setLockState(chainId !== 4913)
+        if (!deploymentAddresses.Api3ServerV1.hasOwnProperty(chainId)) return
+
+        //@ts-ignore
+        const api3ServerV1Address = deploymentAddresses.Api3ServerV1[chainId] as `0x${string}`
+
+        console.log((api3ServerV1Address))
+        setApi3ServerV1Address(api3ServerV1Address)
+
+    }, [chainId])
+
+    useEffect(() => {
+        if (!updateDApiCallData) return
+        console.log(updateDApiCallData)
+    }, [updateDApiCallData])
+
+    useEffect(() => {
+        if (!reportFullfillmentData) return
+        console.log(reportFullfillmentData)
+    }, [reportFullfillmentData])
+
+    useEffect(() => {
+        if (!errorUpdate && !errorReportFullfillment) return
+        console.log(errorUpdate)
+        console.log(errorReportFullfillment)
+    }, [errorUpdate, errorReportFullfillment])
+
+    useEffect(() => {
+        console.log(updateTx)
+    }, [updateTx])
 
     const switchActiveBid = (bid: BidInfo) => {
         if (lockState) return
@@ -78,7 +158,7 @@ const BidView = ({ bids }: any) => {
             return
         }
 
-        if (chain?.id !== 4913) {
+        if (chainId !== 4913) {
             alert("Please switch to OEV Network to check bid status.")
             return
         }
