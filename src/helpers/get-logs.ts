@@ -1,9 +1,9 @@
-import { ChainLogs, BidInfo } from "../types";
+import { ChainLogs, BidInfo, BidStatus, BidStatusEnum } from "../types";
 import { OevAuctionHouse__factory } from '@api3/contracts';
 import { CHAINS } from "@api3/chains";
 import { dapis } from '@api3/dapi-management';
 import * as Utils from './utils';
-
+import DapiProxyWithOevAddresses from '../data/dapi-proxy-addresses.json';
 
 async function getLatestBlockNumber(rpcUrl: string) {
     const res = await fetch(rpcUrl, {
@@ -30,6 +30,19 @@ function getBlockExplorer(chainId: number) {
     return chain.explorer.browserUrl;
 }
 
+function returnDefaultDapi() {
+    return dapis.find((d) => d.name === "ETH/USD");
+}
+
+function findDapiProxy(chainId: string, address: string) {
+    const batch = DapiProxyWithOevAddresses.find((d) => d.chains.includes(chainId));
+    if (!batch) return returnDefaultDapi()
+    const dapiName = batch.addresses.find((a) => a.address === address);
+    if (!dapiName) return returnDefaultDapi()
+    const dapi = dapis.find((d) => d.name === dapiName.dapi);
+    return dapi
+}
+
 function decodeLogs(logs: ChainLogs) {
     const oevAuctionHouse = OevAuctionHouse__factory.createInterface();
 
@@ -37,17 +50,33 @@ function decodeLogs(logs: ChainLogs) {
 
         const eventLog = oevAuctionHouse.decodeEventLog("PlacedBid", log.data, log.topics)
 
+        const bidStatus: BidStatus = ({
+            status: BidStatusEnum.None,
+            expirationTimestamp: parseInt(eventLog.expirationTimestamp.toString()),
+            collateralAmount: BigInt(eventLog.collateralAmount),
+            protocolFeeAmount: BigInt(eventLog.protocolFeeAmount),
+            bidId: eventLog.bidId
+        })
+
+        const isExpired = Date.now() > bidStatus.expirationTimestamp * 1000;
+        let bidDetails = Utils.decodeBidDetails(eventLog.bidDetails);
+        bidDetails!.hash = Utils.bidDetailsHash(eventLog.bidDetails);
+
+        const dapi = findDapiProxy(eventLog.chainId.toString(), bidDetails!.proxyAddress!);
+
         const decodedEventLog: BidInfo = ({
             bidId: eventLog.bidId,
             bidTopic: eventLog.bidTopic,
-            bidDetails: eventLog.bidDetails,
-            bidDetailsHash: Utils.bidDetailsHash(eventLog.bidDetails),
+            bidDetails: bidDetails!,
+            bidDetailsHash: bidDetails?.hash as `0x${string}`,
             tx: log.transactionHash as `0x${string}`,
             updateTx: "0x0",
             chainId: eventLog.chainId,
-            dApi: dapis.find((d) => d.name === "ETH/USD"),
+            dapi: dapi,
             ethAmount: eventLog.bidAmount,
-            explorer: getBlockExplorer(eventLog.chainId)
+            explorer: getBlockExplorer(eventLog.chainId),
+            isExpired: isExpired,
+            status: bidStatus
         });
 
         return decodedEventLog;
