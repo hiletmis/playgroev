@@ -195,6 +195,11 @@ const BidView = ({ bids }: any) => {
         }
     }
 
+    const getColor = (bid: BidInfo) => {
+        if (bid.isExpired) return "red.300"
+        return selectedBid.bidId === bid.bidId ? StatusColor[selectedBidStatus.status] : "blue.100"
+    }
+
     return (
         <VStack width={"100%"} alignItems={"left"} >
             <Flex>
@@ -204,7 +209,7 @@ const BidView = ({ bids }: any) => {
             {
                 bids.toReversed().map((bid: BidInfo, index: number) => {
                     return (
-                        <VStack key={index} width={"100%"} p={1} bgColor={selectedBid.bidId === bid.bidId ? StatusColor[selectedBidStatus.status] : "blue.100"} spacing={1}>
+                        <VStack key={index} width={"100%"} p={1} bgColor={getColor(bid)} spacing={1}>
                             <Flex gap={1} alignItems={"center"} width={"100%"}>
                                 <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
                                 <DApiRow dApi={bid.dapi} isLoading={selectedBid.bidId === bid.bidId ? (isPending || isLoading || isBusy) : false} isHeader={!lockState} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { switchActiveBid(bid) }} isOpen={selectedBid.bidId === bid.bidId} bgColor={"white"}></DApiRow>
@@ -212,12 +217,12 @@ const BidView = ({ bids }: any) => {
                             </Flex>
                             {
                                 selectedBid.bidId === bid.bidId &&
-                                <VStack width={"100%"} p={5} bgColor={StatusColor[selectedBidStatus.status]} spacing={3}>
+                                <VStack width={"100%"} p={5} bgColor={getColor(bid)} spacing={3}>
                                     <CopyInfoRow header={"Collateral Amount"} text={Utils.parseETH(selectedBidStatus.collateralAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
                                     <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(selectedBidStatus.protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
                                     <CopyInfoRow header={"Status"} text={BidStatusEnum[selectedBidStatus.status]} copyEnabled={false}></CopyInfoRow>
                                     {
-                                        selectedBidStatus.status === BidStatusEnum.Awarded && selectedBid.updateTx === "0x0" as `0x${string}` ?
+                                        selectedBidStatus.status === BidStatusEnum.Awarded && selectedBid.updateTx === "0x0" as `0x${string}` && !selectedBid.isExpired ?
                                             bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={"Switch Network to Update DApi"} /> :
                                                 <ExecuteButton text={"Update " + selectedBid.dapi.name} onClick={() => signUpdateTx()}></ExecuteButton>
                                             : null
