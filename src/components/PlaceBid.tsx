@@ -22,7 +22,7 @@ import {
     VStack, Flex, Text
 } from "@chakra-ui/react";
 
-const Hero = () => {
+const PlaceBid = () => {
     const { address, chain } = useAccount()
 
     const [selectedChain, setSelectedChain] = useState(Utils.getChain("1"));
@@ -210,4 +210,4 @@ const Hero = () => {
     );
 };
 
-export default Hero;
+export default PlaceBid;

@@ -1,7 +1,7 @@
 import { Image, Text, Box, Flex, Spacer, VStack } from '@chakra-ui/react';
 import { COLORS, copy } from '../helpers/utils';
 
-const Hero = (props: any) => {
+const CopyInfoRow = (props: any) => {
     const { header, text, margin = 0, copyEnabled = true, bgColor = COLORS.main } = props;
     return (
         <VStack direction="row" align="left" m={margin} width={"100%"}>
@@ -20,4 +20,4 @@ const Hero = (props: any) => {
     );
 };
 
-export default Hero;
+export default CopyInfoRow;

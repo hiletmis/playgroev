@@ -2,7 +2,7 @@ import { Button, Box, Flex, VStack, NumberInput, NumberInputField, Spacer, Image
 import { COLORS, sanitizeAmount } from "../helpers/utils";
 import { SymbolLogo } from "@api3/logos";
 
-const Hero = (props: any) => {
+const AddCollateral = (props: any) => {
     const { setTokenAmount, tokenAmount, tokenBalance, bgColor = COLORS.app } = props;
 
     return (
@@ -39,4 +39,4 @@ const Hero = (props: any) => {
     );
 };
 
-export default Hero;
+export default AddCollateral;

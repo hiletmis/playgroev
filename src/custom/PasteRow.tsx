@@ -1,7 +1,7 @@
 import { Text, Box, Flex, Spacer, VStack, Image } from '@chakra-ui/react';
 import { COLORS } from '../helpers/utils';
 
-const Hero = (props: any) => {
+const PasteRow = (props: any) => {
     const { title, text, setText, color = "black", bgColor = COLORS.main } = props;
 
     const paste = () => {
@@ -26,6 +26,6 @@ const Hero = (props: any) => {
     );
 };
 
-export default Hero;
+export default PasteRow;
 
 

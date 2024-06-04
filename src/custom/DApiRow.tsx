@@ -4,7 +4,7 @@ import { COLORS } from '../helpers/utils';
 import { SymbolLogo } from '@api3/logos';
 import { ColorRing } from 'react-loader-spinner';
 
-const Hero = (props: any) => {
+const DApiRow = (props: any) => {
     const dApiName = props.dApi.name;
     const isHeader = props.isHeader || false;
     const isOpen = props.isOpen || false;
@@ -38,6 +38,6 @@ const Hero = (props: any) => {
     );
 };
 
-export default Hero;
+export default DApiRow;
 
 

@@ -1,6 +1,6 @@
 import { VStack } from '@chakra-ui/react';
 
-const Hero = (item: any) => {
+const BidInfoRow = (item: any) => {
 
     return (
         item == null ? <></> :
@@ -11,7 +11,7 @@ const Hero = (item: any) => {
     );
 };
 
-export default Hero;
+export default BidInfoRow;
 
 
 

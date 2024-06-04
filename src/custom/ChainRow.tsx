@@ -3,7 +3,7 @@ import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { COLORS } from '../helpers/utils';
 import { ChainLogo } from '@api3/logos';
 
-const Hero = (props: any) => {
+const ChainRow = (props: any) => {
     const isHeader = props.isHeader || false;
     const isOpen = props.isOpen || false;
 
@@ -29,6 +29,6 @@ const Hero = (props: any) => {
     );
 };
 
-export default Hero;
+export default ChainRow;
 
 

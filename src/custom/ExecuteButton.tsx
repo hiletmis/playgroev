@@ -1,6 +1,6 @@
 import { Button, VStack } from '@chakra-ui/react';
 
-const Hero = (props: any) => {
+const ExecuteButton = (props: any) => {
     const { text, height = "50px", minWidth = "200px", isDisabled, onClick } = props;
 
     return (
@@ -21,4 +21,4 @@ const Hero = (props: any) => {
     );
 };
 
-export default Hero;
+export default ExecuteButton;

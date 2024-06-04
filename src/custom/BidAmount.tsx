@@ -7,7 +7,7 @@ import {
     NumberInputField,
 } from '@chakra-ui/react'
 
-const Hero = (props: any) => {
+const BidAmount = (props: any) => {
     const { chain, ethAmount, setEthAmount, bgColor = COLORS.app, ethBalance, isInputDisabled = false } = props;
 
     return (
@@ -41,6 +41,6 @@ const Hero = (props: any) => {
     );
 };
 
-export default Hero;
+export default BidAmount;
 
 

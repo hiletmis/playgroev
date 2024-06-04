@@ -4,7 +4,7 @@ import { useAccount, useSwitchChain } from "wagmi";
 import SignIn from './SignIn';
 import { ChainLogo } from '@api3/logos';
 
-const Hero = ({ destinationChain = 4913, header = true, customMessage = "", switchMessage = "Switch Network" }: any) => {
+const SwitchNetwork = ({ destinationChain = 4913, header = true, customMessage = "", switchMessage = "Switch Network" }: any) => {
 
     const { chain } = useAccount()
     const { switchChain, isPending } = useSwitchChain()
@@ -69,4 +69,4 @@ const Hero = ({ destinationChain = 4913, header = true, customMessage = "", swit
     );
 };
 
-export default Hero;
+export default SwitchNetwork;

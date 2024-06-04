@@ -1,7 +1,7 @@
 import { VStack, Flex, Spacer, Image } from '@chakra-ui/react';
 import CustomHeading from './Heading';
 
-const Hero = () => {
+const SignIn = () => {
     return (
         <VStack spacing={4} alignItems={"left"} >
             <Flex>
@@ -14,4 +14,4 @@ const Hero = () => {
     );
 };
 
-export default Hero;
+export default SignIn;

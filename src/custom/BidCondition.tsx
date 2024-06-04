@@ -7,7 +7,7 @@ import {
     NumberInputStepper
 } from '@chakra-ui/react'
 
-const Hero = (props: any) => {
+const BidCondition = (props: any) => {
     const { fulfillValue, setFulfillValue, condition, setCondition, bgColor = COLORS.app, isInputDisabled = false } = props;
 
     return (
@@ -36,7 +36,7 @@ const Hero = (props: any) => {
     );
 };
 
-export default Hero;
+export default BidCondition;
 
 
 

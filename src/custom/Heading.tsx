@@ -1,7 +1,7 @@
 import { Text, Heading, Flex, Spacer, VStack } from '@chakra-ui/react';
 import { ColorRing } from 'react-loader-spinner';
 
-const Hero = (props: any) => {
+const CustomHeading = (props: any) => {
     const { header, description, isLoading } = props;
     return (
         <VStack alignItems={"left"} spacing={3} >
@@ -15,6 +15,6 @@ const Hero = (props: any) => {
     );
 };
 
-export default Hero;
+export default CustomHeading;
 
 
