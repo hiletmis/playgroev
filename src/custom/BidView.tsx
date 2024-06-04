@@ -140,7 +140,7 @@ const BidView = ({ bids }: any) => {
             bidId: selectedBid.bidId
         } as BidStatus
         setSelectedBidStatus(bidStatus)
-        getCallData(selectedBid.dApi.name).then((data) => {
+        getCallData(selectedBid.dapi.name).then((data) => {
             setUpdateDApiData(data as MulticallDataType);
         });
 
@@ -178,6 +178,7 @@ const BidView = ({ bids }: any) => {
         if (selectedBid.bidId === bid.bidId) {
             reset()
             setSelectedBid({} as BidInfo)
+            setSelectedBidStatus({} as BidStatus)
         } else {
             setSelectedBid(bid)
         }
@@ -206,7 +207,7 @@ const BidView = ({ bids }: any) => {
                         <VStack key={index} width={"100%"} p={1} bgColor={selectedBid.bidId === bid.bidId ? StatusColor[selectedBidStatus.status] : "blue.100"} spacing={1}>
                             <Flex gap={1} alignItems={"center"} width={"100%"}>
                                 <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
-                                <DApiRow dApi={bid.dApi} isLoading={selectedBid.bidId === bid.bidId ? (isPending || isLoading || isBusy) : false} isHeader={!lockState} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { switchActiveBid(bid) }} isOpen={selectedBid.bidId === bid.bidId} bgColor={"white"}></DApiRow>
+                                <DApiRow dApi={bid.dapi} isLoading={selectedBid.bidId === bid.bidId ? (isPending || isLoading || isBusy) : false} isHeader={!lockState} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { switchActiveBid(bid) }} isOpen={selectedBid.bidId === bid.bidId} bgColor={"white"}></DApiRow>
 
                             </Flex>
                             {
@@ -218,7 +219,7 @@ const BidView = ({ bids }: any) => {
                                     {
                                         selectedBidStatus.status === BidStatusEnum.Awarded && selectedBid.updateTx === "0x0" as `0x${string}` ?
                                             bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={"Switch Network to Update DApi"} /> :
-                                                <ExecuteButton text={"Update " + selectedBid.dApi.name} onClick={() => signUpdateTx()}></ExecuteButton>
+                                                <ExecuteButton text={"Update " + selectedBid.dapi.name} onClick={() => signUpdateTx()}></ExecuteButton>
                                             : null
                                     }
                                     {

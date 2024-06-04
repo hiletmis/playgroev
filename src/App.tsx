@@ -11,7 +11,6 @@ function App() {
   const [address, setAddress] = useState("");
   const [balance, setBalance] = useState(BigInt(0));
 
-
   return (
     <HashRouter>
       <OevContext.Provider value={{ address, setAddress, balance, setBalance }}>

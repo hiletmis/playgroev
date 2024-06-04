@@ -10,7 +10,7 @@ import {
     Hex
 } from 'viem';
 
-import { BidCondition, EncodeBidDetailsArgs } from '../types';
+import { BidCondition, BidDetailsArgs } from '../types';
 
 export const parseETH = (value: any) => {
     if (value === undefined) return '0';
@@ -73,7 +73,7 @@ export function getDapiProxyWithOevAddress(chainId: string, dApiName: string): `
     return computeDapiProxyWithOevAddress(chainId, dApiName, oevBeneficiary, metadata) as `0x${string}`;
 }
 
-export function encodeBidDetails(args: EncodeBidDetailsArgs) {
+export function encodeBidDetails(args: BidDetailsArgs) {
     const condition = BID_CONDITIONS.find((c) => c.description === args.bidType)!;
     const rNonce = hexlify(randomBytes(32)) as `0x${string}`;
 
@@ -88,7 +88,7 @@ export function encodeBidDetails(args: EncodeBidDetailsArgs) {
     ]);
 }
 
-export function decodeBidDetails(bidDetails: Hex): EncodeBidDetailsArgs | null {
+export function decodeBidDetails(bidDetails: Hex): BidDetailsArgs | null {
     const parsedAbiParameters = parseAbiParameters('address, uint256, int224, address');
 
     // The user can submit invalid bidDetails that can't decode
@@ -99,7 +99,7 @@ export function decodeBidDetails(bidDetails: Hex): EncodeBidDetailsArgs | null {
         return null;
     }
 
-    const bidDetailsArgs: EncodeBidDetailsArgs = {
+    const bidDetailsArgs: BidDetailsArgs = {
         bidType: BID_CONDITIONS.find((c) => c.onchainIndex === decodeRes[1])!.description,
         proxyAddress: decodeRes[0],
         conditionValue: decodeRes[2],

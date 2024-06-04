@@ -11,7 +11,7 @@ import ErrorRow from "../custom/ErrorRow";
 import DApiList from "../custom/DApiList";
 import InfoRow from "../custom/InfoRow";
 import BidView from "../custom/BidView";
-import { EncodeBidDetailsArgs } from "../types";
+import { BidDetailsArgs } from "../types";
 import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { parseEther } from 'ethers';
 import { BidInfo } from "../types";
@@ -33,7 +33,7 @@ const Hero = () => {
     const [ethBalance, setEthBalance] = useState("0");
     const [fulfillValue, setFulfillValue] = useState("");
     const [bidType, setBidType] = useState("");
-    const [bidDetails, setBidDetails] = useState("" as `0x${string}`);
+    const [bidDetails, setBidDetails] = useState({} as BidDetailsArgs);
     const [protocolFee, setProtocolFee] = useState(BigInt(0))
     const [collateralFee, setCollateralFee] = useState(BigInt(0))
 
@@ -69,13 +69,15 @@ const Hero = () => {
                     bidId: bidId,
                     bidTopic: bidTopic,
                     bidDetails: bidDetails,
-                    bidDetailsHash: Utils.hashBidDetails(bidDetails),
+                    bidDetailsHash: bidDetails.hash,
                     tx: hash,
                     updateTx: "0x0",
                     chainId: parseInt(selectedChain!.id),
-                    dApi: dApi,
+                    dapi: dApi,
                     ethAmount: BigInt(parseEther(ethAmount)),
-                    explorer: selectedChain!.explorer.browserUrl
+                    explorer: selectedChain!.explorer.browserUrl,
+                    isExpired: false,
+                    status: null
                 } as BidInfo
 
                 setBids([...bids, newBid])
@@ -108,7 +110,7 @@ const Hero = () => {
             bidTopic,
             BigInt(selectedChain ? selectedChain.id : 1),
             BigInt(ethAmount === "" ? 0 : parseEther(ethAmount)),
-            bidDetails,
+            bidDetails.bytes!,
             collateralFee,
             protocolFee
         ],
@@ -131,7 +133,7 @@ const Hero = () => {
 
         if (bidType !== "LTE" && bidType !== "GTE") return;
 
-        const bidDetailsArgs: EncodeBidDetailsArgs = {
+        let bidDetailsArgs: BidDetailsArgs = {
             bidType: bidType,
             proxyAddress: oevProxy,
             conditionValue: fulfillValue === "" ? BigInt(0) : parseEther(fulfillValue),
@@ -139,7 +141,10 @@ const Hero = () => {
         }
 
         const bidDetails = Utils.encodeBidDetails(bidDetailsArgs)
-        setBidDetails(bidDetails)
+        bidDetailsArgs.hash = Utils.bidDetailsHash(bidDetails)
+        bidDetailsArgs.bytes = bidDetails
+
+        setBidDetails(bidDetailsArgs)
         setBidId(Utils.getBidId(address, bidTopic, bidDetails))
 
     }, [address, bidType, dApi, fulfillValue, selectedChain]);

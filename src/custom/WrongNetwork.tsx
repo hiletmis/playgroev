@@ -1,6 +1,6 @@
 import { VStack, Heading, Flex, Spacer, Text, Image } from '@chakra-ui/react';
 
-const Hero = () => {
+const WrongNetwork = () => {
     return (
         <VStack spacing={4} alignItems={"left"} >
             <Flex>
@@ -13,4 +13,4 @@ const Hero = () => {
     );
 };
 
-export default Hero;
+export default WrongNetwork;
