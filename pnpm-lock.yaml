@@ -12,11 +12,11 @@ dependencies:
     specifier: ^0.9.1
     version: 0.9.1(eslint@8.57.0)(jest@27.5.1)(typescript@4.9.5)
   '@api3/contracts':
-    specifier: ^3.7.0
-    version: 3.7.0
+    specifier: ^4.0.0
+    version: 4.0.0
   '@api3/dapi-management':
-    specifier: ^1.37.0
-    version: 1.37.0(eslint@8.57.0)(jest@27.5.1)(typescript@4.9.5)
+    specifier: ^1.40.1
+    version: 1.42.0(eslint@8.57.0)(jest@27.5.1)(typescript@4.9.5)
   '@api3/logos':
     specifier: 0.1.25
     version: 0.1.25
@@ -136,8 +136,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@api3/api-integrations@1.10.0:
-    resolution: {integrity: sha512-5rTV+VNwphazHBMvOrWaDGXpEH259PQqOvhDurO0GBgJWBCENcQePDMYYobXwMfrC8wRmuHQ00IMZ80k4sQ7Bw==}
+  /@api3/api-integrations@1.12.0:
+    resolution: {integrity: sha512-aM7JKjAB6LKtmDUDBeCiUdUmTnJEl5j9YiYhL4ZH7IFtJeZ4QZo7NsSqFZ7ZCdRFEnIVigsH5SjcPSi2qjuYKA==}
     dependencies:
       '@api3/airnode-abi': 0.14.1
       '@api3/ois': 2.3.2
@@ -213,8 +213,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@api3/contracts@3.7.0:
-    resolution: {integrity: sha512-nDQX48uQrDLJPqyrJw3djHaRTnWg7bUsYkcMgq9qSs0auaAija1oFf/K6aM3Z3+zAwhzR4PfizXlqrwvtPzuSw==}
+  /@api3/contracts@4.0.0:
+    resolution: {integrity: sha512-iSx6QLzjLj/FzY7+rZoVqctzwWpTxXThE4e3B0siKPofP4LzZWGe8a+DH//yhh7vmbNhNxP5jSmKSt8u01kyTg==}
     engines: {node: '>=18.14.0'}
     dependencies:
       ethers: 6.12.1
@@ -223,10 +223,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@api3/dapi-management@1.37.0(eslint@8.57.0)(jest@27.5.1)(typescript@4.9.5):
-    resolution: {integrity: sha512-HPfiF9FjRSoORasMGGQ1sC14Zog9fdrGCMv02Zrlnv/OFMCRqP/iwu7M/Ywn6lNH0jD98QN7UzUuTFOAJrFK9g==}
+  /@api3/dapi-management@1.42.0(eslint@8.57.0)(jest@27.5.1)(typescript@4.9.5):
+    resolution: {integrity: sha512-53Xa5YQVLjX+kJqHxNTUFSTLvAx8LKacQG/GUu8+4ObTBuZo6LLuGBssOreeVstSWjx8NSaZXl6Zt1J2cMvryA==}
     dependencies:
-      '@api3/api-integrations': 1.10.0
+      '@api3/api-integrations': 1.12.0
       '@api3/chains': 7.1.0(typescript@4.9.5)
       '@api3/commons': 0.9.1(eslint@8.57.0)(jest@27.5.1)(typescript@4.9.5)
       ethers: 6.12.1
