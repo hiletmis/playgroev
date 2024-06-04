@@ -15,24 +15,28 @@ export type BidCondition = {
 // Auction-creator/Auction-cop state
 export type BidConditionDescription = 'GTE' | 'LTE';
 
-export type EncodeBidDetailsArgs = {
+export type BidDetailsArgs = {
     bidType: string;
     proxyAddress: `0x${string}`;
     conditionValue: bigint;
     updaterAddress: `0x${string}`;
+    hash?: `0x${string}`;
+    bytes?: `0x${string}`;
 };
 
 export type BidInfo = {
     bidId: `0x${string}`;
     bidTopic: `0x${string}`;
-    bidDetails: string;
+    bidDetails: BidDetailsArgs;
     bidDetailsHash: `0x${string}`;
     tx: `0x${string}`;
     updateTx: `0x${string}`;
     chainId: number;
-    dApi: any;
+    dapi: any;
     ethAmount: bigint;
     explorer: string;
+    isExpired: boolean;
+    status: BidStatus | null;
 };
 
 export type BidStatus = {
