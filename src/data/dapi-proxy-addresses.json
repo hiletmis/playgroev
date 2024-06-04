@@ -1,0 +1,4107 @@
+[
+  {
+    "chains": [
+      "1",
+      "10",
+      "30",
+      "42",
+      "56",
+      "97",
+      "100",
+      "111",
+      "137",
+      "195",
+      "196",
+      "204",
+      "223",
+      "250",
+      "252",
+      "255",
+      "919",
+      "1101",
+      "1115",
+      "1116",
+      "1123",
+      "1284",
+      "1285",
+      "1287",
+      "1329",
+      "1750",
+      "1798",
+      "1890",
+      "2221",
+      "2222",
+      "2358",
+      "2424",
+      "2442",
+      "2525",
+      "3776",
+      "4002",
+      "4200",
+      "4201",
+      "4913",
+      "5000",
+      "5611",
+      "8453",
+      "10200",
+      "13473",
+      "17000",
+      "34443",
+      "42161",
+      "43113",
+      "43114",
+      "59141",
+      "59144",
+      "59902",
+      "60808",
+      "80002",
+      "80085",
+      "81457",
+      "84532",
+      "167009",
+      "421614",
+      "686868",
+      "713715",
+      "6038361",
+      "11155111",
+      "11155420",
+      "168587773",
+      "245022926",
+      "245022934",
+      "1380012617",
+      "1918988905"
+    ],
+    "addresses": [
+      {
+        "dapi": "AAPL/USD",
+        "address": "0x7468f40B6D3aB5c942F8e09E72703a661Dd6689f"
+      },
+      {
+        "dapi": "AAVE/USD",
+        "address": "0x1F410F984B5D4f8e4d5dbf0Bab32593f5A73E48F"
+      },
+      {
+        "dapi": "AERO/USD",
+        "address": "0x43A60Fec626f381f08161A0230665861Ef8029fA"
+      },
+      {
+        "dapi": "ADA/USD",
+        "address": "0xD4998164D530638A0204616b653f803A0DB930BE"
+      },
+      {
+        "dapi": "ALGO/USD",
+        "address": "0xd6E020415d8116aFD2AdE1DF887aDD004387fd60"
+      },
+      {
+        "dapi": "AMD/USD",
+        "address": "0x00FdcecbBf13d554deC7F02C9c2eF032a751D0d4"
+      },
+      {
+        "dapi": "AMZN/USD",
+        "address": "0x6ce626E4Ba3Bd5B3C7Db6db8F0B916e7645aC0D1"
+      },
+      {
+        "dapi": "ANKR/USD",
+        "address": "0x22B4D51E7e9b530A278AC85CC3759D42c2c1dC57"
+      },
+      {
+        "dapi": "APE/USD",
+        "address": "0xfdcaA47643e271CBCe899c042454d0183De9b3da"
+      },
+      {
+        "dapi": "API3/USD",
+        "address": "0xB9c8fFaB7237eA4921e0A34381218582283485B4"
+      },
+      {
+        "dapi": "APT/USD",
+        "address": "0xE0b1248224235086DEC0338C46A8CeaED4B16a96"
+      },
+      {
+        "dapi": "AR/USD",
+        "address": "0x3290e883F8d6be02BaF8388d688604326D748595"
+      },
+      {
+        "dapi": "ARB/USD",
+        "address": "0xcB9B1a01F0c1817e31aA5D3F11f5350944D1085d"
+      },
+      {
+        "dapi": "ARKK/USD",
+        "address": "0xEEF08f9B2D4cB3Cf9cb32B326C848bCCF42530cB"
+      },
+      {
+        "dapi": "ASTR/USD",
+        "address": "0x2C8905C9338ed2C0cB715Da57E0755BA343499C4"
+      },
+      {
+        "dapi": "ATOM/USD",
+        "address": "0x75abb1f40914241878b1B5d4aEe73834a4A552a0"
+      },
+      {
+        "dapi": "AUD/USD",
+        "address": "0xee150EB63A69CBccD9B12A73A90b41356559B5Da"
+      },
+      {
+        "dapi": "AVAX/USD",
+        "address": "0xdfd007a71fA03186FEb2A2CCac5372cd4A31B831"
+      },
+      {
+        "dapi": "AXL/USD",
+        "address": "0x4F585E65C6327a91DAc32A9291930Ab12c95feEB"
+      },
+      {
+        "dapi": "AXS/USD",
+        "address": "0xAcA0FEdFb0fF6264bA3d0db23Fd652ADE20F027e"
+      },
+      {
+        "dapi": "BABA/USD",
+        "address": "0xa5CF3c077b748ebd96b5b025AFdeA2779ab0FaBA"
+      },
+      {
+        "dapi": "BAL/USD",
+        "address": "0x0161bEA064F1683ad12e89DB4F08E2E7C85F9d84"
+      },
+      {
+        "dapi": "BAND/USD",
+        "address": "0x1234d2896Ad31dC7B6d71940aa1B2A0015c4A078"
+      },
+      {
+        "dapi": "BAT/USD",
+        "address": "0x3D8b53D39BD32D2F69196F3a470e9FadCdE46582"
+      },
+      {
+        "dapi": "BLUR/USD",
+        "address": "0x675810d1d1936533F7d5949C90886c3753751e0A"
+      },
+      {
+        "dapi": "BNB/USD",
+        "address": "0xC09c941cA09771C5e1C753434bc1A9f6E0111040"
+      },
+      {
+        "dapi": "BRL/USD",
+        "address": "0xC7cc84Eab4e94582D16b27a22aEBd7cCa879f0f1"
+      },
+      {
+        "dapi": "BTC/USD",
+        "address": "0xb3CD252EC3DE986DF43DB9FfE692f285A6Fc15D8"
+      },
+      {
+        "dapi": "CAD/USD",
+        "address": "0xDF5ca4bCbAb24De893A89fee83a9e09f0364D9b4"
+      },
+      {
+        "dapi": "CAKE/USD",
+        "address": "0xeF5B8936B35B489Fe3f0b40404Ff6E768052AF5D"
+      },
+      {
+        "dapi": "cbETH/ETH Exchange Rate",
+        "address": "0xbf3b1cC215B655C0cfEd1688b658b19Df27dAB7e"
+      },
+      {
+        "dapi": "CELO/USD",
+        "address": "0xb87313b05c62F7Ea19cb383060d35Be0dde18A7f"
+      },
+      {
+        "dapi": "CHF/USD",
+        "address": "0xC7a0a6b124B343504651044EAF64b919B04a358B"
+      },
+      {
+        "dapi": "CHKLSTMOCK/USD",
+        "address": "0xd44300dd3A68dfA3419c1E5D016D5cce4041A8DC"
+      },
+      {
+        "dapi": "CHZ/USD",
+        "address": "0x3D08f17470AeFF91D2621789160568aC70302488"
+      },
+      {
+        "dapi": "CNY/USD",
+        "address": "0xA422ae409A433c851362b14A747db0977b6694D1"
+      },
+      {
+        "dapi": "COIN/USD",
+        "address": "0x347C474bEaE7e4A697D86a3ec247Ea556b8A8E6c"
+      },
+      {
+        "dapi": "CORE/USD",
+        "address": "0xeefdb50036B27BeaB86aaDDcbb1dfDd87fA3BBe0"
+      },
+      {
+        "dapi": "COMP/USD",
+        "address": "0x41764ab1e00acA36E743b2FBD3c29e0175d18a29"
+      },
+      {
+        "dapi": "CRO/USD",
+        "address": "0xE2f79E33135779a784908de66238B546f03f6474"
+      },
+      {
+        "dapi": "CRV/USD",
+        "address": "0x227a2E7CDad208Ce08176Df63ff4aF72709ab83B"
+      },
+      {
+        "dapi": "CVX/USD",
+        "address": "0x35231860dc4858591B36e31698e5456c4dE5D89a"
+      },
+      {
+        "dapi": "DAI/USD",
+        "address": "0x5494Cb3Bb82Af33cb832540167a049dcB87eBb78"
+      },
+      {
+        "dapi": "DOGE/USD",
+        "address": "0xA31375B7A701c7103aA6aE4A532927684Eb4480c"
+      },
+      {
+        "dapi": "DOT/USD",
+        "address": "0xb88e84802A8697dD3D7237D60c6216FeC05dC609"
+      },
+      {
+        "dapi": "DYDX/USD",
+        "address": "0xAc814dB63d9681Ab5279230016193b8fD0875332"
+      },
+      {
+        "dapi": "ENA/USD",
+        "address": "0x013BE7cE83F1A615499BBF42A04fb2F697EFC706"
+      },
+      {
+        "dapi": "ENS/USD",
+        "address": "0xA0CEe9ed5fb17030be4610e048C80C4838F43aA2"
+      },
+      {
+        "dapi": "ETH/USD",
+        "address": "0xc3888221c7aBf02a9A504A8c12fc4871e563382d"
+      },
+      {
+        "dapi": "ETHx/ETH Exchange Rate",
+        "address": "0x2ea55726C62629f88A722D827884afb453988A3d"
+      },
+      {
+        "dapi": "EUR/USD",
+        "address": "0x6b3885c45B03E6764d52cA5bBd48840cc7506005"
+      },
+      {
+        "dapi": "EURe/USD",
+        "address": "0x069Dc658fDb6672D5D38DC0C4bDF21946878957b"
+      },
+      {
+        "dapi": "FDUSD/USD",
+        "address": "0x623254e402238e690698Bd51233F8CBc3ed29bd4"
+      },
+      {
+        "dapi": "FIL/USD",
+        "address": "0x621dd39D18f355Ac152BB4E8Eb1FF9b3184B89CA"
+      },
+      {
+        "dapi": "FLOW/USD",
+        "address": "0xbDeD715DCe8C3C5aC3c5E3841543CBD53F05Cc20"
+      },
+      {
+        "dapi": "FTM/USD",
+        "address": "0x53FCc41f147B95dd148B9DD5bb447dBb3474D37f"
+      },
+      {
+        "dapi": "FXS/USD",
+        "address": "0x142b5f2136e0071Ce58d8E4658aDCa239C188fb7"
+      },
+      {
+        "dapi": "GBP/USD",
+        "address": "0xBA1A230cD4De389566f3110aA92390FEaBd7ccd3"
+      },
+      {
+        "dapi": "GLMR/USD",
+        "address": "0xCae0CbCfFEA3c75eCDBbEA58E55eB3374456604E"
+      },
+      {
+        "dapi": "GME/USD",
+        "address": "0x250b01305dffFb20302701Db00e57737927fF8bD"
+      },
+      {
+        "dapi": "GMX/USD",
+        "address": "0xb514553aa48347EB8b1e787af9B0e6b87486e310"
+      },
+      {
+        "dapi": "GNO/USD",
+        "address": "0x6A15a90d65133F3aE190cE36a5f40fF40F5e199d"
+      },
+      {
+        "dapi": "GNS/USD",
+        "address": "0x6ddD9AB810cFAFfa5Cfd35a880A897F4EaeABF14"
+      },
+      {
+        "dapi": "GOOGL/USD",
+        "address": "0x5E031889Ed49abA43a72eB51710f1a16aCA548CC"
+      },
+      {
+        "dapi": "GRT/USD",
+        "address": "0xAaF2F8A7C6898f15d6B6a062a1A21De27757033D"
+      },
+      {
+        "dapi": "HBAR/USD",
+        "address": "0x9b890fD5131Bfc6572C42B42aD2C3F56aCFBfFe9"
+      },
+      {
+        "dapi": "HNT/USD",
+        "address": "0xEB17828C2FC96FC097EB58768A537DCE9DB014D7"
+      },
+      {
+        "dapi": "HT/USD",
+        "address": "0x2bc1676C30D703f9C75B515968Ce71EFAa914d7F"
+      },
+      {
+        "dapi": "ICP/USD",
+        "address": "0xcD0edcCEFF2FaDbC3bbe99d025348114d9529b56"
+      },
+      {
+        "dapi": "IMX/USD",
+        "address": "0xe6573c08A576B19BE5760e4446c3cd4838F9f221"
+      },
+      {
+        "dapi": "INJ/USD",
+        "address": "0x0ed92f8BEd4c1aeEE3a7929D7E526132B2414F89"
+      },
+      {
+        "dapi": "INR/USD",
+        "address": "0x508b2a4331a485DF0666344AD65bAd2c5Da08b5C"
+      },
+      {
+        "dapi": "JUICE/USD",
+        "address": "0x4B63C0Cb04694f683F54fF829B57438e351eEf85"
+      },
+      {
+        "dapi": "JOE/USD",
+        "address": "0x6B45dD27095D1166E19E1B455Adb3c7280Ab4Fb4"
+      },
+      {
+        "dapi": "JPM/USD",
+        "address": "0x0EE136A6F41dAC1e7B2DB347031994591751FA68"
+      },
+      {
+        "dapi": "JPY/USD",
+        "address": "0xf4D75975286eD3A3C6b0213335DA6263c4b64e83"
+      },
+      {
+        "dapi": "KAVA/USD",
+        "address": "0x28a2597cEcECDB8b7066809431F3F1dCc1e4e964"
+      },
+      {
+        "dapi": "KDA/USD",
+        "address": "0x47371722A1a777317469c59a363f6c27d56685fA"
+      },
+      {
+        "dapi": "KRW/USD",
+        "address": "0x0A338C666A1e1515a749B7825757C0d190cC5438"
+      },
+      {
+        "dapi": "KSM/USD",
+        "address": "0x9ceD39b09C9875cdfb2dB59E03856698B7D1d1db"
+      },
+      {
+        "dapi": "LDO/USD",
+        "address": "0xFaa37Cc049F1f1752a2fC25EdB1D7e8d44B7C1FE"
+      },
+      {
+        "dapi": "LINK/USD",
+        "address": "0x8255c5d7633ae3B876C01f73D3be3826F713816b"
+      },
+      {
+        "dapi": "LQTY/USD",
+        "address": "0xa885F2c71a20DeD0436acB3CF21086C0f63a94B3"
+      },
+      {
+        "dapi": "LTC/USD",
+        "address": "0xd678Ae54dC29ae201D9e764eA1A8FEd03EF1B0f8"
+      },
+      {
+        "dapi": "MANA/USD",
+        "address": "0xaC2a1fC7dD88222b382bDE51A3Fb7582b5a5E270"
+      },
+      {
+        "dapi": "MANTA/USD",
+        "address": "0xD0adfAdB73BFF5526fDD3023d901438d6c6361F7"
+      },
+      {
+        "dapi": "MASK/USD",
+        "address": "0x4E2bB960dEfc92E59ee0C90507C512Ff9e29aF8d"
+      },
+      {
+        "dapi": "MATIC/USD",
+        "address": "0x2Ed27499D5A387309562C48c5c315828B69CfB89"
+      },
+      {
+        "dapi": "MATICx/MATIC Exchange Rate",
+        "address": "0xF06f934f2711255070482F78C08848a2c575d53d"
+      },
+      {
+        "dapi": "MERL/USD",
+        "address": "0x467dEe920854B1839C2eb5cc9C925dFA0aB2b416"
+      },
+      {
+        "dapi": "META/USD",
+        "address": "0xd3BA77645EC25921c5b0107b01726e0c4CB7AC20"
+      },
+      {
+        "dapi": "METIS/USD",
+        "address": "0xD337Eeb6AE3fAE58B0Ef10870999207434eFbE69"
+      },
+      {
+        "dapi": "mETH/ETH Exchange Rate",
+        "address": "0x0c02bb3220498DEa37544424fdcdAeff2FDd70f7"
+      },
+      {
+        "dapi": "MKR/USD",
+        "address": "0x9D7Ca199C41b469eAD00e2A11121E996B7EF94bf"
+      },
+      {
+        "dapi": "MNT/USD",
+        "address": "0xaE2DEBFef62b1A0C8Af55daE11d197BcA1BCde3f"
+      },
+      {
+        "dapi": "MODE/USD",
+        "address": "0xDd8e3774c3C2D1b87855F4A50661b78B834119C4"
+      },
+      {
+        "dapi": "MOVR/USD",
+        "address": "0x87bA471776d603E11614f8ed4ba304ad559DB28B"
+      },
+      {
+        "dapi": "MSFT/USD",
+        "address": "0xFE8Bad688fB6C4c6630c7FAB538Be4E18e087d99"
+      },
+      {
+        "dapi": "MXN/USD",
+        "address": "0x3b78cf1b0f6E5d151C56CB640BaA5793b38c40DF"
+      },
+      {
+        "dapi": "NEAR/USD",
+        "address": "0x3153E88ee222457F96152bc41A1EBb44310b9775"
+      },
+      {
+        "dapi": "NEON/USD",
+        "address": "0xb907E04FE240F18439D6e285f6fe137B9B4962e2"
+      },
+      {
+        "dapi": "NFLX/USD",
+        "address": "0xB2DBF6564bEF5bd4BaDcFC63c0091F972b945013"
+      },
+      {
+        "dapi": "NVDA/USD",
+        "address": "0x4209437177dB587d1155b57a554619c0a57bac74"
+      },
+      {
+        "dapi": "NZD/USD",
+        "address": "0xbeDBd94b455Fd3261fbE1BCfBAE4A26ee8A49ac0"
+      },
+      {
+        "dapi": "OKB/USD",
+        "address": "0xC868afA7Ee3096a0829ae3E48FAb3A63842A2339"
+      },
+      {
+        "dapi": "ORDI/USD",
+        "address": "0xF83af13c40a9902B90771B41e948cEe10DEDCbac"
+      },
+      {
+        "dapi": "OP/USD",
+        "address": "0xeB0CA9701E6EfA4B349041A873f4E99eBD66ab18"
+      },
+      {
+        "dapi": "OSMO/USD",
+        "address": "0xFC2D4F5fEEc69ca3e817465992265b2286e649Ad"
+      },
+      {
+        "dapi": "PAXG/USD",
+        "address": "0xEF09be363d80933B057Feba9B8e8982f5AA95F39"
+      },
+      {
+        "dapi": "PHP/USD",
+        "address": "0x84C9E5E392865884429472e2C95e8bd2565C1045"
+      },
+      {
+        "dapi": "PLTR/USD",
+        "address": "0x62766995D606e8F2CEC5B6A4f5d5A65308542D9C"
+      },
+      {
+        "dapi": "QCOM/USD",
+        "address": "0x2D01B5bA242e99BD89fE0F8fa253c0F70099707D"
+      },
+      {
+        "dapi": "QQQ/USD",
+        "address": "0xFd081f1f2526fAc58277cbcA512a0dDC48ecB6c4"
+      },
+      {
+        "dapi": "RARI/USD",
+        "address": "0xB1341C1e4d3232A1474F23C38331f865Fca1634B"
+      },
+      {
+        "dapi": "RDNT/USD",
+        "address": "0x990e0056834096716eC12382978Ac1bB73BE5381"
+      },
+      {
+        "dapi": "rETH/ETH Exchange Rate",
+        "address": "0x8Bf7738aEF9A046cC0866E1c5aC5705e84E57f46"
+      },
+      {
+        "dapi": "RIF/USD",
+        "address": "0xdFD6352cd50feCAD600a5Ee31f605b30AD4f3FC1"
+      },
+      {
+        "dapi": "RNDR/USD",
+        "address": "0xB88a8E67B430f09c2E55Ae606EFf97E8629daa59"
+      },
+      {
+        "dapi": "RON/USD",
+        "address": "0xB2cAc1DE4679aee96C5Be6FaFbB554970fa8d23e"
+      },
+      {
+        "dapi": "ROSE/USD",
+        "address": "0x9BbfE92ddd703798A92913E63726EbAcCD247738"
+      },
+      {
+        "dapi": "RPL/USD",
+        "address": "0x8bA14218d848cb772AD7475A748dD4fd08BBCdFE"
+      },
+      {
+        "dapi": "RSR/USD",
+        "address": "0xE2Cfe2622cF021480ea30c55cD3BeCa15BF26e5D"
+      },
+      {
+        "dapi": "RUNE/USD",
+        "address": "0x4F30521cc2861Ed9D858d8f44feed78eAFA2A352"
+      },
+      {
+        "dapi": "SAND/USD",
+        "address": "0xeD288e3fAa26F8445A1612B8aDcFC211b37813a5"
+      },
+      {
+        "dapi": "SATS/USD",
+        "address": "0xa7830a7CF38b0b00bea7405bd3c7EC67118Ef6d7"
+      },
+      {
+        "dapi": "SEK/USD",
+        "address": "0xd4e37c661478ABa6f703F70ef5bCc4A0326005fB"
+      },
+      {
+        "dapi": "sfrxETH/frxETH Exchange Rate",
+        "address": "0xF611D95A9cf5b482448f86bd8b90Bc3097f01F43"
+      },
+      {
+        "dapi": "sFRAX/FRAX Exchange Rate",
+        "address": "0xA4b53DaAc236c1fcF7F433AAc9752691804FD64B"
+      },
+      {
+        "dapi": "SGD/USD",
+        "address": "0x9A35f2BF7696FE6B59e6aA70a1289617C917B162"
+      },
+      {
+        "dapi": "SHIB/USD",
+        "address": "0x4e18fE7b260d280448Ae7a1a33E51d72AD07f64F"
+      },
+      {
+        "dapi": "SNX/USD",
+        "address": "0x37126C15efA3CB726a60AEae78734De79227eE67"
+      },
+      {
+        "dapi": "SOL/USD",
+        "address": "0xD4a05ddBa50d7b4FaBB18454710833415f86D53B"
+      },
+      {
+        "dapi": "spETH/ETH Exchange Rate",
+        "address": "0x7aD362513F6b6E50DB09D5c8f104eB4C76cf7a34"
+      },
+      {
+        "dapi": "SPY/USD",
+        "address": "0xa1f44174276b29bE895D5116D7BD97411f685cC7"
+      },
+      {
+        "dapi": "stETH/USD",
+        "address": "0x1cCc042054762dF0925229B3eC4cE41ceF3C1201"
+      },
+      {
+        "dapi": "STRK/USD",
+        "address": "0x2eF17eF04f1700Ba358aCeC25Cc6ad71B96e9040"
+      },
+      {
+        "dapi": "STG/USD",
+        "address": "0xDa70a75F95F2E5647dbf724bC559e0C5A6B820f4"
+      },
+      {
+        "dapi": "stMATIC/MATIC Exchange Rate",
+        "address": "0x5EbF07141A3B382b879490901053CAfec1f6baD4"
+      },
+      {
+        "dapi": "STONE/ETH Exchange Rate",
+        "address": "0x1dB734F953D2BF9d25C095206875Cc3fcd7fe29C"
+      },
+      {
+        "dapi": "STX/USD",
+        "address": "0x73f4Ae6388585aAc9028b2855c4FCFab8f837395"
+      },
+      {
+        "dapi": "stTAO/TAO Exchange Rate",
+        "address": "0x3a27A965F7a17CB395F793B28958FAB1332d5Ee2"
+      },
+      {
+        "dapi": "SUI/USD",
+        "address": "0xe3A66D040b5fF5b0f0356f151df2E04B52b72ad2"
+      },
+      {
+        "dapi": "SUSHI/USD",
+        "address": "0xfabc72d6F529Aa1A2bA2B124B3cDA0D1E58D42Fc"
+      },
+      {
+        "dapi": "swETH/ETH Exchange Rate",
+        "address": "0x1A3d248F4fEbc60c911b12208267f198A8B39b81"
+      },
+      {
+        "dapi": "TAO/USD",
+        "address": "0x13eE6B3369A72CC4193D190591bFe12B1d2E5066"
+      },
+      {
+        "dapi": "TRY/USD",
+        "address": "0x10C03Fb09aA564Ac40E3d4af1BFAa2492e28B914"
+      },
+      {
+        "dapi": "TSLA/USD",
+        "address": "0x4144634C5B82bedbFd23eB61a7A6C3E802c6Fd03"
+      },
+      {
+        "dapi": "TSM/USD",
+        "address": "0x3D0b9C997108Acc4B6a44394c20D2D613D9FdF85"
+      },
+      {
+        "dapi": "TUSD/USD",
+        "address": "0x95e48C33CcD1d6bA88468724fD61C276F5d22A79"
+      },
+      {
+        "dapi": "TWT/USD",
+        "address": "0x2c077f6943c08D70DC60D9a154b2c29f8eFfa74b"
+      },
+      {
+        "dapi": "UMA/USD",
+        "address": "0x6B859A75606a7d6f5cDA932CAF0FeE9C4A976458"
+      },
+      {
+        "dapi": "UNI/USD",
+        "address": "0x9a9D2CFA73af371E267fcC7Df5f6C45D6b3447A4"
+      },
+      {
+        "dapi": "uniETH/ETH Exchange Rate",
+        "address": "0x0eeDDB93caA8D51cAF0F56324d2e87996958babD"
+      },
+      {
+        "dapi": "USDB/USD",
+        "address": "0x7C561c522b08c97f6EE53be4fcD5Ee73a550999e"
+      },
+      {
+        "dapi": "USDC/USD",
+        "address": "0xac177CA9E44De191d5266AE31ac142784372A005"
+      },
+      {
+        "dapi": "USDP/USD",
+        "address": "0xB95dB01105e89940c8A91FAf13a5D0184E3E081D"
+      },
+      {
+        "dapi": "USDT/USD",
+        "address": "0x356D599C0aB2A9d825a92f5e516d4Ff9E5C6E8b9"
+      },
+      {
+        "dapi": "WBTC/USD",
+        "address": "0x2112e290Ee5c922fb191Aa4f927CC0c6Df611f9e"
+      },
+      {
+        "dapi": "weETH/ETH Exchange Rate",
+        "address": "0x10fC2C14270A7B30183918901C5C9E3cdb94b2A6"
+      },
+      {
+        "dapi": "WOO/USD",
+        "address": "0x0fA2f539129B24c1aa82936A14301b811DEF177A"
+      },
+      {
+        "dapi": "wstETH/stETH Exchange Rate",
+        "address": "0x803113d8Ca580BAD9FACDa7a8568901ffA04D236"
+      },
+      {
+        "dapi": "WTI/USD",
+        "address": "0x03BD1700eB6D794ED5d7d2dcE9293038d341A7f5"
+      },
+      {
+        "dapi": "XAG/USD",
+        "address": "0xDf72927165f71825407fE7fC12AB8edd8C97CB84"
+      },
+      {
+        "dapi": "XAU/USD",
+        "address": "0xaC8e4628AE2c99c69aABbb746E42FBEf42b9B6b8"
+      },
+      {
+        "dapi": "XLM/USD",
+        "address": "0x391AFb8222Db20733333ABc7A59ac53DB846Cc82"
+      },
+      {
+        "dapi": "XMR/USD",
+        "address": "0x5dD2f96a64bEbb7e97adcfEc7Bd4e031021D6570"
+      },
+      {
+        "dapi": "XRP/USD",
+        "address": "0xF23A41CAf03bd0245c226956E5590d7EEf945434"
+      },
+      {
+        "dapi": "XVS/USD",
+        "address": "0x30de8dc2B2991C4774e26Bb5F69D8fa2BB0F2B69"
+      },
+      {
+        "dapi": "XTZ/USD",
+        "address": "0xc004ea857418668b747fccBD4BF4931FC7324016"
+      },
+      {
+        "dapi": "YFI/USD",
+        "address": "0x1099272Ceb811d6A94eeC32B043c02aC936b1580"
+      },
+      {
+        "dapi": "ZAR/USD",
+        "address": "0x5D9Af04e435F2F57C35B64DEcC83E7E5C04C93f2"
+      },
+      {
+        "dapi": "ZIL/USD",
+        "address": "0x390852552eFc14332eA3476c60B05F555367e620"
+      },
+      {
+        "dapi": "ZRX/USD",
+        "address": "0x2ae65FcB6B3dF2B5383DFcdFECB8De3b1962AC23"
+      },
+      {
+        "dapi": "USDY/USD Exchange Rate",
+        "address": "0x5b002D1a462e600df2Eee739860a0b7988633510"
+      },
+      {
+        "dapi": "rsETH/ETH Exchange Rate",
+        "address": "0x14E82cFd1E260f0A510283B5eec79Be479E46f1B"
+      },
+      {
+        "dapi": "rswETH/ETH Exchange Rate",
+        "address": "0x4bE0f79DFFDb4c3CF1930748DF855Bab03796C49"
+      },
+      {
+        "dapi": "apxETH/pxETH Exchange Rate",
+        "address": "0x4A220855c3035DA02141261024453EA555268839"
+      },
+      {
+        "dapi": "TIA/USD",
+        "address": "0xF8C92B7117d2F321f96e483957d67ff300958d0B"
+      },
+      {
+        "dapi": "DEGEN/USD",
+        "address": "0x1Ed28E2b27c1a31c93414FE7f51c898906a15ebC"
+      },
+      {
+        "dapi": "DYM/USD",
+        "address": "0xf60fbBE11d4E4bBbd16145eA43598112EDd8AE4b"
+      },
+      {
+        "dapi": "GHO/USD",
+        "address": "0x419Ee76d3Ac97Be81068a564436D34332b51c536"
+      },
+      {
+        "dapi": "crvUSD/USD",
+        "address": "0x73278Bbd2CAE2D097e45CD137f42efa3D7339efc"
+      },
+      {
+        "dapi": "LUSD/USD",
+        "address": "0xBa014Ef5F922850931F7564476c244b2aEFd5175"
+      },
+      {
+        "dapi": "FRAX/USD",
+        "address": "0x4eBBE1C6BEfC873359446F78e4cbc371e6C3B157"
+      },
+      {
+        "dapi": "ERN/USD",
+        "address": "0x0448d1D3CB85Ef61c832041021D84F0931D759a7"
+      },
+      {
+        "dapi": "ezETH/ETH Exchange Rate",
+        "address": "0x93CDdCdcF00CB56C0Bf144F5C10771930Fe69a2C"
+      },
+      {
+        "dapi": "sAVAX/AVAX Exchange Rate",
+        "address": "0xB0Fbf3C94168cb5525588Bc2E5446047aA41d91c"
+      },
+      {
+        "dapi": "WLD/USD",
+        "address": "0x8891A9EE1ab3983De3cb4631588De1ac25a51Cf3"
+      },
+      {
+        "dapi": "wUSDM/USDM Exchange Rate",
+        "address": "0x9083907f653992f68329e9e304BE840ef530f765"
+      },
+      {
+        "dapi": "sDAI/DAI Exchange Rate",
+        "address": "0x2EcC87610BF333602BB16b7b61B1f7b00a514082"
+      },
+      {
+        "dapi": "sUSDe/USDe Exchange Rate",
+        "address": "0x36bAC405f8D8233Ba2c8bf23563afA37466cbc25"
+      },
+      {
+        "dapi": "pufETH/stETH Exchange Rate",
+        "address": "0xf29628Fd9F2D561E45e8bc5EF14EFB01f09481fD"
+      },
+      {
+        "dapi": "PYPL/USD",
+        "address": "0x1Ccc12A394AEE0749111c20Eb7eDba8a9eC9e143"
+      },
+      {
+        "dapi": "PYUSD/USD",
+        "address": "0x3f84d6AD3125dE143E04f3FD08e517bf5d8118a0"
+      },
+      {
+        "dapi": "PYTH/USD",
+        "address": "0xD7eb80E7293C1f255a44b66DF8E11253F038b2A6"
+      },
+      {
+        "dapi": "USDe/USD",
+        "address": "0xbD23419fCfb5a95b6956f75Ac3fb76A3c876d4Bb"
+      },
+      {
+        "dapi": "mpETH/ETH Exchange Rate",
+        "address": "0x682763A894bD8e0199a0CB2169A3C6342a26A556"
+      },
+      {
+        "dapi": "PENDLE/USD",
+        "address": "0xe6545662898Ef8Df2888FC7D606Db3dF178220c4"
+      },
+      {
+        "dapi": "SEI/USD",
+        "address": "0x6C2Cd84b7dc3744aFB631c4a2fA4d6b8162e08cb"
+      },
+      {
+        "dapi": "ONDO/USD",
+        "address": "0x512b723fD2Fa330bb166b86f00d58bFeCb8502DC"
+      }
+    ]
+  },
+  {
+    "chains": [
+      "1088"
+    ],
+    "addresses": [
+      {
+        "dapi": "AAPL/USD",
+        "address": "0x59f92CA2Ea44776b7ef8A7E309Da5e6181F8266D"
+      },
+      {
+        "dapi": "AAVE/USD",
+        "address": "0xB86eE89e86f75F581fc66004ade046cE061127F6"
+      },
+      {
+        "dapi": "AERO/USD",
+        "address": "0xb4c8B114DBDe1a71CA386f3b5E3890C76798B4EB"
+      },
+      {
+        "dapi": "ADA/USD",
+        "address": "0x03eBf4B65fFCe0179c05120C2d6B24b2FFd9cEC2"
+      },
+      {
+        "dapi": "ALGO/USD",
+        "address": "0xe47CC2022b77f0Ee4841D485e133b49Cab406E90"
+      },
+      {
+        "dapi": "AMD/USD",
+        "address": "0x03876120535c6218bA0eB415FF5bbf5ED90d05dA"
+      },
+      {
+        "dapi": "AMZN/USD",
+        "address": "0xBabF604Df469ab51e5d4E39970CF688c7EA163FA"
+      },
+      {
+        "dapi": "ANKR/USD",
+        "address": "0xce510c9Aa9Ecc9625809CA5b4005b7213859f207"
+      },
+      {
+        "dapi": "APE/USD",
+        "address": "0xDbF2D17997b04BB8DAb760C23A94F41a08C5e3C0"
+      },
+      {
+        "dapi": "API3/USD",
+        "address": "0x1699D03aBd06aE8fcA48745A93fa7437e92699Ed"
+      },
+      {
+        "dapi": "APT/USD",
+        "address": "0xA27b5F0615E78090786D357ED51C3e376534eB10"
+      },
+      {
+        "dapi": "AR/USD",
+        "address": "0x7b487D7d4066F17161C1a908643d1A78ce5d1b88"
+      },
+      {
+        "dapi": "ARB/USD",
+        "address": "0x57173439B7f67bAE36526C6f2FC6dAC2898Cd52c"
+      },
+      {
+        "dapi": "ARKK/USD",
+        "address": "0x3307f228e300485fbFD535a313C51cA65B102eC7"
+      },
+      {
+        "dapi": "ASTR/USD",
+        "address": "0x90a32Fa4B4188859a2ac589703b2f4dCe800992C"
+      },
+      {
+        "dapi": "ATOM/USD",
+        "address": "0x1036BF9fFee96c0aeA9813A7a78E2aE54C0Cf0e1"
+      },
+      {
+        "dapi": "AUD/USD",
+        "address": "0x9e07F0F0485Ae1cCFA7609Df74bf4858D250BcF0"
+      },
+      {
+        "dapi": "AVAX/USD",
+        "address": "0x457233C13b962646431f3F7E02153a589E8272e3"
+      },
+      {
+        "dapi": "AXL/USD",
+        "address": "0xA55a3ca7C904013AeE0C2d021a08D82A8ECe774A"
+      },
+      {
+        "dapi": "AXS/USD",
+        "address": "0xcD2bb5ea70bb0e9283f49613f38a717D870DBB18"
+      },
+      {
+        "dapi": "BABA/USD",
+        "address": "0x83A90a50EfdfA84b32141931baa751b0b1f21E45"
+      },
+      {
+        "dapi": "BAL/USD",
+        "address": "0x21983E653f7768510C00A2eE91922D8532441772"
+      },
+      {
+        "dapi": "BAND/USD",
+        "address": "0xA4154AddE14195Cdc0E8455C0a4AAC4a5ba8078A"
+      },
+      {
+        "dapi": "BAT/USD",
+        "address": "0xe802b70f29b773d2098604555E34533C97129A90"
+      },
+      {
+        "dapi": "BLUR/USD",
+        "address": "0x8c5611657ceE13AA08fe5795cEE4f2545585ba1F"
+      },
+      {
+        "dapi": "BNB/USD",
+        "address": "0x1BF167733a9481DFacc57B1c85990c069D48691D"
+      },
+      {
+        "dapi": "BRL/USD",
+        "address": "0x8c24F8d01Abf3b8900d96A028dD60221A74A3446"
+      },
+      {
+        "dapi": "BTC/USD",
+        "address": "0x1cF65B50C792c399014B3dF9A4b37b00985638f7"
+      },
+      {
+        "dapi": "CAD/USD",
+        "address": "0xD6b4C99B44EF74172C09F6cEef0F9d764B1D54B4"
+      },
+      {
+        "dapi": "CAKE/USD",
+        "address": "0x4Eb2aE44478FC9c5938d0dCfBeE64FEd3C3dc07B"
+      },
+      {
+        "dapi": "cbETH/ETH Exchange Rate",
+        "address": "0x59AB47D84E0101238E00a4A8E7ba95fDc87D20ac"
+      },
+      {
+        "dapi": "CELO/USD",
+        "address": "0xA9Ee53909446a755f14f4c9bB2eBE87Ae41D424f"
+      },
+      {
+        "dapi": "CHF/USD",
+        "address": "0x766DBeaF1c33EDfbf7Ea14884eA429D8d21Cd429"
+      },
+      {
+        "dapi": "CHKLSTMOCK/USD",
+        "address": "0x9a25D890a3cbBAF043c45B387a051A7b23337b7D"
+      },
+      {
+        "dapi": "CHZ/USD",
+        "address": "0x65177353B01b9a2AbB3D0C2CaC7E354DE8f3F130"
+      },
+      {
+        "dapi": "CNY/USD",
+        "address": "0x68f9415887DE7eb91eEAaAED084a56abcfB6a2a1"
+      },
+      {
+        "dapi": "COIN/USD",
+        "address": "0xF3bC478634Deae83E9a3Ccd608af01B86A528CD4"
+      },
+      {
+        "dapi": "CORE/USD",
+        "address": "0x5F07e9bCa8efFB9B05c6568B5Fb8bF60Dd3ef44F"
+      },
+      {
+        "dapi": "COMP/USD",
+        "address": "0xBd7795325964634e1582A3fd974756c8F66d0386"
+      },
+      {
+        "dapi": "CRO/USD",
+        "address": "0xc3a159DAE85c2b10f1b4ccDb77bb973DF317c8e3"
+      },
+      {
+        "dapi": "CRV/USD",
+        "address": "0xB8fF0f922dA53093d98feC1Ee67d214E831E61b2"
+      },
+      {
+        "dapi": "CVX/USD",
+        "address": "0x8c2b9978991327C460d4fca8Fd722EE9993EC74B"
+      },
+      {
+        "dapi": "DAI/USD",
+        "address": "0x08bB2e463EaDBD40c2C6Cc433cf7188b1Ee460CC"
+      },
+      {
+        "dapi": "DOGE/USD",
+        "address": "0xC8d95bb419DA2d657EeEdF71Ff0b909f95DBFC47"
+      },
+      {
+        "dapi": "DOT/USD",
+        "address": "0x53D550A0Ee68461869A3438413962C43f6435E81"
+      },
+      {
+        "dapi": "DYDX/USD",
+        "address": "0x1d3C97B42b5EcA9d8A7ddae925258fAd9ffACa66"
+      },
+      {
+        "dapi": "ENA/USD",
+        "address": "0x43d14A289906E49550Ad370daFD3Aa1957C1A3E8"
+      },
+      {
+        "dapi": "ENS/USD",
+        "address": "0xfA744D99E39C8AB21A9413a16Cf27afF04016655"
+      },
+      {
+        "dapi": "ETH/USD",
+        "address": "0x89bB095DaF3C914512471d62b6Ba9F35fDa3c8aA"
+      },
+      {
+        "dapi": "ETHx/ETH Exchange Rate",
+        "address": "0xF3427A54fb94cAe5f554b88e05Cd24a5DC96CD2C"
+      },
+      {
+        "dapi": "EUR/USD",
+        "address": "0xf3f136a0aEfFA470d80500A33c72AA176d532D48"
+      },
+      {
+        "dapi": "EURe/USD",
+        "address": "0xE5bEdE69f7a730A3f5812D876FC5ec5AEe8C7A91"
+      },
+      {
+        "dapi": "FDUSD/USD",
+        "address": "0xE9d3cef5c497409FCDe00b06a83ffb3B4c295D44"
+      },
+      {
+        "dapi": "FIL/USD",
+        "address": "0x2f7B041B3e2d695812ac3B2e3b53cd7df0E10971"
+      },
+      {
+        "dapi": "FLOW/USD",
+        "address": "0xC58e919D6a8ac7917A87a165Ca222327bdFeBc08"
+      },
+      {
+        "dapi": "FTM/USD",
+        "address": "0x0D1B612938F84FC00ea0374e2B53bf2A9129aAdC"
+      },
+      {
+        "dapi": "FXS/USD",
+        "address": "0x6ad78f25252371804864a586e63F8065E6fE6572"
+      },
+      {
+        "dapi": "GBP/USD",
+        "address": "0x2d893602d646b712428a15429EDC5CA61C70DEeE"
+      },
+      {
+        "dapi": "GLMR/USD",
+        "address": "0xA7100A18259E1066b4cF4E27f1e337Ff69ab2e22"
+      },
+      {
+        "dapi": "GME/USD",
+        "address": "0x5fdDdDE91B4B41d3E7E595555e24d1fA6ECf7821"
+      },
+      {
+        "dapi": "GMX/USD",
+        "address": "0x5A06E1dA68492DB99EFf3885ab0bA478d24cFB67"
+      },
+      {
+        "dapi": "GNO/USD",
+        "address": "0x6E488c9B85d23D3c430c554c133c28594D33a1CF"
+      },
+      {
+        "dapi": "GNS/USD",
+        "address": "0xDee49370d3BE5b779788B18C5aba552A378e28eF"
+      },
+      {
+        "dapi": "GOOGL/USD",
+        "address": "0xbF937C3b3618668A08B72ED7C18ACA4d4e2dd21D"
+      },
+      {
+        "dapi": "GRT/USD",
+        "address": "0xB9a180bE4BAdd95D37f11611CA50983Ce4DD30E2"
+      },
+      {
+        "dapi": "HBAR/USD",
+        "address": "0xda922DC8BfF9ce94A2bdF85A800f16ae87a7F8A2"
+      },
+      {
+        "dapi": "HNT/USD",
+        "address": "0x0FCA6e6a56e8D2622e6beDB5a2164723C8DbA905"
+      },
+      {
+        "dapi": "HT/USD",
+        "address": "0xc5358062d8F179821ef1F48f84aE95854eCDb3a1"
+      },
+      {
+        "dapi": "ICP/USD",
+        "address": "0x099918B429828A08aaB9D8fd1f150bFACA0EAf91"
+      },
+      {
+        "dapi": "IMX/USD",
+        "address": "0x4350A6288518cD1E5a35dA2374e9b5a69CB4C52B"
+      },
+      {
+        "dapi": "INJ/USD",
+        "address": "0x484eC44936a5aE908b0181a5A55c928227144935"
+      },
+      {
+        "dapi": "INR/USD",
+        "address": "0xD7982f6ad71E59beA36eC69325d25372A55062AF"
+      },
+      {
+        "dapi": "JUICE/USD",
+        "address": "0xE097b0eC1E02D696EF5E2A34b1F6FB3E53466eC7"
+      },
+      {
+        "dapi": "JOE/USD",
+        "address": "0x9566458821F02530280bf0b011fFBD0491b85df8"
+      },
+      {
+        "dapi": "JPM/USD",
+        "address": "0xE027B60dA4d256FA0b5098f35E128317fa26cB7e"
+      },
+      {
+        "dapi": "JPY/USD",
+        "address": "0x8f9D5262cE8067d6627d82BC3F8fAF5967aa28b1"
+      },
+      {
+        "dapi": "KAVA/USD",
+        "address": "0xA6af41D4B7f95e4d5B38e0985A7E2ff75327327f"
+      },
+      {
+        "dapi": "KDA/USD",
+        "address": "0x3fC0F5ae266102531864b5F7843ee22ECe19821f"
+      },
+      {
+        "dapi": "KRW/USD",
+        "address": "0x2481714d0F255C83D0e005e98475268eCC07F499"
+      },
+      {
+        "dapi": "KSM/USD",
+        "address": "0x0B0fBd64AB83221189b7E5a79ac56F230E5c10C4"
+      },
+      {
+        "dapi": "LDO/USD",
+        "address": "0x3727ec531C782e9Af0Df0898B58Cf1cd8f455D50"
+      },
+      {
+        "dapi": "LINK/USD",
+        "address": "0xdFbD94367328314d22BD2ca80d4E09F4A39561Ce"
+      },
+      {
+        "dapi": "LQTY/USD",
+        "address": "0x35F0fd382875dF3A756e6dE76E37193fce6803e1"
+      },
+      {
+        "dapi": "LTC/USD",
+        "address": "0x5300809f29EEeA547716977bB698eF9003AbC59D"
+      },
+      {
+        "dapi": "MANA/USD",
+        "address": "0x2dEbdc93434c59e19f988f1931b90B0e96D70F8f"
+      },
+      {
+        "dapi": "MANTA/USD",
+        "address": "0x9252c19Ef9E8209566FF53354E51AF7C78759209"
+      },
+      {
+        "dapi": "MASK/USD",
+        "address": "0x5d0620c3661E5bb52F0b36B225a1773f86de834b"
+      },
+      {
+        "dapi": "MATIC/USD",
+        "address": "0x3136E1c7F196A3E10C6D7a37B969dF51eE1bA196"
+      },
+      {
+        "dapi": "MATICx/MATIC Exchange Rate",
+        "address": "0x211954AdA93428BBF57932fBF7AAb742EDF335Fa"
+      },
+      {
+        "dapi": "MERL/USD",
+        "address": "0x8f6B9Dee55293F359789195Aea3F46DeA39D8920"
+      },
+      {
+        "dapi": "META/USD",
+        "address": "0x07A0ED398FA3859ded4F6160D08575a65E8Aa693"
+      },
+      {
+        "dapi": "METIS/USD",
+        "address": "0x134E1A94036C69550D28A07AcEF0a7918DA48Dad"
+      },
+      {
+        "dapi": "mETH/ETH Exchange Rate",
+        "address": "0x7B569c77db326788277Cd6F203c0A2762efd0205"
+      },
+      {
+        "dapi": "MKR/USD",
+        "address": "0x0a9Ddcf91D449E33D1Dc7151298e2768A6b32360"
+      },
+      {
+        "dapi": "MNT/USD",
+        "address": "0x27B43B3C4087a4DEDF8198d170f577357861E9d2"
+      },
+      {
+        "dapi": "MODE/USD",
+        "address": "0x79Fc56c0B7aD7EC1866f5c728E3b2C4783637E07"
+      },
+      {
+        "dapi": "MOVR/USD",
+        "address": "0xDE5641b34a45260059C981916943776B46640b9c"
+      },
+      {
+        "dapi": "MSFT/USD",
+        "address": "0x5185c8757e3108Df32eF92562d0Df1d45d3cA166"
+      },
+      {
+        "dapi": "MXN/USD",
+        "address": "0x370182E8AAf690F292D49F7D5700ba499b7eBe90"
+      },
+      {
+        "dapi": "NEAR/USD",
+        "address": "0xa5bC8EF6b69C5252453Bf573a6eA3b085267ffe3"
+      },
+      {
+        "dapi": "NEON/USD",
+        "address": "0x9AcB5FA3Fd13e92f80C39b889c4Be44eC5c49c14"
+      },
+      {
+        "dapi": "NFLX/USD",
+        "address": "0x64E9b07db19f7AE21f5700391aD8db8091e5cAb2"
+      },
+      {
+        "dapi": "NVDA/USD",
+        "address": "0xc672D35C506b3d48136cC4d3dbCa36b20536786F"
+      },
+      {
+        "dapi": "NZD/USD",
+        "address": "0x19593c251aA013522Af03d1fAd6fbEbd1F95B09b"
+      },
+      {
+        "dapi": "OKB/USD",
+        "address": "0xB5fc92B813771cECdD215f77688dE20fB2df76c5"
+      },
+      {
+        "dapi": "ORDI/USD",
+        "address": "0x08Ab62113342fD1cF3fd11fa1DC11f737D249C1b"
+      },
+      {
+        "dapi": "OP/USD",
+        "address": "0x34172F085797E0E57Af7b2e4C3a90D59EFeaD5fA"
+      },
+      {
+        "dapi": "OSMO/USD",
+        "address": "0x3A0C33A7341cDC45E7386d3a8be497e22Ed2a2e8"
+      },
+      {
+        "dapi": "PAXG/USD",
+        "address": "0xA3d302019DB3d778D785c39E1f6b7E19396F2001"
+      },
+      {
+        "dapi": "PHP/USD",
+        "address": "0x36C347B37F6509C4aa74e779B1E639e3cA9B61e8"
+      },
+      {
+        "dapi": "PLTR/USD",
+        "address": "0xEe8729353D2D23bb9b06a790F4199D6925e67809"
+      },
+      {
+        "dapi": "QCOM/USD",
+        "address": "0x77b8ea15be15F0D10d0012ab498076d5b84197C1"
+      },
+      {
+        "dapi": "QQQ/USD",
+        "address": "0xB7fbC5D47dFcBAA745E95d7CdAE06AC7F6133c6e"
+      },
+      {
+        "dapi": "RARI/USD",
+        "address": "0x9bfEBdD45D2E24FD7b0B39dF42EEC6D568FBE315"
+      },
+      {
+        "dapi": "RDNT/USD",
+        "address": "0x31F6bB3AFD0812fDD822eFB8Cc7610EdA4Ec86e7"
+      },
+      {
+        "dapi": "rETH/ETH Exchange Rate",
+        "address": "0x6b9d33567F195918531052D04C7B0284e9D7C0B1"
+      },
+      {
+        "dapi": "RIF/USD",
+        "address": "0xe3eBF6FE068cD2492c4632ffae774Bf6175c0500"
+      },
+      {
+        "dapi": "RNDR/USD",
+        "address": "0xb39BDcf9c8331F233F18bAADdE8E573627B31Cd4"
+      },
+      {
+        "dapi": "RON/USD",
+        "address": "0x52d3234b521473501881c4BBFF67197E1A2cD715"
+      },
+      {
+        "dapi": "ROSE/USD",
+        "address": "0xf5221783AE413658B33FdDfC950018bEF5c5EEf1"
+      },
+      {
+        "dapi": "RPL/USD",
+        "address": "0x1bA0E194477D00e58F771F6Be2bc45088A4038a8"
+      },
+      {
+        "dapi": "RSR/USD",
+        "address": "0x30265e49Be6Dffb5Bb0C1aE4F98F1D814dbFEBc2"
+      },
+      {
+        "dapi": "RUNE/USD",
+        "address": "0x3e8c48CE66ef23319EA1128bc7763e02C60Dc4e9"
+      },
+      {
+        "dapi": "SAND/USD",
+        "address": "0x89a58FD61487DE635AB867151BC223a6Ec241297"
+      },
+      {
+        "dapi": "SATS/USD",
+        "address": "0xEBeeB1EC719B2bE15153D5F567B9E7e0c1640C6c"
+      },
+      {
+        "dapi": "SEK/USD",
+        "address": "0x242BE88Bc81C8eF3CfAEbCE0A2748F355B43E079"
+      },
+      {
+        "dapi": "sfrxETH/frxETH Exchange Rate",
+        "address": "0x5589Dd3A7574eA542Ca864E79b543704dAFa99c7"
+      },
+      {
+        "dapi": "sFRAX/FRAX Exchange Rate",
+        "address": "0x4fc712B63002c4d0Dc9B100b8fD2fD04D20B18D1"
+      },
+      {
+        "dapi": "SGD/USD",
+        "address": "0x8a1f8580121acEEC294B804A6F2d9BCBE578E083"
+      },
+      {
+        "dapi": "SHIB/USD",
+        "address": "0xC94E00db9cef6837074B9f9E346F9858C1afa4C3"
+      },
+      {
+        "dapi": "SNX/USD",
+        "address": "0x7B51517ae6652e85b2Dd97Aa32bbcB67F2DE23f8"
+      },
+      {
+        "dapi": "SOL/USD",
+        "address": "0xC4C6AB32A061bA2769F0A0c38040aaF12efdF180"
+      },
+      {
+        "dapi": "spETH/ETH Exchange Rate",
+        "address": "0x2255d1DE0689E9Ba27BBE16d1198A21884031d1C"
+      },
+      {
+        "dapi": "SPY/USD",
+        "address": "0x9C14360cc7FD6dCee6EE422fb10A74bce0449B1F"
+      },
+      {
+        "dapi": "stETH/USD",
+        "address": "0xCe9A3F08A3a4F9B944c965f3c29ee9845aAb1A61"
+      },
+      {
+        "dapi": "STRK/USD",
+        "address": "0x9D9d28e90315a0faDBd498F2862dC3A550749c05"
+      },
+      {
+        "dapi": "STG/USD",
+        "address": "0xCb7dBD47cAe21d5F7e50f67ec792Eac998a3F9B3"
+      },
+      {
+        "dapi": "stMATIC/MATIC Exchange Rate",
+        "address": "0xC3EA0417afAA0C36bE939c2AF9105b800267fD16"
+      },
+      {
+        "dapi": "STONE/ETH Exchange Rate",
+        "address": "0x91886aCCa7a4fEF0a3a613655D64Df1a6A8C5fa9"
+      },
+      {
+        "dapi": "STX/USD",
+        "address": "0x509Fb65562f5141F3be5f403e84a58ae2098F983"
+      },
+      {
+        "dapi": "stTAO/TAO Exchange Rate",
+        "address": "0x99A96Cb49Ce72d1CE871Eb137Dc6a1650B6332d6"
+      },
+      {
+        "dapi": "SUI/USD",
+        "address": "0x68438405C655391d69E5846D66E30AA93C8f637D"
+      },
+      {
+        "dapi": "SUSHI/USD",
+        "address": "0xA19B49e5a608e0f62c23cD9829DCfEC727bBf433"
+      },
+      {
+        "dapi": "swETH/ETH Exchange Rate",
+        "address": "0x41b03F64d9779796EBBfa9981f7A3Cb53a6137Cc"
+      },
+      {
+        "dapi": "TAO/USD",
+        "address": "0x9B8bdC046F1d58239816714f9049411b31b1C910"
+      },
+      {
+        "dapi": "TRY/USD",
+        "address": "0xdf890f48CC776F5FCf39a015c0910C1b8c0bD2c2"
+      },
+      {
+        "dapi": "TSLA/USD",
+        "address": "0x7E0B0426069617d3a1044Dd0882cB6418c06865F"
+      },
+      {
+        "dapi": "TSM/USD",
+        "address": "0x3952fa9B7D106c0D981Cec5B0796c8227bde0269"
+      },
+      {
+        "dapi": "TUSD/USD",
+        "address": "0x07b6864F1A2ec4fBbF0354cf10B2b67e480A5aE1"
+      },
+      {
+        "dapi": "TWT/USD",
+        "address": "0x30395a43F62fD17b2aFCFF8f89b8B57F35ba8E4F"
+      },
+      {
+        "dapi": "UMA/USD",
+        "address": "0xf8E9d2c7E19dE0034917c449c8DD92a43F820480"
+      },
+      {
+        "dapi": "UNI/USD",
+        "address": "0x98Ff8F2D7b605aF613E027A7a9c945265AE832df"
+      },
+      {
+        "dapi": "uniETH/ETH Exchange Rate",
+        "address": "0x17D3a184acB7Be294a5041617160623Dd7F7A9Ae"
+      },
+      {
+        "dapi": "USDB/USD",
+        "address": "0xbeA74cc2B815027A3317A415f418F82010622304"
+      },
+      {
+        "dapi": "USDC/USD",
+        "address": "0x93b5d8865c356c1fcC08821206c929f3Bd22c7f4"
+      },
+      {
+        "dapi": "USDP/USD",
+        "address": "0x8A2904E9AC0A8403bd64aD4927221A535b309E6B"
+      },
+      {
+        "dapi": "USDT/USD",
+        "address": "0x071e1B6eD29AE95655C4Da6341EEF12e3Cb7d8E2"
+      },
+      {
+        "dapi": "WBTC/USD",
+        "address": "0x9AcC0211d1386c7249d825F06135618296513c54"
+      },
+      {
+        "dapi": "weETH/ETH Exchange Rate",
+        "address": "0x0cB8bF186F92deD17a72aaD38E84c92C8458dFa3"
+      },
+      {
+        "dapi": "WOO/USD",
+        "address": "0x930c8c1D66F70D00BA8e1d346c9a3DfE350dDA88"
+      },
+      {
+        "dapi": "wstETH/stETH Exchange Rate",
+        "address": "0x5824d34BF25D99BC55c1295926D58Aa7551a9C9d"
+      },
+      {
+        "dapi": "WTI/USD",
+        "address": "0x1661FB223dDeD6f7296236dCF7DbCf771b2A6857"
+      },
+      {
+        "dapi": "XAG/USD",
+        "address": "0xC078AEd154A220EEE3FaE47ec2Fb6ce339F19Ba2"
+      },
+      {
+        "dapi": "XAU/USD",
+        "address": "0x2AcE5106c78E5c4305D254D90Ed2cb1175370046"
+      },
+      {
+        "dapi": "XLM/USD",
+        "address": "0xCB977A9F3e492c508b3e60f4De4414dff6C13379"
+      },
+      {
+        "dapi": "XMR/USD",
+        "address": "0x39E24b92226df58064029C97CC1b02064fb9aBB8"
+      },
+      {
+        "dapi": "XRP/USD",
+        "address": "0x59dF5250f6d87B15abE923641A68353970c9a2ce"
+      },
+      {
+        "dapi": "XVS/USD",
+        "address": "0x4cF22A9fFFD431ce97176De9D7f4085003B60445"
+      },
+      {
+        "dapi": "XTZ/USD",
+        "address": "0x9E435BE3b016eDA458E98a1EaE80BDaCA5B5aB56"
+      },
+      {
+        "dapi": "YFI/USD",
+        "address": "0xFb90f83Ce0D4AC9EdD30d982F7c8A5571D75F5e9"
+      },
+      {
+        "dapi": "ZAR/USD",
+        "address": "0xED19A4B2F4493F68B90FE3369D58c6fBEBbe65ff"
+      },
+      {
+        "dapi": "ZIL/USD",
+        "address": "0xB2Ff6DFa7E7bc5C68c286b21dBAD4a50a46ba5E7"
+      },
+      {
+        "dapi": "ZRX/USD",
+        "address": "0xfB18762BDB0a68aaEbD5Bf24AA880Fc4EA082B6b"
+      },
+      {
+        "dapi": "USDY/USD Exchange Rate",
+        "address": "0xC16547428624F4bC54F47A44b626E656D5353907"
+      },
+      {
+        "dapi": "rsETH/ETH Exchange Rate",
+        "address": "0x5cD97eCBde038353eE89F6c9D8469ee852bEe9B5"
+      },
+      {
+        "dapi": "rswETH/ETH Exchange Rate",
+        "address": "0x60C4266117A9Ca1019275692223870873a9FFad1"
+      },
+      {
+        "dapi": "apxETH/pxETH Exchange Rate",
+        "address": "0x8ac1F43C1806fA5Fed7656F23d7ED8cb87F961bC"
+      },
+      {
+        "dapi": "TIA/USD",
+        "address": "0xBE771a2672ABdE135450836c08F61ec4140BF375"
+      },
+      {
+        "dapi": "DEGEN/USD",
+        "address": "0x7B74b0B441b4D1A52745f37F89ABa0db7002ca04"
+      },
+      {
+        "dapi": "DYM/USD",
+        "address": "0x00822E756bAaddC32323914B73271Dbe3D456834"
+      },
+      {
+        "dapi": "GHO/USD",
+        "address": "0x87c9c1C4a7bdA7E89100CDB1f9068Dd2E864fe5b"
+      },
+      {
+        "dapi": "crvUSD/USD",
+        "address": "0x7a9e68f56CCD990E17e3b55DB8574F1dcD843D10"
+      },
+      {
+        "dapi": "LUSD/USD",
+        "address": "0x893c37915d6618cec3E92d3Db7A82e379896Fe4B"
+      },
+      {
+        "dapi": "FRAX/USD",
+        "address": "0x2381cB1c03a7f0931b0D570f01eD0be846ca1033"
+      },
+      {
+        "dapi": "ERN/USD",
+        "address": "0xe775c352fdD4e2e378a6c1478DA8045A07cBD251"
+      },
+      {
+        "dapi": "ezETH/ETH Exchange Rate",
+        "address": "0xe7DCf299F9D93522b006114D608919ddc294013b"
+      },
+      {
+        "dapi": "sAVAX/AVAX Exchange Rate",
+        "address": "0xddE81563b0a32a54FCEAf8793E6cf0E8eE49A7e7"
+      },
+      {
+        "dapi": "WLD/USD",
+        "address": "0x04909Bf9C582DB85CDa936c5e9d2A6420730cb54"
+      },
+      {
+        "dapi": "wUSDM/USDM Exchange Rate",
+        "address": "0xCaAe4f11Eb02341494e77F1bd39d203Fa3304268"
+      },
+      {
+        "dapi": "sDAI/DAI Exchange Rate",
+        "address": "0xCa1e95793192E1a2B7Db09eF14664D5812ED38F7"
+      },
+      {
+        "dapi": "sUSDe/USDe Exchange Rate",
+        "address": "0x52cdc3493F0874cCd967525d0147f6c13B628e06"
+      },
+      {
+        "dapi": "pufETH/stETH Exchange Rate",
+        "address": "0x00Aaa3cb3723111FB4E4c486aDD6DA3A22925245"
+      },
+      {
+        "dapi": "PYPL/USD",
+        "address": "0xdD3aB0d86F7e05e87B0DBBA57DF96eBBfCe551bf"
+      },
+      {
+        "dapi": "PYUSD/USD",
+        "address": "0x6eCe5A9FcCb425C77F336630CbBE4f5884975ADB"
+      },
+      {
+        "dapi": "PYTH/USD",
+        "address": "0x8a4FF8245A3090e01B99C5b7f2d416a7669D03C0"
+      },
+      {
+        "dapi": "USDe/USD",
+        "address": "0xb5BDF4D666b2040cDDFC3A69dc787cA0bc898e65"
+      },
+      {
+        "dapi": "mpETH/ETH Exchange Rate",
+        "address": "0xB37D6d3Fa30084aD6a6Ab1752a6bDA53DA90cC42"
+      },
+      {
+        "dapi": "PENDLE/USD",
+        "address": "0x46Fa56399B76735783506bd4f09986b4686B7e4B"
+      },
+      {
+        "dapi": "SEI/USD",
+        "address": "0x1D46085786CA14A46e90f0fCEBA9612AA68478f2"
+      },
+      {
+        "dapi": "ONDO/USD",
+        "address": "0xaF986103161e0Cf922bbF9267a0B01eeb496f462"
+      }
+    ]
+  },
+  {
+    "chains": [
+      "1891"
+    ],
+    "addresses": [
+      {
+        "dapi": "AAPL/USD",
+        "address": "0x672348Af31D939b1A32Fb93715f0852Bcc42C677"
+      },
+      {
+        "dapi": "AAVE/USD",
+        "address": "0xD6F66755D63e50483f8C48aC85B441DA28930B03"
+      },
+      {
+        "dapi": "AERO/USD",
+        "address": "0xB12B7f9C7fE94c3ca28aE5CB53E208F2029af116"
+      },
+      {
+        "dapi": "ADA/USD",
+        "address": "0xd7c2459aC0e8Ca4180A1985342bCdDD8ccD1bE63"
+      },
+      {
+        "dapi": "ALGO/USD",
+        "address": "0x5f560A409a8c553d73f69b6078be3057a5a8F2FE"
+      },
+      {
+        "dapi": "AMD/USD",
+        "address": "0xa6dC91c57dBfD713b2328966A4d1e921eCb540C2"
+      },
+      {
+        "dapi": "AMZN/USD",
+        "address": "0x1256e2fe36DA2245a4a9a40FF670e8eF7491B6dB"
+      },
+      {
+        "dapi": "ANKR/USD",
+        "address": "0x2317Fed846A593d91018403801fb1689ca77e5A1"
+      },
+      {
+        "dapi": "APE/USD",
+        "address": "0x963B3bc922Ca6017Df384A9469c4d28E32031306"
+      },
+      {
+        "dapi": "API3/USD",
+        "address": "0x201220FaEcC986316957f8E7f20c91C352f1B817"
+      },
+      {
+        "dapi": "APT/USD",
+        "address": "0x1B243321d85F6cDdd241B1f90909DC692b090F0F"
+      },
+      {
+        "dapi": "AR/USD",
+        "address": "0x83879017B21C6aE758A058a3AD35Aa87441cB6B6"
+      },
+      {
+        "dapi": "ARB/USD",
+        "address": "0x11314E84dd28C14D88E7a19763aCfB322fe963CF"
+      },
+      {
+        "dapi": "ARKK/USD",
+        "address": "0x3fA902466747aD2F5ff4efD9517F9a284dDE6B1d"
+      },
+      {
+        "dapi": "ASTR/USD",
+        "address": "0xd09E0Bcbd159CB1fD9C66f26218c94849811a451"
+      },
+      {
+        "dapi": "ATOM/USD",
+        "address": "0xb9FAa4625346D56c4D9490297E5A54Cb3E29Bf76"
+      },
+      {
+        "dapi": "AUD/USD",
+        "address": "0x9C7aC9A9Ab2e91fbd4FBa689371dd65Fc7541411"
+      },
+      {
+        "dapi": "AVAX/USD",
+        "address": "0xe803C5fd66dC6dD34F6D47424c6BfC5d610AC080"
+      },
+      {
+        "dapi": "AXL/USD",
+        "address": "0x1af1Da1e6E416301A61DaF56c606c1Bbf347B0b6"
+      },
+      {
+        "dapi": "AXS/USD",
+        "address": "0xB79CC133964cDC4b246DaD0F5086c26A629E2BD7"
+      },
+      {
+        "dapi": "BABA/USD",
+        "address": "0xc144D36Beaad57Efa80363C765e9A670aBc125FD"
+      },
+      {
+        "dapi": "BAL/USD",
+        "address": "0x49545CA47aEAA8Ea1878E831d55CA66a8898f0EA"
+      },
+      {
+        "dapi": "BAND/USD",
+        "address": "0xF9C443A2E3cE5AD5F5d49710698F7132ecCcf6A6"
+      },
+      {
+        "dapi": "BAT/USD",
+        "address": "0xB84d7ec7Dea3FBF1900cd6199B3FA0E1A6F436C5"
+      },
+      {
+        "dapi": "BLUR/USD",
+        "address": "0xBFb39c3C6695B507A7DD9FeE47652463847f664F"
+      },
+      {
+        "dapi": "BNB/USD",
+        "address": "0xdaDF063785A62C67dadb5705eD932af87c26645A"
+      },
+      {
+        "dapi": "BRL/USD",
+        "address": "0xdE79c653f38D2e74430CDeC1b20e1878Eb24fF73"
+      },
+      {
+        "dapi": "BTC/USD",
+        "address": "0xFa4855A0D80626FBf1355FbC05Cba56a586E434D"
+      },
+      {
+        "dapi": "CAD/USD",
+        "address": "0x7286FA59bbcA943Efd0C342f8A3590d80c41326a"
+      },
+      {
+        "dapi": "CAKE/USD",
+        "address": "0x696d75fC39667f46FBDf13234d9B2A0d044BC081"
+      },
+      {
+        "dapi": "cbETH/ETH Exchange Rate",
+        "address": "0x949fdD82d4a02387DD35C06C94126E288Bf3025F"
+      },
+      {
+        "dapi": "CELO/USD",
+        "address": "0x90495076e391B4761Bb00e05F71C459e84A40806"
+      },
+      {
+        "dapi": "CHF/USD",
+        "address": "0x55F75323d852b737aD47872aa88a85a5A8B469c9"
+      },
+      {
+        "dapi": "CHKLSTMOCK/USD",
+        "address": "0xfc85C73FA9Bb4e7CAC68E8D9ed78769A404BaE8d"
+      },
+      {
+        "dapi": "CHZ/USD",
+        "address": "0x59F96033A2FfF5344196Af3000239DC291760A4a"
+      },
+      {
+        "dapi": "CNY/USD",
+        "address": "0xD851c56f5D468d6C6aD8F30Fc2C0799a0C233b1b"
+      },
+      {
+        "dapi": "COIN/USD",
+        "address": "0x18075a5aa6FA0f5F2D3B0D3CEbACBFE30c73a384"
+      },
+      {
+        "dapi": "CORE/USD",
+        "address": "0xABB75d9C713aAE233E1FF7a58E4D2ce0846D1336"
+      },
+      {
+        "dapi": "COMP/USD",
+        "address": "0x1e29E4D83cb5c364302A70F3D983fA78Be2FEAdB"
+      },
+      {
+        "dapi": "CRO/USD",
+        "address": "0x3CCC943620EAC47B68e609dB4cd95fD8b4D08AaB"
+      },
+      {
+        "dapi": "CRV/USD",
+        "address": "0x0cCbd2Afd9A2802008E05F60f0089EF5c989aCBe"
+      },
+      {
+        "dapi": "CVX/USD",
+        "address": "0xf8c3b1f58d07755B067D74f0CAD90CEBeeD34778"
+      },
+      {
+        "dapi": "DAI/USD",
+        "address": "0x7DE558e3F877135994CCcB425aAf5A301Df62754"
+      },
+      {
+        "dapi": "DOGE/USD",
+        "address": "0x1A917D1e1D2FdE5caFab2eBF1aa3716763216dA5"
+      },
+      {
+        "dapi": "DOT/USD",
+        "address": "0x62D3FB989bc764a2188361D7aaF66015B3C83115"
+      },
+      {
+        "dapi": "DYDX/USD",
+        "address": "0x03aCE6DB8Fa7C902AF1E43aaD698ffCdbeD04B82"
+      },
+      {
+        "dapi": "ENA/USD",
+        "address": "0x8df9C6b4606dBBe3472ea3af145f34eB9D69147f"
+      },
+      {
+        "dapi": "ENS/USD",
+        "address": "0x0E63fa41a1C9Ef308AA6B15a6cBB9d9e3d75b92a"
+      },
+      {
+        "dapi": "ETH/USD",
+        "address": "0x5caC1c60fa8B901Bc945900cF319bc866864c35D"
+      },
+      {
+        "dapi": "ETHx/ETH Exchange Rate",
+        "address": "0xe3C0B16981A3171a09D4df2DeF9Ca65a5ecBFCE4"
+      },
+      {
+        "dapi": "EUR/USD",
+        "address": "0x6EB2fE633Fe01b8466982B4CcF1aFf453d95628B"
+      },
+      {
+        "dapi": "EURe/USD",
+        "address": "0xD32435d3aAD0af904a46BC50D230Ad283BA63841"
+      },
+      {
+        "dapi": "FDUSD/USD",
+        "address": "0x28435267Fa1aEaD97E4297a499ec7DB06E687B55"
+      },
+      {
+        "dapi": "FIL/USD",
+        "address": "0xD589B16385a50Eb88C18C31894Cb8a580f5fc9FC"
+      },
+      {
+        "dapi": "FLOW/USD",
+        "address": "0x4d27fAc31134c598aD95818E15ea4f5589076340"
+      },
+      {
+        "dapi": "FTM/USD",
+        "address": "0x184FbB9a92D8b310FdCeEbA8340D89D4E1D07155"
+      },
+      {
+        "dapi": "FXS/USD",
+        "address": "0x07Bd18ab4733289Ed734C3189B08f09b3C09ad39"
+      },
+      {
+        "dapi": "GBP/USD",
+        "address": "0x8AcfF14894552e7C9a4cE290EF2336FEaA63daAd"
+      },
+      {
+        "dapi": "GLMR/USD",
+        "address": "0x9D463afcAFDEC7ef234BCeF930155e990E66f544"
+      },
+      {
+        "dapi": "GME/USD",
+        "address": "0xadeA52706D0137335024019B301D82D0C70DbC4E"
+      },
+      {
+        "dapi": "GMX/USD",
+        "address": "0x48cf8E4CD9Bb084f244008AD56a2137c3ba5595f"
+      },
+      {
+        "dapi": "GNO/USD",
+        "address": "0xC5Da6C46abD5c65E6ebdcc918ECF101E287c9BD3"
+      },
+      {
+        "dapi": "GNS/USD",
+        "address": "0xa826f9160289da18d3a61CAfcfE86097055fabf9"
+      },
+      {
+        "dapi": "GOOGL/USD",
+        "address": "0x671C0c446fD80FB567dc0EAD4A03C2B735900a74"
+      },
+      {
+        "dapi": "GRT/USD",
+        "address": "0x94dc4028997D3F7D7e6d04eCe44B7ce4Bb306C7B"
+      },
+      {
+        "dapi": "HBAR/USD",
+        "address": "0xaFF5a111EE41e0B2D4Fd8608a96318d13E4bfFDB"
+      },
+      {
+        "dapi": "HNT/USD",
+        "address": "0x9b5d2Fa4d611AC143c37Ee3105dAf7C5D84FC839"
+      },
+      {
+        "dapi": "HT/USD",
+        "address": "0x6EC35bCdB279041813C763eB50F219fA28E497fD"
+      },
+      {
+        "dapi": "ICP/USD",
+        "address": "0x42cEB66FC45ff128acFD84c98C59D592200A72aD"
+      },
+      {
+        "dapi": "IMX/USD",
+        "address": "0x665A4Ca688328FdCBB2B726aD5fe0170E9562B51"
+      },
+      {
+        "dapi": "INJ/USD",
+        "address": "0xda6535d31AB5f171C6916C21E4d7B66b4d697963"
+      },
+      {
+        "dapi": "INR/USD",
+        "address": "0x97a35406df39471CF8312192FF8dA18853795155"
+      },
+      {
+        "dapi": "JUICE/USD",
+        "address": "0xd4D817eAe7fCe2E42DDBfF5F10efa79dfcaEd99A"
+      },
+      {
+        "dapi": "JOE/USD",
+        "address": "0x501bab7733D95b0a25533ec465ae507826e9B6bc"
+      },
+      {
+        "dapi": "JPM/USD",
+        "address": "0x194E7703645c82b0c21fFCBB1fb53Cc146dcE817"
+      },
+      {
+        "dapi": "JPY/USD",
+        "address": "0x167250337c001A7671457CF2A441Ed66DCB75Ac2"
+      },
+      {
+        "dapi": "KAVA/USD",
+        "address": "0x826E77B21eeC9331Ed52c4285FE7Ab817Aca1451"
+      },
+      {
+        "dapi": "KDA/USD",
+        "address": "0x1F33a4CCAa3D64438F7b7ea6a186cAC54B6FD669"
+      },
+      {
+        "dapi": "KRW/USD",
+        "address": "0x583213fD776B445B8A9cFbFebD27Cf9897135743"
+      },
+      {
+        "dapi": "KSM/USD",
+        "address": "0x91c00790f9EeF3A512FFFAe4f72C616dEcBcC3a4"
+      },
+      {
+        "dapi": "LDO/USD",
+        "address": "0x55A22df0f04a5DA0BB0Fb90D62B094E2677EF974"
+      },
+      {
+        "dapi": "LINK/USD",
+        "address": "0x438CE8C236c55747826C6aEd15C45542069dA9D6"
+      },
+      {
+        "dapi": "LQTY/USD",
+        "address": "0x876706c15Da2B540a6F557e14aDf8E206b6515B3"
+      },
+      {
+        "dapi": "LTC/USD",
+        "address": "0x4ffA0E7bF2f041efb8af39d49bD14fc5F9b6EA57"
+      },
+      {
+        "dapi": "MANA/USD",
+        "address": "0xfbcc1D80DF202B5E2c12a358f65bb9625918e3ae"
+      },
+      {
+        "dapi": "MANTA/USD",
+        "address": "0x6D8a843376C781EA1749723Ae6b9c75863642A2b"
+      },
+      {
+        "dapi": "MASK/USD",
+        "address": "0x2863192f90E1c65537aEf98993805eF86a59fc6C"
+      },
+      {
+        "dapi": "MATIC/USD",
+        "address": "0xdFF1280222e6c5ef7cF427b34F1ff3b568E9fd54"
+      },
+      {
+        "dapi": "MATICx/MATIC Exchange Rate",
+        "address": "0x62041d94F31459F91C5D53F28E5446744eE6AF01"
+      },
+      {
+        "dapi": "MERL/USD",
+        "address": "0x359406B51cdA6a5Cd5F93BFaa7217Fe450AF7C50"
+      },
+      {
+        "dapi": "META/USD",
+        "address": "0x97bA847E79b04DbDA9E577344752597181a44f04"
+      },
+      {
+        "dapi": "METIS/USD",
+        "address": "0xd65A5A3D7188E3db092AEEc88E6F0A3971cd05a4"
+      },
+      {
+        "dapi": "mETH/ETH Exchange Rate",
+        "address": "0x65605Ed6F5a9D31a2565049959603C3fBe983F1a"
+      },
+      {
+        "dapi": "MKR/USD",
+        "address": "0x5e9f48ca67d0Cf2b72e15D468fCC76d1B03a072E"
+      },
+      {
+        "dapi": "MNT/USD",
+        "address": "0xAEBAb7355c50Bc8D9aa64f904115D156fc173b93"
+      },
+      {
+        "dapi": "MODE/USD",
+        "address": "0xb7d12517a12d905cb8543A9a350B2B015367537C"
+      },
+      {
+        "dapi": "MOVR/USD",
+        "address": "0x0DD8D68431900294ED2aF707D04D0c8511b4Fb05"
+      },
+      {
+        "dapi": "MSFT/USD",
+        "address": "0xD19d631522126abfd9403DE070E52a64D27DCaBf"
+      },
+      {
+        "dapi": "MXN/USD",
+        "address": "0xE8aC69e1749b74fca28E2d36B84442CE7D476276"
+      },
+      {
+        "dapi": "NEAR/USD",
+        "address": "0xA2012B635106536ed0919a85adbA53d7D4CA48e9"
+      },
+      {
+        "dapi": "NEON/USD",
+        "address": "0x1D52a9eE451867E401F52B71Cd2F019FDC9DE3Bd"
+      },
+      {
+        "dapi": "NFLX/USD",
+        "address": "0x585Dd4A6844Dcd0D0da8f8CA4e426AAe4D116BF0"
+      },
+      {
+        "dapi": "NVDA/USD",
+        "address": "0xC6b7990b5A65d4035acB32D389ED877f8904C3A1"
+      },
+      {
+        "dapi": "NZD/USD",
+        "address": "0x84dF9ee9A32c3c58e84BafF78f8b58dAb7E21A88"
+      },
+      {
+        "dapi": "OKB/USD",
+        "address": "0x01641596580ae197fc2Db046EbB86FDf9BE5c7f1"
+      },
+      {
+        "dapi": "ORDI/USD",
+        "address": "0x8dC45781A98B5b5D3cEFbF36097Aa521E47786aC"
+      },
+      {
+        "dapi": "OP/USD",
+        "address": "0xDe3a938b62f78056C8F92198b1aAF21447C9fF64"
+      },
+      {
+        "dapi": "OSMO/USD",
+        "address": "0xa190848DDea1EA8821428d3EF389A55142824b45"
+      },
+      {
+        "dapi": "PAXG/USD",
+        "address": "0x4d0604579E18b0169E9A651C8D4B81E7aef76299"
+      },
+      {
+        "dapi": "PHP/USD",
+        "address": "0x8272e06a0f9444E5f3f35074f8Fa34C802d673fA"
+      },
+      {
+        "dapi": "PLTR/USD",
+        "address": "0x5c0450df0B737d09BD229554B04a98Ea2992E5Ae"
+      },
+      {
+        "dapi": "QCOM/USD",
+        "address": "0x6a7d7D2D74faD23c9F99Ce5bb749A947D7BF02F6"
+      },
+      {
+        "dapi": "QQQ/USD",
+        "address": "0x8EF92F20Fe4e1e2a068c9cd3e41adE532D5f08A0"
+      },
+      {
+        "dapi": "RARI/USD",
+        "address": "0xbc56DBf3056a9b24f29c3d0F94dE1A7C4f24C36D"
+      },
+      {
+        "dapi": "RDNT/USD",
+        "address": "0xACe7d11A343C5628C54A68c320Cf71AA7d29CBcf"
+      },
+      {
+        "dapi": "rETH/ETH Exchange Rate",
+        "address": "0x578bFEb12628859e102d848bc18A508C99B2Ab98"
+      },
+      {
+        "dapi": "RIF/USD",
+        "address": "0x97e365A41c20504433cFFEFDeF56649556bEd1c1"
+      },
+      {
+        "dapi": "RNDR/USD",
+        "address": "0x00FDC820b9b84C8254C9eDE2331ac3E3232DF5cC"
+      },
+      {
+        "dapi": "RON/USD",
+        "address": "0x8429F525d57830DCc6481b0710058Dc075C1BA40"
+      },
+      {
+        "dapi": "ROSE/USD",
+        "address": "0x868cCA22dF6eEF7873184844cD643fb11d400f13"
+      },
+      {
+        "dapi": "RPL/USD",
+        "address": "0x6d691b21be165cED2cEF69312162dBf021E2583b"
+      },
+      {
+        "dapi": "RSR/USD",
+        "address": "0x7058F4A6139606b6b96028f6CaF9276ca09DC9b1"
+      },
+      {
+        "dapi": "RUNE/USD",
+        "address": "0x4C794362045D8Fe0df90dE9798D4a1164eb25a92"
+      },
+      {
+        "dapi": "SAND/USD",
+        "address": "0x14d70297b3E21C0a127EC587742895c2f26DC6BC"
+      },
+      {
+        "dapi": "SATS/USD",
+        "address": "0xfFe0448d2D2be1EdaA2AD490c200f702f6a1319A"
+      },
+      {
+        "dapi": "SEK/USD",
+        "address": "0x1DE863F5293dfeFE11D3228c417ad124176E2A9D"
+      },
+      {
+        "dapi": "sfrxETH/frxETH Exchange Rate",
+        "address": "0xc4cae434FD14d970428f87C87c2872F66bFC2841"
+      },
+      {
+        "dapi": "sFRAX/FRAX Exchange Rate",
+        "address": "0x348A67FDf679233B00146E236C7835fa2aFf77fe"
+      },
+      {
+        "dapi": "SGD/USD",
+        "address": "0xe6016F2B0c79665A33731C57E786B2a741e5cAE3"
+      },
+      {
+        "dapi": "SHIB/USD",
+        "address": "0x1473BB602b8244eDBbb6C633b4dC5c60dfF2A203"
+      },
+      {
+        "dapi": "SNX/USD",
+        "address": "0x77BbAdd6D5BEc2A55f3eC8C45B0f5c8237753eef"
+      },
+      {
+        "dapi": "SOL/USD",
+        "address": "0xCD2Fc510ec763cd439C650646E89AA80FD6373dd"
+      },
+      {
+        "dapi": "spETH/ETH Exchange Rate",
+        "address": "0x14850516810Cd8CaD6c8A9d1668D905A2Ea6A9f8"
+      },
+      {
+        "dapi": "SPY/USD",
+        "address": "0x2482DA55AeC1f3a09b0863F84a3178631F9614f2"
+      },
+      {
+        "dapi": "stETH/USD",
+        "address": "0x3987Daaf91D11B9247a78bF7D05321257022FE72"
+      },
+      {
+        "dapi": "STRK/USD",
+        "address": "0x3cF485D1047DD7C5920F17D1Efb4e774b962658F"
+      },
+      {
+        "dapi": "STG/USD",
+        "address": "0x1A52306F556986011253A86429806Cf61bCee839"
+      },
+      {
+        "dapi": "stMATIC/MATIC Exchange Rate",
+        "address": "0xF2Ab8C9179364bB28bc52C8058FF4f84844B2F7B"
+      },
+      {
+        "dapi": "STONE/ETH Exchange Rate",
+        "address": "0x53Bcab44e9f71B32201B025ca2ecd993a297d56f"
+      },
+      {
+        "dapi": "STX/USD",
+        "address": "0x1CfdcCF6c41F08DFBbC10cFcA282FBBE59148790"
+      },
+      {
+        "dapi": "stTAO/TAO Exchange Rate",
+        "address": "0xE8Eef4f8286744215c1369dF69D9b596b20d57c5"
+      },
+      {
+        "dapi": "SUI/USD",
+        "address": "0x6630CFF3F683cD713744dA819cFD687Fd087564e"
+      },
+      {
+        "dapi": "SUSHI/USD",
+        "address": "0x74F1674c2874B8B39995148e114Bc6197f185a1C"
+      },
+      {
+        "dapi": "swETH/ETH Exchange Rate",
+        "address": "0xd26AfF0300d887B15C4A40E39462eCF24Da50F3E"
+      },
+      {
+        "dapi": "TAO/USD",
+        "address": "0xced57A57A2E38Cd3feC90D6BA19cadfaf24C9216"
+      },
+      {
+        "dapi": "TRY/USD",
+        "address": "0xa07C8DEA80394281b270d5cb5a242694f441c119"
+      },
+      {
+        "dapi": "TSLA/USD",
+        "address": "0x402015B430e20d835bF9454f71bce0B824768069"
+      },
+      {
+        "dapi": "TSM/USD",
+        "address": "0x37eE7c5Cb11D0650F2CA9E1c8c69E8674647A6B5"
+      },
+      {
+        "dapi": "TUSD/USD",
+        "address": "0x3F41B01e3eb10d2f8dCA96Ef8f38E5750ab31C16"
+      },
+      {
+        "dapi": "TWT/USD",
+        "address": "0x845f86A18B8591234a02Bf60B91Eb544884C32DF"
+      },
+      {
+        "dapi": "UMA/USD",
+        "address": "0x5F77d42E903b7e63f99f1F016962C8C97eD8c276"
+      },
+      {
+        "dapi": "UNI/USD",
+        "address": "0x1e6706E68B9Ae5a2b8b7f615a2293869bb01Cb69"
+      },
+      {
+        "dapi": "uniETH/ETH Exchange Rate",
+        "address": "0x34bD66AF60d55b7196378EB6290918A9b80EF0aF"
+      },
+      {
+        "dapi": "USDB/USD",
+        "address": "0x94F02D2d158eBB9dd1c22662E5F61c01b90E3465"
+      },
+      {
+        "dapi": "USDC/USD",
+        "address": "0xe51f68dca508f5616aa0c8f17Ed4E2D6ec0c2E0c"
+      },
+      {
+        "dapi": "USDP/USD",
+        "address": "0xE633d91ea5f9906c5506A58982fd064379e07772"
+      },
+      {
+        "dapi": "USDT/USD",
+        "address": "0x5d5C66d3A0F5D46e08dA716DEEcA30ff9d70C2a3"
+      },
+      {
+        "dapi": "WBTC/USD",
+        "address": "0x72713223C7a74541A7eaF2CFAC2Db99a05b68165"
+      },
+      {
+        "dapi": "weETH/ETH Exchange Rate",
+        "address": "0xa6C14243664d5b1afB9715F9A46333E2377FAf58"
+      },
+      {
+        "dapi": "WOO/USD",
+        "address": "0x75b3B55fD6D3BEf43B251a1eA35e405078fDeA94"
+      },
+      {
+        "dapi": "wstETH/stETH Exchange Rate",
+        "address": "0x325194F71A6E903CfbB601aB13790D1fB266a10D"
+      },
+      {
+        "dapi": "WTI/USD",
+        "address": "0x22100D16d258081CFcaBF40Ed88954293dC71c1F"
+      },
+      {
+        "dapi": "XAG/USD",
+        "address": "0xcEc6c9608DaCAFDEe19856E1159CBb34E28d4AEF"
+      },
+      {
+        "dapi": "XAU/USD",
+        "address": "0xAd22aa7A8F0E01540e3C92170215457cEb1DCB15"
+      },
+      {
+        "dapi": "XLM/USD",
+        "address": "0xb34677bbf77F5f1fCf7Ac0d2E0a79c6A15a92541"
+      },
+      {
+        "dapi": "XMR/USD",
+        "address": "0x19a901E60C62DA9dE12426748D3442F3F5a4936F"
+      },
+      {
+        "dapi": "XRP/USD",
+        "address": "0x34876cc07A50569A671dd8fBEac6a770CF96e9ad"
+      },
+      {
+        "dapi": "XVS/USD",
+        "address": "0x6980C7fAEbc4Fa07e09674cC6e286Cf5396c5f29"
+      },
+      {
+        "dapi": "XTZ/USD",
+        "address": "0x1e112c0B2d87686373b02B75f3346Af103114ad4"
+      },
+      {
+        "dapi": "YFI/USD",
+        "address": "0x8Ed44Bd6016d6418159e6a3AcCFdA7f5c6A4A39a"
+      },
+      {
+        "dapi": "ZAR/USD",
+        "address": "0xcFBc06Ab5EA87F372b1F233068Cd6300FcB50ef2"
+      },
+      {
+        "dapi": "ZIL/USD",
+        "address": "0x26355464862d93a4e7209Ae306e9E206c44EbCbc"
+      },
+      {
+        "dapi": "ZRX/USD",
+        "address": "0xB986c9559d440cCe1Af7650D3C334645f1C19f4d"
+      },
+      {
+        "dapi": "USDY/USD Exchange Rate",
+        "address": "0x634C0C0a468fB3e8b01431D55A1B5071Bd9b179a"
+      },
+      {
+        "dapi": "rsETH/ETH Exchange Rate",
+        "address": "0x83F4627A211e9F250098DC35Ff78f26535Ec29D3"
+      },
+      {
+        "dapi": "rswETH/ETH Exchange Rate",
+        "address": "0x304846B91DaD43752f27e7b32FA920DBDF45302f"
+      },
+      {
+        "dapi": "apxETH/pxETH Exchange Rate",
+        "address": "0x74e773d9D578F1Ab7aB38A7211666413a08ED65F"
+      },
+      {
+        "dapi": "TIA/USD",
+        "address": "0xA81d0db0DCadb645Fcba30C17501F457aEC61B09"
+      },
+      {
+        "dapi": "DEGEN/USD",
+        "address": "0x9E9e8C20B3FF24a6B55BF3aA22D4FE6b94631C08"
+      },
+      {
+        "dapi": "DYM/USD",
+        "address": "0x8A110Ab1CCFEfB58Ff0C58212EC8e29e44ee454D"
+      },
+      {
+        "dapi": "GHO/USD",
+        "address": "0xE6e066382A2e1e9bC7f2fADD5b901393E858A697"
+      },
+      {
+        "dapi": "crvUSD/USD",
+        "address": "0x1d9430e38DAc945E064bb47315d3E2d9840B50cB"
+      },
+      {
+        "dapi": "LUSD/USD",
+        "address": "0x7ed2CF09A54f91a5B58c6e471f0F27CE7797285d"
+      },
+      {
+        "dapi": "FRAX/USD",
+        "address": "0x9E5ca035D9e37D857D276A1f83a701ed26EB3861"
+      },
+      {
+        "dapi": "ERN/USD",
+        "address": "0xEDc7744c335A1923B675AC684278d03798C97B48"
+      },
+      {
+        "dapi": "ezETH/ETH Exchange Rate",
+        "address": "0x95D313F7Ff0090C7Ab4a9e1D15EBbB2eE9d9a4Fe"
+      },
+      {
+        "dapi": "sAVAX/AVAX Exchange Rate",
+        "address": "0xA7C1790F2792d226d5c147c99Fc23C6a676d8084"
+      },
+      {
+        "dapi": "WLD/USD",
+        "address": "0x0fe91FF94b4c729a54ce1381E9f69D1ED2cb2472"
+      },
+      {
+        "dapi": "wUSDM/USDM Exchange Rate",
+        "address": "0x3fD8914BcDC6b32764c2F2dB1E244C6a6cb65268"
+      },
+      {
+        "dapi": "sDAI/DAI Exchange Rate",
+        "address": "0x9633765905535D71f30da3563C794eD2452d8aBb"
+      },
+      {
+        "dapi": "sUSDe/USDe Exchange Rate",
+        "address": "0xF264e27d125c66554B3fa28E944372a973611541"
+      },
+      {
+        "dapi": "pufETH/stETH Exchange Rate",
+        "address": "0x1c4780148DC44bcaBDBe9a68d683f735dB222510"
+      },
+      {
+        "dapi": "PYPL/USD",
+        "address": "0xaadE560a20D8E6670D40Af4C4FbdED945C3DC4B3"
+      },
+      {
+        "dapi": "PYUSD/USD",
+        "address": "0xeFD84c23D20c5e5913363aeb4ADf6A5c37F582C3"
+      },
+      {
+        "dapi": "PYTH/USD",
+        "address": "0xf4Bd79E0D2168cF7f0a7532A46451A89459bbf01"
+      },
+      {
+        "dapi": "USDe/USD",
+        "address": "0x9dB00eA0ca8b30AE40E96fcd76dDC6A1A2400E19"
+      },
+      {
+        "dapi": "mpETH/ETH Exchange Rate",
+        "address": "0x251a269cBC309EFec3C1A8e4E25dbfEE0Ff5f0f9"
+      },
+      {
+        "dapi": "PENDLE/USD",
+        "address": "0x0B221b58cb9c1Dc0DccF6020b7730D0DCeA88Ff2"
+      },
+      {
+        "dapi": "SEI/USD",
+        "address": "0x4DAD85381C6c8D8b3D97B440AE6f4511E921877F"
+      },
+      {
+        "dapi": "ONDO/USD",
+        "address": "0xC01DcfF384eBBAd7231F7c7a28dc4e7A3F67ab11"
+      }
+    ]
+  },
+  {
+    "chains": [
+      "2522",
+      "48899",
+      "167000"
+    ],
+    "addresses": [
+      {
+        "dapi": "AAPL/USD",
+        "address": "0x88813f32238520E3548e67D6272Fa9677282B2E6"
+      },
+      {
+        "dapi": "AAVE/USD",
+        "address": "0x06c4abE7c2Cf84b3D073103BF99BeDC5E9504be8"
+      },
+      {
+        "dapi": "AERO/USD",
+        "address": "0x1cAC2c7A2dBD7FBB79dee478A8939e621656efc5"
+      },
+      {
+        "dapi": "ADA/USD",
+        "address": "0x5628043311a9BD0EC70eac4d5D8554C8F303C15C"
+      },
+      {
+        "dapi": "ALGO/USD",
+        "address": "0x9567f62f6dEC81FA073b902DFF4166fa78F4E575"
+      },
+      {
+        "dapi": "AMD/USD",
+        "address": "0x92Ebb9e4406a4493b3cAF0bD5e25e682baA3612D"
+      },
+      {
+        "dapi": "AMZN/USD",
+        "address": "0x0D7C129cBe424F486B11Ea813d251aA5B23B5f64"
+      },
+      {
+        "dapi": "ANKR/USD",
+        "address": "0x9b3a9cC6D3e8713237645BF362bD7713E9edf354"
+      },
+      {
+        "dapi": "APE/USD",
+        "address": "0x25e9792375824d6fB114f5c5518a1A6D501A7865"
+      },
+      {
+        "dapi": "API3/USD",
+        "address": "0x3F912e8fD41f49438C585e18F1D1F909673794f9"
+      },
+      {
+        "dapi": "APT/USD",
+        "address": "0xd9204D36AbB4F59F0d61721216949cfCB77f073A"
+      },
+      {
+        "dapi": "AR/USD",
+        "address": "0x556b9Eb644FA65d3ccFDc3701EE38B7267326b14"
+      },
+      {
+        "dapi": "ARB/USD",
+        "address": "0x25674794F10931BBEec9b090607B6e7784d11821"
+      },
+      {
+        "dapi": "ARKK/USD",
+        "address": "0xbA0e9f35D50B684f85Be4495A270111dFC385C8A"
+      },
+      {
+        "dapi": "ASTR/USD",
+        "address": "0x2E75a8e928c151B066641EfF791B1c27B91FEB56"
+      },
+      {
+        "dapi": "ATOM/USD",
+        "address": "0xBa3e7C4D78Af1885a79E563863d6a103Bdfb6A32"
+      },
+      {
+        "dapi": "AUD/USD",
+        "address": "0x85431BA9f09bDD616b9cD457c5b17875cCBa2C57"
+      },
+      {
+        "dapi": "AVAX/USD",
+        "address": "0xB2b3F15d1eDc3c8823Bc6d6b4b637a953bF3fa57"
+      },
+      {
+        "dapi": "AXL/USD",
+        "address": "0x38997A903597D70e853c5aA62158fAa2d994Ff27"
+      },
+      {
+        "dapi": "AXS/USD",
+        "address": "0xE0348F93678f71971bbC038f8a8aAc02dd98d8C7"
+      },
+      {
+        "dapi": "BABA/USD",
+        "address": "0xAa7b37377EF90295C0db6D76DD02983fc13953F4"
+      },
+      {
+        "dapi": "BAL/USD",
+        "address": "0x41f7bA2E61E9F7b59d93ccbE6da633A0C3D59505"
+      },
+      {
+        "dapi": "BAND/USD",
+        "address": "0x1a0b6870906c7D242Cd721E99903973c9636731f"
+      },
+      {
+        "dapi": "BAT/USD",
+        "address": "0x01d028E38a89557deA7C19f909211495dD1e050b"
+      },
+      {
+        "dapi": "BLUR/USD",
+        "address": "0x29fE1c528A64Cb98B6d46475A50549007fB6C055"
+      },
+      {
+        "dapi": "BNB/USD",
+        "address": "0xc92Dc48c93E9985F17cDE2a3f1F04a616c6a6b3c"
+      },
+      {
+        "dapi": "BRL/USD",
+        "address": "0xd7a1C6B42E4609554F6BCD211B08A0C783A2565f"
+      },
+      {
+        "dapi": "BTC/USD",
+        "address": "0xDf5E0C0Fb5e78F5a4075c5eD22d6c253c3525e21"
+      },
+      {
+        "dapi": "CAD/USD",
+        "address": "0x005bBE8DCD0e9FFC325Ca60f01d9eaD6eC55e4c3"
+      },
+      {
+        "dapi": "CAKE/USD",
+        "address": "0xd3734BA8Be1ed81984339F7F07a5C93D35b1D256"
+      },
+      {
+        "dapi": "cbETH/ETH Exchange Rate",
+        "address": "0x6e1d36A6a7340215f5145Bab5e4d7F61D5E25Ac8"
+      },
+      {
+        "dapi": "CELO/USD",
+        "address": "0xDdCce1dDAF407f8a43221fE63F64e74cDB273eE6"
+      },
+      {
+        "dapi": "CHF/USD",
+        "address": "0x4f3721FF3f3540285E6051512BeA7b139973caBe"
+      },
+      {
+        "dapi": "CHKLSTMOCK/USD",
+        "address": "0x74d9A00a40840BF89D5057A3B58AdDa59764BEc9"
+      },
+      {
+        "dapi": "CHZ/USD",
+        "address": "0x156C4C32a3Ef20A0cbFD8Ff1197a04ce4b8F3Ee1"
+      },
+      {
+        "dapi": "CNY/USD",
+        "address": "0xb466Fccd2d619F8Ea8488f2fd6E2A0f6E192da67"
+      },
+      {
+        "dapi": "COIN/USD",
+        "address": "0xF1B263D6bAA5D8dfE716151A17175D97f3C55298"
+      },
+      {
+        "dapi": "CORE/USD",
+        "address": "0x0392A34921e14efBe5226E2D649c2ac210daaB32"
+      },
+      {
+        "dapi": "COMP/USD",
+        "address": "0x49e15F4F4Aedbf376397FBbDe50C6ADcE14DED06"
+      },
+      {
+        "dapi": "CRO/USD",
+        "address": "0x65b28a42aD6e2225eB15584462C2c220Ec745F5E"
+      },
+      {
+        "dapi": "CRV/USD",
+        "address": "0xe00998Ed66b9d8467B97965bADf4819CbD1c0427"
+      },
+      {
+        "dapi": "CVX/USD",
+        "address": "0xdc618fEE912C8bFC262AD83046af2CCDbE847a5E"
+      },
+      {
+        "dapi": "DAI/USD",
+        "address": "0x561f3A34b0d8679A6EBA259BFd4D8D688443D99C"
+      },
+      {
+        "dapi": "DOGE/USD",
+        "address": "0x7E399f7c7B789D70265B6C1de8FCD0D074dB3c6E"
+      },
+      {
+        "dapi": "DOT/USD",
+        "address": "0xC878418ED6Ffa48a546c2B85EaBE8c954d1bAD65"
+      },
+      {
+        "dapi": "DYDX/USD",
+        "address": "0xA1b3ecEC349847c7aC9De554b4027447417dE2b7"
+      },
+      {
+        "dapi": "ENA/USD",
+        "address": "0x1a6563c7df05bcD68a99d1d78c1adC4F416d6B96"
+      },
+      {
+        "dapi": "ENS/USD",
+        "address": "0x6B9B291AA948A4f582E03c0CbA8B731e3f6CBe9f"
+      },
+      {
+        "dapi": "ETH/USD",
+        "address": "0xD774F560590F0B5a788bCEE4015c8055008831cc"
+      },
+      {
+        "dapi": "ETHx/ETH Exchange Rate",
+        "address": "0x59aE9457532E4382959611B964d18B13f6D5e5e0"
+      },
+      {
+        "dapi": "EUR/USD",
+        "address": "0xd216Ab2aEcf89be104Ae68f05E95b9C92A940Cf7"
+      },
+      {
+        "dapi": "EURe/USD",
+        "address": "0x3525875a5D7c27Dd5D67Dda7c5d716cca1A8c74d"
+      },
+      {
+        "dapi": "FDUSD/USD",
+        "address": "0xb3A9F61D8AAD018B9fF48B019949bC32C89cCBE6"
+      },
+      {
+        "dapi": "FIL/USD",
+        "address": "0xC0fDB2F0294A55d2D1ddeAe8c405F984202f67dF"
+      },
+      {
+        "dapi": "FLOW/USD",
+        "address": "0x4A9b6D518B3C83c5F326eBF093ee76019d26Ab0c"
+      },
+      {
+        "dapi": "FTM/USD",
+        "address": "0x206584AD7D90476f9129D009c66f7729f0766eF0"
+      },
+      {
+        "dapi": "FXS/USD",
+        "address": "0x658db6A91ae4535F9C3F361db5f0028835d13b95"
+      },
+      {
+        "dapi": "GBP/USD",
+        "address": "0x3929611C5Ffcffc8B87467981Ae0E14259DD6Ff0"
+      },
+      {
+        "dapi": "GLMR/USD",
+        "address": "0xD8A9cd30ab76E4031a29BdD88256a206BACE5fe9"
+      },
+      {
+        "dapi": "GME/USD",
+        "address": "0x8D25166303c7dC78F50502c5f80D7947dD786003"
+      },
+      {
+        "dapi": "GMX/USD",
+        "address": "0x007f6cf0201964FeA3DfA522d366F1E96d684830"
+      },
+      {
+        "dapi": "GNO/USD",
+        "address": "0x6600683205B817589168119648646379cb10d7Ec"
+      },
+      {
+        "dapi": "GNS/USD",
+        "address": "0x54bDD4a3E8f537Aa87646Dd1b08403c42871F747"
+      },
+      {
+        "dapi": "GOOGL/USD",
+        "address": "0x1Cc8881098808108f120A85EcfD0B44c9e6a3700"
+      },
+      {
+        "dapi": "GRT/USD",
+        "address": "0x0B01A2394e30e5e30fdaC467b791F0fa6EC51F70"
+      },
+      {
+        "dapi": "HBAR/USD",
+        "address": "0x3D16DF1a26F2ba29bBf892E47e6Ee561fd07AF3D"
+      },
+      {
+        "dapi": "HNT/USD",
+        "address": "0xA4689E5e16B2f78979adaca4b2fED6221C3B9c59"
+      },
+      {
+        "dapi": "HT/USD",
+        "address": "0xb9C618fBd0A1E299bE4CFdF832B0399bf8652F7d"
+      },
+      {
+        "dapi": "ICP/USD",
+        "address": "0xe01C1D413cC3EF0dD8EB4698989f8a6041152CD2"
+      },
+      {
+        "dapi": "IMX/USD",
+        "address": "0x0A27476899aDda6000B0cF654392C893899e6c20"
+      },
+      {
+        "dapi": "INJ/USD",
+        "address": "0xbACc401f1B440DE17da0ac00c905736a88cC87B5"
+      },
+      {
+        "dapi": "INR/USD",
+        "address": "0xE1Fd2192966571129308bC6394a037ce8729d530"
+      },
+      {
+        "dapi": "JUICE/USD",
+        "address": "0x1F00c90747845d2059C9d871853df38E943e3582"
+      },
+      {
+        "dapi": "JOE/USD",
+        "address": "0xd60ddCfa9Fef2890325D7a89Fc80286b9959B9b1"
+      },
+      {
+        "dapi": "JPM/USD",
+        "address": "0x5F5b39BdE4b2a38e4a64124d76591eE9B664f2f4"
+      },
+      {
+        "dapi": "JPY/USD",
+        "address": "0x54DC4727c021d9565907f87a995BA680dc0847a9"
+      },
+      {
+        "dapi": "KAVA/USD",
+        "address": "0x2601C346663059f130b6C08DEa8A226010488719"
+      },
+      {
+        "dapi": "KDA/USD",
+        "address": "0xFF303f8Ff895d8a20c9a55127AfA2Ccb32edCeF9"
+      },
+      {
+        "dapi": "KRW/USD",
+        "address": "0x69D973B55590C3344Be29eF447ee7F938B2F4141"
+      },
+      {
+        "dapi": "KSM/USD",
+        "address": "0xC6686E073AbB160600cA021C9b7a3C6267DA9BD9"
+      },
+      {
+        "dapi": "LDO/USD",
+        "address": "0x68684CD60a452d554301E00c016F23Ea608BfA89"
+      },
+      {
+        "dapi": "LINK/USD",
+        "address": "0x3328f2419E7E5b64406044A75750D47449608d97"
+      },
+      {
+        "dapi": "LQTY/USD",
+        "address": "0x59f9779B6dB924D0Ee8Fc6F0C9883DFdEED5C564"
+      },
+      {
+        "dapi": "LTC/USD",
+        "address": "0x4F9991e39C82b0D3894D6F4306125F3162bC9518"
+      },
+      {
+        "dapi": "MANA/USD",
+        "address": "0x3D1a7690866D0a126Dc9F2d2c4c3dfAE02D0d574"
+      },
+      {
+        "dapi": "MANTA/USD",
+        "address": "0xD56f753DEea30eBB3f49c803ce6A5d6E24277822"
+      },
+      {
+        "dapi": "MASK/USD",
+        "address": "0xD39EBDEEDe2F4E31cD34DE6baC395D3017A1D9d6"
+      },
+      {
+        "dapi": "MATIC/USD",
+        "address": "0xBcae8BD848834Eb5226a38C976798C3707f6EC4f"
+      },
+      {
+        "dapi": "MATICx/MATIC Exchange Rate",
+        "address": "0x21464AaeFA59D060a3E4742fD98b8de4506C643e"
+      },
+      {
+        "dapi": "MERL/USD",
+        "address": "0x4692259d85614782fe9570A9410A9535689A3675"
+      },
+      {
+        "dapi": "META/USD",
+        "address": "0xE82048F077caE29AAE0D76074B60Afef87A0F568"
+      },
+      {
+        "dapi": "METIS/USD",
+        "address": "0xF2E15526a935b1B1198B8BB5dcebE4B24f5dF052"
+      },
+      {
+        "dapi": "mETH/ETH Exchange Rate",
+        "address": "0x73C3EfA52f8E028EB22A73553C537DEA6Ee1327e"
+      },
+      {
+        "dapi": "MKR/USD",
+        "address": "0x392b23b7121443110eDA1D20D1090E66F3D85484"
+      },
+      {
+        "dapi": "MNT/USD",
+        "address": "0x478Aa000F83E9D82d4a77B777436B773A075e491"
+      },
+      {
+        "dapi": "MODE/USD",
+        "address": "0x9DA8569B4F73Fa0A04866D850c45EF9c8e00e616"
+      },
+      {
+        "dapi": "MOVR/USD",
+        "address": "0xd9dd8293157eaAb42fd0aB356e7777E42E4c8649"
+      },
+      {
+        "dapi": "MSFT/USD",
+        "address": "0xf779e1c7F0FE411A404ea693F7C8d7e6403b8d4B"
+      },
+      {
+        "dapi": "MXN/USD",
+        "address": "0x8BC7fd096b3BdEf8F833560CEFDD3B64c51359B7"
+      },
+      {
+        "dapi": "NEAR/USD",
+        "address": "0xB9c4FF325e7301D41D8D4b6f2272B86991f62b35"
+      },
+      {
+        "dapi": "NEON/USD",
+        "address": "0x1dC73e0B6df09332860da8b3052b1D59471dc9F9"
+      },
+      {
+        "dapi": "NFLX/USD",
+        "address": "0x739aEE183B79A083C94fE321E0Cc9ECBd86Bb049"
+      },
+      {
+        "dapi": "NVDA/USD",
+        "address": "0x0665c371E1FA9Af56f567EFDeDda33307d485955"
+      },
+      {
+        "dapi": "NZD/USD",
+        "address": "0x11EC258Cc706cc71dABE9226964fc7dc8C1988d7"
+      },
+      {
+        "dapi": "OKB/USD",
+        "address": "0x0Eda23DF3A2153Cdd063E3E2d725529E1aD6b81c"
+      },
+      {
+        "dapi": "ORDI/USD",
+        "address": "0xEB94D3EC5498c90544296c63Dbfc378DEDDbCD0D"
+      },
+      {
+        "dapi": "OP/USD",
+        "address": "0x194AFF79b1D622682BC5649E53B21874a283eEA7"
+      },
+      {
+        "dapi": "OSMO/USD",
+        "address": "0x3b5Cf1988f94916e207dA6e2b68F7829AdDed4Ff"
+      },
+      {
+        "dapi": "PAXG/USD",
+        "address": "0x926abA3C6AC2276047a70F00E67b4971b69E1a8F"
+      },
+      {
+        "dapi": "PHP/USD",
+        "address": "0x383c7Ec44717eB628aDB94b6C7156DA1875580d6"
+      },
+      {
+        "dapi": "PLTR/USD",
+        "address": "0x4D64749107eb9b047B3b0ADB775B8952F76aCF59"
+      },
+      {
+        "dapi": "QCOM/USD",
+        "address": "0x5f7B15d3E7f5fbd9dBb4201d0e8De1CEA031351f"
+      },
+      {
+        "dapi": "QQQ/USD",
+        "address": "0xA6Eb88704D2ed0f8c9A71E1e768cecEffbAcbEDC"
+      },
+      {
+        "dapi": "RARI/USD",
+        "address": "0x4c858370a11BB82E8F792525D3Cd2e3d21fb67D7"
+      },
+      {
+        "dapi": "RDNT/USD",
+        "address": "0x242bE56153661a359C0E8064B33A957E81A6D18D"
+      },
+      {
+        "dapi": "rETH/ETH Exchange Rate",
+        "address": "0xc1A4849E3F3a9475da5243607729a5f7Ec0581e6"
+      },
+      {
+        "dapi": "RIF/USD",
+        "address": "0x9Dcc20682A63Db8CaC6fA53890210034810C784e"
+      },
+      {
+        "dapi": "RNDR/USD",
+        "address": "0x862a167e38B5Bfb3621FF65f3B26cDEa1a2D4972"
+      },
+      {
+        "dapi": "RON/USD",
+        "address": "0x5C886b6A25FB99193b6261fD21A98f69FFE3deD5"
+      },
+      {
+        "dapi": "ROSE/USD",
+        "address": "0xbCa673D411936848292B58Be3308de8C319EFe97"
+      },
+      {
+        "dapi": "RPL/USD",
+        "address": "0x61a7cD8d6eE70B2B5B28fBA76C3971F9E72965d4"
+      },
+      {
+        "dapi": "RSR/USD",
+        "address": "0x23A077F68097e26Fb0955873bF1aeF83bacA6624"
+      },
+      {
+        "dapi": "RUNE/USD",
+        "address": "0x6486a325e17822d91be7726B678832b3b2107729"
+      },
+      {
+        "dapi": "SAND/USD",
+        "address": "0x5c482CB0fC3820B62FD3FCF491BBBF0AA97DC44f"
+      },
+      {
+        "dapi": "SATS/USD",
+        "address": "0x2d73cD3cd9e5313C0A6e9C72F54D2FcE274462eA"
+      },
+      {
+        "dapi": "SEK/USD",
+        "address": "0x3F917Be2a5c034cd1bEF7432b60F6674F12d195a"
+      },
+      {
+        "dapi": "sfrxETH/frxETH Exchange Rate",
+        "address": "0x955e72dC930150EaBEf322F00aA18401cebF52dD"
+      },
+      {
+        "dapi": "sFRAX/FRAX Exchange Rate",
+        "address": "0x05C3887c169D39031AAf64163Ee3e1d847e532B4"
+      },
+      {
+        "dapi": "SGD/USD",
+        "address": "0x0E5679f5D60888A2B3f68AA747D819a54D730340"
+      },
+      {
+        "dapi": "SHIB/USD",
+        "address": "0x26eD7F5013926C2a5591cb9DadEd3baDf55Ee18b"
+      },
+      {
+        "dapi": "SNX/USD",
+        "address": "0x838F572C40dC485A27e7eB201be860af410d1989"
+      },
+      {
+        "dapi": "SOL/USD",
+        "address": "0xaF3dC9b094578f87f90d4f477DD5F3F847d67Bd2"
+      },
+      {
+        "dapi": "spETH/ETH Exchange Rate",
+        "address": "0xA1c63a5751A8867D9D07e26bf14F951219EdC5F3"
+      },
+      {
+        "dapi": "SPY/USD",
+        "address": "0xBc9287fD4C457066f73FBDD90243bc0b8ee054A1"
+      },
+      {
+        "dapi": "stETH/USD",
+        "address": "0x624063463Ca799f78305e3193Ef3E8400D500564"
+      },
+      {
+        "dapi": "STRK/USD",
+        "address": "0xC48557C45F63F6778E6A0d7C9c558e2b1886Ebcd"
+      },
+      {
+        "dapi": "STG/USD",
+        "address": "0x0Eac5059665b38dBF71bBb991797EE867b26A049"
+      },
+      {
+        "dapi": "stMATIC/MATIC Exchange Rate",
+        "address": "0xD0ba404C5D501a19f3AA885F404f780C07D47f36"
+      },
+      {
+        "dapi": "STONE/ETH Exchange Rate",
+        "address": "0x08417E2a8559892003bcE97F1Db39AeD200444DB"
+      },
+      {
+        "dapi": "STX/USD",
+        "address": "0x3Ec3210aeb15869264336Aa4BD55B73D58F76FCe"
+      },
+      {
+        "dapi": "stTAO/TAO Exchange Rate",
+        "address": "0x97322F6907a81dD684fEfe9a0963E01e90cd1405"
+      },
+      {
+        "dapi": "SUI/USD",
+        "address": "0xDE7aBD3470fd501896422BC65643329c1087BD79"
+      },
+      {
+        "dapi": "SUSHI/USD",
+        "address": "0x6D71e03747Eddc81F2b3B502E6f2a818Db06536d"
+      },
+      {
+        "dapi": "swETH/ETH Exchange Rate",
+        "address": "0xb70f35F66f8fbaDEeC0441dFebFB0136d127DC6C"
+      },
+      {
+        "dapi": "TAO/USD",
+        "address": "0x399EDC6811Cc1578F3BdfA2b184AFA1D420D5048"
+      },
+      {
+        "dapi": "TRY/USD",
+        "address": "0x9d1394c2e19e73a01Fe8cAf73969c222D8EA607C"
+      },
+      {
+        "dapi": "TSLA/USD",
+        "address": "0x113515E2F729Ecf94D1142Eb61b4a62e253b8042"
+      },
+      {
+        "dapi": "TSM/USD",
+        "address": "0xA9105d53Dc69B6EADB9A833107BB58CC105EF670"
+      },
+      {
+        "dapi": "TUSD/USD",
+        "address": "0xEFE20b00Ca14e31653411031F8773b3Cfe2bdF0A"
+      },
+      {
+        "dapi": "TWT/USD",
+        "address": "0xA750Bf1CfE7a2354a47798854e3Cf4FD10EEbCAC"
+      },
+      {
+        "dapi": "UMA/USD",
+        "address": "0xB59AC8ca66fF28c2B664ADe16CF01E9B9a7221dF"
+      },
+      {
+        "dapi": "UNI/USD",
+        "address": "0xCea8aF9C9980849D185eD3c709d033d346aa2CB4"
+      },
+      {
+        "dapi": "uniETH/ETH Exchange Rate",
+        "address": "0x701dA9AfD1E0168b295e5A09f1638631540570f2"
+      },
+      {
+        "dapi": "USDB/USD",
+        "address": "0x9413e7CAD4De9c01F7566AC81C89020B1F588fc4"
+      },
+      {
+        "dapi": "USDC/USD",
+        "address": "0xAe1D31aFe69bEdf96B403BA32a8751a142130dE6"
+      },
+      {
+        "dapi": "USDP/USD",
+        "address": "0xCB9aA68Fda1cC8bA176188A2270610686DC0a67A"
+      },
+      {
+        "dapi": "USDT/USD",
+        "address": "0xb1ecDB472e8D3911B9F29a66141Cd549997306c3"
+      },
+      {
+        "dapi": "WBTC/USD",
+        "address": "0x051c0903743046B670181DeE4C53e0a57187B13b"
+      },
+      {
+        "dapi": "weETH/ETH Exchange Rate",
+        "address": "0x58Fd6315e5D45EF2214D1aC347bDAE2Db30a7D3b"
+      },
+      {
+        "dapi": "WOO/USD",
+        "address": "0x3511BCEF59438120187a89Ea211D823608633A7f"
+      },
+      {
+        "dapi": "wstETH/stETH Exchange Rate",
+        "address": "0xC597D64e8b80A19d80ceb75599B92db9e950154c"
+      },
+      {
+        "dapi": "WTI/USD",
+        "address": "0x976d58ed7116368399FA9e61B762dcba8A139C3d"
+      },
+      {
+        "dapi": "XAG/USD",
+        "address": "0x63159188314413aBDb64C29160057cdB3d6E13F7"
+      },
+      {
+        "dapi": "XAU/USD",
+        "address": "0x179f8d03A1A72a61c02A9EFc951Bf64d82c5E3BB"
+      },
+      {
+        "dapi": "XLM/USD",
+        "address": "0x29459543b77773Cd4560e0053a68293713F54475"
+      },
+      {
+        "dapi": "XMR/USD",
+        "address": "0x25970abE0cB483CDa79C317b4180d791c5c51995"
+      },
+      {
+        "dapi": "XRP/USD",
+        "address": "0xC9c5235B98c243C933df5D426302c16f977Ce9f8"
+      },
+      {
+        "dapi": "XVS/USD",
+        "address": "0x17cCc387f53FB82a947eEB7C56a4e88967d45Ca8"
+      },
+      {
+        "dapi": "XTZ/USD",
+        "address": "0x3F15051583dFf30F602dEDab7a1AAD0E25cf2edd"
+      },
+      {
+        "dapi": "YFI/USD",
+        "address": "0x4DfBbF6661B3DcC653B653b0f264c3C087148c9C"
+      },
+      {
+        "dapi": "ZAR/USD",
+        "address": "0x18fF9cb6dB05490d8D7890D650fBbB4574FB8d35"
+      },
+      {
+        "dapi": "ZIL/USD",
+        "address": "0xab6C6bb9933e2BCe56DaD31b3bd6A50B72d8eb39"
+      },
+      {
+        "dapi": "ZRX/USD",
+        "address": "0xDd423709F6294979Bc15c542043958A4448b7374"
+      },
+      {
+        "dapi": "USDY/USD Exchange Rate",
+        "address": "0x88Cc0A5E912aD87446BB21219Fc3646fbC545D4f"
+      },
+      {
+        "dapi": "rsETH/ETH Exchange Rate",
+        "address": "0xE3059C320503905b5252a7177927FD79dc1C3706"
+      },
+      {
+        "dapi": "rswETH/ETH Exchange Rate",
+        "address": "0xE60c4CaBd2221883FA7e192C90f0Cbd7374b4b2c"
+      },
+      {
+        "dapi": "apxETH/pxETH Exchange Rate",
+        "address": "0xae466260251B9F81809B025EDB1d10041726a11f"
+      },
+      {
+        "dapi": "TIA/USD",
+        "address": "0xB5e1D58438FF658385f00d1CaF0aF585c08a60AB"
+      },
+      {
+        "dapi": "DEGEN/USD",
+        "address": "0xF3A397F6A8a3E580eF18dE36D57A944905ff2483"
+      },
+      {
+        "dapi": "DYM/USD",
+        "address": "0xa01651355F49Ac62Cbe89c88e38ED81A3553745F"
+      },
+      {
+        "dapi": "GHO/USD",
+        "address": "0x10ce070824F0BC676ea3bc128Ca8B34C3f445981"
+      },
+      {
+        "dapi": "crvUSD/USD",
+        "address": "0x2E9aEA4d68af734370650c51E8f7739B7e44aC58"
+      },
+      {
+        "dapi": "LUSD/USD",
+        "address": "0x790cC54C5f4989ED65fa2E158695E7C64A987995"
+      },
+      {
+        "dapi": "FRAX/USD",
+        "address": "0x8634a566338a1113D41f9CD1eF1823208a15102C"
+      },
+      {
+        "dapi": "ERN/USD",
+        "address": "0xb21f47e0a0528cC2aA1C3daFF903e226e7B002C2"
+      },
+      {
+        "dapi": "ezETH/ETH Exchange Rate",
+        "address": "0xbd0a9852a8178A540B1b907229BbeA30e952554a"
+      },
+      {
+        "dapi": "sAVAX/AVAX Exchange Rate",
+        "address": "0x3a2Bef88E1fe3099d46C8b007F6F857005080978"
+      },
+      {
+        "dapi": "WLD/USD",
+        "address": "0xa4FD57fC80524217F077264bC41C7464c32fA07d"
+      },
+      {
+        "dapi": "wUSDM/USDM Exchange Rate",
+        "address": "0xb5DA07a72C35e7206CaA37ce3e02088EeaFFAd00"
+      },
+      {
+        "dapi": "sDAI/DAI Exchange Rate",
+        "address": "0xED74625A0207adFC81526412b8d58E92Ed807b20"
+      },
+      {
+        "dapi": "sUSDe/USDe Exchange Rate",
+        "address": "0xf7bc888448cd96d33dc5FAaf94cd217b17d910ef"
+      },
+      {
+        "dapi": "pufETH/stETH Exchange Rate",
+        "address": "0x97f65b57eca8f71476F7410d3B80a9B9C9DA15b3"
+      },
+      {
+        "dapi": "PYPL/USD",
+        "address": "0x4053f5E8A99c8d2e8A18e492dD1969FFa9d6e5e2"
+      },
+      {
+        "dapi": "PYUSD/USD",
+        "address": "0xFe60B8C5faB0a9f18EBC69D4848D8Ad99EBd363B"
+      },
+      {
+        "dapi": "PYTH/USD",
+        "address": "0x56c69741F903a4fC066C4F647E8A1D4c010D6555"
+      },
+      {
+        "dapi": "USDe/USD",
+        "address": "0x6A5526b2144901b886737B8ed11E8fF899FCa993"
+      },
+      {
+        "dapi": "mpETH/ETH Exchange Rate",
+        "address": "0xef36819aca95ea35850E53886A05Ca16c38955Fa"
+      },
+      {
+        "dapi": "PENDLE/USD",
+        "address": "0x2A89CE8e766eF7E07c5168cACd983CE0B5d21bD0"
+      },
+      {
+        "dapi": "SEI/USD",
+        "address": "0xb140DCE75857b37a64a7aF8BeA73958F3e8e40Ae"
+      },
+      {
+        "dapi": "ONDO/USD",
+        "address": "0x956F457202221545CDF119644CD329e4780E81B1"
+      }
+    ]
+  },
+  {
+    "chains": [
+      "5003"
+    ],
+    "addresses": [
+      {
+        "dapi": "AAPL/USD",
+        "address": "0xBDAE70017659Bf512d75c9F95A5179EF281025c1"
+      },
+      {
+        "dapi": "AAVE/USD",
+        "address": "0xfadC99Cc2e1755e9eF122CAefB365fC92d619B20"
+      },
+      {
+        "dapi": "AERO/USD",
+        "address": "0x79EFE8f2FfF9225A6702eFD7160346d0A0aA7b14"
+      },
+      {
+        "dapi": "ADA/USD",
+        "address": "0xd657B0bE2B139020b04DB66e3a3b41E52c3aFFE8"
+      },
+      {
+        "dapi": "ALGO/USD",
+        "address": "0xb0CF48643B90E670462cB01C5f3282563783c826"
+      },
+      {
+        "dapi": "AMD/USD",
+        "address": "0x24e56F2D14cA1d8F9ca1bf33C0b68475b3D510B4"
+      },
+      {
+        "dapi": "AMZN/USD",
+        "address": "0x0E0617E22f9C081d3D3fc305F59e5983cC7b58Cd"
+      },
+      {
+        "dapi": "ANKR/USD",
+        "address": "0xE50d08122890991A78e4d92460E7bF0d921Be639"
+      },
+      {
+        "dapi": "APE/USD",
+        "address": "0x294647F0DAF27cB4177309AdFC1Cf3678f005B8e"
+      },
+      {
+        "dapi": "API3/USD",
+        "address": "0x92Dd2FB558F64BFC6A342cbcFeE3aB28324EfeaB"
+      },
+      {
+        "dapi": "APT/USD",
+        "address": "0xC3dB9a082C577F0E8bF5808eF9a2D158515dbfc6"
+      },
+      {
+        "dapi": "AR/USD",
+        "address": "0xB257E8d786c12d57cf99F1ADCF2660A0F0e65B78"
+      },
+      {
+        "dapi": "ARB/USD",
+        "address": "0x32d48890246FA82C95BC38Ea0E0eA2eB8D54d3c3"
+      },
+      {
+        "dapi": "ARKK/USD",
+        "address": "0x9d0180841C337B5153Fde14745e874860cCeF510"
+      },
+      {
+        "dapi": "ASTR/USD",
+        "address": "0x3a0Ddcf14e41C1Ca7564F805636ce444579d59a2"
+      },
+      {
+        "dapi": "ATOM/USD",
+        "address": "0x109CD2F259F48C73d1468618d50E5307e40e3886"
+      },
+      {
+        "dapi": "AUD/USD",
+        "address": "0x88F7A5d0470632905E11C901A8F269DFB4384d3A"
+      },
+      {
+        "dapi": "AVAX/USD",
+        "address": "0x4C786Bc9ea62CC2a3A24FF8bbE062Ce89ad6d46b"
+      },
+      {
+        "dapi": "AXL/USD",
+        "address": "0xF971Fe55D983810f76F5b59528Bb31e2310A1B5F"
+      },
+      {
+        "dapi": "AXS/USD",
+        "address": "0xD6DfC6ddC4F148E87b920D75Fb088e67C6C2473C"
+      },
+      {
+        "dapi": "BABA/USD",
+        "address": "0xd8Ef1982625dC66E4C463D60D124524a36a3E3A7"
+      },
+      {
+        "dapi": "BAL/USD",
+        "address": "0x1151d82432e78807aaD88d94DeeE6A9F859e7246"
+      },
+      {
+        "dapi": "BAND/USD",
+        "address": "0xDC4ebFE6b7F4F0f4554d006573bfD8171A3473d8"
+      },
+      {
+        "dapi": "BAT/USD",
+        "address": "0xB1690c683DCed2095555b28E87FfAd13d7d6093C"
+      },
+      {
+        "dapi": "BLUR/USD",
+        "address": "0x7F1fD31c43a1Fc931781AB07e0980a7eA5f57E63"
+      },
+      {
+        "dapi": "BNB/USD",
+        "address": "0xD9249f66867b29f3E67dAb2e352707D655C8765c"
+      },
+      {
+        "dapi": "BRL/USD",
+        "address": "0x5710c091512BA0Ec519B0885EdB66ac29E76289E"
+      },
+      {
+        "dapi": "BTC/USD",
+        "address": "0x0c6645be978338bB2760222c00ac84AC03C80C6E"
+      },
+      {
+        "dapi": "CAD/USD",
+        "address": "0x9370E60D78C9a400f04a8d264F0d624517Fd54E8"
+      },
+      {
+        "dapi": "CAKE/USD",
+        "address": "0x480376066840Ac6F66DE2fe60F7b9a5a24097101"
+      },
+      {
+        "dapi": "cbETH/ETH Exchange Rate",
+        "address": "0xFF8Eb2bB78942c4e45cF26f2753152B54A40033E"
+      },
+      {
+        "dapi": "CELO/USD",
+        "address": "0xA41FaDaf9bBCf6A6Ae0CAdEd78Aa86FADC8660C7"
+      },
+      {
+        "dapi": "CHF/USD",
+        "address": "0x435004dFeC324D5f4E8BDa4fFa656e7099fE709A"
+      },
+      {
+        "dapi": "CHKLSTMOCK/USD",
+        "address": "0x07f63d33641AFb7843Fd083255713c75E3d7803C"
+      },
+      {
+        "dapi": "CHZ/USD",
+        "address": "0x4E0d03001188e94849753414b1c12cCb28896568"
+      },
+      {
+        "dapi": "CNY/USD",
+        "address": "0xc8b955CB1931FFb5C5CCb724ea027672537a7109"
+      },
+      {
+        "dapi": "COIN/USD",
+        "address": "0x0c2d890dE1bBA7DdF5de53C7BD9F7E92cF6227f1"
+      },
+      {
+        "dapi": "CORE/USD",
+        "address": "0xcBf12E100098978ED361a85a3e84a7488A64dc18"
+      },
+      {
+        "dapi": "COMP/USD",
+        "address": "0x3082198dBF25C43015325a4C0E71f9825441cD2F"
+      },
+      {
+        "dapi": "CRO/USD",
+        "address": "0x71B43d55476784490b945A13bFa1A390d8396916"
+      },
+      {
+        "dapi": "CRV/USD",
+        "address": "0xde8FdF7d7117b5e1075Cb1b2b43e4bF890F92B5e"
+      },
+      {
+        "dapi": "CVX/USD",
+        "address": "0xe693175632Cb6b6A34BbA6db0c51f792228817F0"
+      },
+      {
+        "dapi": "DAI/USD",
+        "address": "0x58eC286293918C528d13d074bCD6414Dc230B7f9"
+      },
+      {
+        "dapi": "DOGE/USD",
+        "address": "0x05b9da0119146819C6F7C3a8Ef96eae59b2F9b15"
+      },
+      {
+        "dapi": "DOT/USD",
+        "address": "0xbFe5EA053e89aBA7834ae57B0b4f8EF4B0Fd9722"
+      },
+      {
+        "dapi": "DYDX/USD",
+        "address": "0x43aD541e7BD5e324D12A8BDb166930fEc19d740a"
+      },
+      {
+        "dapi": "ENA/USD",
+        "address": "0xb6F14666623be048Baa598FC5457E180b68Fd1A1"
+      },
+      {
+        "dapi": "ENS/USD",
+        "address": "0x6BC15100383adc427019Da8D9C806e57B64606ED"
+      },
+      {
+        "dapi": "ETH/USD",
+        "address": "0x9221f7764F069B7d7d0572d11cB67510bc8c8673"
+      },
+      {
+        "dapi": "ETHx/ETH Exchange Rate",
+        "address": "0x42a409D804c835f0A5d7cd6add091780B1aA9266"
+      },
+      {
+        "dapi": "EUR/USD",
+        "address": "0xA883C7e07b67cB55B460243d5eCaFab87b3B154d"
+      },
+      {
+        "dapi": "EURe/USD",
+        "address": "0x866EE2e2b607d942c8C304a29A50D7Cda9BC094B"
+      },
+      {
+        "dapi": "FDUSD/USD",
+        "address": "0x0611634ff2Ec9214C4d645306636dd3cB179e87D"
+      },
+      {
+        "dapi": "FIL/USD",
+        "address": "0x449190aF9133827271d92478aC62734FffB04ba1"
+      },
+      {
+        "dapi": "FLOW/USD",
+        "address": "0xd767D8a2bF8C610c8986C590D3DD7BB6b4A68e8d"
+      },
+      {
+        "dapi": "FTM/USD",
+        "address": "0xd1D9C0a9C044f26603b8D47dcf92D116d01381c1"
+      },
+      {
+        "dapi": "FXS/USD",
+        "address": "0x1dd0b0E2E57e7d8e6541743e3eC7E8c4E8058f07"
+      },
+      {
+        "dapi": "GBP/USD",
+        "address": "0xe004960FEa5DF77465a160A2221fC6BfbE54dD70"
+      },
+      {
+        "dapi": "GLMR/USD",
+        "address": "0x832ce5627971a2c895952d55B9A029FA31C08979"
+      },
+      {
+        "dapi": "GME/USD",
+        "address": "0x56a2A3E6ce58efd1Cba4Fc668dB334aB1454968a"
+      },
+      {
+        "dapi": "GMX/USD",
+        "address": "0x345c9DB5Fc0924F7173a3B61D15a8dCe6a2fB71d"
+      },
+      {
+        "dapi": "GNO/USD",
+        "address": "0xAD9eACcC8dF235E2C6fB0aa1d6d248F110aa692D"
+      },
+      {
+        "dapi": "GNS/USD",
+        "address": "0xa1DA81e67A3f70720E02BC483f8B4444f05F17fA"
+      },
+      {
+        "dapi": "GOOGL/USD",
+        "address": "0xf55eA1a07ECbA457541c912F2dCccbc7eCd3490d"
+      },
+      {
+        "dapi": "GRT/USD",
+        "address": "0xdb7aB96546F01e344Dd02CE637b69ad1441236bA"
+      },
+      {
+        "dapi": "HBAR/USD",
+        "address": "0xCFa7B7A223B680eAA880E7702b013d1B130BAE95"
+      },
+      {
+        "dapi": "HNT/USD",
+        "address": "0xB62de320e09dD04269DAB6819eAb46558C800222"
+      },
+      {
+        "dapi": "HT/USD",
+        "address": "0xe93e117Fd6C1B6A647A5d68B231D3C0198F15bDb"
+      },
+      {
+        "dapi": "ICP/USD",
+        "address": "0x4583f62aA1829AcEa3199D499E4E25aDE6A535De"
+      },
+      {
+        "dapi": "IMX/USD",
+        "address": "0x193D94B8345D2ec3F013A7787A12e64A8f7626E2"
+      },
+      {
+        "dapi": "INJ/USD",
+        "address": "0x7D38e238652749ED6F11B435a3aC04630297588F"
+      },
+      {
+        "dapi": "INR/USD",
+        "address": "0x7d066610653AC98c80373d7568f900B87C8C798E"
+      },
+      {
+        "dapi": "JUICE/USD",
+        "address": "0x5BA811767a65A503610333C430aF4406695999C0"
+      },
+      {
+        "dapi": "JOE/USD",
+        "address": "0xecD4F49CBA5Bfa95F3865a6106fa9725B725cAF1"
+      },
+      {
+        "dapi": "JPM/USD",
+        "address": "0xEa4eCb30C9F7283b6f02A6E02C1a22e90D1EE7b9"
+      },
+      {
+        "dapi": "JPY/USD",
+        "address": "0x0a2D459b645435e962b565Cc279Cbd9c873ec1bC"
+      },
+      {
+        "dapi": "KAVA/USD",
+        "address": "0xE33B6EC6e0bd6bcF3460565441510a76B2FC4446"
+      },
+      {
+        "dapi": "KDA/USD",
+        "address": "0x62083aDD9bD1108DEd55feA3139732EcCE353fe2"
+      },
+      {
+        "dapi": "KRW/USD",
+        "address": "0xbF8790C8177744bb16a017d33B20B4346e60b27d"
+      },
+      {
+        "dapi": "KSM/USD",
+        "address": "0x3F2Ed083011D8237586EcAb01eC615f290826A56"
+      },
+      {
+        "dapi": "LDO/USD",
+        "address": "0xB5573e931CA10B4Cb35BaC53E1d3197d395aE7B1"
+      },
+      {
+        "dapi": "LINK/USD",
+        "address": "0x34588560315AB5CEf54C9f43FFd154aD1B51A87c"
+      },
+      {
+        "dapi": "LQTY/USD",
+        "address": "0x64F5F7A7767d7af4c1854BAa7D3d1649FC142AB1"
+      },
+      {
+        "dapi": "LTC/USD",
+        "address": "0xB2Eb02053C345Ca1A1B50994C49F3a6C9Fd9A4C4"
+      },
+      {
+        "dapi": "MANA/USD",
+        "address": "0xfc950DEe1FfD61Cc70D9464775dC9F45688bC318"
+      },
+      {
+        "dapi": "MANTA/USD",
+        "address": "0x89a6Ec124C6d4bA3e9b5741625c09dB142f0fF6a"
+      },
+      {
+        "dapi": "MASK/USD",
+        "address": "0xC9Aa38e5fa163C33b4132C83a83d8efC247fE2AA"
+      },
+      {
+        "dapi": "MATIC/USD",
+        "address": "0xf084eB3eF766E04c2805A7376943745Aa1819569"
+      },
+      {
+        "dapi": "MATICx/MATIC Exchange Rate",
+        "address": "0x2edd61106c1Be9583d08990318dA5A5a8eA78bc1"
+      },
+      {
+        "dapi": "MERL/USD",
+        "address": "0x76E88cb166939dc78C25fe01e3c717710a1A9b98"
+      },
+      {
+        "dapi": "META/USD",
+        "address": "0xD4A5E1d1F5613d550E25A25aD2dEF69Eb8302207"
+      },
+      {
+        "dapi": "METIS/USD",
+        "address": "0x5BaC91cb7F547057073C0248F263fF131499db96"
+      },
+      {
+        "dapi": "mETH/ETH Exchange Rate",
+        "address": "0xdeaEdC6FDFa118Df7B82914473e59800660cA835"
+      },
+      {
+        "dapi": "MKR/USD",
+        "address": "0x7e7A99d995799E9E085d689B53b1ddb3DB0D8696"
+      },
+      {
+        "dapi": "MNT/USD",
+        "address": "0x3907614B1D3264Df21488F829344CEe20bCee4ba"
+      },
+      {
+        "dapi": "MODE/USD",
+        "address": "0x7D14651ad96Ff08c1539Ee61F107978fd125a9c6"
+      },
+      {
+        "dapi": "MOVR/USD",
+        "address": "0x445b69f2D7cC02e464571Aa4D00aE5fB786e1eFF"
+      },
+      {
+        "dapi": "MSFT/USD",
+        "address": "0x598A729EDb45d3A0D8daa4C5577dE59Cc9b99405"
+      },
+      {
+        "dapi": "MXN/USD",
+        "address": "0x58313916E4b74d5Fb9833f7AE1901d56daB3015b"
+      },
+      {
+        "dapi": "NEAR/USD",
+        "address": "0x5438a5ed4438e347d73b8db04c4E83beCc85cD31"
+      },
+      {
+        "dapi": "NEON/USD",
+        "address": "0x1224685D572B46812a1E59aA83f65fB6423e2412"
+      },
+      {
+        "dapi": "NFLX/USD",
+        "address": "0x8f13B576a61d174Ba97613243f3eDA036B6D8FE2"
+      },
+      {
+        "dapi": "NVDA/USD",
+        "address": "0x6AdC8265F238870DeB5cBA1defF26C60aF65a91e"
+      },
+      {
+        "dapi": "NZD/USD",
+        "address": "0xFebf36C8cBe60f05D6e43D4f30A84f938a96b0B5"
+      },
+      {
+        "dapi": "OKB/USD",
+        "address": "0xB6CeAE401bae9195e7cb8481194D53743cd42e55"
+      },
+      {
+        "dapi": "ORDI/USD",
+        "address": "0x1B09aF04435deFe9406602973082857655d7fB20"
+      },
+      {
+        "dapi": "OP/USD",
+        "address": "0x0e5eEa1d8b1235D14BE69A6F2d53cE309ec4185E"
+      },
+      {
+        "dapi": "OSMO/USD",
+        "address": "0x85b3230E78D8Fa9c03Fd96954955163eb040e7B3"
+      },
+      {
+        "dapi": "PAXG/USD",
+        "address": "0x3B52f5151B1E70887fdA3C950Cf13cC92BB63061"
+      },
+      {
+        "dapi": "PHP/USD",
+        "address": "0x2ffd1618bc32F1abc14d596c9CcA75C156f46CF8"
+      },
+      {
+        "dapi": "PLTR/USD",
+        "address": "0xc76BCB01de3052c869E2A1F59AA1FB4Ec11dd540"
+      },
+      {
+        "dapi": "QCOM/USD",
+        "address": "0x8399CdB21abF064CE6652C7468beF501C60b1529"
+      },
+      {
+        "dapi": "QQQ/USD",
+        "address": "0x2DE13e2f0348ee81935f2739EdF6782f5B9cBdfB"
+      },
+      {
+        "dapi": "RARI/USD",
+        "address": "0x0497229933b2fc1721b141fcBe627cB2609D4B1e"
+      },
+      {
+        "dapi": "RDNT/USD",
+        "address": "0xB28B98aDA9A1C458D085AAf29C0260b9b868453A"
+      },
+      {
+        "dapi": "rETH/ETH Exchange Rate",
+        "address": "0xF9B79dB0FA2E5B6c7ADE2CA575260Df7B2b4a53C"
+      },
+      {
+        "dapi": "RIF/USD",
+        "address": "0x93D1e38A8959163bDc8435b4ed96016C1245BCa4"
+      },
+      {
+        "dapi": "RNDR/USD",
+        "address": "0x2E0A4ADAF38549ad095304351f97C25cbC8Be495"
+      },
+      {
+        "dapi": "RON/USD",
+        "address": "0x707310Cc7C2441F158328630B2Eb262df7b96Ba5"
+      },
+      {
+        "dapi": "ROSE/USD",
+        "address": "0xCb8eF6c13C1b03489F7D68621e25256D80Fb01f0"
+      },
+      {
+        "dapi": "RPL/USD",
+        "address": "0x49B987ecd422d64205855122597dBd4E23c13517"
+      },
+      {
+        "dapi": "RSR/USD",
+        "address": "0x094DbEe3A584bdEccB565542C736e53E9af8d4D5"
+      },
+      {
+        "dapi": "RUNE/USD",
+        "address": "0x9B5d4fFD702740b3578Cc6CB2c26EC5d51f1B634"
+      },
+      {
+        "dapi": "SAND/USD",
+        "address": "0x7ce88CD44D9922416EEcA33119d9Ad75B59DF28e"
+      },
+      {
+        "dapi": "SATS/USD",
+        "address": "0x8e2de811A1baAf04396705c385Fd7C8Fb753D5BD"
+      },
+      {
+        "dapi": "SEK/USD",
+        "address": "0xaC5B8FDFAfFa28Bf5F8e8F64DBeCe4802605a7b0"
+      },
+      {
+        "dapi": "sfrxETH/frxETH Exchange Rate",
+        "address": "0xf1579092f0a072E1a181D6e524C194d3a22d1674"
+      },
+      {
+        "dapi": "sFRAX/FRAX Exchange Rate",
+        "address": "0x2CfDc8931272236d6c6F0660C761DF4DaD393dbE"
+      },
+      {
+        "dapi": "SGD/USD",
+        "address": "0x944088417c4218B7ff555fD787cb2fe94Bd9DE30"
+      },
+      {
+        "dapi": "SHIB/USD",
+        "address": "0xBd9c119FD4D18Cc054140D6cbEC8230B440213B0"
+      },
+      {
+        "dapi": "SNX/USD",
+        "address": "0xAe9CdbFF4D66fBc22b9e16afB7F39AEdF8596D84"
+      },
+      {
+        "dapi": "SOL/USD",
+        "address": "0x8D554ea1De17b3e7D344F310D0A6067E3150d069"
+      },
+      {
+        "dapi": "spETH/ETH Exchange Rate",
+        "address": "0xeaD3383a2d76AEb57ABCD2f5DA957B9c4E4A5b33"
+      },
+      {
+        "dapi": "SPY/USD",
+        "address": "0xD4554e6d3a8a45Bc55BaEDea4601a918a75712DA"
+      },
+      {
+        "dapi": "stETH/USD",
+        "address": "0xC12695B522ddC3975d92E9b4F9CD4f8a82c5E45D"
+      },
+      {
+        "dapi": "STRK/USD",
+        "address": "0x4aFCFEf90D8ee0d0D006F0D74A297613c4e5f9ac"
+      },
+      {
+        "dapi": "STG/USD",
+        "address": "0x2593b643264C95Ac3D6aCa8B5ca3f0aD84ad54e6"
+      },
+      {
+        "dapi": "stMATIC/MATIC Exchange Rate",
+        "address": "0xE66CCb4382b383087D86b5A3754c00C3778eFd9e"
+      },
+      {
+        "dapi": "STONE/ETH Exchange Rate",
+        "address": "0xA16f1Af0542ce6bBFdAbCdf3931bCb93989031b6"
+      },
+      {
+        "dapi": "STX/USD",
+        "address": "0xF45b078559853b81E775b8Fe4740ed4b9C334c87"
+      },
+      {
+        "dapi": "stTAO/TAO Exchange Rate",
+        "address": "0xB779EB924A2BE88389AF1D0784ceb9De801a75e7"
+      },
+      {
+        "dapi": "SUI/USD",
+        "address": "0xC59A9c720D634dedD3779f77dA150Cc24E5105e3"
+      },
+      {
+        "dapi": "SUSHI/USD",
+        "address": "0x2531E5B40f5Aed43f2AC6335426a2B8210716958"
+      },
+      {
+        "dapi": "swETH/ETH Exchange Rate",
+        "address": "0xdaBc0E9EEadd2B7F5c0ef32249d225ABA27A1795"
+      },
+      {
+        "dapi": "TAO/USD",
+        "address": "0x7F99FDF50dCDDEEc36aD18AF30de5F558bbD8beC"
+      },
+      {
+        "dapi": "TRY/USD",
+        "address": "0x6C1c2a35036Ab997183fe8Aae6f6ED0CB00bD290"
+      },
+      {
+        "dapi": "TSLA/USD",
+        "address": "0x20088784952AB4B4385C6089FA59B4aB710C1dE9"
+      },
+      {
+        "dapi": "TSM/USD",
+        "address": "0xA67dBD9CE0bb1E58F1a25224B8Af228637Dbb7d0"
+      },
+      {
+        "dapi": "TUSD/USD",
+        "address": "0x450E17f1f5e27809C89753612aa546d44732c897"
+      },
+      {
+        "dapi": "TWT/USD",
+        "address": "0x562b11B809a84F095754C3dAb81dC2da47D20206"
+      },
+      {
+        "dapi": "UMA/USD",
+        "address": "0x0b2a3e230874b1354c08A746C0bd9ad3eAe21142"
+      },
+      {
+        "dapi": "UNI/USD",
+        "address": "0x18Ef19033D8C27958Da5627333D6Ef0c4C8EA2F8"
+      },
+      {
+        "dapi": "uniETH/ETH Exchange Rate",
+        "address": "0xA9933c044d8db59D18323Ff2E952558d5903992C"
+      },
+      {
+        "dapi": "USDB/USD",
+        "address": "0x8F1f88d480bf2fAD954b86Bb9d0B07803c089cCC"
+      },
+      {
+        "dapi": "USDC/USD",
+        "address": "0x607FaB86b6149618420F846e0dD4eA073A8d382C"
+      },
+      {
+        "dapi": "USDP/USD",
+        "address": "0x2F7323cBD32d20a7C30e0Fcc73c92510F4133171"
+      },
+      {
+        "dapi": "USDT/USD",
+        "address": "0x50A230C6FbA97B42bf71eA8dFfaF1335fFafAc76"
+      },
+      {
+        "dapi": "WBTC/USD",
+        "address": "0xD0ce4dFe3c494D287C0fb932a0BdA39522A14C4a"
+      },
+      {
+        "dapi": "weETH/ETH Exchange Rate",
+        "address": "0xf762b7e9531a3226Be144eeB3bEcD29f04eb68D5"
+      },
+      {
+        "dapi": "WOO/USD",
+        "address": "0x16c95C5D72F6d025A190D47d66907f64aC97e8aB"
+      },
+      {
+        "dapi": "wstETH/stETH Exchange Rate",
+        "address": "0x0d3E5Aa035f273688ac2aE15E68B6A5b97C92351"
+      },
+      {
+        "dapi": "WTI/USD",
+        "address": "0x31d8336fe7E80a6644B1883E5d0b23cd8bDca1f0"
+      },
+      {
+        "dapi": "XAG/USD",
+        "address": "0x2a93fc45c0FaCB074649dD581661a6Df346ba85c"
+      },
+      {
+        "dapi": "XAU/USD",
+        "address": "0xF1A71A6C14F7BbcBf65047bba09037999154fF7a"
+      },
+      {
+        "dapi": "XLM/USD",
+        "address": "0xa4DDe4C4bDBe9f7AFdb494864B88A805415bF729"
+      },
+      {
+        "dapi": "XMR/USD",
+        "address": "0x9d998020995ED1Ec981b616cc60e08DE5Fccb43E"
+      },
+      {
+        "dapi": "XRP/USD",
+        "address": "0xd730CA5A0a61EC660E87b2e15eddd5Dc5497aaA4"
+      },
+      {
+        "dapi": "XVS/USD",
+        "address": "0xfC9Ff1702227f83e4CC9bEA085a8cEd00E6c8eCb"
+      },
+      {
+        "dapi": "XTZ/USD",
+        "address": "0x1BD663b99c4fD213F7045b7B06264C70FAb79D8C"
+      },
+      {
+        "dapi": "YFI/USD",
+        "address": "0xD8bF3089461DFCc458125315AcB765b033e44042"
+      },
+      {
+        "dapi": "ZAR/USD",
+        "address": "0xF06699Ed7b621C9E6834a8E373521dD0b65B569b"
+      },
+      {
+        "dapi": "ZIL/USD",
+        "address": "0x42E7502809021F4AC57617efdb258BeaBE02F3dd"
+      },
+      {
+        "dapi": "ZRX/USD",
+        "address": "0xEA262E73A1bf9953d7E6EC29347Ec6420a4403BD"
+      },
+      {
+        "dapi": "USDY/USD Exchange Rate",
+        "address": "0xAec4871AaA4eb81ed7DFaE8a851681D309D99E36"
+      },
+      {
+        "dapi": "rsETH/ETH Exchange Rate",
+        "address": "0xde5B1f1C23EF4C0B54cA220C699a2935858eE942"
+      },
+      {
+        "dapi": "rswETH/ETH Exchange Rate",
+        "address": "0x7Fed06e0221121105908FF99bc8d43335c272Cd0"
+      },
+      {
+        "dapi": "apxETH/pxETH Exchange Rate",
+        "address": "0x3dAbC52737faAB6e8005844334aEd01eCb335F45"
+      },
+      {
+        "dapi": "TIA/USD",
+        "address": "0x9B3d153113245Dd8d537CE761f777f0482b0254B"
+      },
+      {
+        "dapi": "DEGEN/USD",
+        "address": "0x02C4970bF52AA37782Fe9d3127f5A14edD913E83"
+      },
+      {
+        "dapi": "DYM/USD",
+        "address": "0x968fcDC5A7A7cc1C125a376B2C87De93832EFd2e"
+      },
+      {
+        "dapi": "GHO/USD",
+        "address": "0x259D2D6FEeB8C0834b2017cf3AE137E7cB6Ba240"
+      },
+      {
+        "dapi": "crvUSD/USD",
+        "address": "0x981806268195ADE22A14b12fCd36f69Dd01b608c"
+      },
+      {
+        "dapi": "LUSD/USD",
+        "address": "0xABA85a3CD72f3cbBbc4B1151A28E3e81a1020e6c"
+      },
+      {
+        "dapi": "FRAX/USD",
+        "address": "0xE218484fa7d0daD156568C806d084BcC130BFfee"
+      },
+      {
+        "dapi": "ERN/USD",
+        "address": "0x4206582C2D0B0c32475a279B208EE4e1295D8709"
+      },
+      {
+        "dapi": "ezETH/ETH Exchange Rate",
+        "address": "0xBff24d90a75D7cBF067BD773b41Ef64FD147eD82"
+      },
+      {
+        "dapi": "sAVAX/AVAX Exchange Rate",
+        "address": "0x2d615a894Fe06b0038a5c6e795cD7c1f528009f6"
+      },
+      {
+        "dapi": "WLD/USD",
+        "address": "0x87177a4581b891860C7CB47004024f2877D74Dc9"
+      },
+      {
+        "dapi": "wUSDM/USDM Exchange Rate",
+        "address": "0x6133a79b1461de5E995D686Ffbd53143E1774b9b"
+      },
+      {
+        "dapi": "sDAI/DAI Exchange Rate",
+        "address": "0x64a32Fa800EA6A3240E610F5d552316F714157D2"
+      },
+      {
+        "dapi": "sUSDe/USDe Exchange Rate",
+        "address": "0x4c3701051DfB1BDcE23c4bB647D43e62A7f9701F"
+      },
+      {
+        "dapi": "pufETH/stETH Exchange Rate",
+        "address": "0x64E7e0B3C995447eF15529bc196A24378e3098FB"
+      },
+      {
+        "dapi": "PYPL/USD",
+        "address": "0x4Ee47e899006fB3F780dD6e1428A477cd0B0F958"
+      },
+      {
+        "dapi": "PYUSD/USD",
+        "address": "0x23f702EDB235b7053483f03F78c1A12B13129107"
+      },
+      {
+        "dapi": "PYTH/USD",
+        "address": "0xa1847a7b2BB6Aa3cA8e3b380381cb5b3A9De7d45"
+      },
+      {
+        "dapi": "USDe/USD",
+        "address": "0x19527a3bF7DCB7c592e9B71f022FfB9e296D0449"
+      },
+      {
+        "dapi": "mpETH/ETH Exchange Rate",
+        "address": "0x744c366AF9c062e7C24EB7d3E4A839520646caB1"
+      },
+      {
+        "dapi": "PENDLE/USD",
+        "address": "0x20778E4C32489d1Dd859fa3672571279a1e4B534"
+      },
+      {
+        "dapi": "SEI/USD",
+        "address": "0xe79649F2A86eEeB86B5547d231d3Bd94F1549959"
+      },
+      {
+        "dapi": "ONDO/USD",
+        "address": "0x13117D783a297a2728A8e878cCEfF4912e3e1e62"
+      }
+    ]
+  }
+]
