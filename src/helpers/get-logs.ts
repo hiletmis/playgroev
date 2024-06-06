@@ -127,9 +127,9 @@ export async function getAwardedBidLogs(auctioneer: string, rpcUrl: string, addr
         eventLog[0],
         eventLog[1],
         eventLog[2],
-        BigInt(eventLog[3]),
+        eventLog[3],
         eventLog[4],
-        eventLog[5].map((a: string) => `0x${a}`)
+        eventLog[5].map((a: string) => `${a}`)
     ]
 
     return updateData

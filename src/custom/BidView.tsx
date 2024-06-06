@@ -12,6 +12,7 @@ import { OevAuctionHouse__factory, Api3ServerV1__factory, deploymentAddresses } 
 import SwitchNetwork from './SwitchNetwork';
 import { bidTopic } from "../helpers/constants";
 import { getAwardedBidLogs } from '../helpers/get-logs';
+import { ContractFunctionExecutionError } from "viem";
 
 const BidView = ({ bids }: any) => {
 
@@ -142,7 +143,7 @@ const BidView = ({ bids }: any) => {
     useEffect(() => {
         if (!bidInfo) return
         if (!selectedBid) return
-        console.log(selectedBid)
+        console.log(selectedBid.awardedBidData)
 
         const bidStatus = {
             status: bidInfo[0],
@@ -179,6 +180,16 @@ const BidView = ({ bids }: any) => {
     useEffect(() => {
         if (!errorUpdate && !errorReportFullfillment) return
         console.log(errorUpdate)
+
+        if (errorUpdate instanceof ContractFunctionExecutionError) {
+            const cause = errorUpdate.cause
+                .walk()
+                .message.split(":")[2]
+                .split("\n")[0]
+                .trim();
+            console.log(cause)
+        }
+
         console.log(errorReportFullfillment)
     }, [errorUpdate, errorReportFullfillment])
 
