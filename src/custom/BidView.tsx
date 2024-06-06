@@ -2,25 +2,25 @@ import { useEffect, useState } from 'react';
 import { VStack, Flex, Spacer, Text, Image } from '@chakra-ui/react';
 import * as Utils from '../helpers/utils';
 
-import { BidInfo, BidStatus, BidStatusEnum, StatusColor, MulticallDataType } from '../types';
+import { BidInfo, BidStatus, BidStatusEnum, StatusColor } from '../types';
 import DApiRow from './DApiRow';
 import { ChainLogo } from '@api3/logos';
 import CopyInfoRow from './CopyInfoRow';
 import ExecuteButton from './ExecuteButton';
-import { useReadContract, useAccount, useSimulateContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
-import { OevAuctionHouse__factory, Api3ServerV1__factory, deploymentAddresses } from '@api3/contracts';
+import { useReadContract, useAccount, useSimulateContract, useWriteContract, useWaitForTransactionReceipt, useCall, useBlockNumber } from 'wagmi';
+import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import SwitchNetwork from './SwitchNetwork';
-import { getCallData } from '../helpers/signed-api';
 import { bidTopic } from "../helpers/constants";
+import { getAwardedBidLogs } from '../helpers/get-logs';
 
 const BidView = ({ bids }: any) => {
 
     const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
     const [api3ServerV1Address, setApi3ServerV1Address] = useState("" as `0x${string}`)
 
-    const { chain, chainId } = useAccount()
+    const { chain, chainId, address } = useAccount()
 
-    const [updateDApiData, setUpdateDApiData] = useState(['0x00'] as MulticallDataType);
+    const [updateDApiData, setUpdateDApiData] = useState("0x0" as `0x${string}`);
 
     const [selectedBid, setSelectedBid] = useState({} as BidInfo)
     const [selectedBidStatus, setSelectedBidStatus] = useState({} as BidStatus)
@@ -53,15 +53,25 @@ const BidView = ({ bids }: any) => {
         hash
     });
 
+    const blockNumber = useBlockNumber({
+        query: {
+            enabled: selectedBidStatus.status === BidStatusEnum.Awarded && selectedBid.awardedBidData === "0x0" as `0x${string}` && chainId === 4913,
+        }
+    })
+
     useEffect(() => {
         if (isFetchedReceipt === undefined) return;
         if (hash === undefined) return;
-
         if (receipt === undefined) return;
+        if (selectedBid === undefined) return;
 
         console.log(isFetchedReceipt, receipt, hash)
 
-    }, [isFetchedReceipt, receipt, hash, reset]);
+        selectedBid.txBlock = receipt.blockNumber
+        setSelectedBid(selectedBid)
+
+
+    }, [isFetchedReceipt, receipt, hash, selectedBid]);
 
     useEffect(() => {
         if (hash === undefined) return;
@@ -103,15 +113,13 @@ const BidView = ({ bids }: any) => {
     });
 
     // UpdateDApi
-    //@ts-ignore
-    const { data: updateDApiCallData, error: errorUpdate } = useSimulateContract({
-        address: api3ServerV1Address,
-        abi: Api3ServerV1__factory.abi,
+    const { data: updateDApiCallData, error: errorUpdate } = useCall({
+        data: updateDApiData,
         chainId: chainId,
-        functionName: 'multicall',
-        args: [updateDApiData],
+        to: api3ServerV1Address,
+        value: BigInt(1),
         query: {
-            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && selectedBidStatus.status === BidStatusEnum.Awarded
+            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && selectedBidStatus.status === BidStatusEnum.Awarded && updateDApiData !== "0x0" as `0x${string}`
         }
     })
 
@@ -131,6 +139,7 @@ const BidView = ({ bids }: any) => {
     useEffect(() => {
         if (!bidInfo) return
         if (!selectedBid) return
+        console.log(selectedBid)
 
         const bidStatus = {
             status: bidInfo[0],
@@ -140,9 +149,6 @@ const BidView = ({ bids }: any) => {
             bidId: selectedBid.bidId
         } as BidStatus
         setSelectedBidStatus(bidStatus)
-        getCallData(selectedBid.dapi.name).then((data) => {
-            setUpdateDApiData(data as MulticallDataType);
-        });
 
     }, [bidInfo, selectedBid])
 
@@ -173,6 +179,28 @@ const BidView = ({ bids }: any) => {
         console.log(errorReportFullfillment)
     }, [errorUpdate, errorReportFullfillment])
 
+    useEffect(() => {
+        console.log(updateDApiData)
+    }, [updateDApiData])
+
+    useEffect(() => {
+        if (!blockNumber) return
+        if (!selectedBid) return
+        if (!selectedBidStatus) return
+        if (!chainId) return
+        if (!address) return
+
+        if (selectedBidStatus.status === BidStatusEnum.Awarded && selectedBid.awardedBidData === "0x0" as `0x${string}` && chainId === 4913) {
+            getAwardedBidLogs(OevAuctionHouseAddres, "https://oev-network.calderachain.xyz/http", address, BigInt(selectedBid.txBlock), selectedBid).then((data) => {
+                if (!data) return
+                setUpdateDApiData(data.awardDetails)
+                selectedBid.awardedBidData = data.awardDetails
+                setSelectedBid(selectedBid)
+            })
+            console.log(blockNumber.data)
+        }
+    }, [OevAuctionHouseAddres, address, blockNumber, chainId, selectedBid, selectedBidStatus])
+
     const switchActiveBid = (bid: BidInfo) => {
         if (lockState) return
         if (selectedBid.bidId === bid.bidId) {
@@ -180,6 +208,7 @@ const BidView = ({ bids }: any) => {
             setSelectedBid({} as BidInfo)
             setSelectedBidStatus({} as BidStatus)
         } else {
+            setUpdateDApiData(bid.awardedBidData)
             setSelectedBid(bid)
         }
     }
@@ -207,7 +236,7 @@ const BidView = ({ bids }: any) => {
                 <Spacer />
             </Flex>
             {
-                bids.toReversed().map((bid: BidInfo, index: number) => {
+                bids.filter((b: BidInfo) => !b.isExpired).toReversed().map((bid: BidInfo, index: number) => {
                     return (
                         <VStack key={index} width={"100%"} p={1} bgColor={getColor(bid)} spacing={1}>
                             <Flex gap={1} alignItems={"center"} width={"100%"}>
@@ -224,7 +253,7 @@ const BidView = ({ bids }: any) => {
                                     {
                                         selectedBidStatus.status === BidStatusEnum.Awarded && selectedBid.updateTx === "0x0" as `0x${string}` && !selectedBid.isExpired ?
                                             bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={"Switch Network to Update DApi"} /> :
-                                                <ExecuteButton text={"Update " + selectedBid.dapi.name} onClick={() => signUpdateTx()}></ExecuteButton>
+                                                <ExecuteButton isDisabled={!updateDApiCallData} text={"Update " + selectedBid.dapi.name} isD onClick={() => signUpdateTx()}></ExecuteButton>
                                             : null
                                     }
                                     {

@@ -72,6 +72,8 @@ const PlaceBid = () => {
                     bidDetailsHash: bidDetails.hash,
                     tx: hash,
                     updateTx: "0x0",
+                    awardedBidData: "0x0",
+                    txBlock: BigInt(0),
                     chainId: parseInt(selectedChain!.id),
                     dapi: dApi,
                     ethAmount: BigInt(parseEther(ethAmount)),
