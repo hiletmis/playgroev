@@ -32,7 +32,7 @@ export type BidInfo = {
     tx: `0x${string}`;
     updateTx: `0x${string}`;
     txBlock: bigint;
-    awardedBidData: `0x${string}`;
+    awardedBidData: UpdateOevProxyDataFeedWithSignedData | null;
     chainId: number;
     dapi: any;
     ethAmount: bigint;
@@ -120,3 +120,5 @@ export interface DecodedAwardedBidData {
     awardDetails: `0x${string}`;
     bidderBalance: bigint
 }
+
+export type UpdateOevProxyDataFeedWithSignedData = readonly [`0x${string}`, `0x${string}`, `0x${string}`, bigint, `0x${string}`, readonly `0x${string}`[]]
