@@ -73,9 +73,11 @@ export function getDapiProxyWithOevAddress(chainId: string, dApiName: string): `
     return computeDapiProxyWithOevAddress(chainId, dApiName, oevBeneficiary, metadata) as `0x${string}`;
 }
 
+export const generateRandom32Bytes = () => hexlify(randomBytes(32)) as `0x${string}`;
+
 export function encodeBidDetails(args: BidDetailsArgs) {
     const condition = BID_CONDITIONS.find((c) => c.description === args.bidType)!;
-    const rNonce = hexlify(randomBytes(32)) as `0x${string}`;
+    const rNonce = generateRandom32Bytes()
 
     const parsedAbiParameters = parseAbiParameters('address, uint256, int224, address, bytes32');
     //@ts-ignore
@@ -168,4 +170,17 @@ export function hashBidDetails(bidDetails: string) {
 
 export function fulfillmentDetails(hash: string) {
     return getBytes(hash);
+}
+//@ts-ignore
+export const deriveBeaconSetId = (dataFeedIds: string[]) => keccak256(encodeAbiParameters(parseAbiParameters('bytes32[]'), [dataFeedIds]));
+
+export function packOevUpdateSignature(airnodeAddress: `0x${string}`, templateId: `0x${string}`, signature: `0x${string}`) {
+    const parsedAbiParameters = parseAbiParameters('address, bytes32, bytes');
+    //@ts-ignore
+    return encodeAbiParameters(parsedAbiParameters, [airnodeAddress, templateId, signature]);
+}
+
+export function encodeData(decodedData: BigInt) {
+    //@ts-ignore
+    return encodeAbiParameters(['int256'], [decodedData]);
 }
