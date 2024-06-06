@@ -1,4 +1,4 @@
-import { ChainLogs, BidInfo, BidStatus, BidStatusEnum } from "../types";
+import { ChainLogs, BidInfo, BidStatus, BidStatusEnum, DecodedAwardedBidData } from "../types";
 import { OevAuctionHouse__factory } from '@api3/contracts';
 import { CHAINS } from "@api3/chains";
 import { dapis } from '@api3/dapi-management';
@@ -43,7 +43,7 @@ function findDapiProxy(chainId: string, address: string) {
     return dapi
 }
 
-function decodeLogs(logs: ChainLogs) {
+function decodePlacedBidLog(logs: ChainLogs) {
     const oevAuctionHouse = OevAuctionHouse__factory.createInterface();
 
     return logs.result.map((log) => {
@@ -71,6 +71,8 @@ function decodeLogs(logs: ChainLogs) {
             bidDetailsHash: bidDetails?.hash as `0x${string}`,
             tx: log.transactionHash as `0x${string}`,
             updateTx: "0x0",
+            awardedBidData: "0x0",
+            txBlock: BigInt(log.blockNumber),
             chainId: eventLog.chainId,
             dapi: dapi,
             ethAmount: eventLog.bidAmount,
@@ -78,9 +80,48 @@ function decodeLogs(logs: ChainLogs) {
             isExpired: isExpired,
             status: bidStatus
         });
-
         return decodedEventLog;
     })
+}
+
+function decodeAwardedBidLog(logs: ChainLogs) {
+    const oevAuctionHouse = OevAuctionHouse__factory.createInterface();
+
+    return logs.result.map((log) => {
+
+        const eventLog = oevAuctionHouse.decodeEventLog("AwardedBid", log.data, log.topics)
+
+        const awardedBidData: DecodedAwardedBidData = ({
+            bidder: eventLog.bidder,
+            bidTopic: eventLog.bidTopic,
+            bidId: eventLog.bidId,
+            awardDetails: eventLog.awardDetails,
+            bidderBalance: eventLog.bidderBalance
+        })
+
+        return awardedBidData;
+    })
+}
+
+
+export async function getAwardedBidLogs(auctioneer: string, rpcUrl: string, address: `0x${string}`, txBlock: bigint, bid: BidInfo) {
+    const latestBlock = await getLatestBlockNumber(rpcUrl);
+    const fromBlock = `0x${txBlock.toString(16)}`
+
+    const topics = [
+        "0xd6a2a9b03edbda2093822585a736f8b6377d318f22f5fdf2d1aa6961af709159",
+        address.replace("0x", "0x000000000000000000000000"),
+        "0x0000000000000000000000000000000000000000000000000000000000000001"
+    ]
+
+    const data = await fetchLog(auctioneer, rpcUrl, fromBlock, latestBlock, topics);
+    const decoded = decodeAwardedBidLog(data as ChainLogs);
+
+    const filter = decoded.filter((d) => d.bidId === bid.bidId);
+    if (filter.length === 0) return null;
+
+    return filter[0]
+
 }
 
 
@@ -93,6 +134,12 @@ export async function getAuctioneerLogs(auctioneer: string, rpcUrl: string, addr
         "0x0000000000000000000000000000000000000000000000000000000000000001"
     ]
 
+    const data = await fetchLog(auctioneer, rpcUrl, fromBlock, latestBlock, topics);
+    const decoded = decodePlacedBidLog(data as ChainLogs);
+    return decoded as BidInfo[];
+}
+
+async function fetchLog(auctioneer: string, rpcUrl: string, fromBlock: string, latestBlock: string, topics: string[]) {
     const res = await fetch(rpcUrl, {
         method: 'POST',
         headers: {
@@ -111,8 +158,5 @@ export async function getAuctioneerLogs(auctioneer: string, rpcUrl: string, addr
         }),
     });
 
-
-    const data = await res.json();
-    const decoded = decodeLogs(data as ChainLogs);
-    return decoded as BidInfo[];
+    return await res.json();
 }
