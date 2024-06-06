@@ -31,6 +31,8 @@ export type BidInfo = {
     bidDetailsHash: `0x${string}`;
     tx: `0x${string}`;
     updateTx: `0x${string}`;
+    txBlock: bigint;
+    awardedBidData: `0x${string}`;
     chainId: number;
     dapi: any;
     ethAmount: bigint;
@@ -63,9 +65,6 @@ export enum StatusColor {
     "green.200",
     "red.300",
 }
-
-export type MulticallDataType = `0x${string}`[];
-
 
 export const AddressSchema = z.enum([
     "0x34f13a5c0ad750d212267bcbc230c87aefd35cc5",
@@ -114,3 +113,10 @@ export interface DecodedPlaceBidData {
     protocolFeeAmount: string;
 }
 
+export interface DecodedAwardedBidData {
+    bidder: `0x${string}`;
+    bidTopic: `0x${string}`;
+    bidId: `0x${string}`;
+    awardDetails: `0x${string}`;
+    bidderBalance: bigint
+}
