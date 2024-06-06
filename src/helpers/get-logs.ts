@@ -1,5 +1,5 @@
-import { ChainLogs, BidInfo, BidStatus, BidStatusEnum, DecodedAwardedBidData } from "../types";
-import { OevAuctionHouse__factory } from '@api3/contracts';
+import { ChainLogs, BidInfo, BidStatus, BidStatusEnum, DecodedAwardedBidData, UpdateOevProxyDataFeedWithSignedData } from "../types";
+import { OevAuctionHouse__factory, Api3ServerV1__factory } from '@api3/contracts';
 import { CHAINS } from "@api3/chains";
 import { dapis } from '@api3/dapi-management';
 import * as Utils from './utils';
@@ -71,7 +71,7 @@ function decodePlacedBidLog(logs: ChainLogs) {
             bidDetailsHash: bidDetails?.hash as `0x${string}`,
             tx: log.transactionHash as `0x${string}`,
             updateTx: "0x0",
-            awardedBidData: "0x0",
+            awardedBidData: null,
             txBlock: BigInt(log.blockNumber),
             chainId: eventLog.chainId,
             dapi: dapi,
@@ -104,7 +104,7 @@ function decodeAwardedBidLog(logs: ChainLogs) {
 }
 
 
-export async function getAwardedBidLogs(auctioneer: string, rpcUrl: string, address: `0x${string}`, txBlock: bigint, bid: BidInfo) {
+export async function getAwardedBidLogs(auctioneer: string, rpcUrl: string, address: `0x${string}`, txBlock: bigint, bid: BidInfo): Promise<UpdateOevProxyDataFeedWithSignedData | null> {
     const latestBlock = await getLatestBlockNumber(rpcUrl);
     const fromBlock = `0x${txBlock.toString(16)}`
 
@@ -120,8 +120,19 @@ export async function getAwardedBidLogs(auctioneer: string, rpcUrl: string, addr
     const filter = decoded.filter((d) => d.bidId === bid.bidId);
     if (filter.length === 0) return null;
 
-    return filter[0]
+    const api3ServerV1Interface = Api3ServerV1__factory.createInterface();
+    const eventLog = api3ServerV1Interface.decodeFunctionData("updateOevProxyDataFeedWithSignedData", filter[0].awardDetails);
 
+    const updateData: UpdateOevProxyDataFeedWithSignedData = [
+        eventLog[0],
+        eventLog[1],
+        eventLog[2],
+        BigInt(eventLog[3]),
+        eventLog[4],
+        eventLog[5].map((a: string) => `0x${a}`)
+    ]
+
+    return updateData
 }
 
 
