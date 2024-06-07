@@ -68,8 +68,6 @@ const BidView = ({ bids }: any) => {
         if (receipt === undefined) return;
         if (selectedBid === undefined) return;
 
-        console.log(isFetchedReceipt, receipt, hash)
-
         selectedBid.txBlock = receipt.blockNumber
         setSelectedBid(selectedBid)
 
