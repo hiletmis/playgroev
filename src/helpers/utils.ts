@@ -68,7 +68,7 @@ export function getChain(id: string) {
 }
 
 export function getDapiProxyWithOevAddress(chainId: string, dApiName: string): `0x${string}` {
-    const oevBeneficiary = "0x11C1EcB2508a68D9d4de764a6e0ac76bF7E89691"
+    const oevBeneficiary = "0x14A9E40FcAdA95A273ce3c8d4ccF7EA3280BDd26"
     const metadata = "0x"
     return computeDapiProxyWithOevAddress(chainId, dApiName, oevBeneficiary, metadata) as `0x${string}`;
 }

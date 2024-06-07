@@ -2,7 +2,7 @@ import { Image, Text, Box, Flex, Spacer, VStack } from '@chakra-ui/react';
 import { COLORS, copy } from '../helpers/utils';
 
 const CopyInfoRow = (props: any) => {
-    const { header, text, margin = 0, copyEnabled = true, bgColor = COLORS.main } = props;
+    const { header, text, margin = 0, copyEnabled = true, refreshData = false, bgColor = COLORS.main } = props;
     return (
         <VStack direction="row" align="left" m={margin} width={"100%"}>
             <Text fontWeight={"bold"} fontSize={"sm"}>{header}</Text>
@@ -12,6 +12,9 @@ const CopyInfoRow = (props: any) => {
                     <Spacer />
                     {
                         !copyEnabled ? null : <Image marginLeft={"3"} cursor={"pointer"} onClick={() => copy(text)} src={`./copy.svg`} width={"24px"} height={"24px"} />
+                    }
+                    {
+                        !refreshData ? null : <Image marginLeft={"3"} cursor={"pointer"} onClick={() => props.refreshData()} src={`./refresh.svg`} width={"24px"} height={"24px"} />
                     }
 
                 </Flex>

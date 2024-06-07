@@ -143,7 +143,6 @@ const BidView = ({ bids }: any) => {
     useEffect(() => {
         if (!bidInfo) return
         if (!selectedBid) return
-        console.log(selectedBid.awardedBidData)
 
         const bidStatus = {
             status: bidInfo[0],
@@ -207,7 +206,6 @@ const BidView = ({ bids }: any) => {
                 selectedBid.awardedBidData = data
                 setSelectedBid(selectedBid)
             })
-            console.log(blockNumber.data)
         }
     }, [OevAuctionHouseAddres, address, blockNumber, chainId, selectedBid, selectedBidStatus])
 

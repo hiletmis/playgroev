@@ -63,6 +63,7 @@ export enum StatusColor {
     "yellow.300",
     "green.100",
     "green.200",
+    "green.300",
     "red.300",
 }
 
