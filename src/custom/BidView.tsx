@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { VStack, Flex, Spacer, Text, Image } from '@chakra-ui/react';
 import * as Utils from '../helpers/utils';
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 import { BidInfo, BidStatus, BidStatusEnum, StatusColor, UpdateOevProxyDataFeedWithSignedData } from '../types';
 import DApiRow from './DApiRow';
@@ -28,6 +29,7 @@ const BidView = ({ bids }: any) => {
     const [lockState, setLockState] = useState(false)
     const [isBusy, setIsBusy] = useState(false)
 
+    const [page, setPage] = useState(1)
     const { writeContract, data: hash, isPending, reset } = useWriteContract()
 
     const signUpdateTx = async () => {
@@ -209,6 +211,12 @@ const BidView = ({ bids }: any) => {
         }
     }, [OevAuctionHouseAddres, address, blockNumber, chainId, selectedBid, selectedBidStatus])
 
+    useEffect(() => {
+        if (page < 1) {
+            setPage(1)
+        }
+    }, [page])
+
     const switchActiveBid = (bid: BidInfo) => {
         if (lockState) return
         if (selectedBid.bidId === bid.bidId) {
@@ -237,6 +245,10 @@ const BidView = ({ bids }: any) => {
         return selectedBid.bidId === bid.bidId ? StatusColor[selectedBidStatus.status] : "blue.100"
     }
 
+    const paginate = (array: any[]) => {
+        return array.slice((page - 1) * 5, page * 5);
+    }
+
     return (
         <VStack width={"100%"} alignItems={"left"} >
             <Flex>
@@ -244,7 +256,7 @@ const BidView = ({ bids }: any) => {
                 <Spacer />
             </Flex>
             {
-                bids.filter((b: BidInfo) => !b.isExpired).toReversed().map((bid: BidInfo, index: number) => {
+                paginate(bids.toReversed()).map((bid: BidInfo, index: number) => {
                     return (
                         <VStack key={index} width={"100%"} p={1} bgColor={getColor(bid)} spacing={1}>
                             <Flex gap={1} alignItems={"center"} width={"100%"}>
@@ -276,6 +288,16 @@ const BidView = ({ bids }: any) => {
                         </VStack>
                     )
                 })
+            }
+            {
+                bids.length === 0 && <Text>No Bids</Text>
+            }
+            {
+                bids.length > 5 &&
+                <Flex gap={2}>
+                    <ChevronLeftIcon color={page === 1 ? "gray.100" : "black"} border={"1px"} borderColor={Utils.COLORS.app} width={"32px"} height={"32px"} onClick={page === 1 ? () => { } : () => setPage(page - 1)} cursor={"pointer"}></ChevronLeftIcon>
+                    <ChevronRightIcon color={page * 5 >= bids.length ? "gray.100" : "black"} border={"1px"} borderColor={Utils.COLORS.app} width={"32px"} height={"32px"} onClick={page * 5 >= bids.length ? () => { } : () => { setPage(page + 1) }} cursor={"pointer"}></ChevronRightIcon>
+                </Flex>
             }
         </VStack>
     );
