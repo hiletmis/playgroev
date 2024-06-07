@@ -171,11 +171,16 @@ const PlaceBid = () => {
         // if bids empty
         if (bids.length === 0) {
             getAuctioneerLogs(OevAuctionHouseAddres, "https://oev-network.calderachain.xyz/http", address).then((data) => {
-                setBids(data)
+                setBids(data.filter((b: BidInfo) => !b.isExpired))
             })
         }
 
     }, [OevAuctionHouseAddres, address, bids])
+
+    useEffect(() => {
+        if (address == null) return;
+        setBids([])
+    }, [address])
 
     return (
         chain == null ? <SignIn></SignIn> :
