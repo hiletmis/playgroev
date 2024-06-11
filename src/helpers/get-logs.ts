@@ -111,7 +111,7 @@ export async function getAwardedBidLogs(auctioneer: string, rpcUrl: string, addr
     const topics = [
         "0xd6a2a9b03edbda2093822585a736f8b6377d318f22f5fdf2d1aa6961af709159",
         address.replace("0x", "0x000000000000000000000000"),
-        "0x0000000000000000000000000000000000000000000000000000000000000001"
+        "0x76302d70726f642d61756374696f6e6565720000000000000000000000000000"
     ]
 
     const data = await fetchLog(auctioneer, rpcUrl, fromBlock, latestBlock, topics);
@@ -142,7 +142,7 @@ export async function getAuctioneerLogs(auctioneer: string, rpcUrl: string, addr
     const topics = [
         "0x37d580e87cc06489401e512a96663a7330c5096febe57bd356f5f2a327994c10",
         address.replace("0x", "0x000000000000000000000000"),
-        "0x0000000000000000000000000000000000000000000000000000000000000001"
+        "0x76302d70726f642d61756374696f6e6565720000000000000000000000000000"
     ]
 
     const data = await fetchLog(auctioneer, rpcUrl, fromBlock, latestBlock, topics);
