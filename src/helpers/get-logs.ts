@@ -147,7 +147,8 @@ export async function getAuctioneerLogs(auctioneer: string, rpcUrl: string, addr
 
     const data = await fetchLog(auctioneer, rpcUrl, fromBlock, latestBlock, topics);
     const decoded = decodePlacedBidLog(data as ChainLogs);
-    return decoded as BidInfo[];
+    const last = decoded[decoded.length - 1];
+    return last as BidInfo;
 }
 
 async function fetchLog(auctioneer: string, rpcUrl: string, fromBlock: string, latestBlock: string, topics: string[]) {
