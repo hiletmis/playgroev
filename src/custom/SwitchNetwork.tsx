@@ -1,8 +1,7 @@
-import { VStack, Heading, Flex, Spacer, Text, Box, Image, Stack, Button } from '@chakra-ui/react';
-import { COLORS } from '../helpers/utils';
+import { VStack, Heading, Flex, Spacer, Text, Image, Stack } from '@chakra-ui/react';
 import { useAccount, useSwitchChain } from "wagmi";
 import SignIn from './SignIn';
-import { ChainLogo } from '@api3/logos';
+import ExecuteButton from './ExecuteButton';
 
 const SwitchNetwork = ({ destinationChain = 4913, header = true, customMessage = "", switchMessage = "Switch Network" }: any) => {
 
@@ -34,36 +33,8 @@ const SwitchNetwork = ({ destinationChain = 4913, header = true, customMessage =
                         </VStack>
 
                         : null}
-
-
-
-                <Box width={"100%"} height="85px" bgColor={COLORS.app} >
-                    <VStack spacing={3} direction="row" align="left" m="1rem">
-                        <Flex>
-                            <Spacer />
-
-                            <Image src={ChainLogo(chain.id.toString(), true)} fallbackSrc="./caution.svg" width={"50px"} height={"50px"} />
-                            <Spacer />
-                            <Image src={`./switch.svg`} width={"50px"} height={"50px"} />
-                            <Spacer />
-                            <Image src={ChainLogo(destinationChain, true)} width={"50px"} height={"50px"} />
-                            <Spacer />
-
-                        </Flex>
-                    </VStack>
-                </Box>
                 <Stack alignItems={"center"} >
-                    <Button
-                        borderColor="gray.500"
-                        borderWidth="1px"
-                        color="black"
-                        size="md"
-                        minWidth={"200px"}
-                        isDisabled={isPending || chain?.id === destinationChain}
-                        onClick={switchChain1}
-                    >
-                        {isPending ? "Switching" : switchMessage}
-                    </Button>
+                    <ExecuteButton isDisabled={isPending || chain?.id === destinationChain} text={isPending ? "Switching" : switchMessage} onClick={() => switchChain1()}></ExecuteButton>
                 </Stack>
             </VStack>
     );
