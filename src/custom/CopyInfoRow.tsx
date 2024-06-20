@@ -5,10 +5,10 @@ const CopyInfoRow = (props: any) => {
     const { header, text, margin = 0, copyEnabled = true, refreshData = false, bgColor = COLORS.main } = props;
     return (
         <VStack direction="row" align="left" m={margin} width={"100%"}>
-            <Text fontWeight={"bold"} fontSize={"sm"}>{header}</Text>
+            <Text fontWeight={"bold"} fontSize={"md"}>{header}</Text>
             <Box p="2" width={"100%"} bgColor={bgColor} alignItems={"center"}>
                 <Flex className='box'>
-                    <Text noOfLines={1} fontSize={"sm"}>{text}</Text>
+                    <Text noOfLines={1} fontSize={"md"}>{text}</Text>
                     <Spacer />
                     {
                         !copyEnabled ? null : <Image marginLeft={"3"} cursor={"pointer"} onClick={() => copy(text)} src={`./copy.svg`} width={"24px"} height={"24px"} />
