@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import SignIn from '../custom/SignIn';
 import SwitchNetwork from '../custom/SwitchNetwork';
 import { useAccount, useReadContract, useWriteContract, useSimulateContract } from "wagmi";
@@ -10,13 +10,13 @@ import ExecuteButton from "../custom/ExecuteButton";
 import ErrorRow from "../custom/ErrorRow";
 import DApiList from "../custom/DApiList";
 import InfoRow from "../custom/InfoRow";
-import BidView from "../custom/BidView";
-import { BidDetailsArgs } from "../types";
+import { BidDetailsArgs, BidPrices, StageEnum } from "../types";
 import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { parseEther } from 'ethers';
 import { BidInfo } from "../types";
 import { bidTopic } from "../helpers/constants";
 import { getAuctioneerLogs } from "../helpers/get-logs";
+import { OevContext } from "../OEVContext";
 
 import {
     VStack, Flex, Text
@@ -24,6 +24,7 @@ import {
 
 const PlaceBid = () => {
     const { address, chain } = useAccount()
+    const { setPrices, stage, setStage, setBid, bid, isBiddable } = useContext(OevContext);
 
     const [selectedChain, setSelectedChain] = useState(Utils.getChain("1"));
     const [dApi, setDapi] = useState(Utils.getEthUsdDapi());
@@ -38,7 +39,6 @@ const PlaceBid = () => {
     const [collateralFee, setCollateralFee] = useState(BigInt(0))
 
     const [bidId, setBidId] = useState("" as `0x${string}`)
-    const [bids, setBids] = useState([] as BidInfo[])
     const [isInputDisabled, setIsInputDisabled] = useState(false)
 
     const [isError, setIsError] = useState(false)
@@ -82,7 +82,10 @@ const PlaceBid = () => {
                     status: null
                 } as BidInfo
 
-                setBids([...bids, newBid])
+                setBid(newBid)
+                if (stage === StageEnum.PlaceBid) {
+                    setStage(StageEnum.AwardAndUpdate)
+                }
 
             }
         });
@@ -117,7 +120,7 @@ const PlaceBid = () => {
             protocolFee
         ],
         query: {
-            enabled: ethAmount !== "0" && ethAmount !== "" && fulfillValue !== "" && bidType !== "",
+            enabled: (ethAmount !== "0" && ethAmount !== "" && fulfillValue !== "" && bidType !== "") || (stage === StageEnum.PlaceBid),
         }
     })
 
@@ -131,6 +134,9 @@ const PlaceBid = () => {
         if (address == null) return;
 
         const oevProxy = Utils.getDapiProxyWithOevAddress(selectedChain.id.toString(), dApi.name);
+        Utils.getPrices(selectedChain.symbol + "/USD").then((prices: BidPrices) => {
+            setPrices(prices)
+        })
         setDapiProxyWithOevAddress(oevProxy);
 
         if (bidType !== "LTE" && bidType !== "GTE") return;
@@ -149,7 +155,7 @@ const PlaceBid = () => {
         setBidDetails(bidDetailsArgs)
         setBidId(Utils.getBidId(address, bidTopic, bidDetails))
 
-    }, [address, bidType, dApi, fulfillValue, selectedChain]);
+    }, [address, bidType, dApi, fulfillValue, selectedChain, setPrices]);
 
     useEffect(() => {
         if (bidderBalance != null) {
@@ -169,50 +175,51 @@ const PlaceBid = () => {
         if (address == null) return;
         if (OevAuctionHouseAddres == null) return;
         // if bids empty
-        if (bids.length === 0) {
+        if (bid === {} as BidInfo) {
             getAuctioneerLogs(OevAuctionHouseAddres, "https://oev-network.calderachain.xyz/http", address).then((data) => {
-                setBids(data.filter((b: BidInfo) => !b.isExpired))
+                setBid(data)
             })
         }
 
-    }, [OevAuctionHouseAddres, address, bids])
+    }, [OevAuctionHouseAddres, address, bid, setBid])
 
     useEffect(() => {
         if (address == null) return;
-        setBids([])
-    }, [address])
+        setBid(undefined)
+    }, [address, setBid])
 
     return (
         chain == null ? <SignIn></SignIn> :
             <VStack spacing={4} alignItems={"left"} >
                 <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={isInputDisabled}></CustomHeading>
-                <Flex flexWrap={"wrap"} justifyContent={"space-between"} alignItems={"left"} width={"100%"} >
-                    <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
-                        <Flex>
-                            <Text fontWeight={"bold"} fontSize={"md"}>Select Chain and DApi</Text>
-                        </Flex>
-                        <VStack spacing={2} direction="row" align="left">
-                            <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
-                            <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} link={Utils.dapiProxyAddressExternalLink(selectedChain?.explorer.browserUrl, dapiProxyWithOevAddress)}></InfoRow>
-                            {
-                                chain.id !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Place a Bid"} /> :
-                                    <VStack alignItems={"left"} spacing={5}>
-                                        <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={chain} isInputDisabled={isInputDisabled}></BidAmount>
-                                        <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
-                                        <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
-                                        <ExecuteButton
-                                            isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || parseFloat(ethBalance) < parseFloat(ethAmount)}
-                                            text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
-                                            onClick={signPayload}>
-                                        </ExecuteButton>
-                                    </VStack>
-                            }
-                        </VStack>
+                <VStack maxW={"700px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
+                    <Flex>
+                        <Text fontWeight={"bold"} fontSize={"md"}>Select Chain and DApi</Text>
+                    </Flex>
+                    <VStack spacing={2} direction="row" align="left">
+                        <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
+                        <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} link={Utils.dapiProxyAddressExternalLink(selectedChain?.explorer.browserUrl, dapiProxyWithOevAddress)}></InfoRow>
+
+                        {
+                            chain.id !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Place a Bid"} /> :
+                                <VStack alignItems={"left"} spacing={5}>
+                                    <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={selectedChain} isInputDisabled={isInputDisabled}></BidAmount>
+                                    <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
+                                    <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
+
+                                    {
+                                        stage > StageEnum.PlaceBid ? <ErrorRow text={"Your bid has been placed. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Bid"}></ErrorRow> :
+                                            <ExecuteButton
+                                                isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || !isBiddable}
+                                                text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
+                                                onClick={signPayload}>
+                                            </ExecuteButton>
+                                    }
+                                </VStack>
+                        }
                     </VStack>
-                    <VStack minW={"400px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"} overflow={"scroll"}>
-                        <BidView bids={bids}></BidView>
-                    </VStack>
-                </Flex>
+                </VStack>
+
             </VStack>
     );
 };
