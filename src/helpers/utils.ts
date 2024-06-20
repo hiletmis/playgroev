@@ -10,7 +10,8 @@ import {
     Hex
 } from 'viem';
 
-import { BidCondition, BidDetailsArgs } from '../types';
+import { BidCondition, BidDetailsArgs, BidPrices } from '../types';
+import { getSignedData } from './signed-api';
 
 export const parseETH = (value: any) => {
     if (value === undefined) return '0';
@@ -22,7 +23,7 @@ export const COLORS = {
     appDarker: '#e1e1e1',
     bg: '#ffffff',
     table: "blue.900",
-    info: "gray.500",
+    info: "blue.100",
     main: "#ffffff",
     button: "blue.700",
     buttonDisabled: "gray.800",
@@ -183,4 +184,25 @@ export function packOevUpdateSignature(airnodeAddress: `0x${string}`, templateId
 export function encodeData(decodedData: BigInt) {
     //@ts-ignore
     return encodeAbiParameters(['int256'], [decodedData]);
+}
+
+export async function getBidTokenPrice(dApiName: string): Promise<BigInt> {
+    const price = await getSignedData(dApiName);
+    const decodedPrice = price.map((p: any) => BigInt(p.encodedValue));
+    const median = decodedPrice.sort()[Math.floor(decodedPrice.length / 2)];
+    return median;
+}
+
+export function getETHPrice() {
+    return getBidTokenPrice('ETH/USD');
+}
+
+export async function getPrices(dApiName: string): Promise<BidPrices> {
+    const bidTokenPrice = await getBidTokenPrice(dApiName);
+    const ethPrice = await getETHPrice();
+
+    return {
+        colleteralTokenPrice: ethPrice,
+        bidTokenPrice: bidTokenPrice,
+    }
 }
