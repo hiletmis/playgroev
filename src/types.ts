@@ -58,6 +58,15 @@ export enum BidStatusEnum {
     "FulfillmentContradicte",
 }
 
+export enum StageEnum {
+    "SignIn" = -1,
+    "Bridge" = 0,
+    "Deposit" = 1,
+    "PlaceBid" = 2,
+    "AwardAndUpdate" = 3,
+    "Report" = 4,
+}
+
 export enum StatusColor {
     "blue.100",
     "yellow.300",
@@ -123,3 +132,8 @@ export interface DecodedAwardedBidData {
 }
 
 export type UpdateOevProxyDataFeedWithSignedData = readonly [`0x${string}`, `0x${string}`, `0x${string}`, bigint, `0x${string}`, readonly `0x${string}`[]]
+
+export type BidPrices = {
+    colleteralTokenPrice: BigInt;
+    bidTokenPrice: BigInt;
+};
