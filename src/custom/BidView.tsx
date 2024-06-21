@@ -25,7 +25,6 @@ const BidView = () => {
 
     const [updateDApiData, setUpdateDApiData] = useState(null as UpdateOevProxyDataFeedWithSignedData | null);
 
-    const [selectedBidStatus, setSelectedBidStatus] = useState({} as BidStatus)
     const [isBusy, setIsBusy] = useState(false)
 
     const [page, setPage] = useState(1)
@@ -55,9 +54,30 @@ const BidView = () => {
         hash
     });
 
+    const checkBidStatus = (status: BidStatusEnum) => {
+        if (!bid) return false
+        if (bid.isExpired) return false
+        if (bid.status === null) return false
+        return bid.status.status === status
+    }
+
+    const getBidStatus = () => {
+        const dummyStatus = {
+            status: 0,
+            expirationTimestamp: BigInt(0),
+            collateralAmount: BigInt(0),
+            protocolFeeAmount: BigInt(0),
+            bidId: "0x0" as `0x${string}`
+        }
+
+        if (!bid) return dummyStatus
+        if (!bid.status) return dummyStatus
+        return bid.status
+    }
+
     const blockNumber = useBlockNumber({
         query: {
-            enabled: selectedBidStatus.status === BidStatusEnum.Awarded && chainId === 4913,
+            enabled: checkBidStatus(BidStatusEnum.Awarded) && chainId === 4913,
         }
     })
 
@@ -81,7 +101,7 @@ const BidView = () => {
             setStage(StageEnum.Report)
         }
 
-        setBid(bid)
+
     }, [hash, bid, setBid, stage, setStage]);
 
     //@ts-ignore
@@ -107,7 +127,7 @@ const BidView = () => {
         args: updateDApiData ? updateDApiData : ["0x0", "0x0", "0x0", BigInt(0), "0x0", ["0x0"]],
         value: bid ? bid.ethAmount : BigInt(0),
         query: {
-            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && selectedBidStatus.status === BidStatusEnum.Awarded
+            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && checkBidStatus(BidStatusEnum.Awarded)
         }
     })
 
@@ -122,9 +142,10 @@ const BidView = () => {
             protocolFeeAmount: (bidInfo[3]),
             bidId: bid.bidId
         } as BidStatus
-        setSelectedBidStatus(bidStatus)
+        bid.status = bidStatus
+        setBid(bid)
 
-    }, [bidInfo, bid, stage, setStage])
+    }, [bidInfo, bid, stage, setStage, setBid])
 
     useEffect(() => {
         if (!chainId) return
@@ -159,11 +180,11 @@ const BidView = () => {
     useEffect(() => {
         if (!blockNumber) return
         if (!bid) return
-        if (!selectedBidStatus) return
+        if (!bid.status) return
         if (!chainId) return
         if (!address) return
 
-        if (selectedBidStatus.status === BidStatusEnum.Awarded && chainId === 4913 && bid.awardedBidData === null) {
+        if (bid.status.status === BidStatusEnum.Awarded && chainId === 4913 && bid.awardedBidData === null) {
             getAwardedBidLogs(OevAuctionHouseAddres, "https://oev-network.calderachain.xyz/http", address, BigInt(bid.txBlock), bid).then((data) => {
                 if (!data) return
                 setUpdateDApiData(data)
@@ -171,7 +192,7 @@ const BidView = () => {
                 setBid(bid)
             })
         }
-    }, [OevAuctionHouseAddres, address, bid, blockNumber, chainId, selectedBidStatus, setBid])
+    }, [OevAuctionHouseAddres, address, bid, blockNumber, chainId, setBid])
 
     useEffect(() => {
         if (page < 1) {
@@ -188,7 +209,7 @@ const BidView = () => {
 
     const getColor = (bid: BidInfo) => {
         if (bid.isExpired) return "red.300"
-        return StatusColor[selectedBidStatus.status]
+        return StatusColor[bid.status ? bid.status.status : 0]
     }
 
     return (
@@ -200,11 +221,11 @@ const BidView = () => {
                 </Flex>
                 {
                     <VStack width={"100%"} p={5} bgColor={getColor(bid)} spacing={3}>
-                        <CopyInfoRow header={"Collateral Amount"} text={Utils.parseETH(selectedBidStatus.collateralAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
-                        <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(selectedBidStatus.protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
-                        <CopyInfoRow header={"Status"} text={BidStatusEnum[selectedBidStatus.status]} copyEnabled={false}></CopyInfoRow>
+                        <CopyInfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
+                        <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
+                        <CopyInfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} copyEnabled={false}></CopyInfoRow>
                         {
-                            selectedBidStatus.status === BidStatusEnum.Awarded && bid.updateTx === "0x0" as `0x${string}` && !bid.isExpired ?
+                            getBidStatus().status === BidStatusEnum.Awarded && bid.updateTx === "0x0" as `0x${string}` && !bid.isExpired ?
                                 bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={"Switch Network to Update DApi"} /> :
                                     <ExecuteButton isDisabled={!updateDApiCallData} text={"Update " + bid.dapi.name} isD onClick={() => signUpdateTx()}></ExecuteButton>
                                 : null
