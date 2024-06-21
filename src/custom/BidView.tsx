@@ -261,8 +261,8 @@ const BidView = () => {
                             }
                         </Flex>
                         {
-                            bid.reportTx !== "0x0" as `0x${string}` &&
-                            <InfoRow header={"Update Transaction"} text={bid.updateTx} link={Utils.transactionLink(bid.explorer, bid.reportTx)} copyEnabled={true}></InfoRow>
+                            bid.updateTx !== "0x0" as `0x${string}` &&
+                            <InfoRow header={"Update Transaction"} text={bid.updateTx} link={Utils.transactionLink(bid.explorer, bid.updateTx)} copyEnabled={true}></InfoRow>
                         }
 
                         <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} ></InfoRow>
