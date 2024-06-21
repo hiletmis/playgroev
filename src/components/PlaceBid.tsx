@@ -71,6 +71,7 @@ const PlaceBid = () => {
                     bidDetailsHash: bidDetails.hash,
                     tx: hash,
                     updateTx: "0x0",
+                    reportTx: "0x0",
                     awardedBidData: null,
                     txBlock: BigInt(0),
                     chainId: parseInt(selectedChain!.id),

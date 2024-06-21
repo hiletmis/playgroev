@@ -71,6 +71,7 @@ function decodePlacedBidLog(logs: ChainLogs) {
             bidDetailsHash: bidDetails?.hash as `0x${string}`,
             tx: log.transactionHash as `0x${string}`,
             updateTx: "0x0",
+            reportTx: "0x0",
             awardedBidData: null,
             txBlock: BigInt(log.blockNumber),
             chainId: eventLog.chainId,

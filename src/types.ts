@@ -31,6 +31,7 @@ export type BidInfo = {
     bidDetailsHash: `0x${string}`;
     tx: `0x${string}`;
     updateTx: `0x${string}`;
+    reportTx: `0x${string}`;
     txBlock: bigint;
     awardedBidData: UpdateOevProxyDataFeedWithSignedData | null;
     chainId: number;
@@ -66,8 +67,9 @@ export enum StageEnum {
     "PlaceBid" = 2,
     "AwardAndUpdate" = 3,
     "Report" = 4,
-    "Confirm" = 5, // Confirm the report
-    "Contradict" = 6 // Contradict the report
+    "Reported" = 5,
+    "Confirm" = 6, // Confirm the report
+    "Contradict" = 7 // Contradict the report
 }
 
 export enum StatusColor {
