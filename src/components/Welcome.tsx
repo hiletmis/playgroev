@@ -37,7 +37,7 @@ const Welcome = () => {
 
         function checkSetTab(state: number) {
             if (isDisabled) return
-            console.log(stage, state)
+
             if (stage > StageEnum.PlaceBid && state !== stage) {
                 if (window.confirm("Do you really want to leave, you may lose your progress?")) {
                     setStage(state)

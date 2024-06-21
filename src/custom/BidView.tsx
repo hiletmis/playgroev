@@ -124,7 +124,7 @@ const BidView = () => {
         args: [],
         query: {
             refetchInterval: 5000,
-            enabled: bid ? bid.bidId !== "" as `0x${string}` : false
+            enabled: chainId === bid?.chainId
         }
     });
 
@@ -138,7 +138,7 @@ const BidView = () => {
         args: updateDApiData ? updateDApiData : ["0x0", "0x0", "0x0", BigInt(0), "0x0", ["0x0"]],
         value: bid ? bid.ethAmount : BigInt(0),
         query: {
-            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && checkBidStatus(BidStatusEnum.Awarded)
+            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && checkBidStatus(BidStatusEnum.Awarded) && stage === StageEnum.AwardAndUpdate,
         }
     })
 
@@ -208,6 +208,7 @@ const BidView = () => {
     useEffect(() => {
         if (dapiValue === undefined) return;
         const date = new Date(dapiValue[1] * 1000)
+        if (dapiValue[0] === dapiValueBeforeUpdate?.value) return;
 
         const data = {
             value: dapiValue[0],
@@ -222,7 +223,7 @@ const BidView = () => {
             setDapiValueBeforeUpdate(data)
         }
 
-    }, [dapiValue, stage])
+    }, [dapiValue, stage, dapiValueBeforeUpdate])
 
     const checkCorrectNetwork = (bid: BidInfo) => {
         if (chainId !== 4913) {
@@ -245,12 +246,23 @@ const BidView = () => {
                 </Flex>
                 {
                     <VStack width={"100%"} spacing={3}>
-                        <InfoRow header={"Bid Condition"} text={Utils.parseETH(bid.bidDetails.conditionValue) + " " + bid.bidDetails.bidType} ></InfoRow>
-                        <InfoRow header={"Bid Amount"} text={Utils.parseETH(bid.ethAmount) + " " + bid.chainSymbol} ></InfoRow>
-                        <InfoRow header={"DApi Value Before Update"} text={"$" + Utils.parseETH(dapiValueBeforeUpdate?.value) + " | " + dapiValueBeforeUpdate?.timestamp} ></InfoRow>
+                        <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
+                            <InfoRow header={"Bid Condition"} text={Utils.parseETH(bid.bidDetails.conditionValue) + " " + bid.bidDetails.bidType} ></InfoRow>
+                            <InfoRow header={"Bid Amount"} text={Utils.parseETH(bid.ethAmount) + " " + bid.chainSymbol} ></InfoRow>
+                        </Flex>
+                        <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
+                            {
+                                chainId === bid.chainId &&
+                                <InfoRow header={"DApi Value Before Update"} text={"$" + Utils.parseETH(dapiValueBeforeUpdate?.value) + " | " + dapiValueBeforeUpdate?.timestamp} ></InfoRow>
+                            }
+                            {
+                                stage === StageEnum.Report && dapiValueAfterUpdate &&
+                                <InfoRow header={"DApi Value After Update"} text={"$" + Utils.parseETH(dapiValueAfterUpdate?.value) + " | " + dapiValueAfterUpdate?.timestamp} ></InfoRow>
+                            }
+                        </Flex>
                         {
-                            stage === StageEnum.Report &&
-                            <InfoRow header={"DApi Value After Update"} text={"$" + Utils.parseETH(dapiValueAfterUpdate?.value) + " | " + dapiValueAfterUpdate?.timestamp} ></InfoRow>
+                            bid.reportTx !== "0x0" as `0x${string}` &&
+                            <InfoRow header={"Update Transaction"} text={bid.updateTx} link={Utils.transactionLink(bid.explorer, bid.reportTx)} copyEnabled={true}></InfoRow>
                         }
 
                         <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} ></InfoRow>
