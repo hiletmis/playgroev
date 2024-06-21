@@ -119,7 +119,7 @@ const PlaceBid = () => {
             protocolFee
         ],
         query: {
-            enabled: (ethAmount !== "0" && ethAmount !== "" && fulfillValue !== "" && bidType !== "") && (stage === StageEnum.PlaceBid),
+            enabled: (ethAmount !== "0" && ethAmount !== "" && fulfillValue !== "" && bidType !== "") && (stage === StageEnum.PlaceBid) && isBiddable,
         }
     })
 
