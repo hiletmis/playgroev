@@ -29,7 +29,6 @@ const BidView = () => {
     const { writeContract, data: hash, isPending, reset } = useWriteContract()
 
     const signUpdateTx = async () => {
-        console.log("Update Bid")
         if (updateDApiCallData == null) return;
         setIsBusy(true)
 
@@ -41,7 +40,6 @@ const BidView = () => {
                 reset();
             },
             onSuccess: () => {
-                console.log("Success")
                 setIsBusy(false)
             }
         });
@@ -167,11 +165,6 @@ const BidView = () => {
         setApi3ServerV1Address(api3ServerV1Address)
 
     }, [chainId])
-
-    useEffect(() => {
-        if (!updateDApiCallData) return
-        console.log(updateDApiCallData)
-    }, [updateDApiCallData])
 
     useEffect(() => {
         if (!errorUpdate) return

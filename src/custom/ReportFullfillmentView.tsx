@@ -60,8 +60,6 @@ const BidView = () => {
 
         bid.txBlock = receipt.blockNumber
         setBid(bid)
-        console.log("Receipt", receipt)
-        console.log("hash", hash)
 
     }, [isFetchedReceipt, receipt, hash, bid, setBid]);
 
@@ -69,7 +67,6 @@ const BidView = () => {
         if (hash === undefined) return;
         if (bid === undefined) return;
         bid.reportTx = hash as `0x${string}`
-        console.log("reportTx", hash)
         if (stage === StageEnum.AwardAndUpdate && bid.reportTx !== "0x0" as `0x${string}`) {
             setStage(StageEnum.Reported)
         }
@@ -78,7 +75,6 @@ const BidView = () => {
     }, [hash, bid, setBid, stage, setStage]);
 
     const reportFulfillment = async () => {
-        console.log("Report Fullfillment")
         setIsBusy(true)
 
         if (reportFullfillmentData == null) return;
@@ -92,7 +88,6 @@ const BidView = () => {
             },
             onSuccess: () => {
                 setIsBusy(false)
-                console.log("Success")
             }
         });
     }
@@ -172,11 +167,6 @@ const BidView = () => {
     }, [chainId])
 
     useEffect(() => {
-        if (!reportFullfillmentData) return
-        console.log(reportFullfillmentData)
-    }, [reportFullfillmentData])
-
-    useEffect(() => {
         if (!errorReportFullfillment) return
 
         console.log(errorReportFullfillment)
@@ -184,7 +174,6 @@ const BidView = () => {
 
     useEffect(() => {
         if (bidderBalance === undefined) return;
-        console.log("Bidder Balance", bidderBalance, StageEnum[stage])
         if (stage === StageEnum.Report) {
             setBidderBalanceBeforeUpdate(bidderBalance)
         }
