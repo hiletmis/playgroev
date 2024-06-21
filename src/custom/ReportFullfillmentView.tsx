@@ -223,6 +223,10 @@ const BidView = () => {
                 {
                     <VStack width={"100%"} spacing={3}>
                         <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
+                            <InfoRow header={"Bid Condition"} text={Utils.parseETH(bid.bidDetails.conditionValue) + " " + bid.bidDetails.bidType} ></InfoRow>
+                            <InfoRow header={"Bid Amount"} text={Utils.parseETH(bid.ethAmount) + " " + bid.chainSymbol} ></InfoRow>
+                        </Flex>
+                        <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
                             <InfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} ></InfoRow>
                             <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} ></InfoRow>
                         </Flex>
