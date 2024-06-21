@@ -5,7 +5,7 @@ import * as Utils from '../helpers/utils';
 import { BidInfo, BidStatus, BidStatusEnum, StageEnum, StatusColor, UpdateOevProxyDataFeedWithSignedData } from '../types';
 import DApiRow from './DApiRow';
 import { ChainLogo } from '@api3/logos';
-import CopyInfoRow from './CopyInfoRow';
+import InfoRow from './InfoRow';
 import ExecuteButton from './ExecuteButton';
 import { useReadContract, useAccount, useSimulateContract, useWriteContract, useWaitForTransactionReceipt, useBlockNumber } from 'wagmi';
 import { OevAuctionHouse__factory, Api3ServerV1__factory, deploymentAddresses } from '@api3/contracts';
@@ -257,16 +257,16 @@ const BidView = () => {
 
     return (
         bid === undefined ? null :
-            <VStack width={"100%"} p={1} bgColor={getColor(bid)} spacing={1}>
-                <Flex gap={1} alignItems={"center"} width={"100%"}>
+            <VStack width={"100%"} p={1} spacing={3}>
+                <Flex p={2} gap={1} alignItems={"center"} boxShadow={"sm"} bgColor={getColor(bid)} width={"100%"}>
                     <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
                     <DApiRow dApi={bid.dapi} isLoading={(isPending || isLoading || isBusy)} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { switchActiveBid(bid) }} isOpen={true} bgColor={"white"}></DApiRow>
                 </Flex>
                 {
-                    <VStack width={"100%"} p={5} bgColor={getColor(bid)} spacing={3}>
-                        <CopyInfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
-                        <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
-                        <CopyInfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} copyEnabled={false}></CopyInfoRow>
+                    <VStack width={"100%"} spacing={3}>
+                        <InfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} ></InfoRow>
+                        <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} ></InfoRow>
+                        <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} copyEnabled={false}></InfoRow>
                         {
                             getBidStatus().status === BidStatusEnum.Awarded && bid.updateTx !== "0x0" as `0x${string}` ?
                                 chainId !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Report Fullfillment"} /> :
@@ -278,8 +278,8 @@ const BidView = () => {
                 {
                     stage === StageEnum.Confirm &&
                     <VStack width={"100%"} p={5} bgColor={getColor(bid)} spacing={3}>
-                        <CopyInfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
-                        <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
+                        <InfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} ></InfoRow>
+                        <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"}></InfoRow>
                         <ExecuteButton text={"Place a New Bid"} onClick={() => setTab(StageEnum.PlaceBid)}></ExecuteButton>
                     </VStack>
                 }

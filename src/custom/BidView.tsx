@@ -2,13 +2,13 @@ import { useEffect, useState, useContext } from 'react';
 import { VStack, Flex, Image } from '@chakra-ui/react';
 import * as Utils from '../helpers/utils';
 
-import { BidInfo, BidStatus, BidStatusEnum, StageEnum, StatusColor, UpdateOevProxyDataFeedWithSignedData } from '../types';
+import { BidInfo, BidStatus, BidStatusEnum, StageEnum, StatusColor, UpdateOevProxyDataFeedWithSignedData, DApiValue } from '../types';
 import DApiRow from './DApiRow';
 import { ChainLogo } from '@api3/logos';
-import CopyInfoRow from './CopyInfoRow';
+import InfoRow from './InfoRow';
 import ExecuteButton from './ExecuteButton';
 import { useReadContract, useAccount, useSimulateContract, useWriteContract, useWaitForTransactionReceipt, useBlockNumber } from 'wagmi';
-import { OevAuctionHouse__factory, Api3ServerV1__factory, deploymentAddresses } from '@api3/contracts';
+import { OevAuctionHouse__factory, Api3ServerV1__factory, DapiProxyWithOev__factory, deploymentAddresses } from '@api3/contracts';
 import SwitchNetwork from './SwitchNetwork';
 import ErrorRow from './ErrorRow';
 import { getAwardedBidLogs } from '../helpers/get-logs';
@@ -19,15 +19,13 @@ const BidView = () => {
 
     const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
     const [api3ServerV1Address, setApi3ServerV1Address] = useState("" as `0x${string}`)
+    const [updateDApiData, setUpdateDApiData] = useState(null as UpdateOevProxyDataFeedWithSignedData | null);
+    const [isBusy, setIsBusy] = useState(false)
+    const [dapiValueBeforeUpdate, setDapiValueBeforeUpdate] = useState(null as DApiValue | null)
+    const [dapiValueAfterUpdate, setDapiValueAfterUpdate] = useState(null as DApiValue | null)
 
     const { chain, chainId, address } = useAccount()
     const { setBid, bid, stage, setStage } = useContext(OevContext);
-
-    const [updateDApiData, setUpdateDApiData] = useState(null as UpdateOevProxyDataFeedWithSignedData | null);
-
-    const [isBusy, setIsBusy] = useState(false)
-
-    const [page, setPage] = useState(1)
     const { writeContract, data: hash, isPending, reset } = useWriteContract()
 
     const signUpdateTx = async () => {
@@ -117,6 +115,19 @@ const BidView = () => {
         }
     });
 
+    //@ts-ignore
+    const { data: dapiValue } = useReadContract({
+        address: bid?.bidDetails.proxyAddress as `0x${string}`,
+        abi: DapiProxyWithOev__factory.abi,
+        chainId: chainId,
+        functionName: 'read',
+        args: [],
+        query: {
+            refetchInterval: 5000,
+            enabled: bid ? bid.bidId !== "" as `0x${string}` : false
+        }
+    });
+
     // UpdateDApi
     //@ts-ignore
     const { data: updateDApiCallData, error: errorUpdate } = useSimulateContract({
@@ -195,10 +206,23 @@ const BidView = () => {
     }, [OevAuctionHouseAddres, address, bid, blockNumber, chainId, setBid])
 
     useEffect(() => {
-        if (page < 1) {
-            setPage(1)
+        if (dapiValue === undefined) return;
+        const date = new Date(dapiValue[1] * 1000)
+
+        const data = {
+            value: dapiValue[0],
+            timestamp: date.toLocaleString()
+        } as DApiValue
+
+        if (stage === StageEnum.Report) {
+            setDapiValueAfterUpdate(data)
         }
-    }, [page])
+
+        if (stage === StageEnum.AwardAndUpdate) {
+            setDapiValueBeforeUpdate(data)
+        }
+
+    }, [dapiValue, stage])
 
     const checkCorrectNetwork = (bid: BidInfo) => {
         if (chainId !== 4913) {
@@ -214,16 +238,22 @@ const BidView = () => {
 
     return (
         bid === undefined ? null :
-            <VStack width={"100%"} p={1} bgColor={getColor(bid)} spacing={1}>
-                <Flex gap={1} alignItems={"center"} width={"100%"}>
+            <VStack width={"100%"} p={1} spacing={3}>
+                <Flex p={2} gap={1} alignItems={"center"} boxShadow={"sm"} bgColor={getColor(bid)} width={"100%"}>
                     <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
                     <DApiRow dApi={bid.dapi} isLoading={(isPending || isLoading || isBusy)} setDapi={() => checkCorrectNetwork(bid)} isOpen={true} bgColor={"white"}></DApiRow>
                 </Flex>
                 {
-                    <VStack width={"100%"} p={5} bgColor={getColor(bid)} spacing={3}>
-                        <CopyInfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
-                        <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
-                        <CopyInfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} copyEnabled={false}></CopyInfoRow>
+                    <VStack width={"100%"} spacing={3}>
+                        <InfoRow header={"Bid Condition"} text={Utils.parseETH(bid.bidDetails.conditionValue) + " " + bid.bidDetails.bidType} ></InfoRow>
+                        <InfoRow header={"Bid Amount"} text={Utils.parseETH(bid.ethAmount) + " " + bid.chainSymbol} ></InfoRow>
+                        <InfoRow header={"DApi Value Before Update"} text={"$" + Utils.parseETH(dapiValueBeforeUpdate?.value) + " | " + dapiValueBeforeUpdate?.timestamp} ></InfoRow>
+                        {
+                            stage === StageEnum.Report &&
+                            <InfoRow header={"DApi Value After Update"} text={"$" + Utils.parseETH(dapiValueAfterUpdate?.value) + " | " + dapiValueAfterUpdate?.timestamp} ></InfoRow>
+                        }
+
+                        <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} ></InfoRow>
                         {
                             getBidStatus().status === BidStatusEnum.Awarded && bid.updateTx === "0x0" as `0x${string}` && !bid.isExpired ?
                                 bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={"Switch Network to Update DApi"} /> :
@@ -231,7 +261,7 @@ const BidView = () => {
                                 : null
                         }
                         {
-                            stage === StageEnum.Report ? <ErrorRow text={"DApi has been updated. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.main} header={"Proceed to Bid"}></ErrorRow> : null
+                            stage === StageEnum.Report ? <ErrorRow text={"DApi has been updated. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Report"}></ErrorRow> : null
                         }
                     </VStack>
                 }
