@@ -2,17 +2,15 @@ import { useEffect, useState, useContext } from 'react';
 import { VStack, Flex, Image } from '@chakra-ui/react';
 import * as Utils from '../helpers/utils';
 
-import { BidInfo, BidStatus, BidStatusEnum, StageEnum, StatusColor, UpdateOevProxyDataFeedWithSignedData } from '../types';
+import { BidInfo, BidStatus, BidStatusEnum, StageEnum, StatusColor } from '../types';
 import DApiRow from './DApiRow';
 import { ChainLogo } from '@api3/logos';
 import InfoRow from './InfoRow';
 import ExecuteButton from './ExecuteButton';
-import { useReadContract, useAccount, useSimulateContract, useWriteContract, useWaitForTransactionReceipt, useBlockNumber } from 'wagmi';
-import { OevAuctionHouse__factory, Api3ServerV1__factory, deploymentAddresses } from '@api3/contracts';
+import { useReadContract, useAccount, useSimulateContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
+import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import SwitchNetwork from './SwitchNetwork';
 import { bidTopic } from "../helpers/constants";
-import { getAwardedBidLogs } from '../helpers/get-logs';
-import { ContractFunctionExecutionError } from "viem";
 import { OevContext } from '../OEVContext';
 
 const BidView = () => {
@@ -20,15 +18,12 @@ const BidView = () => {
     const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
     const [api3ServerV1Address, setApi3ServerV1Address] = useState("" as `0x${string}`)
 
+    const [isBusy, setIsBusy] = useState(false)
+    const [bidderBalanceBeforeUpdate, setBidderBalanceBeforeUpdate] = useState(BigInt(0))
+    const [bidderBalanceAfterUpdate, setBidderBalanceAfterUpdate] = useState(BigInt(0))
+
     const { chainId, address } = useAccount()
     const { setBid, bid, stage, setStage, setTab } = useContext(OevContext);
-
-    const [updateDApiData, setUpdateDApiData] = useState(null as UpdateOevProxyDataFeedWithSignedData | null);
-
-    const [lockState, setLockState] = useState(false)
-    const [isBusy, setIsBusy] = useState(false)
-
-    const [page, setPage] = useState(1)
     const { writeContract, data: hash, isPending, reset } = useWriteContract()
 
     const { isFetched: isFetchedReceipt, data: receipt } = useWaitForTransactionReceipt({
@@ -57,12 +52,6 @@ const BidView = () => {
         return bid.status
     }
 
-    const blockNumber = useBlockNumber({
-        query: {
-            enabled: checkBidStatus(BidStatusEnum.Awarded) && chainId === 4913,
-        }
-    })
-
     useEffect(() => {
         if (isFetchedReceipt === undefined) return;
         if (hash === undefined) return;
@@ -71,16 +60,18 @@ const BidView = () => {
 
         bid.txBlock = receipt.blockNumber
         setBid(bid)
+        console.log("Receipt", receipt)
+        console.log("hash", hash)
 
     }, [isFetchedReceipt, receipt, hash, bid, setBid]);
 
     useEffect(() => {
         if (hash === undefined) return;
         if (bid === undefined) return;
-        bid.updateTx = hash as `0x${string}`
-
-        if (stage === StageEnum.AwardAndUpdate && bid.updateTx !== "0x0" as `0x${string}`) {
-            setStage(StageEnum.Report)
+        bid.reportTx = hash as `0x${string}`
+        console.log("reportTx", hash)
+        if (stage === StageEnum.AwardAndUpdate && bid.reportTx !== "0x0" as `0x${string}`) {
+            setStage(StageEnum.Reported)
         }
 
         setBid(bid)
@@ -107,6 +98,19 @@ const BidView = () => {
     }
 
     //@ts-ignore
+    const { data: bidderBalance } = useReadContract({
+        address: OevAuctionHouseAddres,
+        abi: OevAuctionHouse__factory.abi,
+        chainId: 4913,
+        functionName: 'bidderToBalance',
+        args: [address as `0x${string}`],
+        query: {
+            refetchInterval: 10000,
+        }
+    });
+
+
+    //@ts-ignore
     const { data: bidInfo, isLoading } = useReadContract({
         address: OevAuctionHouseAddres,
         abi: OevAuctionHouse__factory.abi,
@@ -118,20 +122,6 @@ const BidView = () => {
             enabled: bid ? bid.bidId !== "" as `0x${string}` : false
         }
     });
-
-    // UpdateDApi
-    //@ts-ignore
-    const { data: updateDApiCallData, error: errorUpdate } = useSimulateContract({
-        address: api3ServerV1Address,
-        abi: Api3ServerV1__factory.abi,
-        chainId: chainId,
-        functionName: 'updateOevProxyDataFeedWithSignedData',
-        args: updateDApiData ? updateDApiData : ["0x0", "0x0", "0x0", BigInt(0), "0x0", ["0x0"]],
-        value: bid ? bid.ethAmount : BigInt(0),
-        query: {
-            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && checkBidStatus(BidStatusEnum.Awarded)
-        }
-    })
 
     // ReportFullfillment
     //@ts-ignore
@@ -172,13 +162,7 @@ const BidView = () => {
     }, [bidInfo, bid, stage, setStage, setBid])
 
     useEffect(() => {
-        console.log(bidInfo)
-        console.log(bid)
-    }, [bidInfo, bid])
-
-    useEffect(() => {
         if (!chainId) return
-        setLockState(chainId !== 4913)
         if (!deploymentAddresses.Api3ServerV1.hasOwnProperty(chainId)) return
 
         //@ts-ignore
@@ -188,59 +172,33 @@ const BidView = () => {
     }, [chainId])
 
     useEffect(() => {
-        if (!updateDApiCallData) return
-        console.log(updateDApiCallData)
-    }, [updateDApiCallData])
-
-    useEffect(() => {
         if (!reportFullfillmentData) return
         console.log(reportFullfillmentData)
     }, [reportFullfillmentData])
 
     useEffect(() => {
-        if (!errorUpdate && !errorReportFullfillment) return
-        console.log(errorUpdate)
-
-        if (errorUpdate instanceof ContractFunctionExecutionError) {
-            const cause = errorUpdate.cause
-                .walk()
-                .message.split(":")[2]
-                .split("\n")[0]
-                .trim();
-            console.log(cause)
-        }
+        if (!errorReportFullfillment) return
 
         console.log(errorReportFullfillment)
-    }, [errorUpdate, errorReportFullfillment])
+    }, [errorReportFullfillment])
 
     useEffect(() => {
-        if (!blockNumber) return
-        if (!bid) return
-        if (!bid.status) return
-        if (!chainId) return
-        if (!address) return
-
-        if (bid.status.status === BidStatusEnum.Awarded && chainId === 4913 && bid.awardedBidData === null) {
-            getAwardedBidLogs(OevAuctionHouseAddres, "https://oev-network.calderachain.xyz/http", address, BigInt(bid.txBlock), bid).then((data) => {
-                if (!data) return
-                setUpdateDApiData(data)
-                bid.awardedBidData = data
-                setBid(bid)
-            })
+        if (bidderBalance === undefined) return;
+        console.log("Bidder Balance", bidderBalance, StageEnum[stage])
+        if (stage === StageEnum.Report) {
+            setBidderBalanceBeforeUpdate(bidderBalance)
         }
-    }, [OevAuctionHouseAddres, address, bid, blockNumber, chainId, setBid])
 
-    useEffect(() => {
-        if (page < 1) {
-            setPage(1)
+        if (stage === StageEnum.Confirm) {
+            setBidderBalanceAfterUpdate(bidderBalance)
         }
-    }, [page])
 
-    const switchActiveBid = (bid: BidInfo) => {
-        if (lockState) return
-        setUpdateDApiData(bid.awardedBidData)
-        setBid(bid)
-    }
+        if (stage === StageEnum.Contradict) {
+            setBidderBalanceAfterUpdate(bidderBalance)
+        }
+
+
+    }, [bidderBalance, setBidderBalanceAfterUpdate, setBidderBalanceBeforeUpdate, stage]);
 
     const checkCorrectNetwork = (bid: BidInfo) => {
 
@@ -260,26 +218,38 @@ const BidView = () => {
             <VStack width={"100%"} p={1} spacing={3}>
                 <Flex p={2} gap={1} alignItems={"center"} boxShadow={"sm"} bgColor={getColor(bid)} width={"100%"}>
                     <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
-                    <DApiRow dApi={bid.dapi} isLoading={(isPending || isLoading || isBusy)} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { switchActiveBid(bid) }} isOpen={true} bgColor={"white"}></DApiRow>
+                    <DApiRow dApi={bid.dapi} isLoading={(isPending || isLoading || isBusy)} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { }} isOpen={true} bgColor={"white"}></DApiRow>
                 </Flex>
                 {
                     <VStack width={"100%"} spacing={3}>
-                        <InfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} ></InfoRow>
-                        <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} ></InfoRow>
+                        <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
+                            <InfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} ></InfoRow>
+                            <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} ></InfoRow>
+                        </Flex>
+                        <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
+                            <InfoRow header={"Collateral Balance Before Report"} text={Utils.parseETH(bidderBalanceBeforeUpdate) + " ETH"} ></InfoRow>
+                            {
+                                bidderBalanceAfterUpdate !== BigInt(0) &&
+                                <InfoRow header={"Collateral Balance After Report"} text={Utils.parseETH(bidderBalanceAfterUpdate) + " ETH"} ></InfoRow>
+                            }
+                        </Flex>
+                        {
+                            bid.reportTx !== "0x0" as `0x${string}` &&
+                            <InfoRow header={"Report Transaction"} text={bid.reportTx} link={Utils.transactionLink("https://oev-network.calderaexplorer.xyz", bid.reportTx)} copyEnabled={true}></InfoRow>
+                        }
                         <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} copyEnabled={false}></InfoRow>
                         {
-                            getBidStatus().status === BidStatusEnum.Awarded && bid.updateTx !== "0x0" as `0x${string}` ?
+                            getBidStatus().status === BidStatusEnum.Awarded && bid.reportTx === "0x0" as `0x${string}` ?
                                 chainId !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Report Fullfillment"} /> :
                                     <ExecuteButton text={"Report Fullfillment"} onClick={() => reportFulfillment()}></ExecuteButton>
                                 : null
                         }
+
                     </VStack>
                 }
                 {
                     stage === StageEnum.Confirm &&
-                    <VStack width={"100%"} p={5} bgColor={getColor(bid)} spacing={3}>
-                        <InfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} ></InfoRow>
-                        <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"}></InfoRow>
+                    <VStack width={"100%"} p={5} bgColor={Utils.COLORS.info} spacing={3}>
                         <ExecuteButton text={"Place a New Bid"} onClick={() => setTab(StageEnum.PlaceBid)}></ExecuteButton>
                     </VStack>
                 }
