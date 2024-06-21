@@ -228,7 +228,7 @@ const BidView = () => {
                         </Flex>
                         {
                             bid.reportTx !== "0x0" as `0x${string}` &&
-                            <InfoRow header={"Report Transaction"} text={bid.reportTx} link={Utils.transactionLink("https://oev-network.calderaexplorer.xyz", bid.reportTx)} copyEnabled={true}></InfoRow>
+                            <InfoRow header={"Report Transaction"} text={bid.reportTx} link={Utils.transactionLink("https://oev-network.explorer.caldera.dev", bid.reportTx)} copyEnabled={true}></InfoRow>
                         }
                         <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} copyEnabled={false}></InfoRow>
                         {

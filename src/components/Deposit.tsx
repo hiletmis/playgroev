@@ -94,7 +94,7 @@ const Bridge = () => {
                             <Spacer />
                             <Text fontWeight={"bold"} fontSize={"md"}>{trimHash(hash)}</Text>
                             <Text fontSize={"md"} fontWeight={"bold"}>
-                                <a href={`https://oev-network.calderaexplorer.xyz/tx/${hash}`} target="_blank" rel="noopener noreferrer">
+                                <a href={`https://oev-network.explorer.caldera.dev/tx/${hash}`} target="_blank" rel="noopener noreferrer">
                                     <ViewIcon color={"blue.500"}></ViewIcon>
                                 </a>
                             </Text>
