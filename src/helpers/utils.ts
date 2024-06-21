@@ -149,6 +149,21 @@ export function sanitizeAmount(value: string, setAmount: any) {
     }
     value = value.replace(/[^0-9.]/g, '')
     value = value.replace(/\.(?=.*\.)/g, '')
+
+    const decimalCount = (value: string) => {
+        if (value.indexOf('.') === -1) {
+            return 0;
+        }
+        if (Number.isInteger(value)) {
+            return 0;
+        } else {
+            return value.toString().split('.')[1].length;
+        }
+    }
+
+    if (decimalCount(value) > 18) {
+        value = value.slice(0, value.indexOf('.') + 19);
+    }
     if (value === "") {
         setAmount("0")
     }
