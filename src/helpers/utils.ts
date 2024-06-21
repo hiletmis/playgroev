@@ -61,7 +61,7 @@ export function getEthUsdDapi() {
 export function getChains() {
     const activeChains = getChainsFromDapiManagement().filter((chain) => chain.stage === 'active');
     const filteredChains = CHAINS.filter((chain) => activeChains.find((activeChain) => activeChain.id === chain.id));
-    return filteredChains.filter((chain) => chain.testnet === false);
+    return filteredChains.filter((chain) => chain.testnet === false && chain.alias !== 'lukso');
 }
 
 export function getChain(id: string) {
