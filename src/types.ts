@@ -34,6 +34,7 @@ export type BidInfo = {
     txBlock: bigint;
     awardedBidData: UpdateOevProxyDataFeedWithSignedData | null;
     chainId: number;
+    chainSymbol: string;
     dapi: any;
     ethAmount: bigint;
     explorer: string;
@@ -138,4 +139,9 @@ export type UpdateOevProxyDataFeedWithSignedData = readonly [`0x${string}`, `0x$
 export type BidPrices = {
     colleteralTokenPrice: BigInt;
     bidTokenPrice: BigInt;
+};
+
+export type DApiValue = {
+    timestamp: string;
+    value: BigInt;
 };

@@ -74,6 +74,7 @@ function decodePlacedBidLog(logs: ChainLogs) {
             awardedBidData: null,
             txBlock: BigInt(log.blockNumber),
             chainId: eventLog.chainId,
+            chainSymbol: CHAINS.find((c) => c.id === eventLog.chainId.toString())?.symbol as string,
             dapi: dapi,
             ethAmount: eventLog.bidAmount,
             explorer: getBlockExplorer(eventLog.chainId),

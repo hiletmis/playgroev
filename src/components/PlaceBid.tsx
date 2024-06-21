@@ -74,6 +74,7 @@ const PlaceBid = () => {
                     awardedBidData: null,
                     txBlock: BigInt(0),
                     chainId: parseInt(selectedChain!.id),
+                    chainSymbol: selectedChain!.symbol,
                     dapi: dApi,
                     ethAmount: BigInt(parseEther(ethAmount)),
                     explorer: selectedChain!.explorer.browserUrl,
@@ -196,7 +197,7 @@ const PlaceBid = () => {
                                     <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
 
                                     {
-                                        stage > StageEnum.PlaceBid ? <ErrorRow text={"Your bid has been placed. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Bid"}></ErrorRow> :
+                                        stage > StageEnum.PlaceBid ? <ErrorRow text={"Your bid has been placed. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Update DApi"}></ErrorRow> :
                                             <ExecuteButton
                                                 isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || !isBiddable}
                                                 text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
