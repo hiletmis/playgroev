@@ -15,7 +15,6 @@ import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { parseEther } from 'ethers';
 import { BidInfo } from "../types";
 import { bidTopic } from "../helpers/constants";
-import { getAuctioneerLogs } from "../helpers/get-logs";
 import { OevContext } from "../OEVContext";
 
 import {
@@ -24,7 +23,7 @@ import {
 
 const PlaceBid = () => {
     const { address, chain } = useAccount()
-    const { setPrices, stage, setStage, setBid, bid, isBiddable } = useContext(OevContext);
+    const { setPrices, stage, setStage, setBid, isBiddable } = useContext(OevContext);
 
     const [selectedChain, setSelectedChain] = useState(Utils.getChain("1"));
     const [dApi, setDapi] = useState(Utils.getEthUsdDapi());
@@ -120,7 +119,7 @@ const PlaceBid = () => {
             protocolFee
         ],
         query: {
-            enabled: (ethAmount !== "0" && ethAmount !== "" && fulfillValue !== "" && bidType !== "") || (stage === StageEnum.PlaceBid),
+            enabled: (ethAmount !== "0" && ethAmount !== "" && fulfillValue !== "" && bidType !== "") && (stage === StageEnum.PlaceBid),
         }
     })
 
@@ -173,20 +172,9 @@ const PlaceBid = () => {
 
     useEffect(() => {
         if (address == null) return;
-        if (OevAuctionHouseAddres == null) return;
-        // if bids empty
-        if (bid === {} as BidInfo) {
-            getAuctioneerLogs(OevAuctionHouseAddres, "https://oev-network.calderachain.xyz/http", address).then((data) => {
-                setBid(data)
-            })
-        }
-
-    }, [OevAuctionHouseAddres, address, bid, setBid])
-
-    useEffect(() => {
-        if (address == null) return;
         setBid(undefined)
-    }, [address, setBid])
+        setStage(StageEnum.PlaceBid)
+    }, [address, setBid, setStage])
 
     return (
         chain == null ? <SignIn></SignIn> :
