@@ -65,6 +65,8 @@ export enum StageEnum {
     "PlaceBid" = 2,
     "AwardAndUpdate" = 3,
     "Report" = 4,
+    "Confirm" = 5, // Confirm the report
+    "Contradict" = 6 // Contradict the report
 }
 
 export enum StatusColor {
