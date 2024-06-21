@@ -21,11 +21,10 @@ const BidView = () => {
     const [api3ServerV1Address, setApi3ServerV1Address] = useState("" as `0x${string}`)
 
     const { chainId, address } = useAccount()
-    const { setBid, bid, stage, setStage } = useContext(OevContext);
+    const { setBid, bid, stage, setStage, setTab } = useContext(OevContext);
 
     const [updateDApiData, setUpdateDApiData] = useState(null as UpdateOevProxyDataFeedWithSignedData | null);
 
-    const [selectedBidStatus, setSelectedBidStatus] = useState({} as BidStatus)
     const [lockState, setLockState] = useState(false)
     const [isBusy, setIsBusy] = useState(false)
 
@@ -37,9 +36,30 @@ const BidView = () => {
         hash
     });
 
+    const checkBidStatus = (status: BidStatusEnum) => {
+        if (!bid) return false
+        if (bid.isExpired) return false
+        if (bid.status === null) return false
+        return bid.status.status === status
+    }
+
+    const getBidStatus = () => {
+        const dummyStatus = {
+            status: 0,
+            expirationTimestamp: BigInt(0),
+            collateralAmount: BigInt(0),
+            protocolFeeAmount: BigInt(0),
+            bidId: "0x0" as `0x${string}`
+        }
+
+        if (!bid) return dummyStatus
+        if (!bid.status) return dummyStatus
+        return bid.status
+    }
+
     const blockNumber = useBlockNumber({
         query: {
-            enabled: selectedBidStatus.status === BidStatusEnum.Awarded && chainId === 4913,
+            enabled: checkBidStatus(BidStatusEnum.Awarded) && chainId === 4913,
         }
     })
 
@@ -109,7 +129,7 @@ const BidView = () => {
         args: updateDApiData ? updateDApiData : ["0x0", "0x0", "0x0", BigInt(0), "0x0", ["0x0"]],
         value: bid ? bid.ethAmount : BigInt(0),
         query: {
-            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && selectedBidStatus.status === BidStatusEnum.Awarded
+            enabled: api3ServerV1Address !== "" as `0x${string}` && chainId !== 4913 && checkBidStatus(BidStatusEnum.Awarded)
         }
     })
 
@@ -122,7 +142,7 @@ const BidView = () => {
         functionName: 'reportFulfillment',
         args: [bidTopic, bid ? bid.bidDetailsHash : "0x0", bid ? bid.updateTx : "0x0"],
         query: {
-            enabled: bid ? api3ServerV1Address !== "" as `0x${string}` && chainId === 4913 && bid.updateTx !== "0x0" as `0x${string}` && selectedBidStatus.status === BidStatusEnum.Awarded : false
+            enabled: bid ? api3ServerV1Address !== "" as `0x${string}` && chainId === 4913 && bid.updateTx !== "0x0" as `0x${string}` && checkBidStatus(BidStatusEnum.Awarded) : false
         }
     })
 
@@ -137,9 +157,24 @@ const BidView = () => {
             protocolFeeAmount: (bidInfo[3]),
             bidId: bid.bidId
         } as BidStatus
-        setSelectedBidStatus(bidStatus)
+        bid.status = bidStatus
 
-    }, [bidInfo, bid, stage, setStage])
+        if (bidStatus.status === BidStatusEnum.FulfillmentConfirmed) {
+            setStage(StageEnum.Confirm)
+        }
+
+        if (bidStatus.status === BidStatusEnum.FulfillmentContradicte) {
+            setStage(StageEnum.Contradict)
+        }
+
+        setBid(bid)
+
+    }, [bidInfo, bid, stage, setStage, setBid])
+
+    useEffect(() => {
+        console.log(bidInfo)
+        console.log(bid)
+    }, [bidInfo, bid])
 
     useEffect(() => {
         if (!chainId) return
@@ -181,11 +216,11 @@ const BidView = () => {
     useEffect(() => {
         if (!blockNumber) return
         if (!bid) return
-        if (!selectedBidStatus) return
+        if (!bid.status) return
         if (!chainId) return
         if (!address) return
 
-        if (selectedBidStatus.status === BidStatusEnum.Awarded && chainId === 4913 && bid.awardedBidData === null) {
+        if (bid.status.status === BidStatusEnum.Awarded && chainId === 4913 && bid.awardedBidData === null) {
             getAwardedBidLogs(OevAuctionHouseAddres, "https://oev-network.calderachain.xyz/http", address, BigInt(bid.txBlock), bid).then((data) => {
                 if (!data) return
                 setUpdateDApiData(data)
@@ -193,7 +228,7 @@ const BidView = () => {
                 setBid(bid)
             })
         }
-    }, [OevAuctionHouseAddres, address, bid, blockNumber, chainId, selectedBidStatus, setBid])
+    }, [OevAuctionHouseAddres, address, bid, blockNumber, chainId, setBid])
 
     useEffect(() => {
         if (page < 1) {
@@ -217,7 +252,7 @@ const BidView = () => {
 
     const getColor = (bid: BidInfo) => {
         if (bid.isExpired) return "red.300"
-        return StatusColor[selectedBidStatus.status]
+        return StatusColor[bid.status ? bid.status.status : 0]
     }
 
     return (
@@ -229,15 +264,23 @@ const BidView = () => {
                 </Flex>
                 {
                     <VStack width={"100%"} p={5} bgColor={getColor(bid)} spacing={3}>
-                        <CopyInfoRow header={"Collateral Amount"} text={Utils.parseETH(selectedBidStatus.collateralAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
-                        <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(selectedBidStatus.protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
-                        <CopyInfoRow header={"Status"} text={BidStatusEnum[selectedBidStatus.status]} copyEnabled={false}></CopyInfoRow>
+                        <CopyInfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
+                        <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
+                        <CopyInfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} copyEnabled={false}></CopyInfoRow>
                         {
-                            selectedBidStatus.status === BidStatusEnum.Awarded && bid.updateTx !== "0x0" as `0x${string}` ?
+                            getBidStatus().status === BidStatusEnum.Awarded && bid.updateTx !== "0x0" as `0x${string}` ?
                                 chainId !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Report Fullfillment"} /> :
                                     <ExecuteButton text={"Report Fullfillment"} onClick={() => reportFulfillment()}></ExecuteButton>
                                 : null
                         }
+                    </VStack>
+                }
+                {
+                    stage === StageEnum.Confirm &&
+                    <VStack width={"100%"} p={5} bgColor={getColor(bid)} spacing={3}>
+                        <CopyInfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
+                        <CopyInfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} copyEnabled={false}></CopyInfoRow>
+                        <ExecuteButton text={"Place a New Bid"} onClick={() => setTab(StageEnum.PlaceBid)}></ExecuteButton>
                     </VStack>
                 }
 
