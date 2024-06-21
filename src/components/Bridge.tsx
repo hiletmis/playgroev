@@ -8,11 +8,26 @@ import SwitchNetwork from '../custom/SwitchNetwork';
 import { OevContext } from '../OEVContext';
 import { COLORS, parseETH } from '../helpers/utils';
 import { StageEnum } from '../types';
+import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
+import { useReadContract } from 'wagmi';
 
 const Bridge = () => {
-    const { chain } = useAccount()
+    const { chain, address } = useAccount()
 
     const { balance, stage, setStage } = useContext(OevContext);
+    const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
+
+    //@ts-ignore
+    const { data: bidderBalance } = useReadContract({
+        address: OevAuctionHouseAddres,
+        abi: OevAuctionHouse__factory.abi,
+        chainId: chain ? chain.id : 4913,
+        functionName: 'bidderToBalance',
+        args: [address as `0x${string}`],
+        query: {
+            refetchInterval: 10000,
+        }
+    });
 
     useEffect(() => {
         if (balance === BigInt(0)) {
@@ -24,6 +39,13 @@ const Bridge = () => {
             setStage(StageEnum.Deposit);
         }
     }, [balance, stage, setStage]);
+
+    useEffect(() => {
+        if (bidderBalance === undefined) return;
+        if (stage === 1 && bidderBalance > BigInt(0)) {
+            setStage(StageEnum.PlaceBid);
+        }
+    }, [bidderBalance, stage, setStage]);
 
     return (
         chain == null ? <SignIn></SignIn> :
