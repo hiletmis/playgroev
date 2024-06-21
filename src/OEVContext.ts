@@ -8,6 +8,8 @@ export interface AppContext {
     setBalance: (balance: bigint) => void;
     stage: number;
     setStage: (stage: number) => void;
+    tab: number;
+    setTab: (tab: number) => void;
     prices: BidPrices;
     setPrices: (prices: BidPrices) => void;
     isBiddable: boolean;
