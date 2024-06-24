@@ -39,3 +39,13 @@ export const bidPlacedTitle = "Proceed to Update dApi"
 export const bidPlacedMessage = "Your bid has been placed. Please proceed to next stage"
 
 export const placeBidButton = "Place Bid"
+
+// AwardUpdate.tsx
+
+export const awardUpdateTitle = "Award and Update"
+export const awardUpdateDescription = "The bid has been accepted. The auctioneer will assess all bids and award the auction to the highest bidder."
+
+export const feeDeductionTitle = (fee: string) => `If your bid is awarded, a fee of ${fee} ETH will be deducted.`
+
+export const proceedToReportTitle = "Proceed to Report"
+export const proceedToReportStage = "dAPI has been updated. Please proceed to next stage"
