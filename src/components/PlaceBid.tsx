@@ -187,7 +187,7 @@ const PlaceBid = () => {
                     <VStack spacing={2} direction="row" align="left">
                         <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
                         {
-                            chain.id !== 4913 ? <SwitchNetwork header={false} switchMessage={Descriptions.bidAmountDescription} /> :
+                            chain.id !== 4913 ? <SwitchNetwork header={false} switchMessage={Descriptions.switchToBid} /> :
                                 <VStack alignItems={"left"} spacing={5}>
                                     <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={selectedChain} isInputDisabled={isInputDisabled}></BidAmount>
                                     <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>

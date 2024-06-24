@@ -29,6 +29,8 @@ export const selectChainAndDapiDescription = "Select Chain and DApi"
 export const bidAmountDescription = "I want to bid"
 export const bidConditionDescription = "for an update that satisfies the condition"
 
+export const switchToBid = "Switch to OEV Network to Place a Bid"
+
 export const insufficientBalance = (chainName: string, balance: string, symbol: string) => `Insufficient balance on ${chainName} chain with ${balance} ${symbol}`
 export const insufficientCollateral = "Insufficient collateral. Please deposit more collateral"
 
