@@ -1,5 +1,6 @@
 import { Text, Box, Radio, RadioGroup, Flex, Spacer, VStack } from '@chakra-ui/react';
 import { COLORS, sanitizeAmount } from '../helpers/utils';
+import * as Description from '../helpers/descriptions';
 
 import {
     NumberInput,
@@ -12,7 +13,7 @@ const BidCondition = (props: any) => {
 
     return (
         <VStack alignItems={"left"} >
-            <Text fontWeight={"bold"} fontSize={"lg"}>for an update that satisfies the condition</Text>
+            <Text fontWeight={"bold"} fontSize={"lg"}>{Description.bidConditionDescription}</Text>
 
             <Box width={"100%"} height="80px" bgColor={bgColor} >
                 <VStack spacing={3} direction="row" align="left" m="1rem">
@@ -21,8 +22,8 @@ const BidCondition = (props: any) => {
                         <VStack alignItems={"center"}>
                             <RadioGroup onChange={setCondition} value={condition}>
                                 <VStack direction='column' align={"left"}>
-                                    <Radio isDisabled={isInputDisabled} value='LTE'>Less than or equal to</Radio>
-                                    <Radio isDisabled={isInputDisabled} value='GTE'>Greater than or equal to</Radio>
+                                    <Radio isDisabled={isInputDisabled} value='LTE'>{Description.extendedLTE}</Radio>
+                                    <Radio isDisabled={isInputDisabled} value='GTE'>{Description.extendedGTE}</Radio>
                                 </VStack>
                             </RadioGroup>
                         </VStack>
