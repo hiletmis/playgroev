@@ -252,7 +252,7 @@ const BidView = () => {
                         {
                             dapiValueAfterUpdate &&
                             <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
-                                <InfoRow header={"DApi Value to Update"} text={"$" + Utils.parseETH(dapiValueAfterUpdate?.value) + " | " + dapiValueAfterUpdate?.timestamp} ></InfoRow>
+                                <InfoRow header={"dAPI Value to Update"} text={"$" + Utils.parseETH(dapiValueAfterUpdate?.value) + " | " + dapiValueAfterUpdate?.timestamp} ></InfoRow>
                             </Flex>
                         }
                         <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} ></InfoRow>
@@ -263,7 +263,7 @@ const BidView = () => {
                                 : null
                         }
                         {
-                            stage === StageEnum.Report ? <ErrorRow text={"DApi has been updated. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Report"}></ErrorRow> : null
+                            stage === StageEnum.Report ? <ErrorRow text={"dAPI has been updated. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Report"}></ErrorRow> : null
                         }
                     </VStack>
                 }

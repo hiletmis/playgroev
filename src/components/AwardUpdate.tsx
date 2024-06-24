@@ -13,7 +13,7 @@ const AwardUpdate = () => {
     return (
         chain == null ? <SignIn></SignIn> :
             <VStack spacing={4} alignItems={"left"} >
-                <CustomHeading header={"Award and Update"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={false}></CustomHeading>
+                <CustomHeading header={"Award and Update"} description={"The bid has been accpeted. Auctioneer will assess the bids and award the bid to the best bidder."} isLoading={false}></CustomHeading>
                 <BidView></BidView>
             </VStack>
     );

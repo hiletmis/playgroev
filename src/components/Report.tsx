@@ -13,7 +13,7 @@ const Report = () => {
     return (
         chain == null ? <SignIn></SignIn> :
             <VStack spacing={4} alignItems={"left"} >
-                <CustomHeading header={"Report Fullfillment"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={false}></CustomHeading>
+                <CustomHeading header={"Report Fullfillment"} description={"dAPI has been updated. Please report fullfillment."} isLoading={false}></CustomHeading>
                 <ReportFullfillmentView></ReportFullfillmentView>
             </VStack>
     );
