@@ -103,6 +103,15 @@ const PlaceBid = () => {
         }
     });
 
+    //@ts-ignore
+    const { data: getCurrentCollateralAndProtocolFeeAmounts } = useReadContract({
+        address: OevAuctionHouseAddres,
+        abi: OevAuctionHouse__factory.abi,
+        chainId: chain ? chain.id : 4913,
+        functionName: 'getCurrentCollateralAndProtocolFeeAmounts',
+        args: [BigInt(selectedChain ? selectedChain.id : 4913), BigInt(ethAmount === "" ? 0 : parseEther(ethAmount))],
+    });
+
     const { writeContract, data: hash, reset } = useWriteContract()
 
     //@ts-ignore
@@ -163,12 +172,10 @@ const PlaceBid = () => {
     }, [bidderBalance]);
 
     useEffect(() => {
-        if (ethAmount === "") return;
-        const protocolFee = BigInt(parseEther(ethAmount));
-        const collateralFee = BigInt(parseEther(ethAmount));
-        setProtocolFee(protocolFee)
-        setCollateralFee(collateralFee)
-    }, [ethAmount])
+        if (getCurrentCollateralAndProtocolFeeAmounts === undefined) return;
+        setProtocolFee(getCurrentCollateralAndProtocolFeeAmounts[1])
+        setCollateralFee(getCurrentCollateralAndProtocolFeeAmounts[0])
+    }, [getCurrentCollateralAndProtocolFeeAmounts])
 
     useEffect(() => {
         if (address == null) return;
@@ -182,7 +189,7 @@ const PlaceBid = () => {
                 <CustomHeading header={Descriptions.placeBidTitle} description={Descriptions.placeBidDescription} isLoading={isInputDisabled}></CustomHeading>
                 <VStack maxW={"700px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
                     <Flex>
-                        <Text fontWeight={"bold"} fontSize={"md"}>{Descriptions.selectChainAndDapiDescription}</Text>
+                        <Text fontWeight={"bold"} fontSize={"lg"}>{Descriptions.selectChainAndDapiDescription}</Text>
                     </Flex>
                     <VStack spacing={2} direction="row" align="left">
                         <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
