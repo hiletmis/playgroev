@@ -5,6 +5,7 @@ import { OevContext } from '../OEVContext';
 import { useBalance, useAccount } from 'wagmi';
 import * as Utils from '../helpers/utils';
 import { parseEther } from 'ethers';
+import * as Descriptions from '../helpers/descriptions';
 
 import {
     NumberInput,
@@ -35,7 +36,7 @@ const BidAmount = (props: any) => {
         setIsBiddable(true)
 
         if (targetChainBalance.value - BigInt(parseEther(ethAmount)) < 0) {
-            setError(`Insufficient balance on ${chain.name} chain with ${Utils.parseETH(targetChainBalance.value)} ${chain.symbol}`)
+            setError(Descriptions.insufficientBalance(chain.name, Utils.parseETH(targetChainBalance.value), chain.symbol))
             setIsBiddable(false)
             return;
         }
@@ -43,13 +44,13 @@ const BidAmount = (props: any) => {
         const bidValue = parseFloat(ethAmount) * parseFloat(parseETH(prices.bidTokenPrice))
         const biddableAmount = parseFloat(ethBalance) * parseFloat(parseETH(prices.colleteralTokenPrice)) * 10
         setIsBiddable(bidValue <= biddableAmount)
-        setError(bidValue <= biddableAmount ? "" : `Insufficient collateral. Please deposit more collateral`)
+        setError(bidValue <= biddableAmount ? "" : Descriptions.insufficientCollateral)
     }, [ethAmount, ethBalance, prices, setIsBiddable, targetChainBalance, chain]);
 
     return (
         chain == null ? null :
             <VStack alignItems={"left"} >
-                <Text fontWeight={"bold"} fontSize={"lg"}>I want to bid</Text>
+                <Text fontWeight={"bold"} fontSize={"lg"}>{Descriptions.bidAmountDescription}</Text>
                 <Box width={"100%"} bgColor={bgColor} >
                     <VStack spacing={3} direction="row" align="left" m="1rem">
                         <Flex alignItems={"center"}>
