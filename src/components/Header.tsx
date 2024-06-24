@@ -3,7 +3,6 @@ import { Flex, Text, Spacer, Image, Button } from '@chakra-ui/react';
 import { ChainLogo } from '@api3/logos';
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 import { useAccount, useSwitchChain, useBalance } from 'wagmi'
-import { parseETH } from '../helpers/utils'
 import { OevContext } from '../OEVContext';
 
 const Header = () => {
@@ -11,11 +10,18 @@ const Header = () => {
     const { chain, address, status } = useAccount()
     const { switchChain } = useSwitchChain()
 
-    const { setBalance } = useContext(OevContext);
+    const { setBalance, setEthereumBalance } = useContext(OevContext);
 
     const { data: walletBalance } = useBalance(
         {
             chainId: chain?.id || 4913,
+            address: address
+        }
+    )
+
+    const { data: ethereumBalance } = useBalance(
+        {
+            chainId: 1,
             address: address
         }
     )
@@ -25,6 +31,12 @@ const Header = () => {
             setBalance(walletBalance.value)
         }
     }, [setBalance, walletBalance])
+
+    useEffect(() => {
+        if (ethereumBalance !== undefined) {
+            setEthereumBalance(ethereumBalance.value)
+        }
+    }, [setEthereumBalance, ethereumBalance])
 
     const SwitchNetwork = () => {
         return (
@@ -63,12 +75,6 @@ const Header = () => {
                     <Text fontSize={'md'} fontWeight={'bold'} p={2} bgColor={"gray.100"} borderRadius={"md"} onClick={() => open()} cursor={"pointer"}>
                         {address?.substring(0, 6)}...{address?.substring(address.length - 4, address.length)}
                     </Text>
-                    {
-                        chain === undefined ? null :
-                            <Text fontSize={'md'} fontWeight={'bold'} p={2} bgColor={"gray.100"} borderRadius={"md"} onClick={() => open()} cursor={"pointer"}>
-                                {walletBalance === undefined ? "0" : parseETH(walletBalance.value) + " " + walletBalance.symbol}
-                            </Text>
-                    }
                 </Flex>
         )
     }
