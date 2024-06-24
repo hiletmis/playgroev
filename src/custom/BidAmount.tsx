@@ -1,6 +1,5 @@
-import { Text, Box, Image, Flex, Spacer, VStack } from '@chakra-ui/react';
+import { Text, Box, Flex, Spacer, VStack } from '@chakra-ui/react';
 import { COLORS, parseETH, sanitizeAmount } from '../helpers/utils';
-import { ChainLogo } from '@api3/logos';
 import { useContext, useEffect } from 'react';
 import { OevContext } from '../OEVContext';
 
@@ -23,7 +22,7 @@ const BidAmount = (props: any) => {
     return (
         chain == null ? null :
             <VStack alignItems={"left"} >
-                <Text fontWeight={"bold"} fontSize={"md"}>Bid Amount</Text>
+                <Text fontWeight={"bold"} fontSize={"lg"}>I want to bid</Text>
                 <Box width={"100%"} bgColor={bgColor} >
                     <VStack spacing={3} direction="row" align="left" m="1rem">
                         <Flex alignItems={"center"}>
@@ -31,7 +30,7 @@ const BidAmount = (props: any) => {
                                 <NumberInputField borderWidth={"0px"} placeholder="0.0" fontSize={"4xl"} />
                             </NumberInput>
                             <Spacer />
-                            <Image marginRight={2} src={ChainLogo(chain.id, true)} width={"40px"} height={"40px"} />
+                            <Text fontWeight={"bold"} fontSize={"lg"}>{chain.symbol}</Text>
                         </Flex>
 
                     </VStack>
