@@ -12,6 +12,7 @@ import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import SwitchNetwork from './SwitchNetwork';
 import { bidTopic } from "../helpers/constants";
 import { OevContext } from '../OEVContext';
+import * as Description from '../helpers/descriptions';
 
 const BidView = () => {
 
@@ -206,13 +207,13 @@ const BidView = () => {
         if (!bid) return "Bid not found."
         if (!bid.status) return "Status not found."
 
-        const ifConfirmed = `Your fullfillment is confirmed, your collareral amount released and the protocol fee is charged. ${Utils.parseETH(bid.status.protocolFeeAmount)} ETH is returned.`
-        const ifContradicted = `Your fullfillment is contradicted, your collareral amount is slashed and the protocol fee is refunded. ${Utils.parseETH(bid.status.protocolFeeAmount)} ETH is returned.`
+        const ifConfirmed = Description.feeDeductionRefundConfirmed(Utils.parseETH(bid.status.protocolFeeAmount))
+        const ifContradicted = Description.feeDeductionRefundContradicted(Utils.parseETH(bid.status.protocolFeeAmount))
 
         if (bid.status.status === BidStatusEnum.FulfillmentConfirmed) return ifConfirmed
         if (bid.status.status === BidStatusEnum.FulfillmentContradicted) return ifContradicted
 
-        return "Once the fullfillment is confirmed or contradicted, your collateral amount will be updated."
+        return Description.feeDeductionRefundDefault
     }
 
     const isReported = () => {
@@ -232,10 +233,10 @@ const BidView = () => {
                     <VStack width={"100%"} spacing={3}>
 
                         <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
-                            <InfoRow header={"Collateral Balance Before Report"} text={Utils.parseETH(bidderBalanceBeforeUpdate) + " ETH"} ></InfoRow>
+                            <InfoRow header={Description.collateralBalanceBeforeReport} text={Utils.parseETH(bidderBalanceBeforeUpdate) + " ETH"} ></InfoRow>
                             {
                                 bidderBalanceAfterUpdate !== BigInt(0) &&
-                                <InfoRow header={"Collateral Balance After Report"} text={Utils.parseETH(bidderBalanceAfterUpdate) + " ETH"} ></InfoRow>
+                                <InfoRow header={Description.collateralBalanceAfterReport} text={Utils.parseETH(bidderBalanceAfterUpdate) + " ETH"} ></InfoRow>
                             }
                         </Flex>
                         <InfoRow header={"Fee Deduction"} text={getFeeRefund()} ></InfoRow>

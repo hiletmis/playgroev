@@ -49,3 +49,15 @@ export const feeDeductionTitle = (fee: string) => `If your bid is awarded, a fee
 
 export const proceedToReportTitle = "Proceed to Report"
 export const proceedToReportStage = "dAPI has been updated. Please proceed to next stage"
+
+// Report.tsx
+
+export const reportTitle = "Report Fullfillment"
+export const reportDescription = "dAPI has been updated. Please report fullfillment."
+
+export const collateralBalanceBeforeReport = "Collateral Balance Before Report"
+export const collateralBalanceAfterReport = "Collateral Balance After Report"
+
+export const feeDeductionRefundDefault = "Once the fullfillment is confirmed or contradicted, your collateral amount will be updated."
+export const feeDeductionRefundConfirmed = (fee: string) => `Your fullfillment is confirmed, your collareral amount released and the protocol fee is charged. ${fee} ETH is returned.`
+export const feeDeductionRefundContradicted = (fee: string) => `Your fullfillment is contradicted, your collareral amount is slashed and the protocol fee is refunded. ${fee} ETH is returned.`
