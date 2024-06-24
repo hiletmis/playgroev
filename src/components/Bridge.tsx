@@ -10,12 +10,22 @@ import { COLORS, parseETH } from '../helpers/utils';
 import { StageEnum } from '../types';
 import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { useReadContract } from 'wagmi';
+import * as Descriptions from '../helpers/descriptions';
 
 const Bridge = () => {
     const { chain, address } = useAccount()
 
     const { balance, ethereumBalance, stage, setStage } = useContext(OevContext);
     const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
+
+    const BridgeButton = () => {
+        return (
+            <Button
+                size={"md"} colorScheme={"blue"} variant={"solid"}
+                onClick={() => window.open('https://oev-network.bridge.caldera.xyz/', '_blank')}>{Descriptions.bridgeButton}
+            </Button>
+        )
+    }
 
     //@ts-ignore
     const { data: bidderBalance } = useReadContract({
@@ -51,35 +61,29 @@ const Bridge = () => {
         chain == null ? <SignIn></SignIn> :
             chain.id !== 4913 ? <SwitchNetwork /> :
                 <VStack alignItems={"left"} minWidth={"400px"} maxWidth={"700px"} spacing={5}>
-                    <CustomHeading header={"Bridge"} description={"Bridge your Ethereum to OEV Network."} isLoading={false}></CustomHeading>
-                    <Text fontSize={"sm"}>You can add funds to your wallet by using the official OEV Network bridge.</Text>
+                    <CustomHeading header={Descriptions.bridgeTitle} description={Descriptions.bridgeDescriptionLine1} isLoading={false}></CustomHeading>
+                    <Text fontSize={"sm"}>{Descriptions.bridgeDescriptionLine2}</Text>
 
                     <Flex p={2} width={"100%"} bgColor={COLORS.app} >
-                        <Text fontSize={"md"} fontWeight={"bold"}>OEV Network Balance</Text>
+                        <Text fontSize={"md"} fontWeight={"bold"}>{Descriptions.oevNetworkBalance}</Text>
                         <Spacer />
                         <Text fontWeight={"bold"} fontSize={"md"}>{parseETH(balance)} ETH</Text>
                     </Flex>
                     <Flex p={2} width={"100%"} bgColor={COLORS.app} >
-                        <Text fontSize={"md"} fontWeight={"bold"}>Ethereum Balance</Text>
+                        <Text fontSize={"md"} fontWeight={"bold"}>{Descriptions.ethereumBalance}</Text>
                         <Spacer />
                         <Text fontWeight={"bold"} fontSize={"md"}>{parseETH(ethereumBalance)} ETH</Text>
                     </Flex>
                     {
                         balance === BigInt(0) ?
                             <VStack p={4} width={"100%"} bgColor={COLORS.caution} alignItems={"left"} spacing={5}>
-                                <Text fontSize={"md"} fontWeight={"bold"}>Add Funds</Text>
-                                <Text fontSize={"sm"}>You have no funds to deposit. Please add funds to your wallet.</Text>
-                                <Button
-                                    size={"md"} colorScheme={"blue"} variant={"solid"}
-                                    onClick={() => window.open('https://oev-network.bridge.caldera.xyz/', '_blank')}>OEV Network Bridge
-                                </Button>
+                                <Text fontSize={"md"} fontWeight={"bold"}>{Descriptions.noBalanceTitle}</Text>
+                                <Text fontSize={"sm"}>{Descriptions.noBalanceDescription}</Text>
+                                <BridgeButton />
                             </VStack>
                             :
                             <VStack width={"100%"} alignItems={"left"} spacing={5}>
-                                <Button
-                                    size={"md"} colorScheme={"blue"} variant={"solid"}
-                                    onClick={() => window.open('https://oev-network.bridge.caldera.xyz/', '_blank')}>OEV Network Bridge
-                                </Button>
+                                <BridgeButton />
                             </VStack>
                     }
                 </VStack>
