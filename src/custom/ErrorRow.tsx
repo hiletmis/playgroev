@@ -8,7 +8,6 @@ const ErrorRow = ({ header, text, margin = 0, bgColor = COLORS.caution }: any) =
                 <Text fontWeight={"bold"} fontSize={"md"}>{header}</Text>
                 <Box p="2" width={"100%"} bgColor={bgColor} marginBottom={"5px"} alignItems={"center"}>
                     <Text marginLeft={"2"} fontSize={"md"}>{text}</Text>
-
                 </Box>
             </VStack>
     );
