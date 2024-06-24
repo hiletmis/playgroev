@@ -207,12 +207,12 @@ const BidView = () => {
         if (!bid.status) return "Status not found."
 
         const ifConfirmed = `Your fullfillment is confirmed, your collareral amount released and the protocol fee is charged. ${Utils.parseETH(bid.status.protocolFeeAmount)} ETH is returned.`
-        const ifContradicted = `Your fullfillment is contradicted, your collareral amount is released and the protocol fee is refunded. ${Utils.parseETH(bid.status.protocolFeeAmount)} ETH is returned.`
+        const ifContradicted = `Your fullfillment is contradicted, your collareral amount is slashed and the protocol fee is refunded. ${Utils.parseETH(bid.status.protocolFeeAmount)} ETH is returned.`
 
         if (bid.status.status === BidStatusEnum.FulfillmentConfirmed) return ifConfirmed
         if (bid.status.status === BidStatusEnum.FulfillmentContradicted) return ifContradicted
 
-        return "Once the fullfillment is confirmed or contradicted, the protocol fee will be refunded."
+        return "Once the fullfillment is confirmed or contradicted, your collateral amount will be updated."
     }
 
     const isReported = () => {
