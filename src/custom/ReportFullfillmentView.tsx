@@ -224,7 +224,7 @@ const BidView = () => {
 
     return (
         bid === undefined ? null :
-            <VStack width={"100%"} p={1} spacing={3}>
+            <VStack maxW={"700px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
                 <Flex p={2} gap={1} alignItems={"center"} boxShadow={"sm"} bgColor={getColor(bid)} width={"100%"}>
                     <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
                     <DApiRow dApi={bid.dapi} isLoading={(isPending || isLoading || isBusy || (isReported() && stage === StageEnum.Report))} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { }} isOpen={true} bgColor={"white"}></DApiRow>
