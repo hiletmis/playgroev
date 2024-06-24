@@ -14,7 +14,7 @@ import { useReadContract } from 'wagmi';
 const Bridge = () => {
     const { chain, address } = useAccount()
 
-    const { balance, stage, setStage } = useContext(OevContext);
+    const { balance, ethereumBalance, stage, setStage } = useContext(OevContext);
     const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
 
     //@ts-ignore
@@ -55,9 +55,14 @@ const Bridge = () => {
                     <Text fontSize={"sm"}>You can add funds to your wallet by using the official OEV Network bridge.</Text>
 
                     <Flex p={2} width={"100%"} bgColor={COLORS.app} >
-                        <Text fontSize={"md"} fontWeight={"bold"}>Ethereum Balance</Text>
+                        <Text fontSize={"md"} fontWeight={"bold"}>OEV Network Balance</Text>
                         <Spacer />
                         <Text fontWeight={"bold"} fontSize={"md"}>{parseETH(balance)} ETH</Text>
+                    </Flex>
+                    <Flex p={2} width={"100%"} bgColor={COLORS.app} >
+                        <Text fontSize={"md"} fontWeight={"bold"}>Ethereum Balance</Text>
+                        <Spacer />
+                        <Text fontWeight={"bold"} fontSize={"md"}>{parseETH(ethereumBalance)} ETH</Text>
                     </Flex>
                     {
                         balance === BigInt(0) ?

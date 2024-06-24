@@ -72,12 +72,11 @@ const Bridge = () => {
         chain == null ? <SignIn></SignIn> :
             chain.id !== 4913 ? <SwitchNetwork /> :
                 <VStack alignItems={"left"} minWidth={"400px"} maxWidth={"700px"} spacing={5}>
-                    <CustomHeading header={"Deposit Collateral"} description={"Depoist your Ethereum to start placing bids."} isLoading={isPending}></CustomHeading>
+                    <CustomHeading header={"Deposit Collateral"} description={"Deposit your OEV Network Ethereum to start placing bids."} isLoading={isPending}></CustomHeading>
                     <VStack alignItems={"left"} spacing={5}>
-
                         <AddCollateral tokenAmount={ethAmount} setTokenAmount={setEthAmount} tokenBalance={parseETH(balance)} ></AddCollateral>
                         <Flex p={2} width={"100%"} bgColor={COLORS.app} >
-                            <Text fontSize={"md"} fontWeight={"bold"}>Collateral Amount</Text>
+                            <Text fontSize={"md"} fontWeight={"bold"}>Collateral Balance</Text>
                             <Spacer />
                             <Text fontWeight={"bold"} fontSize={"md"}>{parseETH(bidderBalance)} ETH</Text>
                         </Flex>
