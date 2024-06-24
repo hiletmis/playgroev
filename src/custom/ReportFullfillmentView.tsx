@@ -148,7 +148,7 @@ const BidView = () => {
             setStage(StageEnum.Confirm)
         }
 
-        if (bidStatus.status === BidStatusEnum.FulfillmentContradicte) {
+        if (bidStatus.status === BidStatusEnum.FulfillmentContradicted) {
             setStage(StageEnum.Contradict)
         }
 
@@ -202,23 +202,35 @@ const BidView = () => {
         return StatusColor[bid.status ? bid.status.status : 0]
     }
 
+    const getFeeRefund = () => {
+        if (!bid) return "Bid not found."
+        if (!bid.status) return "Status not found."
+
+        const ifConfirmed = `Your fullfillment is confirmed, your collareral amount released and the protocol fee is charged. ${Utils.parseETH(bid.status.protocolFeeAmount)} ETH is returned.`
+        const ifContradicted = `Your fullfillment is contradicted, your collareral amount is released and the protocol fee is refunded. ${Utils.parseETH(bid.status.protocolFeeAmount)} ETH is returned.`
+
+        if (bid.status.status === BidStatusEnum.FulfillmentConfirmed) return ifConfirmed
+        if (bid.status.status === BidStatusEnum.FulfillmentContradicted) return ifContradicted
+
+        return "Once the fullfillment is confirmed or contradicted, the protocol fee will be refunded."
+    }
+
+    const isReported = () => {
+        if (!bid) return false
+        if (!bid.status) return false
+        return bid.reportTx !== "0x0" as `0x${string}`
+    }
+
     return (
         bid === undefined ? null :
             <VStack width={"100%"} p={1} spacing={3}>
                 <Flex p={2} gap={1} alignItems={"center"} boxShadow={"sm"} bgColor={getColor(bid)} width={"100%"}>
                     <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
-                    <DApiRow dApi={bid.dapi} isLoading={(isPending || isLoading || isBusy)} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { }} isOpen={true} bgColor={"white"}></DApiRow>
+                    <DApiRow dApi={bid.dapi} isLoading={(isPending || isLoading || isBusy || (isReported() && stage === StageEnum.Report))} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { }} isOpen={true} bgColor={"white"}></DApiRow>
                 </Flex>
                 {
                     <VStack width={"100%"} spacing={3}>
-                        <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
-                            <InfoRow header={"Bid Condition"} text={Utils.parseETH(bid.bidDetails.conditionValue) + " " + bid.bidDetails.bidType} ></InfoRow>
-                            <InfoRow header={"Bid Amount"} text={Utils.parseETH(bid.ethAmount) + " " + bid.chainSymbol} ></InfoRow>
-                        </Flex>
-                        <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
-                            <InfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} ></InfoRow>
-                            <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} ></InfoRow>
-                        </Flex>
+
                         <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
                             <InfoRow header={"Collateral Balance Before Report"} text={Utils.parseETH(bidderBalanceBeforeUpdate) + " ETH"} ></InfoRow>
                             {
@@ -226,13 +238,11 @@ const BidView = () => {
                                 <InfoRow header={"Collateral Balance After Report"} text={Utils.parseETH(bidderBalanceAfterUpdate) + " ETH"} ></InfoRow>
                             }
                         </Flex>
-                        {
-                            bid.reportTx !== "0x0" as `0x${string}` &&
-                            <InfoRow header={"Report Transaction"} text={bid.reportTx} link={Utils.transactionLink("https://oev-network.explorer.caldera.dev", bid.reportTx)} copyEnabled={true}></InfoRow>
-                        }
+                        <InfoRow header={"Fee Deduction"} text={getFeeRefund()} ></InfoRow>
+                        <InfoRow header={"Update Transaction"} text={bid.updateTx} link={Utils.transactionLink("https://oev-network.explorer.caldera.dev", bid.updateTx)} copyEnabled={true}></InfoRow>
                         <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} copyEnabled={false}></InfoRow>
                         {
-                            getBidStatus().status === BidStatusEnum.Awarded && bid.reportTx === "0x0" as `0x${string}` ?
+                            getBidStatus().status === BidStatusEnum.Awarded && !isReported() ?
                                 chainId !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Report Fullfillment"} /> :
                                     <ExecuteButton text={"Report Fullfillment"} onClick={() => reportFulfillment()}></ExecuteButton>
                                 : null
