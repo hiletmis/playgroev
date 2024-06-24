@@ -1,7 +1,10 @@
 import { Text, Box, Flex, Spacer, VStack } from '@chakra-ui/react';
 import { COLORS, parseETH, sanitizeAmount } from '../helpers/utils';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { OevContext } from '../OEVContext';
+import { useBalance, useAccount } from 'wagmi';
+import * as Utils from '../helpers/utils';
+import { parseEther } from 'ethers';
 
 import {
     NumberInput,
@@ -9,15 +12,39 @@ import {
 } from '@chakra-ui/react'
 
 const BidAmount = (props: any) => {
+
+    const [error, setError] = useState("")
+
     const { chain, ethAmount, setEthAmount, bgColor = COLORS.app, ethBalance, isInputDisabled = false } = props;
     const { prices, isBiddable, setIsBiddable } = useContext(OevContext);
 
+    const { address } = useAccount()
+
+    const { data: targetChainBalance } = useBalance(
+        {
+            chainId: parseInt(chain.id) || 4913,
+            address: address
+        }
+    )
+
     useEffect(() => {
         if ((ethAmount) === "") return;
+        if (targetChainBalance === undefined) return;
+
+        setError("")
+        setIsBiddable(true)
+
+        if (targetChainBalance.value - BigInt(parseEther(ethAmount)) < 0) {
+            setError(`Insufficient balance on ${chain.name} chain with ${Utils.parseETH(targetChainBalance.value)} ${chain.symbol}`)
+            setIsBiddable(false)
+            return;
+        }
+
         const bidValue = parseFloat(ethAmount) * parseFloat(parseETH(prices.bidTokenPrice))
         const biddableAmount = parseFloat(ethBalance) * parseFloat(parseETH(prices.colleteralTokenPrice)) * 10
         setIsBiddable(bidValue <= biddableAmount)
-    }, [ethAmount, ethBalance, prices, setIsBiddable]);
+        setError(bidValue <= biddableAmount ? "" : `Insufficient collateral. Please deposit more collateral`)
+    }, [ethAmount, ethBalance, prices, setIsBiddable, targetChainBalance, chain]);
 
     return (
         chain == null ? null :
@@ -38,9 +65,10 @@ const BidAmount = (props: any) => {
                 {
                     ethAmount === "" || isBiddable ? null :
                         <Flex p={2} width={"100%"} bgColor={COLORS.caution} >
-                            <Text fontSize={"md"} fontWeight={"bold"}>Insufficient collateral. Please deposit more collateral</Text>
+                            <Text fontSize={"md"} fontWeight={"bold"}>{error}</Text>
                         </Flex>
                 }
+
             </VStack>
     );
 };
