@@ -14,6 +14,7 @@ import ErrorRow from './ErrorRow';
 import { getAwardedBidLogs } from '../helpers/get-logs';
 import { ContractFunctionExecutionError } from "viem";
 import { OevContext } from '../OEVContext';
+import * as Description from '../helpers/descriptions';
 
 const BidView = () => {
 
@@ -211,9 +212,9 @@ const BidView = () => {
 
         switch (bid.bidDetails.bidType) {
             case "LTE":
-                return "Less than or equal to $" + Utils.parseETH(bid.bidDetails.conditionValue)
+                return Description.extendedLTE + " $" + Utils.parseETH(bid.bidDetails.conditionValue)
             case "GTE":
-                return "Greater than or equal to $" + Utils.parseETH(bid.bidDetails.conditionValue)
+                return Description.extendedGTE + " $" + Utils.parseETH(bid.bidDetails.conditionValue)
         }
     }
 
@@ -244,7 +245,7 @@ const BidView = () => {
                                 <InfoRow header={"Collateral Amount"} text={Utils.parseETH(status.collateralAmount) + " ETH"} ></InfoRow>
                                 <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(status.protocolFeeAmount) + " ETH"} ></InfoRow>
                             </Flex>
-                            <InfoRow header={"Fee Deduction"} text={`If your bid is awarded, a fee of ${Utils.parseETH(getFeeDeduction())} ETH will be deducted.`} ></InfoRow>
+                            <InfoRow header={"Fee Deduction"} text={Description.feeDeductionTitle(Utils.parseETH(getFeeDeduction()))} ></InfoRow>
                             {
                                 dapiValueAfterUpdate &&
                                 <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
@@ -262,7 +263,7 @@ const BidView = () => {
                         </VStack>
                     }
                     {
-                        stage === StageEnum.Report ? <ErrorRow text={"dAPI has been updated. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Report"}></ErrorRow> : null
+                        stage === StageEnum.Report ? <ErrorRow text={Description.proceedToReportStage} margin={0} bgColor={Utils.COLORS.info} header={Description.proceedToReportTitle}></ErrorRow> : null
                     }
                 </VStack>
 
