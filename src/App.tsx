@@ -11,6 +11,7 @@ function App() {
 
   const [address, setAddress] = useState("");
   const [balance, setBalance] = useState(BigInt(0));
+  const [ethereumBalance, setEthereumBalance] = useState(BigInt(0));
   const [stage, setStage] = useState(0);
   const [tab, setTab] = useState(0);
   const [prices, setPrices] = useState({} as BidPrices);
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <HashRouter>
-      <OevContext.Provider value={{ address, setAddress, balance, setBalance, stage, setStage, tab, setTab, prices, setPrices, isBiddable, setIsBiddable, bid, setBid }}>
+      <OevContext.Provider value={{ address, setAddress, balance, setBalance, ethereumBalance, setEthereumBalance, stage, setStage, tab, setTab, prices, setPrices, isBiddable, setIsBiddable, bid, setBid }}>
         <Header />
         <Flex h="calc(100vh - 90px)" p={5} alignItems={'stretch'} flexDirection={'row'}>
           <VStack width={'100%'} alignItems={'center'}>

@@ -6,6 +6,8 @@ export interface AppContext {
     setAddress: (wallet: string) => void;
     balance: bigint;
     setBalance: (balance: bigint) => void;
+    ethereumBalance: bigint;
+    setEthereumBalance: (balance: bigint) => void;
     stage: number;
     setStage: (stage: number) => void;
     tab: number;
