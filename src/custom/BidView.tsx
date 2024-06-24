@@ -231,46 +231,41 @@ const BidView = () => {
                     <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
                     <DApiRow dApi={bid.dapi} isLoading={(isPending || isLoading || isBusy)} setDapi={() => checkCorrectNetwork(bid)} isOpen={true} bgColor={"white"}></DApiRow>
                 </Flex>
-                {
-                    <VStack width={"100%"} spacing={3}>
-                        <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
-                            <InfoRow header={"Bid Condition"} text={getBidType()} ></InfoRow>
-                            <InfoRow header={"Bid Amount"} text={Utils.parseETH(bid.ethAmount) + " " + bid.chainSymbol} ></InfoRow>
-                        </Flex>
-                        {
-                            status &&
+
+                <VStack width={"100%"} spacing={3}>
+                    <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
+                        <InfoRow header={"Bid Condition"} text={getBidType()} ></InfoRow>
+                        <InfoRow header={"Bid Amount"} text={Utils.parseETH(bid.ethAmount) + " " + bid.chainSymbol} ></InfoRow>
+                    </Flex>
+                    {
+                        status &&
+                        <VStack width={"100%"} spacing={3}>
                             <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
                                 <InfoRow header={"Collateral Amount"} text={Utils.parseETH(status.collateralAmount) + " ETH"} ></InfoRow>
                                 <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(status.protocolFeeAmount) + " ETH"} ></InfoRow>
                             </Flex>
-                        }
-                        {
-                            status &&
                             <InfoRow header={"Fee Deduction"} text={`If your bid is awarded, a fee of ${Utils.parseETH(getFeeDeduction())} ETH will be deducted.`} ></InfoRow>
-                        }
-
-                        {
-                            dapiValueAfterUpdate &&
-                            <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
-                                <InfoRow header={"dAPI Value to Update"} text={"$" + Utils.parseETH(dapiValueAfterUpdate?.value) + " | " + dapiValueAfterUpdate?.timestamp} ></InfoRow>
-                            </Flex>
-                        }
-                        {
-                            status &&
+                            {
+                                dapiValueAfterUpdate &&
+                                <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
+                                    <InfoRow header={"dAPI Value to Update"} text={"$" + Utils.parseETH(dapiValueAfterUpdate?.value) + " | " + dapiValueAfterUpdate?.timestamp} ></InfoRow>
+                                </Flex>
+                            }
                             <InfoRow header={"Status"} text={BidStatusEnum[status.status]} ></InfoRow>
-                        }
-                        {
-                            status &&
+                            {
                                 status.status === BidStatusEnum.Awarded && bid.updateTx === "0x0" as `0x${string}` && !bid.isExpired ?
-                                bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={`Switch Network to Update ${bid.dapi.name} DApi`} /> :
-                                    <ExecuteButton isDisabled={!updateDApiCallData} text={"Update " + bid.dapi.name} isD onClick={() => signUpdateTx()}></ExecuteButton>
-                                : null
-                        }
-                        {
-                            stage === StageEnum.Report ? <ErrorRow text={"dAPI has been updated. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Report"}></ErrorRow> : null
-                        }
-                    </VStack>
-                }
+                                    bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={`Switch Network to Update ${bid.dapi.name} DApi`} /> :
+                                        <ExecuteButton isDisabled={!updateDApiCallData} text={"Update " + bid.dapi.name} isD onClick={() => signUpdateTx()}></ExecuteButton>
+                                    : null
+                            }
+
+                        </VStack>
+                    }
+                    {
+                        stage === StageEnum.Report ? <ErrorRow text={"dAPI has been updated. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Report"}></ErrorRow> : null
+                    }
+                </VStack>
+
             </VStack>
     );
 };
