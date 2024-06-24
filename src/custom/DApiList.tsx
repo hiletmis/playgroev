@@ -13,11 +13,6 @@ const DApiList = (props: any) => {
     const [isChainListVisible, setIsChainListVisible] = useState(false);
 
     useEffect(() => {
-        setIsDApiListVisible(false);
-        setIsChainListVisible(false);
-    }, [dApi, selectedChain]);
-
-    useEffect(() => {
         setKeyword("");
         if (!isDApiListVisible) return
         setIsChainListVisible(false);
@@ -28,6 +23,16 @@ const DApiList = (props: any) => {
         if (!isChainListVisible) return
         setIsDApiListVisible(false);
     }, [isChainListVisible]);
+
+    const selectDApi = (dApi: any) => {
+        setDapi(dApi);
+        setIsDApiListVisible(false);
+    }
+
+    const selectChain = (chain: any) => {
+        setSelectedChain(chain);
+        setIsChainListVisible(false);
+    }
 
     return (
         <VStack width={"100%"} alignItems={"left"} spacing={0}>
@@ -44,7 +49,7 @@ const DApiList = (props: any) => {
                     {
                         getDapis().filter((dApi) => { return dApi.name.toLowerCase().includes(keyword.toLowerCase()) }).map((dApi, index) => {
                             return (
-                                <DApiRow key={index} dApi={dApi} setDapi={setDapi}></DApiRow>
+                                <DApiRow key={index} dApi={dApi} setDapi={selectDApi}></DApiRow>
                             )
                         })
                     }
@@ -59,7 +64,7 @@ const DApiList = (props: any) => {
                     {
                         getChains().filter((chain) => { return chain.name.toLowerCase().includes(keyword.toLowerCase()) }).map((chain, index) => {
                             return (
-                                <ChainRow key={index} selectedChain={chain} setSelectedChain={setSelectedChain}></ChainRow>
+                                <ChainRow key={index} selectedChain={chain} setSelectedChain={selectChain}></ChainRow>
                             )
                         })
                     }
