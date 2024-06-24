@@ -22,6 +22,7 @@ const BidView = () => {
     const [updateDApiData, setUpdateDApiData] = useState(null as UpdateOevProxyDataFeedWithSignedData | null);
     const [isBusy, setIsBusy] = useState(false)
     const [dapiValueAfterUpdate, setDapiValueAfterUpdate] = useState(null as DApiValue | null)
+    const [status, setStatus] = useState(null as BidStatus | null)
 
     const { chain, chainId, address } = useAccount()
     const { setBid, bid, stage, setStage } = useContext(OevContext);
@@ -54,20 +55,6 @@ const BidView = () => {
         if (bid.isExpired) return false
         if (bid.status === null) return false
         return bid.status.status === status
-    }
-
-    const getBidStatus = () => {
-        const dummyStatus = {
-            status: 0,
-            expirationTimestamp: BigInt(0),
-            collateralAmount: BigInt(0),
-            protocolFeeAmount: BigInt(0),
-            bidId: "0x0" as `0x${string}`
-        }
-
-        if (!bid) return dummyStatus
-        if (!bid.status) return dummyStatus
-        return bid.status
     }
 
     const blockNumber = useBlockNumber({
@@ -129,7 +116,6 @@ const BidView = () => {
     useEffect(() => {
         if (!bidInfo) return
         if (!bid) return
-
         const bidStatus = {
             status: bidInfo[0],
             expirationTimestamp: bidInfo[1],
@@ -138,6 +124,7 @@ const BidView = () => {
             bidId: bid.bidId
         } as BidStatus
         bid.status = bidStatus
+        setStatus(bidStatus)
         setBid(bid)
 
     }, [bidInfo, bid, stage, setStage, setBid])
@@ -198,6 +185,14 @@ const BidView = () => {
         }
     }, [OevAuctionHouseAddres, address, bid, blockNumber, chainId, setBid])
 
+    useEffect(() => {
+        if (!blockNumber) return
+        if (!bid) return
+        if (!bid.status) return
+
+
+    }, [blockNumber, bid])
+
     const checkCorrectNetwork = (bid: BidInfo) => {
         if (chainId !== 4913) {
             alert("Please switch to OEV Network to check bid status.")
@@ -226,9 +221,7 @@ const BidView = () => {
         if (!bid) return BigInt(0)
         if (!bid.status) return BigInt(0)
 
-        const max = bid.status.collateralAmount > bid.status.protocolFeeAmount ? bid.status.collateralAmount : bid.status.protocolFeeAmount
-
-        return max
+        return bid.status.collateralAmount > bid.status.protocolFeeAmount ? bid.status.collateralAmount : bid.status.protocolFeeAmount
     }
 
     return (
@@ -244,20 +237,31 @@ const BidView = () => {
                             <InfoRow header={"Bid Condition"} text={getBidType()} ></InfoRow>
                             <InfoRow header={"Bid Amount"} text={Utils.parseETH(bid.ethAmount) + " " + bid.chainSymbol} ></InfoRow>
                         </Flex>
-                        <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
-                            <InfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} ></InfoRow>
-                            <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} ></InfoRow>
-                        </Flex>
-                        <InfoRow header={"Fee Deduction"} text={`If your bid is awarded, a fee of ${Utils.parseETH(getFeeDeduction())} ETH will be deducted.`} ></InfoRow>
+                        {
+                            status &&
+                            <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
+                                <InfoRow header={"Collateral Amount"} text={Utils.parseETH(status.collateralAmount) + " ETH"} ></InfoRow>
+                                <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(status.protocolFeeAmount) + " ETH"} ></InfoRow>
+                            </Flex>
+                        }
+                        {
+                            status &&
+                            <InfoRow header={"Fee Deduction"} text={`If your bid is awarded, a fee of ${Utils.parseETH(getFeeDeduction())} ETH will be deducted.`} ></InfoRow>
+                        }
+
                         {
                             dapiValueAfterUpdate &&
                             <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
                                 <InfoRow header={"dAPI Value to Update"} text={"$" + Utils.parseETH(dapiValueAfterUpdate?.value) + " | " + dapiValueAfterUpdate?.timestamp} ></InfoRow>
                             </Flex>
                         }
-                        <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} ></InfoRow>
                         {
-                            getBidStatus().status === BidStatusEnum.Awarded && bid.updateTx === "0x0" as `0x${string}` && !bid.isExpired ?
+                            status &&
+                            <InfoRow header={"Status"} text={BidStatusEnum[status.status]} ></InfoRow>
+                        }
+                        {
+                            status &&
+                                status.status === BidStatusEnum.Awarded && bid.updateTx === "0x0" as `0x${string}` && !bid.isExpired ?
                                 bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={`Switch Network to Update ${bid.dapi.name} DApi`} /> :
                                     <ExecuteButton isDisabled={!updateDApiCallData} text={"Update " + bid.dapi.name} isD onClick={() => signUpdateTx()}></ExecuteButton>
                                 : null
