@@ -8,7 +8,7 @@ import { ChainLogo } from '@api3/logos';
 import InfoRow from './InfoRow';
 import ExecuteButton from './ExecuteButton';
 import { useReadContract, useAccount, useSimulateContract, useWriteContract, useWaitForTransactionReceipt, useBlockNumber } from 'wagmi';
-import { OevAuctionHouse__factory, Api3ServerV1__factory, DapiProxyWithOev__factory, deploymentAddresses } from '@api3/contracts';
+import { OevAuctionHouse__factory, Api3ServerV1__factory, deploymentAddresses } from '@api3/contracts';
 import SwitchNetwork from './SwitchNetwork';
 import ErrorRow from './ErrorRow';
 import { getAwardedBidLogs } from '../helpers/get-logs';
@@ -21,7 +21,6 @@ const BidView = () => {
     const [api3ServerV1Address, setApi3ServerV1Address] = useState("" as `0x${string}`)
     const [updateDApiData, setUpdateDApiData] = useState(null as UpdateOevProxyDataFeedWithSignedData | null);
     const [isBusy, setIsBusy] = useState(false)
-    const [dapiValueBeforeUpdate, setDapiValueBeforeUpdate] = useState(null as DApiValue | null)
     const [dapiValueAfterUpdate, setDapiValueAfterUpdate] = useState(null as DApiValue | null)
 
     const { chain, chainId, address } = useAccount()
@@ -113,19 +112,6 @@ const BidView = () => {
         }
     });
 
-    //@ts-ignore
-    const { data: dapiValue } = useReadContract({
-        address: bid?.bidDetails.proxyAddress as `0x${string}`,
-        abi: DapiProxyWithOev__factory.abi,
-        chainId: chainId,
-        functionName: 'read',
-        args: [],
-        query: {
-            refetchInterval: 5000,
-            enabled: chainId === bid?.chainId
-        }
-    });
-
     // UpdateDApi
     //@ts-ignore
     const { data: updateDApiCallData, error: errorUpdate } = useSimulateContract({
@@ -193,30 +179,24 @@ const BidView = () => {
                 if (!data) return
                 setUpdateDApiData(data)
                 bid.awardedBidData = data
+
+                const value = data[4]
+                const timestamp = data[3]
+
+                const date = new Date(parseInt(timestamp.toString()) * 1000)
+                const bigIntValue = BigInt(value)
+
+                const dapiValue = {
+                    value: bigIntValue,
+                    timestamp: date.toLocaleString()
+                } as DApiValue
+
+                setDapiValueAfterUpdate(dapiValue)
+
                 setBid(bid)
             })
         }
     }, [OevAuctionHouseAddres, address, bid, blockNumber, chainId, setBid])
-
-    useEffect(() => {
-        if (dapiValue === undefined) return;
-        const date = new Date(dapiValue[1] * 1000)
-        if (dapiValue[0] === dapiValueBeforeUpdate?.value) return;
-
-        const data = {
-            value: dapiValue[0],
-            timestamp: date.toLocaleString()
-        } as DApiValue
-
-        if (stage === StageEnum.Report) {
-            setDapiValueAfterUpdate(data)
-        }
-
-        if (stage === StageEnum.AwardAndUpdate) {
-            setDapiValueBeforeUpdate(data)
-        }
-
-    }, [dapiValue, stage, dapiValueBeforeUpdate])
 
     const checkCorrectNetwork = (bid: BidInfo) => {
         if (chainId !== 4913) {
@@ -230,6 +210,27 @@ const BidView = () => {
         return StatusColor[bid.status ? bid.status.status : 0]
     }
 
+    const getBidType = () => {
+        if (!bid) return ""
+        if (!bid.bidDetails) return ""
+
+        switch (bid.bidDetails.bidType) {
+            case "LTE":
+                return "Less than or equal to $" + Utils.parseETH(bid.bidDetails.conditionValue)
+            case "GTE":
+                return "Greater than or equal to $" + Utils.parseETH(bid.bidDetails.conditionValue)
+        }
+    }
+
+    const getFeeDeduction = () => {
+        if (!bid) return BigInt(0)
+        if (!bid.status) return BigInt(0)
+
+        const max = bid.status.collateralAmount > bid.status.protocolFeeAmount ? bid.status.collateralAmount : bid.status.protocolFeeAmount
+
+        return max
+    }
+
     return (
         bid === undefined ? null :
             <VStack width={"100%"} p={1} spacing={3}>
@@ -240,28 +241,24 @@ const BidView = () => {
                 {
                     <VStack width={"100%"} spacing={3}>
                         <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
-                            <InfoRow header={"Bid Condition"} text={Utils.parseETH(bid.bidDetails.conditionValue) + " " + bid.bidDetails.bidType} ></InfoRow>
+                            <InfoRow header={"Bid Condition"} text={getBidType()} ></InfoRow>
                             <InfoRow header={"Bid Amount"} text={Utils.parseETH(bid.ethAmount) + " " + bid.chainSymbol} ></InfoRow>
                         </Flex>
                         <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
-                            {
-                                chainId === bid.chainId &&
-                                <InfoRow header={"DApi Value Before Update"} text={"$" + Utils.parseETH(dapiValueBeforeUpdate?.value) + " | " + dapiValueBeforeUpdate?.timestamp} ></InfoRow>
-                            }
-                            {
-                                stage === StageEnum.Report && dapiValueAfterUpdate &&
-                                <InfoRow header={"DApi Value After Update"} text={"$" + Utils.parseETH(dapiValueAfterUpdate?.value) + " | " + dapiValueAfterUpdate?.timestamp} ></InfoRow>
-                            }
+                            <InfoRow header={"Collateral Amount"} text={Utils.parseETH(getBidStatus().collateralAmount) + " ETH"} ></InfoRow>
+                            <InfoRow header={"Protocol Fee Amount"} text={Utils.parseETH(getBidStatus().protocolFeeAmount) + " ETH"} ></InfoRow>
                         </Flex>
+                        <InfoRow header={"Fee Deduction"} text={`If your bid is awarded, a fee of ${Utils.parseETH(getFeeDeduction())} ETH will be deducted.`} ></InfoRow>
                         {
-                            bid.updateTx !== "0x0" as `0x${string}` &&
-                            <InfoRow header={"Update Transaction"} text={bid.updateTx} link={Utils.transactionLink(bid.explorer, bid.updateTx)} copyEnabled={true}></InfoRow>
+                            dapiValueAfterUpdate &&
+                            <Flex width={"100%"} gap={3} justifyContent={"space-between"}>
+                                <InfoRow header={"DApi Value to Update"} text={"$" + Utils.parseETH(dapiValueAfterUpdate?.value) + " | " + dapiValueAfterUpdate?.timestamp} ></InfoRow>
+                            </Flex>
                         }
-
                         <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} ></InfoRow>
                         {
                             getBidStatus().status === BidStatusEnum.Awarded && bid.updateTx === "0x0" as `0x${string}` && !bid.isExpired ?
-                                bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={"Switch Network to Update DApi"} /> :
+                                bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={`Switch Network to Update ${bid.dapi.name} DApi`} /> :
                                     <ExecuteButton isDisabled={!updateDApiCallData} text={"Update " + bid.dapi.name} isD onClick={() => signUpdateTx()}></ExecuteButton>
                                 : null
                         }

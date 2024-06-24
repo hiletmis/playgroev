@@ -57,7 +57,7 @@ export enum BidStatusEnum {
     "Awarded",
     "FulfillmentReported",
     "FulfillmentConfirmed",
-    "FulfillmentContradicte",
+    "FulfillmentContradicted",
 }
 
 export enum StageEnum {

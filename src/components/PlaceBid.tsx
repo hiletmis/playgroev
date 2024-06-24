@@ -9,7 +9,6 @@ import BidConditions from "../custom/BidCondition";
 import ExecuteButton from "../custom/ExecuteButton";
 import ErrorRow from "../custom/ErrorRow";
 import DApiList from "../custom/DApiList";
-import InfoRow from "../custom/InfoRow";
 import { BidDetailsArgs, BidPrices, StageEnum } from "../types";
 import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { parseEther } from 'ethers';
@@ -27,7 +26,6 @@ const PlaceBid = () => {
 
     const [selectedChain, setSelectedChain] = useState(Utils.getChain("1"));
     const [dApi, setDapi] = useState(Utils.getEthUsdDapi());
-    const [dapiProxyWithOevAddress, setDapiProxyWithOevAddress] = useState("" as `0x${string}`);
 
     const [ethAmount, setEthAmount] = useState("");
     const [ethBalance, setEthBalance] = useState("0");
@@ -138,7 +136,6 @@ const PlaceBid = () => {
         Utils.getPrices(selectedChain.symbol + "/USD").then((prices: BidPrices) => {
             setPrices(prices)
         })
-        setDapiProxyWithOevAddress(oevProxy);
 
         if (bidType !== "LTE" && bidType !== "GTE") return;
 
@@ -188,15 +185,12 @@ const PlaceBid = () => {
                     </Flex>
                     <VStack spacing={2} direction="row" align="left">
                         <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
-                        <InfoRow header={"DApi Proxy"} text={dapiProxyWithOevAddress} link={Utils.dapiProxyAddressExternalLink(selectedChain?.explorer.browserUrl, dapiProxyWithOevAddress)}></InfoRow>
-
                         {
                             chain.id !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Place a Bid"} /> :
                                 <VStack alignItems={"left"} spacing={5}>
                                     <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={selectedChain} isInputDisabled={isInputDisabled}></BidAmount>
                                     <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
                                     <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
-
                                     {
                                         stage > StageEnum.PlaceBid ? <ErrorRow text={"Your bid has been placed. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Update DApi"}></ErrorRow> :
                                             <ExecuteButton
