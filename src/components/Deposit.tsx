@@ -13,6 +13,7 @@ import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { parseEther } from 'ethers';
 import { ViewIcon } from '@chakra-ui/icons';
 import { StageEnum } from '../types';
+import * as Descriptions from '../helpers/descriptions';
 
 const Bridge = () => {
     const { chain, address } = useAccount()
@@ -72,16 +73,16 @@ const Bridge = () => {
         chain == null ? <SignIn></SignIn> :
             chain.id !== 4913 ? <SwitchNetwork /> :
                 <VStack alignItems={"left"} minWidth={"400px"} maxWidth={"700px"} spacing={5}>
-                    <CustomHeading header={"Deposit Collateral"} description={"Deposit your OEV Network Ethereum to start placing bids."} isLoading={isPending}></CustomHeading>
+                    <CustomHeading header={Descriptions.depositCollateralTitle} description={Descriptions.depositCollateralDescription} isLoading={isPending}></CustomHeading>
                     <VStack alignItems={"left"} spacing={5}>
                         <AddCollateral tokenAmount={ethAmount} setTokenAmount={setEthAmount} tokenBalance={parseETH(balance)} ></AddCollateral>
                         <Flex p={2} width={"100%"} bgColor={COLORS.app} >
-                            <Text fontSize={"md"} fontWeight={"bold"}>Collateral Balance</Text>
+                            <Text fontSize={"md"} fontWeight={"bold"}>{Descriptions.collateralBalance}</Text>
                             <Spacer />
                             <Text fontWeight={"bold"} fontSize={"md"}>{parseETH(bidderBalance)} ETH</Text>
                         </Flex>
                         <ExecuteButton
-                            text={'Deposit Collateral'}
+                            text={Descriptions.depositCollateralButton}
                             isDisabled={ethAmount === "0" || ethAmount === "" || parseFloat(parseETH(balance)) < parseFloat(ethAmount)}
                             onClick={() => depositForBidder()}>
                         </ExecuteButton>

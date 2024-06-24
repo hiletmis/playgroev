@@ -15,6 +15,7 @@ import { parseEther } from 'ethers';
 import { BidInfo } from "../types";
 import { bidTopic } from "../helpers/constants";
 import { OevContext } from "../OEVContext";
+import * as Descriptions from "../helpers/descriptions";
 
 import {
     VStack, Flex, Text
@@ -178,21 +179,21 @@ const PlaceBid = () => {
     return (
         chain == null ? <SignIn></SignIn> :
             <VStack spacing={4} alignItems={"left"} >
-                <CustomHeading header={"Place a Bid"} description={"Places bids in anticipation of an OEV opportunity on a specific dapi."} isLoading={isInputDisabled}></CustomHeading>
+                <CustomHeading header={Descriptions.placeBidTitle} description={Descriptions.placeBidDescription} isLoading={isInputDisabled}></CustomHeading>
                 <VStack maxW={"700px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
                     <Flex>
-                        <Text fontWeight={"bold"} fontSize={"md"}>Select Chain and DApi</Text>
+                        <Text fontWeight={"bold"} fontSize={"md"}>{Descriptions.selectChainAndDapiDescription}</Text>
                     </Flex>
                     <VStack spacing={2} direction="row" align="left">
                         <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
                         {
-                            chain.id !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Place a Bid"} /> :
+                            chain.id !== 4913 ? <SwitchNetwork header={false} switchMessage={Descriptions.bidAmountDescription} /> :
                                 <VStack alignItems={"left"} spacing={5}>
                                     <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={selectedChain} isInputDisabled={isInputDisabled}></BidAmount>
                                     <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
                                     <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
                                     {
-                                        stage > StageEnum.PlaceBid ? <ErrorRow text={"Your bid has been placed. Please proceed to next stage"} margin={0} bgColor={Utils.COLORS.info} header={"Proceed to Update DApi"}></ErrorRow> :
+                                        stage > StageEnum.PlaceBid ? <ErrorRow text={Descriptions.bidPlacedMessage} margin={0} bgColor={Utils.COLORS.info} header={Descriptions.bidPlacedTitle}></ErrorRow> :
                                             <ExecuteButton
                                                 isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || !isBiddable}
                                                 text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
