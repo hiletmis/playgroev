@@ -147,3 +147,37 @@ export type DApiValue = {
     timestamp: string;
     value: BigInt;
 };
+
+export declare const DApiElementSchema: z.ZodObject<{
+    name: z.ZodString;
+    metadata: z.ZodObject<{
+        prefix: z.ZodEnum<["$", " ", ""]>;
+        category: z.ZodEnum<["Commodities", "Cryptocurrency", "Equities", "Forex", "LST & LRT Exchange Rates", "Stablecoin"]>;
+    }, "strip", z.ZodTypeAny, {
+        prefix: "" | "$" | " ";
+        category: "Commodities" | "Cryptocurrency" | "Equities" | "Forex" | "LST & LRT Exchange Rates" | "Stablecoin";
+    }, {
+        prefix: "" | "$" | " ";
+        category: "Commodities" | "Cryptocurrency" | "Equities" | "Forex" | "LST & LRT Exchange Rates" | "Stablecoin";
+    }>;
+    providers: z.ZodArray<z.ZodEnum<["coingecko", "coinpaprika", "dxfeed", "finage", "finnhub", "iexcloud", "kaiko", "ncfx", "nodary", "tradermade", "twelvedata", "coingecko-mock", "coinpaprika-mock", "dxfeed-mock", "finage-mock", "finnhub-mock", "iexcloud-mock", "kaiko-mock", "ncfx-mock", "nodary-mock", "tradermade-mock", "twelvedata-mock"]>, "many">;
+    stage: z.ZodEnum<["active", "deprecated", "surveying", "retired"]>;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    metadata: {
+        prefix: "" | "$" | " ";
+        category: "Commodities" | "Cryptocurrency" | "Equities" | "Forex" | "LST & LRT Exchange Rates" | "Stablecoin";
+    };
+    providers: ("coingecko" | "coinpaprika" | "dxfeed" | "finage" | "finnhub" | "iexcloud" | "kaiko" | "ncfx" | "nodary" | "tradermade" | "twelvedata" | "coingecko-mock" | "coinpaprika-mock" | "dxfeed-mock" | "finage-mock" | "finnhub-mock" | "iexcloud-mock" | "kaiko-mock" | "ncfx-mock" | "nodary-mock" | "tradermade-mock" | "twelvedata-mock")[];
+    stage: "active" | "deprecated" | "surveying" | "retired";
+}, {
+    name: string;
+    metadata: {
+        prefix: "" | "$" | " ";
+        category: "Commodities" | "Cryptocurrency" | "Equities" | "Forex" | "LST & LRT Exchange Rates" | "Stablecoin";
+    };
+    providers: ("coingecko" | "coinpaprika" | "dxfeed" | "finage" | "finnhub" | "iexcloud" | "kaiko" | "ncfx" | "nodary" | "tradermade" | "twelvedata" | "coingecko-mock" | "coinpaprika-mock" | "dxfeed-mock" | "finage-mock" | "finnhub-mock" | "iexcloud-mock" | "kaiko-mock" | "ncfx-mock" | "nodary-mock" | "tradermade-mock" | "twelvedata-mock")[];
+    stage: "active" | "deprecated" | "surveying" | "retired";
+}>;
+
+export type DApiElement = z.infer<typeof DApiElementSchema>;
