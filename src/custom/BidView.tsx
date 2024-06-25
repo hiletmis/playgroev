@@ -10,11 +10,11 @@ import ExecuteButton from './ExecuteButton';
 import { useReadContract, useAccount, useSimulateContract, useWriteContract, useWaitForTransactionReceipt, useBlockNumber } from 'wagmi';
 import { OevAuctionHouse__factory, Api3ServerV1__factory, deploymentAddresses } from '@api3/contracts';
 import SwitchNetwork from './SwitchNetwork';
-import ErrorRow from './ErrorRow';
 import { getAwardedBidLogs } from '../helpers/get-logs';
 import { ContractFunctionExecutionError } from "viem";
 import { OevContext } from '../OEVContext';
 import * as Description from '../helpers/descriptions';
+import ProgressBar from './ProgressBar';
 
 const BidView = () => {
 
@@ -24,6 +24,7 @@ const BidView = () => {
     const [isBusy, setIsBusy] = useState(false)
     const [dapiValueAfterUpdate, setDapiValueAfterUpdate] = useState(null as DApiValue | null)
     const [status, setStatus] = useState(null as BidStatus | null)
+    const [step, setStep] = useState(0)
 
     const { chain, chainId, address } = useAccount()
     const { setBid, bid, stage, setStage } = useContext(OevContext);
@@ -82,6 +83,7 @@ const BidView = () => {
 
         if (stage === StageEnum.AwardAndUpdate && bid.updateTx !== "0x0" as `0x${string}`) {
             setStage(StageEnum.Report)
+            setStep(3)
         }
 
 
@@ -128,17 +130,26 @@ const BidView = () => {
         setStatus(bidStatus)
         setBid(bid)
 
-    }, [bidInfo, bid, stage, setStage, setBid])
+        if (step === 0 && bid.status.status === BidStatusEnum.Awarded) {
+            setStep(1)
+        }
+
+    }, [bidInfo, bid, stage, setStage, setBid, step])
 
     useEffect(() => {
         if (!chainId) return
+        if (!bid) return
         if (!deploymentAddresses.Api3ServerV1.hasOwnProperty(chainId)) return
 
         //@ts-ignore
         const api3ServerV1Address = deploymentAddresses.Api3ServerV1[chainId] as `0x${string}`
         setApi3ServerV1Address(api3ServerV1Address)
 
-    }, [chainId])
+        if (step === 1 && chainId === bid.chainId) {
+            setStep(2)
+        }
+
+    }, [bid, chainId, step])
 
     useEffect(() => {
         if (!errorUpdate) return
@@ -227,7 +238,7 @@ const BidView = () => {
 
     return (
         bid === undefined ? null :
-            <VStack maxW={"700px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
+            <VStack maxW={"700px"} borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
                 <Flex p={2} gap={1} alignItems={"center"} boxShadow={"sm"} bgColor={getColor(bid)} width={"100%"}>
                     <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
                     <DApiRow dApi={bid.dapi} isLoading={(isPending || isLoading || isBusy)} setDapi={() => checkCorrectNetwork(bid)} isOpen={true} bgColor={"white"}></DApiRow>
@@ -253,20 +264,16 @@ const BidView = () => {
                                 </Flex>
                             }
                             <InfoRow header={"Status"} text={BidStatusEnum[status.status]} ></InfoRow>
+                            <ProgressBar step={step} descriptions={["Awaiting bid award", "Switch to target network", "Update dApi", "Proceed to report"]} isLoading={isBusy}></ProgressBar>
                             {
                                 status.status === BidStatusEnum.Awarded && bid.updateTx === "0x0" as `0x${string}` && !bid.isExpired ?
                                     bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={`Switch Network to Update ${bid.dapi.name} DApi`} /> :
                                         <ExecuteButton isDisabled={!updateDApiCallData} text={"Update " + bid.dapi.name} isD onClick={() => signUpdateTx()}></ExecuteButton>
                                     : null
                             }
-
                         </VStack>
                     }
-                    {
-                        stage === StageEnum.Report ? <ErrorRow text={Description.proceedToReportStage} margin={0} bgColor={Utils.COLORS.info} header={Description.proceedToReportTitle}></ErrorRow> : null
-                    }
                 </VStack>
-
             </VStack>
     );
 };
