@@ -255,7 +255,7 @@ const BidView = () => {
                         <InfoRow header={"Fee Deduction"} text={getFeeRefund()} ></InfoRow>
                         <InfoRow header={"Update Transaction"} text={bid.updateTx} link={Utils.transactionLink("https://oev-network.explorer.caldera.dev", bid.updateTx)} copyEnabled={true}></InfoRow>
                         <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} copyEnabled={false}></InfoRow>
-                        <ProgressBar step={step} descriptions={["Switch to OEV Network to report", "Report fullfilment", "Await for fullfilment to be confirmed/contradicted", "Bid haas been finalized"]} isLoading={isBusy}></ProgressBar>
+                        <ProgressBar step={step} descriptions={["Switching to OEV Network", "Reporting Fullfillment", "Awaiting Confirmation / Contradiction", "Done"]} isLoading={isBusy}></ProgressBar>
                         {
                             getBidStatus().status === BidStatusEnum.Awarded && !isReported() ?
                                 chainId !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Report Fullfillment"} /> :

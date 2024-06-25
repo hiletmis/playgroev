@@ -238,7 +238,7 @@ const PlaceBid = () => {
                                                 <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
                                             </>
                                     }
-                                    <ProgressBar step={step} descriptions={["Chain selection", "dApi selection", "Enter bid amount", "Enter bid condition", "Place the bid", "Proceed to award and update"]}></ProgressBar>
+                                    <ProgressBar step={step} descriptions={["Chain Selection", "dApi Selection", "Entering Bid Amount", "Entering Bid Conditions", "Placing the Bid", "Proceeding to Award and Update"]}></ProgressBar>
 
                                     {
                                         dApi == null ? null :

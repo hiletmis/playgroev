@@ -264,7 +264,7 @@ const BidView = () => {
                                 </Flex>
                             }
                             <InfoRow header={"Status"} text={BidStatusEnum[status.status]} ></InfoRow>
-                            <ProgressBar step={step} descriptions={["Awaiting bid award", "Switch to target network", "Update dApi", "Proceed to report"]} isLoading={isBusy}></ProgressBar>
+                            <ProgressBar step={step} descriptions={["Awaiting Bid Award", "Switching to Target Network", "Updating dApi", "Proceeding to Report Fullfillment"]} isLoading={isBusy}></ProgressBar>
                             {
                                 status.status === BidStatusEnum.Awarded && bid.updateTx === "0x0" as `0x${string}` && !bid.isExpired ?
                                     bid.chainId.toString() !== chain!.id.toString() ? <SwitchNetwork header={false} destinationChain={bid.chainId} switchMessage={`Switch Network to Update ${bid.dapi.name} DApi`} /> :
