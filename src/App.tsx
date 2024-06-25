@@ -15,7 +15,7 @@ function App() {
   const [stage, setStage] = useState(0);
   const [tab, setTab] = useState(0);
   const [prices, setPrices] = useState({} as BidPrices);
-  const [isBiddable, setIsBiddable] = useState(false);
+  const [isBiddable, setIsBiddable] = useState(true);
   const [bid, setBid] = useState(undefined as BidInfo | undefined);
 
   return (
