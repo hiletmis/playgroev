@@ -25,7 +25,7 @@ export const depositCollateralButton = "Deposit Collateral"
 export const placeBidTitle = "Place a Bid"
 export const placeBidDescription = "Places bids in anticipation of an OEV opportunity on a specific dapi."
 
-export const selectChainAndDapiDescription = "Select Chain and DApi"
+export const selectChainAndDapiDescription = "Select Chain and dApi"
 export const bidAmountDescription = "I want to bid"
 export const bidConditionDescription = "for an update that satisfies the condition"
 
