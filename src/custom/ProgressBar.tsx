@@ -5,9 +5,9 @@ const ProgressBar = (props: any) => {
     const { descriptions, step } = props;
     const steps = descriptions.length - 1;
     return (
-        <VStack alignItems={"left"}>
+        <VStack width={"100%"} alignItems={"left"}>
             <Text fontSize={"lg"} fontWeight={"bold"}>Progress</Text>
-            <VStack width={"700px"} bgColor={steps === step ? "green.100" : COLORS.app} spacing={5} p={4} alignItems={"left"}>
+            <VStack bgColor={steps === step ? "green.100" : COLORS.app} spacing={5} p={4} alignItems={"left"}>
                 <Flex gap={3} width={"100%"} justifyContent={"center"} alignItems={"center"}>
                     <Text fontSize={"md"} fontWeight={"bold"}>{descriptions[step]}</Text>
                     <Spacer />
