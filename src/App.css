@@ -32,7 +32,38 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.modal {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 2rem;
+  width: 50%;
+  min-width: 700px;
+  min-height: 800px;
+  border: 1px;
+  z-index: 1;
+  border-radius: 0.5rem;
+  background: rgb(249, 255, 213);
+}
+
+.backdrop {
+  position: absolute;
+  background: hsl(0 0% 0% / 50%);
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  overflow-y: hidden;
+  z-index: 1;
 }
