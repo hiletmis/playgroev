@@ -46,15 +46,16 @@
   margin-bottom: auto;
   left: 0;
   right: 0;
-  text-align: center;
+  text-align: left;
   padding: 2rem;
   width: 50%;
   min-width: 700px;
-  min-height: 800px;
+  max-height: 800px;
   border: 1px;
   z-index: 1;
   border-radius: 0.5rem;
   background: rgb(249, 255, 213);
+  overflow-y: scroll;
 }
 
 .backdrop {
