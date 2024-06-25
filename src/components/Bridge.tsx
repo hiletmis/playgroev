@@ -34,18 +34,21 @@ const Bridge = () => {
     });
 
     useEffect(() => {
-        if (balance === BigInt(0)) {
-            setStage(StageEnum.Bridge);
-        }
+        if (chain === null) return
 
         if (stage === 0 && balance !== BigInt(0)) {
             setStage(StageEnum.Deposit);
+            return
         }
-    }, [balance, stage, setStage]);
+
+        if (balance === BigInt(0)) {
+            setStage(StageEnum.Bridge);
+        }
+    }, [balance, stage, setStage, chain]);
 
     useEffect(() => {
         if (bidderBalance === undefined) return;
-        if (stage === 1 && bidderBalance > BigInt(0)) {
+        if (stage < 2 && bidderBalance > BigInt(0)) {
             setStage(StageEnum.PlaceBid);
         }
     }, [bidderBalance, stage, setStage]);

@@ -1,11 +1,12 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { VStack, Flex } from '@chakra-ui/react';
 import Header from './components/Header';
 import Welcome from './components/Welcome';
 import { OevContext } from './OEVContext';
 import { BidPrices, BidInfo } from './types';
+import { useAccount } from 'wagmi';
 
 function App() {
 
@@ -17,6 +18,17 @@ function App() {
   const [prices, setPrices] = useState({} as BidPrices);
   const [isBiddable, setIsBiddable] = useState(true);
   const [bid, setBid] = useState(undefined as BidInfo | undefined);
+
+  const { chain } = useAccount()
+
+
+  useEffect(() => {
+    if (chain == null) {
+      setStage(-1);
+      setTab(0);
+    }
+  }, [chain]);
+
 
   return (
     <HashRouter>
