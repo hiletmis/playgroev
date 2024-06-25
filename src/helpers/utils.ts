@@ -1,4 +1,4 @@
-import { formatUnits, hexlify, randomBytes, keccak256, solidityPacked, getBytes } from 'ethers';
+import { formatUnits, hexlify, randomBytes, keccak256, solidityPacked } from 'ethers';
 import { dapis, getChains as getChainsFromDapiManagement } from '@api3/dapi-management'
 import { CHAINS } from '@api3/chains';
 import { computeDapiProxyWithOevAddress } from '@api3/contracts';
@@ -184,9 +184,6 @@ export function hashBidDetails(bidDetails: string) {
     return keccak256(bidDetails) as `0x${string}`;
 }
 
-export function fulfillmentDetails(hash: string) {
-    return getBytes(hash);
-}
 //@ts-ignore
 export const deriveBeaconSetId = (dataFeedIds: string[]) => keccak256(encodeAbiParameters(parseAbiParameters('bytes32[]'), [dataFeedIds]));
 
