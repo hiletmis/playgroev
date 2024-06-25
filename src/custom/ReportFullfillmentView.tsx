@@ -13,18 +13,20 @@ import SwitchNetwork from './SwitchNetwork';
 import { bidTopic } from "../helpers/constants";
 import { OevContext } from '../OEVContext';
 import * as Description from '../helpers/descriptions';
+import ProgressBar from './ProgressBar';
 
 const BidView = () => {
 
     const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
     const [api3ServerV1Address, setApi3ServerV1Address] = useState("" as `0x${string}`)
+    const [step, setStep] = useState(0)
 
     const [isBusy, setIsBusy] = useState(false)
     const [bidderBalanceBeforeUpdate, setBidderBalanceBeforeUpdate] = useState(BigInt(0))
     const [bidderBalanceAfterUpdate, setBidderBalanceAfterUpdate] = useState(BigInt(0))
 
     const { chainId, address } = useAccount()
-    const { setBid, bid, stage, setStage, setTab } = useContext(OevContext);
+    const { setBid, bid, stage, setStage } = useContext(OevContext);
     const { writeContract, data: hash, isPending, reset } = useWriteContract()
 
     const { isFetched: isFetchedReceipt, data: receipt } = useWaitForTransactionReceipt({
@@ -72,8 +74,12 @@ const BidView = () => {
             setStage(StageEnum.Reported)
         }
 
+        if (step === 1) {
+            setStep(2)
+        }
+
         setBid(bid)
-    }, [hash, bid, setBid, stage, setStage]);
+    }, [hash, bid, setBid, stage, setStage, step]);
 
     const reportFulfillment = async () => {
         setIsBusy(true)
@@ -147,10 +153,12 @@ const BidView = () => {
 
         if (bidStatus.status === BidStatusEnum.FulfillmentConfirmed) {
             setStage(StageEnum.Confirm)
+            setStep(3)
         }
 
         if (bidStatus.status === BidStatusEnum.FulfillmentContradicted) {
             setStage(StageEnum.Contradict)
+            setStep(3)
         }
 
         setBid(bid)
@@ -159,13 +167,18 @@ const BidView = () => {
 
     useEffect(() => {
         if (!chainId) return
+        if (!bid) return
         if (!deploymentAddresses.Api3ServerV1.hasOwnProperty(chainId)) return
 
         //@ts-ignore
         const api3ServerV1Address = deploymentAddresses.Api3ServerV1[chainId] as `0x${string}`
         setApi3ServerV1Address(api3ServerV1Address)
 
-    }, [chainId])
+        if (step === 0 && chainId === 4913) {
+            setStep(1)
+        }
+
+    }, [bid, chainId, step])
 
     useEffect(() => {
         if (!errorReportFullfillment) return
@@ -224,7 +237,7 @@ const BidView = () => {
 
     return (
         bid === undefined ? null :
-            <VStack maxW={"700px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
+            <VStack maxW={"700px"} borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
                 <Flex p={2} gap={1} alignItems={"center"} boxShadow={"sm"} bgColor={getColor(bid)} width={"100%"}>
                     <Image src={ChainLogo(bid.chainId.toString(), true)} width={"32px"} height={"32px"} />
                     <DApiRow dApi={bid.dapi} isLoading={(isPending || isLoading || isBusy || (isReported() && stage === StageEnum.Report))} setDapi={() => checkCorrectNetwork(bid)} onClick={() => { }} isOpen={true} bgColor={"white"}></DApiRow>
@@ -242,22 +255,15 @@ const BidView = () => {
                         <InfoRow header={"Fee Deduction"} text={getFeeRefund()} ></InfoRow>
                         <InfoRow header={"Update Transaction"} text={bid.updateTx} link={Utils.transactionLink("https://oev-network.explorer.caldera.dev", bid.updateTx)} copyEnabled={true}></InfoRow>
                         <InfoRow header={"Status"} text={BidStatusEnum[getBidStatus().status]} copyEnabled={false}></InfoRow>
+                        <ProgressBar step={step} descriptions={["Switch to OEV Network to report", "Report fullfilment", "Await for fullfilment to be confirmed/contradicted", "Bid haas been finalized"]} isLoading={isBusy}></ProgressBar>
                         {
                             getBidStatus().status === BidStatusEnum.Awarded && !isReported() ?
                                 chainId !== 4913 ? <SwitchNetwork header={false} switchMessage={"Switch Network to Report Fullfillment"} /> :
                                     <ExecuteButton text={"Report Fullfillment"} onClick={() => reportFulfillment()}></ExecuteButton>
                                 : null
                         }
-
                     </VStack>
                 }
-                {
-                    stage === StageEnum.Confirm &&
-                    <VStack width={"100%"} p={5} bgColor={Utils.COLORS.info} spacing={3}>
-                        <ExecuteButton text={"Place a New Bid"} onClick={() => setTab(StageEnum.PlaceBid)}></ExecuteButton>
-                    </VStack>
-                }
-
             </VStack>
     );
 };
