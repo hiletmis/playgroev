@@ -5,7 +5,20 @@ import { SymbolLogo } from '@api3/logos';
 import { ColorRing } from 'react-loader-spinner';
 
 const DApiRow = (props: any) => {
-    const dApiName = props.dApi.name;
+
+    const placeholder = {
+        name: "Select a dApi",
+        metadata: {
+            category: ""
+        }
+    }
+
+    const getDapi = () => {
+        return props.dApi === null ? placeholder : props.dApi;
+    }
+
+    const dApiName = getDapi().name;
+    const category = getDapi().metadata.category;
     const isHeader = props.isHeader || false;
     const isOpen = props.isOpen || false;
     const isLoading = props.isLoading || false;
@@ -17,14 +30,17 @@ const DApiRow = (props: any) => {
                 <Flex className='box' alignItems={"center"} gap={5}>
                     <Stack direction="column" spacing={"2"} width={"100%"}>
                         <Stack direction="row" spacing={"2"} >
-                            <Stack direction="row" spacing={"1"}>
-                                <Image src={SymbolLogo(symbols[0], true)} width={"24px"} height={"24px"} />
-                                <Image src={SymbolLogo(symbols[1], true)} width={"24px"} height={"24px"} />
-                            </Stack>
+                            {
+                                category === "" ? null :
+                                    <Stack direction="row" spacing={"1"}>
+                                        <Image src={SymbolLogo(symbols[0], true)} width={"24px"} height={"24px"} />
+                                        <Image src={SymbolLogo(symbols[1], true)} width={"24px"} height={"24px"} />
+                                    </Stack>
+                            }
                             <Text fontSize="md" fontWeight="bold">{dApiName}</Text>
                             <Spacer />
                         </Stack>
-                        <Text width={"100%"} noOfLines={1} fontSize="xs">{props.dApi.metadata.category}</Text>
+                        <Text width={"100%"} noOfLines={1} fontSize="xs">{category}</Text>
                     </Stack>
                     <Spacer />
                     {
