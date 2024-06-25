@@ -51,6 +51,10 @@ const PlaceBid = () => {
         return (error.message.split("\n")[0])
     }
 
+    const sanitizeEthAmount = (ethAmount: string) => {
+        return BigInt(ethAmount === "" ? 0 : parseEther(ethAmount))
+    }
+
     const signPayload = async () => {
 
         if (placeBidData == null) return;
@@ -112,7 +116,7 @@ const PlaceBid = () => {
         abi: OevAuctionHouse__factory.abi,
         chainId: chain ? chain.id : 4913,
         functionName: 'getCurrentCollateralAndProtocolFeeAmounts',
-        args: [BigInt(selectedChain ? selectedChain.id : 4913), BigInt(ethAmount === "" ? 0 : parseEther(ethAmount))],
+        args: [BigInt(selectedChain ? selectedChain.id : 4913), sanitizeEthAmount(ethAmount)],
     });
 
     const { writeContract, data: hash, reset } = useWriteContract()
@@ -126,7 +130,7 @@ const PlaceBid = () => {
         args: [
             bidTopic,
             BigInt(selectedChain ? selectedChain.id : 1),
-            BigInt(ethAmount === "" ? 1 : parseEther(ethAmount)),
+            sanitizeEthAmount(ethAmount),
             bidDetails.bytes!,
             collateralFee,
             protocolFee
@@ -185,7 +189,7 @@ const PlaceBid = () => {
             setStep(2)
         }
 
-        if (ethAmount !== "") {
+        if (sanitizeEthAmount(ethAmount) > BigInt(0)) {
             if (step === 2) {
                 setStep(3)
             }
@@ -196,6 +200,10 @@ const PlaceBid = () => {
         if (fulfillValue !== "" && bidType !== "") {
             if (step === 3) {
                 setStep(4)
+            }
+        } else {
+            if (step === 4) {
+                setStep(3)
             }
         }
 
@@ -239,7 +247,6 @@ const PlaceBid = () => {
                                             </>
                                     }
                                     <ProgressBar step={step} descriptions={["Chain Selection", "dApi Selection", "Entering Bid Amount", "Entering Bid Conditions", "Placing the Bid", "Proceeding to Award and Update"]}></ProgressBar>
-
                                     {
                                         dApi == null ? null :
                                             stage > StageEnum.PlaceBid ? null :
