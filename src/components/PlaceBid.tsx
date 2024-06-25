@@ -12,10 +12,12 @@ import DApiList from "../custom/DApiList";
 import { BidDetailsArgs, BidPrices, StageEnum } from "../types";
 import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { parseEther } from 'ethers';
-import { BidInfo } from "../types";
+import { BidInfo, DApiElement } from "../types";
 import { bidTopic } from "../helpers/constants";
 import { OevContext } from "../OEVContext";
 import * as Descriptions from "../helpers/descriptions";
+import ProgressBar from "../custom/ProgressBar";
+import { Chain } from '@api3/chains'
 
 import {
     VStack, Flex, Text
@@ -25,8 +27,9 @@ const PlaceBid = () => {
     const { address, chain } = useAccount()
     const { setPrices, stage, setStage, setBid, isBiddable } = useContext(OevContext);
 
-    const [selectedChain, setSelectedChain] = useState(Utils.getChain("1"));
-    const [dApi, setDapi] = useState(Utils.getEthUsdDapi());
+    const [selectedChain, setSelectedChain] = useState(null as Chain | null);
+    const [dApi, setDapi] = useState(null as DApiElement | null);
+    const [step, setStep] = useState(0);
 
     const [ethAmount, setEthAmount] = useState("");
     const [ethBalance, setEthBalance] = useState("0");
@@ -123,13 +126,13 @@ const PlaceBid = () => {
         args: [
             bidTopic,
             BigInt(selectedChain ? selectedChain.id : 1),
-            BigInt(ethAmount === "" ? 0 : parseEther(ethAmount)),
+            BigInt(ethAmount === "" ? 1 : parseEther(ethAmount)),
             bidDetails.bytes!,
             collateralFee,
             protocolFee
         ],
         query: {
-            enabled: (ethAmount !== "0" && ethAmount !== "" && fulfillValue !== "" && bidType !== "") && (stage === StageEnum.PlaceBid) && isBiddable,
+            enabled: (ethAmount !== "" && fulfillValue !== "" && bidType !== "") && (stage === StageEnum.PlaceBid) && isBiddable,
         }
     })
 
@@ -172,6 +175,36 @@ const PlaceBid = () => {
     }, [bidderBalance]);
 
     useEffect(() => {
+        if (selectedChain == null) return;
+        if (step === 0) {
+            setStep(1)
+        }
+
+        if (dApi == null) return;
+        if (step === 1) {
+            setStep(2)
+        }
+
+        if (ethAmount !== "") {
+            if (step === 2) {
+                setStep(3)
+            }
+        } else {
+            setStep(2)
+        }
+
+        if (fulfillValue !== "" && bidType !== "") {
+            if (step === 3) {
+                setStep(4)
+            }
+        }
+
+        if (stage > StageEnum.PlaceBid) {
+            setStep(5)
+        }
+    }, [step, selectedChain, dApi, ethAmount, fulfillValue, bidType, stage])
+
+    useEffect(() => {
         if (getCurrentCollateralAndProtocolFeeAmounts === undefined) return;
         setProtocolFee(getCurrentCollateralAndProtocolFeeAmounts[1])
         setCollateralFee(getCurrentCollateralAndProtocolFeeAmounts[0])
@@ -187,25 +220,34 @@ const PlaceBid = () => {
         chain == null ? <SignIn></SignIn> :
             <VStack spacing={4} alignItems={"left"} >
                 <CustomHeading header={Descriptions.placeBidTitle} description={Descriptions.placeBidDescription} isLoading={isInputDisabled}></CustomHeading>
-                <VStack maxW={"700px"} p={4} shadow="md" borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
+                <VStack maxW={"700px"} borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
                     <Flex>
                         <Text fontWeight={"bold"} fontSize={"lg"}>{Descriptions.selectChainAndDapiDescription}</Text>
                     </Flex>
                     <VStack spacing={2} direction="row" align="left">
                         <DApiList dApi={dApi} setDapi={setDapi} selectedChain={selectedChain} setSelectedChain={setSelectedChain}></DApiList>
                         {
+
                             chain.id !== 4913 ? <SwitchNetwork header={false} switchMessage={Descriptions.switchToBid} /> :
                                 <VStack alignItems={"left"} spacing={5}>
-                                    <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={selectedChain} isInputDisabled={isInputDisabled}></BidAmount>
-                                    <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
-                                    <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
                                     {
-                                        stage > StageEnum.PlaceBid ? <ErrorRow text={Descriptions.bidPlacedMessage} margin={0} bgColor={Utils.COLORS.info} header={Descriptions.bidPlacedTitle}></ErrorRow> :
-                                            <ExecuteButton
-                                                isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || !isBiddable}
-                                                text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
-                                                onClick={signPayload}>
-                                            </ExecuteButton>
+                                        dApi == null ? null :
+                                            <>
+                                                <BidAmount ethAmount={ethAmount} setEthAmount={setEthAmount} ethBalance={ethBalance} chain={selectedChain} isInputDisabled={isInputDisabled}></BidAmount>
+                                                <BidConditions fulfillValue={fulfillValue} setFulfillValue={setFulfillValue} condition={bidType} setCondition={setBidType} isInputDisabled={isInputDisabled}></BidConditions>
+                                                <ErrorRow text={sanitizedError(placeBidError)} margin={0} bgColor={Utils.COLORS.caution} header={"Error"}></ErrorRow>
+                                            </>
+                                    }
+                                    <ProgressBar step={step} descriptions={["Chain selection", "dApi selection", "Enter bid amount", "Enter bid condition", "Place the bid", "Proceed to award and update"]}></ProgressBar>
+
+                                    {
+                                        dApi == null ? null :
+                                            stage > StageEnum.PlaceBid ? null :
+                                                <ExecuteButton
+                                                    isDisabled={isError || isInputDisabled || !ethAmount || !fulfillValue || !bidType || isNaN(parseFloat(ethAmount)) || parseFloat(ethAmount) <= 0 || !isBiddable}
+                                                    text={isInputDisabled ? "Placing Bid..." : "Place Bid"}
+                                                    onClick={signPayload}>
+                                                </ExecuteButton>
                                     }
                                 </VStack>
                         }
