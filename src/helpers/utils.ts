@@ -1,7 +1,7 @@
 import { formatUnits, hexlify, randomBytes, keccak256, solidityPacked } from 'ethers';
 import { dapis, getChains as getChainsFromDapiManagement } from '@api3/dapi-management'
 import { CHAINS } from '@api3/chains';
-import { computeDapiProxyWithOevAddress } from '@api3/contracts';
+import { computeDapiProxyWithOevAddress, managerMultisigAddresses } from '@api3/contracts';
 
 import {
     encodeAbiParameters,
@@ -69,9 +69,9 @@ export function getChain(id: string) {
 }
 
 export function getDapiProxyWithOevAddress(chainId: string, dApiName: string): `0x${string}` {
-    const oevBeneficiary = "0x14A9E40FcAdA95A273ce3c8d4ccF7EA3280BDd26"
+    const beneficiaryAddress = managerMultisigAddresses[chainId as keyof typeof managerMultisigAddresses] as `0x${string}`;
     const metadata = "0x"
-    return computeDapiProxyWithOevAddress(chainId, dApiName, oevBeneficiary, metadata) as `0x${string}`;
+    return computeDapiProxyWithOevAddress(chainId, dApiName, beneficiaryAddress, metadata) as `0x${string}`;
 }
 
 export const generateRandom32Bytes = () => hexlify(randomBytes(32)) as `0x${string}`;
