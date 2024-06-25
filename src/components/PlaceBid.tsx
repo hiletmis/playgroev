@@ -228,7 +228,7 @@ const PlaceBid = () => {
     return (
         chain == null ? <SignIn></SignIn> :
             <VStack spacing={4} alignItems={"left"} >
-                <CustomHeading header={Descriptions.placeBidTitle} description={Descriptions.placeBidDescription} isLoading={isInputDisabled} setHelp={setHelp} help={help}></CustomHeading>
+                <CustomHeading header={Descriptions.placeBidTitle} description={Descriptions.placeBidDescription} isLoading={isInputDisabled} setHelp={setHelp} help={help} stage={StageEnum.PlaceBid}></CustomHeading>
                 <VStack maxW={"700px"} borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
                     <Flex>
                         <Text fontWeight={"bold"} fontSize={"lg"}>{Descriptions.selectChainAndDapiDescription}</Text>

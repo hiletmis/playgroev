@@ -1,5 +1,6 @@
 import { Text, Heading, Flex, Spacer, VStack, Image } from '@chakra-ui/react';
 import { ColorRing } from 'react-loader-spinner';
+import HelpView from './HelpView';
 
 const CustomHeading = (props: any) => {
     const { header, description, isLoading } = props;
@@ -15,6 +16,10 @@ const CustomHeading = (props: any) => {
                 }
             </Flex>
             <Text fontSize={"sm"}>{description}</Text>
+            {
+                props.setHelp &&
+                <HelpView help={props.help} setHelp={props.setHelp} stage={props.stage}></HelpView>
+            }
         </VStack>
     );
 };

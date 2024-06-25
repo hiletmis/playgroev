@@ -7,6 +7,7 @@ import {
     VStack
 } from "@chakra-ui/react";
 import ReportFullfillmentView from "../custom/ReportFullfillmentView";
+import { StageEnum } from '../types';
 
 const Report = () => {
     const { chain } = useAccount()
@@ -16,7 +17,7 @@ const Report = () => {
     return (
         chain == null ? <SignIn></SignIn> :
             <VStack spacing={4} alignItems={"left"} >
-                <CustomHeading header={"Report Fullfillment"} description={"dAPI has been updated. Please report fullfillment."} isLoading={false} setHelp={setHelp} help={help}></CustomHeading>
+                <CustomHeading header={"Report Fullfillment"} description={"dAPI has been updated. Please report fullfillment."} isLoading={false} setHelp={setHelp} help={help} stage={StageEnum.Report}></CustomHeading>
                 <ReportFullfillmentView></ReportFullfillmentView>
             </VStack>
     );

@@ -55,7 +55,7 @@ const Bridge = () => {
         chain == null ? <SignIn></SignIn> :
             chain.id !== 4913 ? <SwitchNetwork /> :
                 <VStack alignItems={"left"} minWidth={"400px"} maxWidth={"700px"} spacing={5}>
-                    <CustomHeading header={Descriptions.bridgeTitle} description={Descriptions.bridgeDescriptionLine1} isLoading={false} setHelp={setHelp} help={help}></CustomHeading>
+                    <CustomHeading header={Descriptions.bridgeTitle} description={Descriptions.bridgeDescriptionLine1} isLoading={false} setHelp={setHelp} help={help} stage={StageEnum.Bridge}></CustomHeading>
                     <Text fontSize={"sm"}>{Descriptions.bridgeDescriptionLine2}</Text>
 
                     <Flex p={2} width={"100%"} bgColor={COLORS.app} >

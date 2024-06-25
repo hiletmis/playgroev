@@ -74,7 +74,7 @@ const Bridge = () => {
         chain == null ? <SignIn></SignIn> :
             chain.id !== 4913 ? <SwitchNetwork /> :
                 <VStack alignItems={"left"} minWidth={"400px"} maxWidth={"700px"} spacing={5}>
-                    <CustomHeading header={Descriptions.depositCollateralTitle} description={Descriptions.depositCollateralDescription} isLoading={isPending} setHelp={setHelp} help={help}></CustomHeading>
+                    <CustomHeading header={Descriptions.depositCollateralTitle} description={Descriptions.depositCollateralDescription} isLoading={isPending} setHelp={setHelp} help={help} stage={StageEnum.Deposit}></CustomHeading>
                     <VStack alignItems={"left"} spacing={5}>
                         <AddCollateral tokenAmount={ethAmount} setTokenAmount={setEthAmount} tokenBalance={parseETH(balance)} ></AddCollateral>
                         <Flex p={2} width={"100%"} bgColor={COLORS.app} >
