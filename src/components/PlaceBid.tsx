@@ -30,6 +30,7 @@ const PlaceBid = () => {
     const [selectedChain, setSelectedChain] = useState(null as Chain | null);
     const [dApi, setDapi] = useState(null as DApiElement | null);
     const [step, setStep] = useState(0);
+    const [help, setHelp] = useState(false);
 
     const [ethAmount, setEthAmount] = useState("");
     const [ethBalance, setEthBalance] = useState("0");
@@ -227,7 +228,7 @@ const PlaceBid = () => {
     return (
         chain == null ? <SignIn></SignIn> :
             <VStack spacing={4} alignItems={"left"} >
-                <CustomHeading header={Descriptions.placeBidTitle} description={Descriptions.placeBidDescription} isLoading={isInputDisabled}></CustomHeading>
+                <CustomHeading header={Descriptions.placeBidTitle} description={Descriptions.placeBidDescription} isLoading={isInputDisabled} setHelp={setHelp} help={help}></CustomHeading>
                 <VStack maxW={"700px"} borderWidth="px" flex="1" bgColor={Utils.COLORS.main} alignItems={"left"}>
                     <Flex>
                         <Text fontWeight={"bold"} fontSize={"lg"}>{Descriptions.selectChainAndDapiDescription}</Text>

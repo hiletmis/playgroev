@@ -1,5 +1,5 @@
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { VStack, Flex, Text, Spacer } from '@chakra-ui/react';
 import CustomHeading from '../custom/Heading';
 import SignIn from '../custom/SignIn';
@@ -15,8 +15,10 @@ import ExecuteButton from '../custom/ExecuteButton';
 
 const Bridge = () => {
     const { chain, address } = useAccount()
-
     const { balance, ethereumBalance, stage, setStage } = useContext(OevContext);
+
+    const [help, setHelp] = useState(false);
+
     const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
 
     //@ts-ignore
@@ -53,7 +55,7 @@ const Bridge = () => {
         chain == null ? <SignIn></SignIn> :
             chain.id !== 4913 ? <SwitchNetwork /> :
                 <VStack alignItems={"left"} minWidth={"400px"} maxWidth={"700px"} spacing={5}>
-                    <CustomHeading header={Descriptions.bridgeTitle} description={Descriptions.bridgeDescriptionLine1} isLoading={false}></CustomHeading>
+                    <CustomHeading header={Descriptions.bridgeTitle} description={Descriptions.bridgeDescriptionLine1} isLoading={false} setHelp={setHelp} help={help}></CustomHeading>
                     <Text fontSize={"sm"}>{Descriptions.bridgeDescriptionLine2}</Text>
 
                     <Flex p={2} width={"100%"} bgColor={COLORS.app} >

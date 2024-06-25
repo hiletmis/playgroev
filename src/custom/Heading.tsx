@@ -9,7 +9,10 @@ const CustomHeading = (props: any) => {
                 <Heading size={"lg"}>{header}</Heading>
                 <Spacer />
                 <ColorRing height="30px" width="30px" ariaLabel="loading" visible={isLoading} />
-                <Image src={'./help.svg'} width={"30px"} height={"30px"} cursor={"pointer"} />
+                {
+                    props.setHelp &&
+                    <Image src={'./help.svg'} width={"30px"} height={"30px"} cursor={"pointer"} onClick={() => { props.setHelp(!props.help) }} />
+                }
             </Flex>
             <Text fontSize={"sm"}>{description}</Text>
         </VStack>
