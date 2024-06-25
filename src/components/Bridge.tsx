@@ -36,7 +36,6 @@ const Bridge = () => {
     useEffect(() => {
         if (balance === BigInt(0)) {
             setStage(StageEnum.Bridge);
-            return;
         }
 
         if (stage === 0 && balance !== BigInt(0)) {
