@@ -38,7 +38,10 @@ const DApiList = (props: any) => {
         <VStack width={"100%"} alignItems={"left"} spacing={0}>
             <Flex width={"100%"} justifyContent={"space-between"} gap={2}>
                 <ChainRow selectedChain={selectedChain} setSelectedChain={setSelectedChain} isHeader={true} isOpen={isChainListVisible} onClick={() => { setIsChainListVisible(!isChainListVisible) }}></ChainRow>
-                <DApiRow dApi={dApi} setDapi={setDapi} isHeader={true} isOpen={isDApiListVisible} onClick={() => { setIsDApiListVisible(!isDApiListVisible) }}></DApiRow>
+                {
+                    selectedChain &&
+                    <DApiRow dApi={dApi} setDapi={setDapi} isHeader={true} isOpen={isDApiListVisible} onClick={() => { setIsDApiListVisible(!isDApiListVisible) }}></DApiRow>
+                }
             </Flex>
 
             {
