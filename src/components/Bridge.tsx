@@ -1,6 +1,6 @@
 
 import { useContext, useEffect } from 'react';
-import { Button, VStack, Flex, Text, Spacer } from '@chakra-ui/react';
+import { VStack, Flex, Text, Spacer } from '@chakra-ui/react';
 import CustomHeading from '../custom/Heading';
 import SignIn from '../custom/SignIn';
 import { useAccount } from 'wagmi';
@@ -11,21 +11,13 @@ import { StageEnum } from '../types';
 import { OevAuctionHouse__factory, deploymentAddresses } from '@api3/contracts';
 import { useReadContract } from 'wagmi';
 import * as Descriptions from '../helpers/descriptions';
+import ExecuteButton from '../custom/ExecuteButton';
 
 const Bridge = () => {
     const { chain, address } = useAccount()
 
     const { balance, ethereumBalance, stage, setStage } = useContext(OevContext);
     const OevAuctionHouseAddres = deploymentAddresses.OevAuctionHouse[4913] as `0x${string}`
-
-    const BridgeButton = () => {
-        return (
-            <Button
-                size={"md"} colorScheme={"blue"} variant={"solid"}
-                onClick={() => window.open('https://oev-network.bridge.caldera.xyz/', '_blank')}>{Descriptions.bridgeButton}
-            </Button>
-        )
-    }
 
     //@ts-ignore
     const { data: bidderBalance } = useReadContract({
@@ -79,11 +71,11 @@ const Bridge = () => {
                             <VStack p={4} width={"100%"} bgColor={COLORS.caution} alignItems={"left"} spacing={5}>
                                 <Text fontSize={"md"} fontWeight={"bold"}>{Descriptions.noBalanceTitle}</Text>
                                 <Text fontSize={"sm"}>{Descriptions.noBalanceDescription}</Text>
-                                <BridgeButton />
+                                <ExecuteButton text={Descriptions.bridgeButton} onClick={() => window.open('https://oev-network.bridge.caldera.xyz/', '_blank')}></ExecuteButton>
                             </VStack>
                             :
                             <VStack width={"100%"} alignItems={"left"} spacing={5}>
-                                <BridgeButton />
+                                <ExecuteButton text={Descriptions.bridgeButton} onClick={() => window.open('https://oev-network.bridge.caldera.xyz/', '_blank')}></ExecuteButton>
                             </VStack>
                     }
                 </VStack>
