@@ -181,3 +181,8 @@ export declare const DApiElementSchema: z.ZodObject<{
 }>;
 
 export type DApiElement = z.infer<typeof DApiElementSchema>;
+
+export type HelpSection = {
+    title: string
+    content: string[]
+}
