@@ -82,25 +82,26 @@ const Bridge = () => {
                             <Spacer />
                             <Text fontWeight={"bold"} fontSize={"md"}>{parseETH(bidderBalance)} ETH</Text>
                         </Flex>
+                        {
+                            hash &&
+                            <Flex p={2} gap={2} width={"100%"} bgColor={COLORS.app} >
+                                <Text fontSize={"md"} fontWeight={"bold"}>Transaction</Text>
+                                <Spacer />
+                                <Text fontWeight={"bold"} fontSize={"md"}>{trimHash(hash)}</Text>
+                                <Text fontSize={"md"} fontWeight={"bold"}>
+                                    <a href={`https://oev-network.explorer.caldera.dev/tx/${hash}`} target="_blank" rel="noopener noreferrer">
+                                        <ViewIcon color={"blue.500"}></ViewIcon>
+                                    </a>
+                                </Text>
+                            </Flex>
+                        }
                         <ExecuteButton
                             text={Descriptions.depositCollateralButton}
                             isDisabled={ethAmount === "0" || ethAmount === "" || parseFloat(parseETH(balance)) < parseFloat(ethAmount)}
                             onClick={() => depositForBidder()}>
                         </ExecuteButton>
                     </VStack>
-                    {
-                        hash &&
-                        <Flex p={2} gap={2} width={"100%"} bgColor={COLORS.app} >
-                            <Text fontSize={"md"} fontWeight={"bold"}>Transaction</Text>
-                            <Spacer />
-                            <Text fontWeight={"bold"} fontSize={"md"}>{trimHash(hash)}</Text>
-                            <Text fontSize={"md"} fontWeight={"bold"}>
-                                <a href={`https://oev-network.explorer.caldera.dev/tx/${hash}`} target="_blank" rel="noopener noreferrer">
-                                    <ViewIcon color={"blue.500"}></ViewIcon>
-                                </a>
-                            </Text>
-                        </Flex>
-                    }
+
                 </VStack>
     );
 };
